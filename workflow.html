@@ -1,1 +1,253 @@
-file:///C:/Users/user/Downloads/%E9%BB%9E%E6%88%91%E6%89%93%E9%96%8B-v2.html
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>99dodo 台股分析自動發布 - 完整作業流程 v2.0</title>
+<style>
+:root{--bg:#FFFDF7;--card:#fff;--ink:#111827;--muted:#6B7280;--border:#E5E7EB;--orange:#FF5A1F;--red:#DC2626;--green:#059669;--blue:#2563EB;--yellow:#FEF3C7}
+*{box-sizing:border-box}
+body{margin:0;font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+header{position:sticky;top:0;z-index:20;background:rgba(255,253,247,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:18px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+header h1{margin:0;font-size:22px;letter-spacing:.5px}
+header .sub{color:var(--muted);font-size:13px}
+.wrap{max-width:960px;margin:0 auto;padding:28px 20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;margin-bottom:22px;box-shadow:0 6px 24px rgba(0,0,0,.04)}
+.card h2{margin:0 0 14px;font-size:19px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.card h3{margin:18px 0 8px;font-size:16px}
+.badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--border);background:#F9FAFB;font-weight:700;letter-spacing:.3px}
+.badge.ok{background:#ECFDF5;color:var(--green);border-color:#A7F3D0}
+.badge.warn{background:#FEF2F2;color:var(--red);border-color:#FECACA}
+.badge.info{background:#EFF6FF;color:var(--blue);border-color:#BFDBFE}
+.badge.new{background:var(--ink);color:#fff}
+.step{display:flex;gap:16px;margin:18px 0;padding:16px;background:#F9FAFB;border-radius:14px;border:1px solid var(--border)}
+.step-num{flex:0 0 42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+.step-body{flex:1}
+.kbd{border:1px solid var(--border);border-bottom-width:2px;padding:2px 7px;border-radius:7px;font-size:12.5px;background:#fff;font-family:ui-monospace,monospace}
+.code{background:#0F172A;color:#E2E8F0;padding:14px 16px;border-radius:12px;font-family:ui-monospace,monospace;font-size:13.5px;overflow:auto;margin:12px 0;white-space:pre-wrap;word-break:break-all;line-height:1.6}
+.alert{border-left:4px solid;padding:14px 16px;border-radius:10px;margin:14px 0;font-size:14px}
+.alert-warn{border-color:var(--red);background:#FEF2F2}
+.alert-ok{border-color:var(--green);background:#ECFDF5}
+.alert-info{border-color:var(--blue);background:#EFF6FF}
+.alert-yellow{border-color:#F59E0B;background:#FFFBEB}
+ul{padding-left:20px;margin:10px 0}
+li{margin:8px 0;font-size:14.5px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}header{flex-direction:column;align-items:flex-start}}
+.linkbox{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#F3F4F6;border:1px dashed var(--border);padding:10px 14px;border-radius:10px;margin:8px 0}
+.linkbox code{font-size:13px;word-break:break-all}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:40px 0 20px}
+hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+.toc a{display:block;padding:6px 0;font-size:14px}
+.phase-label{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+</style>
+</head>
+<body>
+<header>
+<div>
+<h1>📒 99dodo 台股分析自動發布 - 完整作業流程 v2.0</h1>
+<div class="sub">目標：讓 Claude 分析完的 HTML，變成關電腦也不會消失的永久網址 | Repo: 99dodo/mystock-analysis | 2026-08-04 更新</div>
+</div>
+<div><span class="badge new">v2.0 含地雷整理</span></div>
+</header>
+
+<div class="wrap">
+
+<div class="card" style="background:linear-gradient(135deg,#FFF7ED 0%,#FFFFFF 60%)">
+<h2>🎯 總覽</h2>
+<div class="grid2">
+<div>
+<div class="phase-label">你要做什麼</div>
+<strong>把 Claude 產出的股票分析 HTML，推上 GitHub Pages，變成永久連結</strong>
+<p style="font-size:14px;color:var(--muted)">例如：https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html</p>
+</div>
+<div class="toc">
+<div class="phase-label">快速跳轉</div>
+<a href="#phase1">第一階段：基礎建設（只做一次）</a>
+<a href="#phase2">第二階段：Token 金鑰 ⚠️ 最重要</a>
+<a href="#phase3">第三階段：改 SKILL.md ⚠️ 有地雷</a>
+<a href="#phase4">第四階段：去 Claude 執行</a>
+<a href="#phase5">第五階段：收尾 + 安全守則</a>
+</div>
+</div>
+</div>
+
+<div class="card" id="phase1">
+<h2><span class="badge ok">Phase 1</span> 第一階段：GitHub 基礎建設 <span class="badge">只做一次</span></h2>
+
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-body">
+<h3>建 Repo</h3>
+<p>網址：<a href="https://github.com/new" target="_blank">https://github.com/new</a></p>
+<ul>
+<li>Repository name：<span class="kbd">mystock-analysis</span></li>
+<li>選 <strong>Public</strong> + 勾 <strong>Add a README file</strong></li>
+<li>按 <span class="kbd">Create repository</span></li>
+</ul>
+<div class="linkbox"><code>https://github.com/99dodo/mystock-analysis</code><span class="badge">你的倉庫</span></div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-body">
+<h3>開 GitHub Pages</h3>
+<p>進到：<a href="https://github.com/99dodo/mystock-analysis/settings/pages" target="_blank">Settings → Pages</a></p>
+<ul>
+<li>Source：<span class="kbd">Deploy from a branch</span></li>
+<li>Branch：<span class="kbd">main</span> / <span class="kbd">/(root)</span> → 按 <span class="kbd">Save</span></li>
+</ul>
+<div class="alert alert-ok">等 1-2 分鐘，你的永久網站就生效：<br><a href="https://99dodo.github.io/mystock-analysis/" target="_blank">https://99dodo.github.io/mystock-analysis/</a> — 這是你的總目錄</div>
+</div>
+</div>
+</div>
+
+<div class="card" id="phase2">
+<h2><span class="badge warn">Phase 2</span> 第二階段：Token 金鑰 <span class="badge warn">⚠️ 最重要，特別注意</span></h2>
+<div class="alert alert-warn"><strong>Token = 你家鑰匙 + 提款卡密碼</strong>，拿到的人可以改你所有檔案。設定錯會被駭。</div>
+
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-body">
+<h3>建 Token</h3>
+<p>網址：<a href="https://github.com/settings/tokens?type=beta" target="_blank">https://github.com/settings/tokens?type=beta</a> → 按 <span class="kbd">Generate new token</span></p>
+<ul>
+<li>Token name：<span class="kbd">claude-temp-7days</span>（好認就好）</li>
+<li>Expiration：<strong>7 days</strong> <span class="badge warn">⚠ 不要選 No expiration</span></li>
+<li>Repository access：<strong>Only select repositories</strong> → 只勾 <span class="kbd">99dodo/mystock-analysis</span> <span class="badge warn">⚠ 不要選 All</span></li>
+</ul>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-body">
+<h3>設權限 <span class="badge warn">地雷區</span></h3>
+<p>往下滑到 <strong>Permissions → Repository permissions → Contents</strong></p>
+<ul>
+<li>選 <strong>Read and write</strong> <span class="badge warn">不要選 Admin，不要全開</span></li>
+<li>其他權限全部保持 <span class="kbd">No access</span></li>
+</ul>
+<div class="alert alert-yellow"><strong>為什麼只開 Contents？</strong>開 Admin 別人就能刪你 Repo，開 Workflows 別人能塞病毒。最小權限最安全。</div>
+<p>按 <span class="kbd">Generate token</span> → 複製綠色框裡 <span class="kbd">github_pat_...</span> 那一長串</p>
+<div class="alert alert-warn"><strong>注意：這一頁關掉就看不到 Token 了，要馬上複製起來，貼給 Claude 用。</strong></div>
+</div>
+</div>
+</div>
+
+<div class="card" id="phase3">
+<h2><span class="badge warn">Phase 3</span> 第三階段：改 SKILL.md <span class="badge warn">⚠️ 有地雷</span></h2>
+
+<div class="step">
+<div class="step-num">5</div>
+<div class="step-body">
+<h3>改 SKILL.md</h3>
+<p>打開 SKILL.md 搜尋並替換：</p>
+<div class="code">原本：https://github.com/{your-username}/{your-repo}
+改成：https://github.com/99dodo/mystock-analysis
+
+原本：http://{your-username}.github.io/{your-repo}/
+改成：http://99dodo.github.io/mystock-analysis/</div>
+<div class="alert alert-warn"><strong>⚠️ 地雷：中間不能有空格！</strong><br>
+錯誤：<span class="kbd">https://github.com/ 99dodo/...</span> ← 中間多一個空格<br>
+正確：<span class="kbd">https://github.com/99dodo/...</span><br><br>
+之前你貼成有空格的，push 會直接失敗 401。這是最多人卡關的地方。</div>
+</div>
+</div>
+</div>
+
+<div class="card" id="phase4">
+<h2><span class="badge info">Phase 4</span> 第四階段：去 Claude 執行 <span class="badge">每次分析都要做</span></h2>
+
+<div class="step">
+<div class="step-num">6</div>
+<div class="step-body">
+<h3>開新對話</h3>
+<p>Claude 點 <span class="kbd">+ New chat</span> → 迴紋針 📎 上傳改好的 SKILL.md</p>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">7</div>
+<div class="step-body">
+<h3>貼開場白</h3>
+<div class="code">請讀取 SKILL.md，執行 tw-stock-initial-analysis。
+
+我要分析 6202
+Repo: https://github.com/99dodo/mystock-analysis
+Token: github_pat_... (貼上你的)
+
+請從第一步現金流六大規則開始</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">8</div>
+<div class="step-body">
+<h3>給現金流截圖 <span class="badge warn">會影響準度</span></h3>
+<p>它會給你 Goodinfo 連結：<a href="https://goodinfo.tw/tw/StockCashFlow.asp?STOCK_ID=6202" target="_blank">https://goodinfo.tw/tw/StockCashFlow.asp?STOCK_ID=6202</a></p>
+<ul>
+<li>你點開，截 <strong>總表 + 往下捲的投資/融資細項</strong> 一起給它</li>
+</ul>
+<div class="alert alert-info">⚠️ <strong>只給總表，規則二/三/四會不準</strong>，因為 B 可能只是理財調度，C 可能是增資不是借錢。一定要給細項。</div>
+</div>
+</div>
+
+<div class="step">
+<div class="step-num">9</div>
+<div class="step-body">
+<h3>確認永久網址</h3>
+<p>跑完它會回你：</p>
+<div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html</code><span class="badge ok">永久版</span></div>
+<p>點開能看，就是成功，這個就是永久版，關電腦也在。</p>
+<div class="alert alert-yellow"><strong>小知識：</strong>為什麼有時是程式碼有時是網頁？<br>
+<span class="kbd">github.com/.../blob/main/...</span> → 看程式碼<br>
+<span class="kbd">99dodo.github.io/.../...</span> → 才是漂亮網頁</div>
+</div>
+</div>
+</div>
+
+<div class="card" id="phase5">
+<h2><span class="badge ok">Phase 5</span> 第五階段：收尾 + 安全守則</h2>
+
+<div class="step">
+<div class="step-num">10</div>
+<div class="step-body">
+<h3>Token 怎麼處理</h3>
+<div class="grid2">
+<div class="alert alert-ok"><strong>方案 A（最安全）：用完即丟</strong><br>做完馬上回 <a href="https://github.com/settings/tokens?type=beta" target="_blank">Token 設定頁</a> 按 Delete 刪掉，下次跑新股票再建一顆。</div>
+<div class="alert alert-info"><strong>方案 B（你現在用的，方便）：留 7 天</strong><br>7 天內跑別檔都用同一顆，8/11 自動過期，過期前 GitHub 會寄信提醒。</div>
+</div>
+</div>
+</div>
+
+<hr>
+
+<h3>🔴 絕對不能做的事 <span class="badge warn">最高危險</span></h3>
+<div class="alert alert-warn">
+<ul style="margin:0">
+<li>❌ 把 <span class="kbd">github_pat_...</span> 貼到 Facebook、Line、公開社團、PTT、Dcard</li>
+<li>❌ 把 Token 上傳到 GitHub 檔案裡面（Claude 不會，別自己手動上傳）</li>
+<li>❌ 設成 <span class="kbd">No expiration</span> 或 <span class="kbd">All repositories</span> 權限</li>
+<li>❌ 截圖問問題時，截到完整 Token</li>
+</ul>
+</div>
+<p style="font-size:13px;color:var(--muted)">如果不小心貼出去了怎麼辦？馬上到 Token 設定頁按 Delete，刪掉後那串就立刻失效，別人拿到了也沒用。</p>
+
+<hr>
+
+<h3>📂 你已成功的案例</h3>
+<div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html</code><a href="https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html" target="_blank">點此查看 ↗</a></div>
+<div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/workflow.html</code><a href="https://99dodo.github.io/mystock-analysis/workflow.html" target="_blank">本文永久網址 ↗</a></div>
+<div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/</code><a href="https://99dodo.github.io/mystock-analysis/" target="_blank">總目錄 ↗</a></div>
+
+</div>
+
+</div>
+
+<footer>Generated for 99dodo | 完整作業流程 v2.0 | 2026-08-04 | 已包含你之前踩過的 2 個地雷（空格 + 中文檔名）</footer>
+</body>
+</html>
