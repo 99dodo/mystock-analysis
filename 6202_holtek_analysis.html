@@ -244,8 +244,8 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
 </header>
 
 <nav class="stepnav" id="stepnav">
-  <div class="pad active" data-target="step1">① 現金流六大規則</div>
-  <div class="pad locked" data-target="step2">② 基本資訊</div>
+  <div class="pad" data-target="step1">① 現金流六大規則</div>
+  <div class="pad active" data-target="step2">② 基本資訊</div>
   <div class="pad locked" data-target="step3">③ 法說會深入</div>
   <div class="pad locked" data-target="step4">④ 營收趨勢</div>
   <div class="pad locked" data-target="step5">⑤ 前瞻本益比</div>
@@ -558,6 +558,109 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
 
   <p class="src-note">報告版本：v1.0　產生時間：2026-08-04 08:22<br>資料來源：使用者提供之 Goodinfo 現金流量表截圖（2016-2025年度）與季度現金流細項截圖（2022Q3-2026Q2 累計數），非本次網路搜尋所得。</p>
 </section>
+
+<section id="step2">
+  <div class="step-heading">
+    <span class="step-num">STEP 2 / 6</span>
+    <h2 class="step-title">基本資訊查詢</h2>
+  </div>
+
+  <div class="callout">
+    <b>資料來源說明：</b>本節數字均來自 Yahoo股市個股頁面即時查詢結果（查詢時間標註於各段），非使用者提供。股價／報價類數字僅為查詢當下的單一快照，非即時報價，正式交易請以看盤軟體/券商App為準。
+  </div>
+
+  <h3>股價與估值</h3>
+  <table>
+    <thead><tr><th class="yr">項目</th><th>數值</th><th class="yr">備註</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">收盤價</td><td>58.1</td><td class="yr">2026/08/04 14:30，漲跌 +0.60（+1.02%）</td></tr>
+      <tr><td class="yr">52 週高／低</td><td>81.00 / 35.80</td><td class="yr">查詢於 2026/07/31 快照</td></tr>
+      <tr><td class="yr">本益比（近四季EPS）</td><td>48.92</td><td class="yr">同業平均 55.51</td></tr>
+      <tr><td class="yr">近四季 EPS</td><td>0.66</td><td class="yr">2025Q3~2026Q2 加總（0.12+0.15+0.3+0.64）</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW" target="_blank">Yahoo股市個股頁面</a>（查詢 2026/08/04）</p>
+
+  <hr class="div">
+
+  <h3>EPS 走勢（單季）</h3>
+  <div class="callout">
+    <b>2021 年是獲利高峰（單季 EPS 一度達 3.17 元），隨後連續衰退到 2023-2024 年多次單季轉虧（最低 -0.32 元），2025 下半年起連 4 季轉正回升，2026Q2 單季 EPS <span class="negv" style="color:var(--pos)">0.64 元</span>，季增 113%、年增 540%，是近三年最強的一季。</b>
+  </div>
+  <table>
+    <thead><tr><th class="yr">季別</th><th>EPS</th><th>季增%</th><th>年增%</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">2026 Q2</td><td>0.64</td><td>113.33%</td><td>540.00%</td></tr>
+      <tr><td class="yr">2026 Q1</td><td>0.3</td><td>100.00%</td><td>-25.00%</td></tr>
+      <tr><td class="yr">2025 Q4</td><td>0.15</td><td>25.00%</td><td>1,400.00%</td></tr>
+      <tr><td class="yr">2025 Q3</td><td>0.12</td><td>20.00%</td><td>137.50%</td></tr>
+      <tr><td class="yr">2025 Q2</td><td>0.1</td><td>-75.00%</td><td>166.67%</td></tr>
+      <tr><td class="yr">2025 Q1</td><td>0.4</td><td>3,900.00%</td><td>300.00%</td></tr>
+      <tr><td class="yr">2024 Q4</td><td>0.01</td><td>103.13%</td><td>112.50%</td></tr>
+      <tr><td class="yr">2024 Q3</td><td class="negv">-0.32</td><td>-113.33%</td><td>-300.00%</td></tr>
+      <tr><td class="yr">2023 Q4</td><td class="negv">-0.08</td><td>-150.00%</td><td>-233.33%</td></tr>
+    </tbody>
+  </table>
+  <p>單季 EPS 走勢與第一步現金流分析（A 逐年趨勢、E 期末餘額）呈現的「2021見頂→2023-2024谷底→近兩年回溫」節奏完全吻合，交叉驗證了獲利面與現金流面同步復甦的判斷。</p>
+  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/eps" target="_blank">Yahoo股市 每股盈餘頁面</a>（查詢 2026/08/04）。經查證近1-2年無股票分割/減資紀錄，各期EPS可直接比較，不需回溯調整。</p>
+
+  <hr class="div">
+
+  <h3>股利與殖利率</h3>
+  <div class="callout">
+    <b>2025 年度配發現金股利僅 0.68 元（依 2026/08/13 除息日昨收 58.1 元計算，殖利率 1.16%），遠低於 2022-2023 年配發的 8.12 元／4.00 元，直接反映 2023-2024 年獲利崩落的後果；已連續 1 年恢復發放（2025年因虧損未配發股利）。</b>
+  </div>
+  <table>
+    <thead><tr><th class="yr">股利所屬年度</th><th>現金股利</th><th>殖利率</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">2025</td><td>0.68</td><td>1.16%</td></tr>
+      <tr><td class="yr">2024</td><td class="negv">－（未發放）</td><td>－</td></tr>
+      <tr><td class="yr">2023</td><td>0.45</td><td>0.92%</td></tr>
+      <tr><td class="yr">2022</td><td>4.00</td><td>6.04%</td></tr>
+      <tr><td class="yr">2021</td><td>8.1229</td><td>9.91%</td></tr>
+    </tbody>
+  </table>
+  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/dividend" target="_blank">Yahoo股市 股利政策頁面</a>（查詢 2026/08/04）</p>
+
+  <hr class="div">
+
+  <h3>近期營收</h3>
+  <div class="callout">
+    <b>2026 年 6 月合併營收 3.52 億元，月增 12.62%、年增 30.93%；上半年累計 18.09 億元，年增約 11.6%。2025 全年營收 30.58 億元、年增 22.23%，延續了 2024 年谷底後的復甦。</b>
+  </div>
+  <table>
+    <thead><tr><th class="yr">月份</th><th>單月營收(億)</th><th>月增%</th><th>年增%</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">2026/06</td><td>3.52</td><td>12.62%</td><td>30.93%</td></tr>
+      <tr><td class="yr">2026/05</td><td>2.93</td><td>-1.90%</td><td>6.63%</td></tr>
+      <tr><td class="yr">2026/04</td><td>3.19</td><td>-0.05%</td><td>6.88%</td></tr>
+      <tr><td class="yr">2026/03</td><td>3.19</td><td>55.80%</td><td>19.86%</td></tr>
+      <tr><td class="yr">2026/02</td><td>2.05</td><td>-32.31%</td><td>-21.05%</td></tr>
+      <tr><td class="yr">2026/01</td><td>3.02</td><td>44.53%</td><td>28.15%</td></tr>
+    </tbody>
+  </table>
+  <p>2026年7月營收截至查詢時尚未公告（通常於次月8-10日公告，7月數字預期8月上旬發布）。</p>
+  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/revenue" target="_blank">Yahoo股市 營收表頁面</a>（查詢 2026/08/04）</p>
+
+  <hr class="div">
+
+  <h3>法人說明會（法說會）</h3>
+  <div class="callout">
+    <b>最近一次法說會為 2026 年第 2 季法說會（約 2026/07/30 前後），會中揭露上半年營收 18.09 億、EPS 0.94 元，並提及下半年將全面調漲產品價格 1-2 成以維持毛利率、積極布局 AI 伺服器與光模塊應用。</b>
+  </div>
+  <p>官方法說會公告與完整簡報請至公開資訊觀測站之法人說明會一覽表查閱；以下摘要來自財經媒體對法說會內容的整理報導，非本次直接讀取官方簡報：</p>
+  <ul>
+    <li>2026 Q1 法說會：2026/04/29（線上法說會）</li>
+    <li>2026 Q2 法說會：約 2026/07/30 前後（依營收/EPS內容比對推斷，非官方公告原文標註之確切日期，建議以公開資訊觀測站公告為準）</li>
+  </ul>
+  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202/announcement" target="_blank">Yahoo股市個股公告頁面</a>（官方法說會日期公告）；法說會內容摘要參考 <a href="https://blog.fugle.tw/post/earnings-call-6202-2026-07-30" target="_blank">富果法說會重點摘要（2026/07/30）</a>——此摘要為第三方依官方影音整理，非本次直接讀取官方簡報，內容僅供參考。</p>
+
+  <hr class="div">
+  <div class="callout">
+    要不要針對法說會內容深入討論？（例如：AI伺服器/光模塊布局的具體進展、MCU漲價的執行狀況、聯電代工成本談判、下半年展望的可信度等）
+  </div>
+</section>
+
 </main>
 
 <footer>
