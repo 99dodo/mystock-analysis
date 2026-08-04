@@ -245,8 +245,8 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
 
 <nav class="stepnav" id="stepnav">
   <div class="pad" data-target="step1">① 現金流六大規則</div>
-  <div class="pad active" data-target="step2">② 基本資訊</div>
-  <div class="pad locked" data-target="step3">③ 法說會深入</div>
+  <div class="pad" data-target="step2">② 基本資訊</div>
+  <div class="pad active" data-target="step3">③ 法說會深入</div>
   <div class="pad locked" data-target="step4">④ 營收趨勢</div>
   <div class="pad locked" data-target="step5">⑤ 前瞻本益比</div>
   <div class="pad locked" data-target="step6">⑥ 投資決策</div>
@@ -658,6 +658,64 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
   <hr class="div">
   <div class="callout">
     要不要針對法說會內容深入討論？（例如：AI伺服器/光模塊布局的具體進展、MCU漲價的執行狀況、聯電代工成本談判、下半年展望的可信度等）
+  </div>
+</section>
+
+
+<section id="step3">
+  <div class="step-heading">
+    <span class="step-num">STEP 3 / 6</span>
+    <h2 class="step-title">法說會資料深入討論</h2>
+  </div>
+
+  <div class="callout">
+    <b>資料來源說明：</b>本節內容整理自富果「法說會重點內容備忘錄」（第三方依台灣證券交易所官方影音檔以AI摘要整理，非本次直接讀取官方簡報/影音）。官方原始簡報 PDF 與影音連結列於段落末，因 MOPS 官網有 robots.txt 限制無法直接讀取，僅供你自行點閱查看；本節摘要僅供參考，正式決策請以官方簡報為準。最近一次法說會確切日期為 <b>2026/07/30</b>（第一季法說會為 2026/04/29）。
+  </div>
+
+  <h3>① MCU 漲價執行狀況</h3>
+  <div class="callout">
+    <b>公司已明確表態要對全系列產品調漲價格（不分 8-bit／32-bit），目標是把毛利率穩定在 40% 左右——這不是單純轉嫁成本的防禦動作，而是因為上半年為了搶市占已經先吸收了一部分成本，現在確定撐不住了才漲。</b>
+  </div>
+  <p>法說會 Q&amp;A 明確說明：晶圓廠與封測廠已陸續發出漲價通知，且此趨勢可能延續到明年，公司「近期將會調整產品售價以反映成本」，且價格調整是全系列、不限特定製程節點。這點值得留意的是 2026Q2 毛利率 44.9% 其實有約 3.7 個百分點來自聯電一次性採購達標回饋，排除後實際毛利率約 41%，仍優於去年同期的 38.7%——也就是說，即使拿掉一次性的回饋，本業毛利率本身已經在改善，漲價則是為了進一步鞏固這個水準、對沖上游成本上漲，而不是靠漲價才勉強打平。</p>
+
+  <hr class="div">
+
+  <h3>② 聯電（UMC）代工成本談判</h3>
+  <div class="callout">
+    <b>與聯電的產能／價格談判是按季度進行，目前只談到 2027 年第一季，聯電已確定該季會漲價；盛群同時採用多晶圓廠 second source 策略分散風險。</b>
+  </div>
+  <p>公司在 Q&amp;A 中坦言市場變數大，看不遠，這代表成本端的能見度其實只有 2-3 季，「維持 40% 毛利率」的目標本質上是一個滾動式的動態調整目標，而非長期鎖定的保證。多晶圓廠策略（A 廠受限可轉導客戶至 B 廠相似規格）是重要的風險分散機制，但也意味著若真的需要轉換代工廠，可能牽涉良率驗證與客戶端認證時間，不是無成本的選項。</p>
+
+  <hr class="div">
+
+  <h3>③ AI 伺服器與光模塊布局進展</h3>
+  <div class="callout">
+    <b>目前仍是「送驗證階段」，還沒有量產或掛保證的營收貢獻，公司自己給的量產時間點是 2027 年——也就是說這是中期故事，短期（2026下半年）的營收動能主要還是來自安防、觸控MCU轉單、健康量測這些既有業務，不是 AI 題材。</b>
+  </div>
+  <ul>
+    <li><b>AI 伺服器散熱風扇 MCU</b>：與國內散熱風扇大廠合作開發 12V 風扇 MCU，目前在終端客戶驗證中，目標取代國外方案，預計 2027 年有機會量產。一台 AI 伺服器可能用到 10-20 顆風扇 MCU（這是潛在單機用量，不是已確認訂單量）。</li>
+    <li><b>光模塊（Optical Module）</b>：開發用於 ELSFP（外置式雷射光模塊）的 32-bit MCU，配合 ODM 廠已完成驗證，現正送終端客戶驗證，公司定調為「搭配 NPO/CPO 的未來趨勢技術」。</li>
+  </ul>
+  <p>這兩項都還在客戶驗證階段，尚未進入量產或明確訂單能見度，2026、可能連 2027 上半年的營收貢獻都相對有限。若把這當作短期催化劑來期待，時間點上會失望；比較合理的定位是「2027年之後的成長選擇權」，現階段更多是題材與長期敘事價值。</p>
+
+  <hr class="div">
+
+  <h3>④ 下半年展望的可信度</h3>
+  <div class="callout warn">
+    <b>公司自己給的訂單能見度只有約六個月，且明確承認「終端市場需求變化超過六個月能見度外仍有不確定性」——下半年優於上半年的展望有具體支撐（安防剛性需求、轉單效應延續至年底、BLDC遞延訂單Q3出貨），但公司自己也沒把話說死到明年。</b>
+  </div>
+  <p>比較關鍵的一段是法說會 Q&amp;A 主動區分了「這次」與「2021 COVID時期」的差異：公司強調這次產能緊張主要是 AI 應用排擠實質需求所致、投機成分較少，不像 2021 年有明顯的炒貨與晶圓廠競標拉抬價格、之後才非理性崩盤。這個說法本身邏輯合理（第一步現金流分析也確實看到 2021 年是異常單一年度高峰、隨後兩年重挫），但這是公司單方面的說法，屬於管理層對本輪景氣性質的自我判斷，還沒有經過時間驗證——比較穩健的做法，是把這段自我區隔的敘事當作「需要後續季度數據驗證的假說」，而不是直接照單全收的結論。觸控MCU轉單效應「預計持續到2026年底」這個時間點，也是公司單方面給的估計，建議後續每季追蹤實際出貨數字是否兌現，而非只看這次法說會的定調。</p>
+
+  <hr class="div">
+
+  <p class="src-note">
+    來源：<a href="https://blog.fugle.tw/post/earnings-call-6202-2026-07-30" target="_blank">富果法說會重點摘要（2026Q2，發布於2026/07/30）</a>、<a href="https://blog.fugle.tw/post/earnings-call-6202-2026-04-29" target="_blank">富果法說會重點摘要（2026Q1，發布於2026/04/29）</a>——兩篇均為第三方AI摘要整理，非本次直接讀取官方簡報。<br>
+    官方原始資料（僅供你自行點閱，本次未直接讀取）：<a href="https://mopsov.twse.com.tw/nas/STR/620220260730M001.pdf" target="_blank">2026Q2法說會官方簡報PDF</a>｜<a href="https://irconference.twse.com.tw/6202_87_20260730_ch.mp4" target="_blank">官方法說會影音</a>
+  </p>
+
+  <hr class="div">
+  <div class="callout">
+    第四步要看營收趨勢視覺化——近8-12期月營收，你想自己截圖 Goodinfo 提供，還是由我來搜尋整理？
   </div>
 </section>
 
