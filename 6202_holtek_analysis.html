@@ -247,8 +247,8 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
   <div class="pad" data-target="step1">① 現金流六大規則</div>
   <div class="pad" data-target="step2">② 基本資訊</div>
   <div class="pad" data-target="step3">③ 法說會深入</div>
-  <div class="pad active" data-target="step4">④ 營收趨勢</div>
-  <div class="pad locked" data-target="step5">⑤ 前瞻本益比</div>
+  <div class="pad" data-target="step4">④ 營收趨勢</div>
+  <div class="pad active" data-target="step5">⑤ 前瞻本益比</div>
   <div class="pad locked" data-target="step6">⑥ 投資決策</div>
 </nav>
 
@@ -779,6 +779,76 @@ hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
   <hr class="div">
   <div class="callout">
     第五步是前瞻本益比／EPS預估，我會查詢市場法人對未來一兩年EPS的預估區間並換算估值。
+  </div>
+</section>
+
+
+<section id="step5">
+  <div class="step-heading">
+    <span class="step-num">STEP 5 / 6</span>
+    <h2 class="step-title">前瞻本益比／EPS 預估</h2>
+  </div>
+
+  <div class="callout">
+    <b>資料來源說明：</b>券商預估EPS數字來自財經社群平台轉載的券商研究報告摘要，非本次直接讀取券商完整報告原文；目標價與預估EPS僅供參考，非投資建議。
+  </div>
+
+  <h3>法人預估 EPS（2026 全年）</h3>
+  <table>
+    <thead><tr><th class="yr">券商</th><th>發布日</th><th>預估EPS</th><th>目標價</th><th class="yr">評等</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">宏遠證券</td><td>2026/07/31</td><td>1.92</td><td>55.00</td><td class="yr">看多</td></tr>
+      <tr><td class="yr">玉山證券</td><td>2026/07/31</td><td>1.83</td><td>56.00</td><td class="yr">看多</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn">
+    <b>兩家券商是在 2026/07/31（股價53.4元）發布報告，目標價55-56元隱含當時約3-5%的潛在漲幅；但短短幾個交易日後，股價已於2026/08/04來到58.1元，反而已經超過兩家券商當時設定的目標價。</b>這代表市場實際反應速度快於券商報告更新的速度，目標價本身有時效性，不宜當作靜態天花板看待。
+  </div>
+  <p>目前查無明確的 2027 年（N+2）EPS 預估資料，多數可查到的券商報告聚焦在當年度（2026）展望，較長期的預估資料有限，這裡誠實告知、不硬湊數字。</p>
+
+  <hr class="div">
+
+  <h3>前瞻本益比（現在貴不貴）</h3>
+  <div class="callout">
+    <b>以2026全年預估EPS區間1.83-1.92元計算，目前股價58.1元對應的前瞻本益比約為30.3-31.8倍，落在此區間的中位數約31倍。</b>
+  </div>
+  <table>
+    <thead><tr><th class="yr">情境</th><th>預估EPS</th><th>前瞻本益比（股價58.1÷EPS）</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">宏遠證券預估</td><td>1.92</td><td>30.3倍</td></tr>
+      <tr><td class="yr">玉山證券預估</td><td>1.83</td><td>31.8倍</td></tr>
+    </tbody>
+  </table>
+  <p>對照近四季（TTM）EPS 0.66元計算的本益比48.92倍（Yahoo股市數據），前瞻本益比明顯低於當前的TTM本益比——這是因為市場已經提前反映獲利將從谷底大幅回升的預期，用尚未完全兌現的2026全年獲利去打折看待現在的股價。這兩者是不同角度的同一件事：TTM本益比反映「過去已實現獲利」相對股價的貴或便宜，前瞻本益比反映「市場對未來獲利預期」相對股價的貴或便宜；本檔股票兩者差距大，正說明目前股價已經高度依賴獲利能否如預期在下半年兌現。</p>
+
+  <hr class="div">
+
+  <h3>目標本益比法（合理價可能落在哪）</h3>
+  <div class="callout">
+    <b>用2026全年預估EPS中位數約1.875元，分別套用20倍／25倍／30倍三種情境的合理本益比，換算出的目標價區間為37.5元至56.25元——即使套用樂觀的30倍情境，也還是低於目前58.1元的股價。</b>
+  </div>
+  <table>
+    <thead><tr><th class="yr">假設本益比倍數</th><th>目標價（預估EPS 1.875 × 倍數）</th></tr></thead>
+    <tbody>
+      <tr><td class="yr">20倍</td><td>37.5</td></tr>
+      <tr><td class="yr">25倍</td><td>46.9</td></tr>
+      <tr><td class="yr">30倍</td><td>56.25</td></tr>
+    </tbody>
+  </table>
+  <p><b>前瞻本益比法與目標本益比法是同一條公式的兩種用法，不是同一件事：</b>前者是已知股價、反推市場隱含用了幾倍本益比在計價；後者是自己假設一個合理倍數、反推出目標價。目標本益比法算出的價格對「倍數怎麼選」高度敏感——同樣的EPS，20倍和30倍換算出的目標價可以差到18.75元，這只是敏感度試算，不是預測。以本檔股票目前的獲利回溫故事來看，市場顯然願意給比20-25倍更高的倍數（現價已隱含約31倍），這通常發生在市場認為獲利谷底已過、未來還有向上空間的階段，但也代表股價對「下半年獲利是否如預期兌現」的容錯空間很小。</p>
+
+  <hr class="div">
+
+  <h3>預估不確定性揭露</h3>
+  <div class="callout warn">
+    <b>找得到的較早期券商評論（約2024年底至2025年初）曾預期公司毛利率短期內難以達到45-50%的目標，且單月營收回升至3億元以上的時間點會落在2025年下半年——實際上單月營收要到2026年1月才首次站上3億（3.02億），比原先預期晚了將近半年到三季，且2026Q2實際毛利率44.9%已相當接近該預估的上緣（惟其中約3.7個百分點來自聯電一次性回饋，屬非常態）。</b>
+  </div>
+  <p>這說明兩件事：第一，法人對這檔股票獲利回升的方向判斷大致正確，但對「時間點」的預估過於樂觀，實際落地時間比預期晚了半年以上；第二，即使是最新（2026/07/31）發布的目標價，也在極短時間內就被市場價格超越，顯示這檔股票近期股價走勢比法人預估反應更快、更強。基於這兩點，對本節列出的2026全年EPS預估與目標價，建議抱持「方向參考、時點與精確數字打折看待」的態度，不宜完全依賴單一券商數字做進出場依據。
+</p>
+
+  <hr class="div">
+  <div class="callout">
+    第六步是投資決策推理（買入/續抱/賣出），如果你想聽我的推理判斷，跟我說一聲就會進行；這步驟不會自動附加。
   </div>
 </section>
 
