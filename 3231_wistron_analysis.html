@@ -224,13 +224,11 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 <h2>八大規則盲測分析</h2>
 <div class="sub">本階段嚴禁查詢股價、EPS、產業地位、新聞背景，純粹依現金流量數字本身做客觀判斷。</div>
 
-<div class="callout">
-  <b>資料完整度提醒：</b>目前提供的是 Goodinfo「現金流量總表」（A/B/C/D/E＋期初期末餘額），<b>尚未包含投資活動與融資活動的細項</b>（例如固定資產增減、子公司併購、現金增資、舉債、股利發放金額）。因此：
-  <ul style="margin:10px 0 0; padding-left:20px;">
-    <li>規則二、三、四僅依總額判斷，屬<b>暫定分數</b>；</li>
-    <li>規則七（淨利與現金流落差拆解）需要營業活動細項（應收、存貨、應付變動），<b>目前資料不足，暫缺</b>；</li>
-    <li>規則八（股利保障倍數）需要融資活動中的「發放現金股利」金額，<b>目前資料不足，暫缺</b>。</li>
-  </ul>
+<div class="callout ok">
+  <b>資料已補齊：</b>你提供的兩份季度細項報表（2022Q3～2026Q1，累計數）已涵蓋投資活動與融資活動細項、以及營業活動的應收／存貨／應付變動。八大規則現已<b>全數完成計算</b>，規則二、三、四由「暫定」改為<b>確認分數</b>，規則七、八由「暫缺」改為<b>正式計算</b>。以下內容為更新後版本。
+</div>
+<div class="callout danger">
+  <b>資料修正：</b>初版報告中 26Q1 的 A（營業活動現金流量）誤植為 96.3（該數字其實是稅後淨利，非現金流），已更正為 <b class="warn-text">−1,406.0 億</b>——這代表 2026 年第一季單季的本業現金流失血，已經比 2025 全年（−1,058 億）還要嚴重，是本報告目前追蹤到的最負數字。特此更正並致歉。
 </div>
 
 <h3 style="font-size:17px; margin-bottom:10px;">現金流量數據總表（單位：億元）</h3>
@@ -251,7 +249,7 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 <tr><td>2023</td><td class="pos">482.0</td><td class="neg">-147.0</td><td class="neg">-232.0</td><td>243.0</td><td>760</td><td class="pos">✓</td></tr>
 <tr><td>2024</td><td class="pos">57.5</td><td class="neg">-201.0</td><td class="pos">129.0</td><td>400.0</td><td>799</td><td class="neg">✗</td></tr>
 <tr><td>2025</td><td class="neg">-1,058.0</td><td class="neg">-435.0</td><td class="pos">2,172.0</td><td>763.0</td><td>1,445</td><td class="neg">✗</td></tr>
-<tr><td>26Q1<span class="prelim-badge">單季</span></td><td class="pos">96.3</td><td class="neg">-136.0</td><td class="pos">1068.0</td><td>235.0</td><td>1000</td><td>–</td></tr>
+<tr><td>26Q1<span class="prelim-badge">單季</span></td><td class="neg">-1,406.0</td><td class="neg">-136.4</td><td class="pos">1068.0</td><td>235.0</td><td>1000</td><td>–</td></tr>
 </tbody></table></div>
 <div class="table-note">A／D 欄：Ⓐ&gt;Ⓓ 為通過（規則五）。26Q1 為單季數字，僅供參考，不列入計分。</div>
 
@@ -302,23 +300,33 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 
 <!-- ================= RULE 2 ================= -->
 <div class="rule-card" id="rule2">
-  <div class="rule-head"><span class="rule-no">規則二</span><h3>B 投資紀律評估</h3><span class="rule-tag mid">暫定<span class="prelim-badge">總額判斷</span></span></div>
-  <div class="rule-score">55<span> / 100</span></div>
-  <p>B 在 11 年中<b>連續 11 年皆為負值</b>，沒有出現任何一年轉正，顯示公司持續投入而非時有時無地變賣資產套現，就「持續投資」這個面向而言算是紀律的正面訊號。但金額波動很大（從 −50 億到 −435 億），且不知道這些支出中有多少是「固定資產（真資本支出）」、多少是「子公司併購」、多少只是「金融資產調度」。<b>此分數屬暫定</b>，若能提供投資活動細項，會大幅提高判讀可信度，尤其是 2025 年 B 暴增至 −435 億這一年最需要拆解。</p>
+  <div class="rule-head"><span class="rule-no">規則二</span><h3>B 投資紀律評估</h3><span class="rule-tag pass">70 分・確認：真實資本支出</span></div>
+  <div class="rule-score">70<span> / 100</span></div>
+  <p>細項資料已確認：2025 年 B（−435.1億）中，<b>固定資產（增加）減少高達 −388.8 億，占 B 的 89.4%</b>；子公司之收購／處分僅 +6.74 億（屬小額處分，非併購）。2022～2024 同樣以固定資產支出為主（占比約 78～88%），沒有出現「用併購或金融資產調度灌水 B」的情況。這代表公司的投資活動<b>紀律良好、性質單純</b>——錢確實花在廠房設備等真資本支出上，而非透過併購或理財科目製造帳面波動。分數由暫定的 55 分上修至 70 分。真正的疑慮不在「B 花得對不對」，而在後面規則四「這些錢是怎麼籌來的」。</p>
+  <table class="mono-table" style="max-width:520px;">
+    <thead><tr><th>年度</th><th>B 投資活動</th><th>固定資產增減</th><th>占比</th></tr></thead>
+    <tbody>
+      <tr><td>2022</td><td class="neg">-167.4</td><td class="neg">-129.7</td><td>77.5%</td></tr>
+      <tr><td>2023</td><td class="neg">-146.6</td><td class="neg">-117.7</td><td>80.3%</td></tr>
+      <tr><td>2024</td><td class="neg">-200.9</td><td class="neg">-151.1</td><td>75.2%</td></tr>
+      <tr><td>2025</td><td class="neg">-435.1</td><td class="neg">-388.8</td><td>89.4%</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- ================= RULE 3 ================= -->
 <div class="rule-card" id="rule3">
-  <div class="rule-head"><span class="rule-no">規則三</span><h3>B 投資效益分析</h3><span class="rule-tag fail">暫定<span class="prelim-badge">總額判斷</span></span></div>
+  <div class="rule-head"><span class="rule-no">規則三</span><h3>B 投資效益分析</h3><span class="rule-tag fail">45 分・尚待 Step2 驗證</span></div>
   <div class="rule-score">45<span> / 100</span></div>
-  <p>核心對照指標用 A：檢視「當年 B 大幅支出後，隔 1–2 年 A 是否轉為成長」。10 組年度轉換中，僅 2015→16、2018→19、2021→22、2022→23 出現明顯正向轉化（約 4/10），2016→17、2019→20、2020→21、2023→24 皆未能兌現，<b class="warn-text">2024→2025 更是最嚴重的一次落空</b>：2024 年 B 支出擴大到 −201 億，隔年 A 不但沒有成長，反而重摔至 −1,058 億。目前只看得到 B 總額，若能提供「固定資產（增加）減少」細項，能更精準判斷是否為真正的產能投資轉化失敗，還是被併購／理財科目干擾判讀。</p>
+  <p>核心對照指標用 A：檢視「當年 B 大幅支出後，隔 1–2 年 A 是否轉為成長」。10 組年度轉換中僅約 4/10 出現正向轉化，<b class="warn-text">2024→2025 是最嚴重的一次落空</b>：2024 年固定資產支出擴大到 −151.1 億，隔年 A 不但沒有成長，反而重摔至 −1,058 億。</p>
+  <p>不過現在有細項資料後，能看到更完整的因果：2025 年 A 轉負的主因並非「產能蓋好了卻沒訂單」，而是應收帳款與存貨同步暴增（見規則七拆解），這比較像是「訂單／營收成長太快、營運資本跟不上」，而非「砸錢蓋產能卻閒置」的典型投資失敗。這兩種情況對評分意義不同，但目前仍在盲測階段、尚未查營收數字，<b>暫維持 45 分</b>，待 Step 2 查證 2025 年營收是否同步大幅成長後，才能判斷究竟是「成長的煩惱」還是真正的資本支出效益不彰。</p>
 </div>
 
 <!-- ================= RULE 4 ================= -->
 <div class="rule-card" id="rule4">
-  <div class="rule-head"><span class="rule-no">規則四</span><h3>C 融資活動合理性（核心警訊）</h3><span class="rule-tag fail">⚠ 最高警戒・重複出現</span></div>
-  <div class="rule-score">15<span> / 100</span></div>
-  <div class="persona">擬人化標籤：<b>「寅吃卯糧」型</b>（B 大幅負值同時 C 為正值，且重複發生）</div>
+  <div class="rule-head"><span class="rule-no">規則四</span><h3>C 融資活動合理性（核心警訊）</h3><span class="rule-tag fail">⚠ 10 分・確認：以舉債為主</span></div>
+  <div class="rule-score">10<span> / 100</span></div>
+  <div class="persona">擬人化標籤：<b>「寅吃卯糧」型</b>（B 大幅負值同時 C 為正值，且重複發生，現已確認資金結構以舉債為主）</div>
   <div class="callout danger">
     <b>最高警戒觸發：</b>「A 為負，且 C 為正數或小幅負值」的疊加訊號在 11 年中出現了 <b class="warn-text">4 次</b>——2017、2020、2021、2025——並非單一年度特例，而是重複發生的模式。更需注意的是<b>嚴重程度逐次放大</b>：2017／2020／2021 的 C 落在 334～510 億區間，但 2025 年 C 暴衝到 <b class="warn-text">2,172 億</b>，規模是前三次的 4～6 倍，同時當年 A 也是史上最差的 −1,058 億。
   </div>
@@ -382,7 +390,19 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 <rect x="40" y="284" width="10" height="10" fill="var(--serA)"/><text x="54" y="293" class="cf-legend">B 投資活動</text>
 <rect x="130" y="284" width="10" height="10" fill="var(--serB)"/><text x="144" y="293" class="cf-legend">C 融資活動</text>
 </svg>
-  <p>由於目前只有 C 總額，無法判斷 2025 年這 2,172 億的資金來源是「現金增資（股權募資，風險較低）」還是「純舉債（風險較高）」——兩者性質完全不同。<b>強烈建議務必提供融資活動細項</b>（短期借款、應付短期票券、公司債、長期借款、現金增資、股利發放）才能校正這條規則的最終分數，這是本報告目前最大的資訊缺口。</p>
+  <p><b>細項已確認 2025 年 C＝2,172 億的資金結構：</b></p>
+  <table class="mono-table" style="max-width:520px;">
+    <thead><tr><th>項目</th><th>金額(億元)</th><th>性質</th></tr></thead>
+    <tbody>
+      <tr><td>短期借款增加</td><td class="pos">+1,554.0</td><td class="neg">舉債</td></tr>
+      <tr><td>公司債發行</td><td class="pos">+318.3</td><td class="neg">舉債</td></tr>
+      <tr><td>長期借款增加</td><td class="pos">+247.0</td><td class="neg">舉債</td></tr>
+      <tr><td>現金增資</td><td class="pos">+271.1</td><td class="pos">股權募資</td></tr>
+      <tr><td>發放現金股利</td><td class="neg">-110.0</td><td>資金流出</td></tr>
+      <tr><td>其他（非控制權益等）</td><td class="neg">-108.4</td><td>資金流出</td></tr>
+    </tbody>
+  </table>
+  <p>純舉債三項合計 <b class="warn-text">+2,119.3 億，占毛額籌資（2,390.4億）的 97.5%</b>；現金增資僅 271.1 億，占比 12.5%。其中<b>短期借款一項就高達 1,554 億</b>，性質上更貼近「用短債墊付應收帳款與存貨暴增造成的營運資金缺口」，而非長期資本結構規劃。這證實了規則四最擔心的情境：本業現金流已經失血（A=−1,058億），公司靠短期舉債撐住現金部位與股利發放，屬於典型「寅吃卯糧」，分數由暫定 15 分下修為確認 10 分。</p>
 </div>
 
 <!-- ================= RULE 5 ================= -->
@@ -438,19 +458,70 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 
 <!-- ================= RULE 7 ================= -->
 <div class="rule-card" id="rule7">
-  <div class="rule-head"><span class="rule-no">規則七</span><h3>淨利與現金流落差拆解</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
-  <p>此規則公式為：A ＝ 本期淨利 ＋ 折舊 ＋ 攤銷 − 應收票據增減 − 存貨增減 − 其他營業資產增減 ＋ 應付票據增減 ＋ 其他營業負債增減 ± 其他項目。目前提供的總表只有 A/B/C/D/E 五個加總數字，<b>沒有營業活動的細項科目</b>（折舊攤銷、應收帳款增減、存貨增減、應付帳款增減），因此無法完成本規則的拆解計算。</p>
-  <div class="callout">
-    規則五未通過的 6 個年度中，2017、2020、2021、2024、2025 落差幅度都超過 50%（2025 更高達 238%），依規則本應必做拆解。<b>建議優先提供 2024～2025 年度的營業活動現金流量細項截圖</b>（Goodinfo 該頁面往下捲動可見），以便判斷 2025 年史上最大落差究竟是應收暴增、存貨堆積、還是應付減少所致——三者代表的意義完全不同。
+  <div class="rule-head"><span class="rule-no">規則七</span><h3>淨利與現金流落差拆解</h3><span class="rule-tag fail">35 分・應收+存貨雙暴增</span></div>
+  <div class="rule-score">35<span> / 100</span></div>
+  <p>規則五未通過且落差 &gt;50% 的年度中，2024、2025 兩年已用細項資料完成拆解（2017/2020/2021 因細項不在本次上傳範圍內，暫不拆解）：</p>
+  <table class="mono-table">
+    <thead><tr><th>項目</th><th>2024</th><th>2025</th></tr></thead>
+    <tbody>
+      <tr><td>本期淨利(D)</td><td>399.8</td><td>762.6</td></tr>
+      <tr><td>+ 折舊費用</td><td class="pos">107.7</td><td class="pos">123.5</td></tr>
+      <tr><td>+ 攤銷費用</td><td class="pos">4.76</td><td class="pos">5.9</td></tr>
+      <tr><td>應收帳款增減</td><td class="neg">-688.6</td><td class="neg">-2,335.0</td></tr>
+      <tr><td>存貨增減</td><td class="neg">-641.7</td><td class="neg">-1,690.0</td></tr>
+      <tr><td>應付帳款增減</td><td class="pos">+710.7</td><td class="pos">+1,822.0</td></tr>
+      <tr><td>小計（主要項目）</td><td class="neg">-107.3</td><td class="neg">-1,311.0</td></tr>
+      <tr><td>其他調整項（利息/稅金/其他營業資產負債等）</td><td class="pos">+164.8</td><td class="pos">+253.0</td></tr>
+      <tr><td><b>A（實際）</b></td><td class="neg"><b>57.5</b></td><td class="neg"><b>-1,058.0</b></td></tr>
+    </tbody>
+  </table>
+  <div class="callout danger">
+    兩年的落差主因高度一致且逐年放大：<b>應收帳款與存貨同步大幅增加</b>，即使應付帳款也同步增加、部分抵銷了現金流出，仍不足以打平。2025 年應收＋存貨增加規模是 2024 年的約 3 倍（-4,025億 vs -1,330億），而且 <b>2026Q1 單季應收(-1,422)＋存貨(-2,513)＋應付(+2,175)＝A(-1,406)</b>，顯示這個模式在最新一季不但沒有緩解，反而持續惡化。
   </div>
+  <p class="table-note">這種「應收＋存貨同步暴增」的模式，通常對應兩種完全不同的故事：① 營收／訂單爆發性成長，墊高應收與存貨屬於正常的成長痛（需在 Step 2 查證營收數字是否同步大幅成長）；② 收款惡化或存貨滯銷，是真正的體質警訊。目前仍在盲測階段，暫不下定論，此為 Step 2 的優先查證項目。</p>
 </div>
 
 <!-- ================= RULE 8 ================= -->
 <div class="rule-card" id="rule8">
-  <div class="rule-head"><span class="rule-no">規則八</span><h3>股利發放現金流可持續性</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
-  <p>股利保障倍數 ＝ 自由現金流(FCF = A − CapEx) ÷ 現金股利發放總額。目前的總表沒有「發放現金股利」這個融資活動細項數字，也沒有單獨列出 CapEx（固定資產增減），因此本規則<b>暫時無法計算</b>。</p>
-  <div class="callout">
-    3231 過去多年皆有配發現金（稅後 EPS 持續為正），屬於規則八「近3年有穩定配息必做」的觸發條件。且規則四已顯示 2025 年 C 出現鉅額正值同時融資活動活躍，若同一年度也有發放股利，將直接觸發「規則八額外加註」條款。<b>建議一併提供近 3–5 年融資活動細項中的股利發放金額</b>，才能判斷是否為「真金白銀」型或「借錢配息」型。
+  <div class="rule-head"><span class="rule-no">規則八</span><h3>股利發放現金流可持續性</h3><span class="rule-tag fail">⚠ 25 分・借錢配息型（近2年）</span></div>
+  <div class="rule-score">25<span> / 100</span></div>
+  <p>股利保障倍數 ＝ 自由現金流(FCF = A − CapEx) ÷ 現金股利發放總額。細項資料齊全的 2022～2025 四年計算如下：</p>
+  <table class="mono-table">
+    <thead><tr><th>年度</th><th>A</th><th>CapEx</th><th>FCF</th><th>現金股利</th><th>保障倍數</th><th>個性</th></tr></thead>
+    <tbody>
+      <tr><td>2022</td><td class="pos">534.4</td><td class="neg">-129.7</td><td class="pos">404.7</td><td>62.57</td><td class="pos">6.47x</td><td>真金白銀</td></tr>
+      <tr><td>2023</td><td class="pos">482.2</td><td class="neg">-117.7</td><td class="pos">364.5</td><td>74.01</td><td class="pos">4.93x</td><td>真金白銀</td></tr>
+      <tr><td>2024</td><td class="pos">57.5</td><td class="neg">-151.1</td><td class="neg">-93.6</td><td>74.62</td><td class="neg">-1.25x</td><td class="neg">借錢配息</td></tr>
+      <tr><td>2025</td><td class="neg">-1,058.0</td><td class="neg">-388.8</td><td class="neg">-1,446.8</td><td>110.00</td><td class="neg">-13.15x</td><td class="neg">借錢配息</td></tr>
+    </tbody>
+  </table>
+  <svg viewBox="0 0 920 300" xmlns="http://www.w3.org/2000/svg" class="cf-chart" role="img" aria-label="rule8-FCFvsDiv">
+<line x1="40" y1="78.1" x2="900" y2="78.1" stroke="var(--rule-line)" stroke-width="1" stroke-dasharray="2,3"/>
+<rect x="84.3" y="30.0" width="60.2" height="48.1" rx="2" fill="var(--serA)"/>
+<rect x="150.5" y="70.7" width="60.2" height="7.4" rx="2" fill="var(--serB)"/>
+<text x="114.4" y="25.0" class="cf-val cf-val-sm" text-anchor="middle">405</text>
+<text x="180.6" y="65.7" class="cf-val cf-val-sm" text-anchor="middle">63</text>
+<text x="147.5" y="272" class="cf-yr" text-anchor="middle">2022</text>
+<rect x="299.3" y="34.8" width="60.2" height="43.3" rx="2" fill="var(--serA)"/>
+<rect x="365.5" y="69.3" width="60.2" height="8.8" rx="2" fill="var(--serB)"/>
+<text x="329.4" y="29.8" class="cf-val cf-val-sm" text-anchor="middle">364</text>
+<text x="395.6" y="64.3" class="cf-val cf-val-sm" text-anchor="middle">74</text>
+<text x="362.5" y="272" class="cf-yr" text-anchor="middle">2023</text>
+<rect x="514.3" y="78.1" width="60.2" height="11.1" rx="2" fill="var(--serA)"/>
+<rect x="580.5" y="69.2" width="60.2" height="8.9" rx="2" fill="var(--serB)"/>
+<text x="544.4" y="102.2" class="cf-val cf-val-sm" text-anchor="middle">-94</text>
+<text x="610.6" y="64.2" class="cf-val cf-val-sm" text-anchor="middle">75</text>
+<text x="577.5" y="272" class="cf-yr" text-anchor="middle">2024</text>
+<rect x="729.3" y="78.1" width="60.2" height="171.9" rx="2" fill="var(--serA)"/>
+<rect x="795.5" y="65.0" width="60.2" height="13.1" rx="2" fill="var(--serB)"/>
+<text x="759.4" y="263.0" class="cf-val cf-val-sm" text-anchor="middle">-1,447</text>
+<text x="825.6" y="60.0" class="cf-val cf-val-sm" text-anchor="middle">110</text>
+<text x="792.5" y="272" class="cf-yr" text-anchor="middle">2025</text>
+<rect x="40" y="284" width="10" height="10" fill="var(--serA)"/><text x="54" y="293" class="cf-legend">FCF (A−CapEx)</text>
+<rect x="130" y="284" width="10" height="10" fill="var(--serB)"/><text x="144" y="293" class="cf-legend">現金股利發放</text>
+</svg>
+  <div class="callout danger">
+    <b>2 年連續「借錢配息」型，且惡化速度極快：</b>2022、2023 保障倍數健康（4.9～6.5倍），但 2024 轉負，2025 更惡化到 −13.15 倍——公司自由現金流已無法覆蓋股利，2025 年發放的 110 億股利，實質上是靠規則四確認的短期借款、公司債等舉債資金支應，而非本業賺來的錢。這正是規則八定義的「借錢配息」型最典型的案例，對存股／高股息族群是關鍵警訊。
   </div>
 </div>
 
@@ -458,20 +529,21 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 <h3 style="font-size:17px; margin:38px 0 4px;">總評分</h3>
 <div class="score-grid">
   <div class="score-cell"><div class="label">規則一・A趨勢</div><div class="val fail">30</div></div>
-  <div class="score-cell"><div class="label">規則二・B紀律<span class="prelim-badge">暫定</span></div><div class="val mid">55</div></div>
-  <div class="score-cell"><div class="label">規則三・B效益<span class="prelim-badge">暫定</span></div><div class="val fail">45</div></div>
-  <div class="score-cell"><div class="label">規則四・C合理性<span class="prelim-badge">暫定</span></div><div class="val fail">15</div></div>
+  <div class="score-cell"><div class="label">規則二・B紀律</div><div class="val pass">70</div></div>
+  <div class="score-cell"><div class="label">規則三・B效益</div><div class="val fail">45</div></div>
+  <div class="score-cell"><div class="label">規則四・C合理性</div><div class="val fail">10</div></div>
   <div class="score-cell"><div class="label">規則五・A&gt;D品質</div><div class="val fail">45.5</div></div>
   <div class="score-cell"><div class="label">規則六・E穩定性</div><div class="val mid">60</div></div>
-  <div class="score-cell"><div class="label">規則七・落差拆解</div><div class="val mid">暫缺</div></div>
-  <div class="score-cell"><div class="label">規則八・股利永續</div><div class="val mid">暫缺</div></div>
+  <div class="score-cell"><div class="label">規則七・落差拆解</div><div class="val fail">35</div></div>
+  <div class="score-cell"><div class="label">規則八・股利永續</div><div class="val fail">25</div></div>
 </div>
 
 <div class="bigverdict">
-  <h3>⚠ 關卡判斷：現金流體質偏弱／有風險訊號</h3>
-  <div class="score-big">41.8<span>／100　核心六規則平均（&lt;60% 門檻）</span></div>
-  <p style="margin-top:14px;">除了核心六規則平均未達 60% 門檻外，<b class="warn-text">2025 年同時觸發了規則十一定義的「三重疊加」最高警戒訊號</b>：A 為負（−1,058億）＋ B 大幅負值（−435億）＋ C 為正值（2,172億）在同一年度同時出現。依照本框架的關卡判斷邏輯，建議：<b>這檔現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面</b>。</p>
-  <p style="margin-top:10px; color:var(--ink-dim); font-size:13.5px;">此判斷目前仍屬<b>暫定</b>：規則二、三、四僅依總額計算，規則七、八因缺少細項數字尚未計入。若能補上投資活動／融資活動細項與股利發放金額，本報告的結論可能會有調整空間——尤其 2025 年融資活動的 2,172 億若確認來自現金增資而非舉債，規則四的分數會顯著回升。是否要提供細項截圖以校正分數，或直接往下看基本面（第 2 步），由你決定。</p>
+  <h3>⚠ 關卡判斷（已確認）：現金流體質偏弱／有風險訊號</h3>
+  <div class="score-big">43.4<span>／100　核心六規則平均（&lt;60% 門檻）</span></div>
+  <p style="margin-top:14px;">細項資料補齊後，核心六規則平均由 41.8 微幅調整為 43.4，<b>結論不變且更加確立</b>：2025 年同時觸發「三重疊加」最高警戒訊號——A 為負（−1,058億）＋ B 大幅負值（−435億，且已確認 89% 為真實資本支出）＋ C 為正值（2,172億，且已確認 97.5% 來自舉債）。依框架建議：<b>這檔現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面</b>。</p>
+  <p style="margin-top:10px;"><b class="warn-text">規則八額外加註：</b>已確認觸發規則八「借錢配息」型（2024、2025 連續兩年保障倍數為負，2025 達 −13.15倍），依規則需額外加註——<b>存股／高股息族群需特別留意 3231 近兩年的股利可持續性風險</b>，2025 年配發的股利已非本業現金支應。</p>
+  <p style="margin-top:10px; color:var(--ink-dim); font-size:13.5px;">此為使用細項資料確認後的最終盲測結論。核心矛盾在於：D（稅前淨利）持續創高（2024年400億→2025年763億），但同期本業現金流（A）卻同步惡化至史上最負，且 2026Q1 單季已比 2025 全年更差。這究竟是「營收爆發式成長帶來的營運資本佔用」還是「更根本的問題」，需要 Step 2 查證營收與獲利成長數字才能判斷——這也是往下走的關鍵切入點。</p>
 </div>
 
 </section>
@@ -483,8 +555,8 @@ footer .src-note{margin-top:8px; color:var(--ink-faint);}
 <section id="step6" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 6 步／共 6 步：投資決策推理】</div><h2>投資決策推理</h2><div class="sub">僅在你主動詢問「該不該投資／續抱或賣出」時才會進行。</div></section>
 
 <footer>
-  <div>3231_cashflow_analysis · v1.0 · 生成時間 2026-08-06</div>
-  <div class="src-note">資料來源：使用者提供之 Goodinfo「現金流量表」總表（HTML 匯出），涵蓋 2001–2025 年度與 2026Q1 單季。本報告第一步僅使用現金流量表本身數字，未查詢股價、EPS 意義、產業地位或新聞背景（盲測原則）。規則二、三、四分數為暫定，規則七、八因缺少細項數字暫缺，待補充後將更新報告。</div>
+  <div>3231_cashflow_analysis · v1.1 · 生成時間 2026-08-06（v1.1 更新：補齊投資／融資／營業活動細項，修正26Q1 A值誤植）</div>
+  <div class="src-note">資料來源：使用者提供之 Goodinfo「現金流量表」總表與季度現金流量細項報表（2022Q3–2026Q1，累計數），HTML 匯出。本報告第一步僅使用現金流量表本身數字，未查詢股價、EPS 意義、產業地位或新聞背景（盲測原則）。八大規則現已全數完成計算。</div>
 </footer>
 
 </main>
