@@ -1,7 +1,7 @@
 # 我的股票分析
 
 ## 📊 已發布報告
-- [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（最新，v2.1）
+- [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（最新，v2.2 六步驟完整版）
 - [3231 緯創 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3231_wistron_analysis.html)
 - [作業流程 v2.0](https://99dodo.github.io/mystock-analysis/workflow.html)
 

@@ -98,10 +98,10 @@ footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5p
       </div>
     </li>
     <li><a href="#step2" class="step-link"><span class="step-num">02</span>基本資訊查詢</a></li>
-    <li><a href="#step3" class="step-link disabled"><span class="step-num">03</span>法說會深入討論</a></li>
-    <li><a href="#step4" class="step-link disabled"><span class="step-num">04</span>營收趨勢視覺化</a></li>
-    <li><a href="#step5" class="step-link disabled"><span class="step-num">05</span>前瞻本益比／EPS</a></li>
-    <li><a href="#step6" class="step-link disabled"><span class="step-num">06</span>投資決策推理</a></li>
+    <li><a href="#step3" class="step-link"><span class="step-num">03</span>法說會深入討論</a></li>
+    <li><a href="#step4" class="step-link"><span class="step-num">04</span>營收趨勢視覺化</a></li>
+    <li><a href="#step5" class="step-link"><span class="step-num">05</span>前瞻本益比／EPS</a></li>
+    <li><a href="#step6" class="step-link"><span class="step-num">06</span>投資決策推理</a></li>
   </ol>
 </nav>
 <main>
@@ -356,14 +356,142 @@ footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5p
 </div>
 </section>
 
-<section id="step3" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 3 步／共 6 步：法說會深入討論】</div><h2>法說會深入討論</h2><div class="sub">尚未執行。</div></section>
-<section id="step4" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 4 步／共 6 步：營收趨勢視覺化】</div><h2>營收趨勢視覺化</h2><div class="sub">尚未執行。</div></section>
-<section id="step5" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 5 步／共 6 步：前瞻本益比／EPS預估】</div><h2>前瞻本益比／EPS預估</h2><div class="sub">尚未執行。</div></section>
-<section id="step6" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 6 步／共 6 步：投資決策推理】</div><h2>投資決策推理</h2><div class="sub">僅在你主動詢問「該不該投資／續抱或賣出」時才會進行。</div></section>
+<section id="step3">
+<div class="progress-tag">【第 3 步／共 6 步：法說會深入討論】</div>
+<h2>法說會深入討論</h2>
+<div class="sub">資料來源：財經媒體法說會摘要整理（富果直送、Anue鉅亨、時報新聞），2026/07/30場次；非直接讀取MOPS原始PDF</div>
+<table class="mono-table">
+<thead><tr><th>主題</th><th>法說會重點</th></tr></thead>
+<tbody>
+<tr><td>訂單動能來源</td><td>供給面問題（中國MCU廠受限於晶圓產能移轉AI等高價產品）而非價格競爭，客戶因買不到貨才轉單</td></tr>
+<tr><td>訂單能見度</td><td>約6個月，管理層預期此轉單趨勢將持續到2026年底</td></tr>
+<tr><td>安防產品</td><td>美國UL新法規強制執行＋韓、義等國跟進，屬法規性剛性替換需求，與景氣關聯度低</td></tr>
+<tr><td>觸控MCU</td><td>2026Q2出貨2,081萬顆，年增46%</td></tr>
+<tr><td>毛利率</td><td>Q2達44.9%，其中3.7個百分點來自聯電一次性採購回饋，排除後約41%，仍優於前期</td></tr>
+<tr><td>價格策略</td><td>全系列調漲1-2成，因應成本壓力已無法再吸收，上半年為擴大市佔已吸收部分成本</td></tr>
+<tr><td>下半年展望</td><td>管理層預期優於上半年</td></tr>
+<tr><td>新應用布局</td><td>散熱風扇馬達IC已打入台系大廠，Q4小量出貨；光通訊模組Q3送客戶認證，瞄準AI伺服器熱插拔需求</td></tr>
+</tbody>
+</table>
+<div class="callout ok">
+  管理層敘事的核心是「供給面驅動的訂單回流＋法規性剛性需求」，兩者都與總體景氣連動度較低，理論上有一定的持續性。這與Step1看到的「先盛後衰、緩步回溫」走勢方向一致——2025年觸底反彈的動能，正在被法說會內容具體驗證。
+</div>
+<div class="callout">
+  <b>需留意的風險：</b>訂單能見度僅6個月，且轉單效應本質上依賴中國競爭對手持續缺產能——若晶圓產能重新開放或AI需求降溫釋出產能，轉單效應可能反轉。全系列漲價1-2成能否順利轉嫁、不流失訂單，也是下半年觀察重點。
+</div>
+</section>
+
+<section id="step4">
+<div class="progress-tag">【第 4 步／共 6 步：營收趨勢視覺化】</div>
+<h2>近12期月營收趨勢</h2>
+<div class="sub">資料來源：Yahoo股市、nStock月營收公告彙整，2025/07～2026/06，單位：億元</div>
+<svg viewBox="0 0 1040 320" xmlns="http://www.w3.org/2000/svg" class="cf-chart" role="img" aria-label="盛群近12期月營收趨勢">
+<line x1="40" y1="264.0" x2="1020" y2="264.0" stroke="var(--rule-line)" stroke-width="1"/>
+<rect x="55.5" y="91.2" width="50.6" height="172.8" rx="2" fill="var(--pass)"/>
+<text x="80.8" y="73.2" class="cf-val" text-anchor="middle">2.60</text>
+<text x="80.8" y="86.2" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+14%</text>
+<text x="80.8" y="282.0" class="cf-yr" text-anchor="middle">2025/07</text>
+<rect x="137.2" y="96.5" width="50.6" height="167.5" rx="2" fill="var(--pass)"/>
+<text x="162.5" y="78.5" class="cf-val" text-anchor="middle">2.52</text>
+<text x="162.5" y="91.5" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+15%</text>
+<text x="162.5" y="282.0" class="cf-yr" text-anchor="middle">2025/08</text>
+<rect x="218.9" y="102.5" width="50.6" height="161.5" rx="2" fill="var(--pass)"/>
+<text x="244.2" y="84.5" class="cf-val" text-anchor="middle">2.43</text>
+<text x="244.2" y="97.5" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+3%</text>
+<text x="244.2" y="282.0" class="cf-yr" text-anchor="middle">2025/09</text>
+<rect x="300.5" y="107.1" width="50.6" height="156.9" rx="2" fill="var(--pass)"/>
+<text x="325.8" y="89.1" class="cf-val" text-anchor="middle">2.36</text>
+<text x="325.8" y="102.1" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+3%</text>
+<text x="325.8" y="282.0" class="cf-yr" text-anchor="middle">2025/10</text>
+<rect x="382.2" y="105.8" width="50.6" height="158.2" rx="2" fill="var(--fail)"/>
+<text x="407.5" y="87.8" class="cf-val" text-anchor="middle">2.38</text>
+<text x="407.5" y="100.8" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--fail)">-0%</text>
+<text x="407.5" y="282.0" class="cf-yr" text-anchor="middle">2025/11</text>
+<rect x="463.9" y="125.1" width="50.6" height="138.9" rx="2" fill="var(--fail)"/>
+<text x="489.2" y="107.1" class="cf-val" text-anchor="middle">2.09</text>
+<text x="489.2" y="120.1" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--fail)">-7%</text>
+<text x="489.2" y="282.0" class="cf-yr" text-anchor="middle">2025/12</text>
+<rect x="545.5" y="63.2" width="50.6" height="200.8" rx="2" fill="var(--pass)"/>
+<text x="570.8" y="45.2" class="cf-val" text-anchor="middle">3.02</text>
+<text x="570.8" y="58.2" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+28%</text>
+<text x="570.8" y="282.0" class="cf-yr" text-anchor="middle">2026/01</text>
+<rect x="627.2" y="127.7" width="50.6" height="136.3" rx="2" fill="var(--trough)"/>
+<text x="652.5" y="109.7" class="cf-val" text-anchor="middle">2.05</text>
+<text x="652.5" y="122.7" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--fail)">-21%</text>
+<text x="652.5" y="282.0" class="cf-yr" text-anchor="middle">2026/02</text>
+<rect x="708.9" y="51.9" width="50.6" height="212.1" rx="2" fill="var(--pass)"/>
+<text x="734.2" y="33.9" class="cf-val" text-anchor="middle">3.19</text>
+<text x="734.2" y="46.9" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+20%</text>
+<text x="734.2" y="282.0" class="cf-yr" text-anchor="middle">2026/03</text>
+<rect x="790.5" y="51.9" width="50.6" height="212.1" rx="2" fill="var(--pass)"/>
+<text x="815.8" y="33.9" class="cf-val" text-anchor="middle">3.19</text>
+<text x="815.8" y="46.9" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+7%</text>
+<text x="815.8" y="282.0" class="cf-yr" text-anchor="middle">2026/04</text>
+<rect x="872.2" y="55.9" width="50.6" height="208.1" rx="2" fill="var(--pass)"/>
+<text x="897.5" y="37.9" class="cf-val" text-anchor="middle">3.13</text>
+<text x="897.5" y="50.9" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+7%</text>
+<text x="897.5" y="282.0" class="cf-yr" text-anchor="middle">2026/05</text>
+<rect x="953.9" y="30.0" width="50.6" height="234.0" rx="2" fill="var(--peak)"/>
+<text x="979.2" y="12.0" class="cf-val" text-anchor="middle">3.52</text>
+<text x="979.2" y="25.0" class="cf-val cf-val-sm" text-anchor="middle" fill="var(--pass)">+31%</text>
+<text x="979.2" y="282.0" class="cf-yr" text-anchor="middle">2026/06</text>
+</svg>
+<p class="table-note">柱狀圖：米色＝12期最高點（2026/06，3.52億），粉色＝12期最低點（2025/12，2.09億）。紅字為年增率為負的月份。</p>
+<div class="callout ok">
+  <b>轉折點清晰可見：</b>2025/09-2025/12連續4個月年增率放緩甚至轉負（+2.9%→+2.9%→-0.3%→-7.0%），對應Step1看到的2025年谷底；2026年起明顯翻轉，1月大增28.2%，雖2月因春節工作天數少而回落-21.1%，但3月起連續4個月穩定在3.1-3.5億的較高水位，6月更創本波新高並年增30.9%。月營收水位較2025下半年的2.0-2.6億明顯墊高一個台階。
+</div>
+<p>這張圖直接驗證了Step3法說會提到的「轉單效應」與「訂單回流」：不只是單月反彈，而是連續4個月站穩更高的營收水位，與Step1「2024-2025緩步回溫」的現金流走勢方向一致，形成基本面與現金流互相佐證的完整敘事。</p>
+</section>
+
+<section id="step5">
+<div class="progress-tag">【第 5 步／共 6 步：前瞻本益比／EPS預估】</div>
+<h2>前瞻本益比／EPS預估</h2>
+<div class="sub">資料來源：券商評等報告彙整（cmoney，日期較早於H1實際公布）、Win投資</div>
+<table class="mono-table">
+<thead><tr><th>項目</th><th>數值</th></tr></thead>
+<tbody>
+<tr><td>52週最高／最低</td><td>81.00 / 35.80元</td></tr>
+<tr><td>現價</td><td>61.00元（2026/08/07快照）</td></tr>
+<tr><td>近四季本益比</td><td>50.82倍</td></tr>
+<tr><td>券商2026年EPS預估（3家中立）</td><td>1.52～2.10元</td></tr>
+<tr><td>券商2026年EPS預估（1家看多，群益）</td><td>1.96元</td></tr>
+<tr><td>券商目標價（中立）</td><td>55～60元</td></tr>
+<tr><td>券商目標價（看多）</td><td>58元</td></tr>
+<tr><td>2026H1實際EPS</td><td>0.94元（年增88%）</td></tr>
+</tbody>
+</table>
+<div class="callout danger">
+  <b>重要發現：現價已經超過所有找到的券商目標價。</b>現價61.00元，已高於中立評等目標價區間（55-60元）與唯一看多評等的58元。用中立評等EPS估計中位數1.81元換算，前瞻本益比約33.7倍；即使用最樂觀的2.10元計算，前瞻本益比仍達29倍。
+</div>
+<div class="callout">
+  <b>目標本益比法（20/25/30倍機械式試算，EPS取中位數1.81）：</b>20倍→36.2元；25倍→45.3元；30倍→54.3元。即使套用30倍的樂觀本益比，換算目標價54.3元仍低於現價61.00元——代表市場目前對盛群的定價，已經隱含比目前所有找到的券商預估更樂觀的獲利成長假設，或是給予了明顯高於30倍的本益比溢價。
+</div>
+<p>這些券商評等日期多在2月至H1財報公布前，屬於相對保守的舊估值，H1實際EPS 0.94元（年增88%）已經逼近全年估值下限的一半，若H2優於H1的管理層guidance成立，全年EPS上看2元甚至更高並非不可能。但目前找不到H1財報公布後的最新券商目標價更新，這是本節最大的資訊缺口——現價是否已經合理反映了H1超預期的成長，還是純粹被MCU題材與轉單行情推升的情緒性上漲，需要更新的法人評等資料才能判斷。</p>
+</section>
+
+<section id="step6">
+<div class="progress-tag">【第 6 步／共 6 步：投資決策推理】</div>
+<h2>投資決策推理</h2>
+<div class="sub">以下為根據前五步分析的推理與個人觀點，不是專業投資建議，不構成買賣建議</div>
+<div class="callout danger">
+  <b>若尚未持有：傾向不現在進場。</b>核心矛盾在於估值已經跑到所有找到的券商目標價之上（現價61 vs 目標價55-60），前瞻本益比29-34倍在MCU景氣循環股中偏高，需要「H2優於H1、且全年EPS上看2元以上」的樂觀情境才能被目前股價合理消化。現金流核心六規則平均53.8分僅是「需觀察」而非「體質良好」，26Q2單季E驟降63%的原因也還沒有細項資料能解釋清楚。
+</div>
+<div class="callout ok">
+  <b>若已持有：傾向續抱但收緊停損意識。</b>基本面回溫的敘事（供給面驅動轉單＋法規性剛性需求＋連續4個月營收站上新水位）目前為止都有數據佐證，不是憑空的題材炒作，管理層guidance與實際數字方向一致。如果原本的持股邏輯是看MCU景氣循環反轉，這個邏輯還沒被推翻。但估值已經沒有安全邊際，任何一項樂觀假設落空都可能引發較大幅度的回檔。
+</div>
+<p><b>具體可驗證的觀察訊號（尚未發生，任何一項轉壞需重新評估）：</b></p>
+<ol>
+  <li>H1財報公布後，是否有券商更新目標價與EPS預估——若新目標價仍低於現價，是重要警訊</li>
+  <li>2026Q3單月營收是否延續3億以上的水位，或開始出現轉單效應消退的跡象</li>
+  <li>全系列漲價1-2成後，Q3、Q4訂單是否維持穩定，或出現客戶因漲價轉單流失</li>
+  <li>26Q3現金流數據公布後，E是否止穩回升，解答本季63%驟降之謎</li>
+  <li>中國MCU廠晶圓產能是否重新恢復，若轉單動能的供給面根源消失，訂單能見度6個月到期後動能能否延續</li>
+</ol>
+</section>
 
 <footer>
-  <div>6202_holtek_analysis · v2.1（模組化重跑）· 生成時間 2026-08-07</div>
-  <div class="src-note">資料來源：Step1現金流數據沿用已驗證之歷史序列（2016-2025年度＋26Q2單季，經MoneyDJ最新資料交叉核對一致，26Q2為公開可得之最新一季，2026Q3尚未公告）；Step2 web_search取得之cnyes鉅亨網、Yahoo股市等公開資訊。Step1盲測階段未查詢股價、EPS、產業地位或新聞背景。規則七、八因缺少細項數字暫缺。</div>
+  <div>6202_holtek_analysis · v2.2（六步驟完整版）· 生成時間 2026-08-07</div>
+  <div class="src-note">資料來源：Step1現金流數據沿用已驗證之歷史序列（2016-2025年度＋26Q2單季，經MoneyDJ最新資料交叉核對一致，26Q2為公開可得之最新一季，2026Q3尚未公告）；Step2/4/5 web_search取得之cnyes鉅亨網、Yahoo股市、nStock、Win投資、cmoney券商評等彙整等公開資訊；Step3財經媒體法說會摘要整理（非直接讀取MOPS原始PDF）。Step1盲測階段未查詢股價、EPS、產業地位或新聞背景。規則七、八因缺少細項數字暫缺。Step6為推理與個人觀點，不構成投資建議。</div>
 </footer>
 </main>
 </div>
