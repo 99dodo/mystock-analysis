@@ -3,924 +3,388 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>6202 盛群半導體｜台股個股初步分析</title>
+<title>6202 盛群現金流量表分析｜v2.1 模組化八大規則</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0e141d;
-  --bg-alt: #121a24;
-  --card: #17202c;
-  --card-2: #1c2632;
-  --border: #29394a;
-  --text: #e7ecf2;
-  --muted: #8b9bb0;
-  --gold: #d9ac4f;
-  --gold-soft: #d9ac4f22;
-  --pos: #4fae86;
-  --neg: #e2707c;
-  --peak: #e8c468;
-  --trough: #e2708a;
-  --warn-bg: #e2707c1f;
-  --radius: 10px;
+:root{
+  --bg-void:#101314; --bg-panel:#171b1c; --bg-panel-2:#1d2224;
+  --ink:#e7e4dc; --ink-dim:#9a9c97; --ink-faint:#5e615f; --rule-line:#2a2e2f;
+  --pass:#4fa989; --fail:#c6614a; --peak:#d9c27a; --trough:#c6547a;
+  --serA:#5b8fae; --serB:#c9a227; --gold:#c9a227;
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Noto Sans TC', -apple-system, sans-serif;
-  line-height: 1.75;
-  font-size: 15.5px;
-}
-h1, h2, h3, .display {
-  font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-  letter-spacing: 0.01em;
-}
-.mono { font-family: 'IBM Plex Mono', monospace; }
-a { color: var(--gold); }
-
-header.hero {
-  padding: 44px 32px 30px;
-  background: linear-gradient(180deg, #131c27 0%, var(--bg) 100%);
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.hero-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12.5px;
-  color: var(--gold);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-h1.title {
-  font-size: clamp(26px, 4vw, 38px);
-  margin: 0 0 6px;
-  font-weight: 700;
-}
-.hero-sub {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 640px;
-}
-.pulse-wrap { margin-top: 22px; max-width: 760px; opacity: 0.9; }
-.pulse-wrap svg { width: 100%; height: auto; display: block; }
-
-nav.stepnav {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  gap: 2px;
-  background: rgba(14,20,29,0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
-  padding: 0 12px;
-}
-nav.stepnav .pad {
-  flex: 1 1 auto;
-  white-space: nowrap;
-  padding: 14px 14px;
-  font-size: 13px;
-  color: var(--muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: color .2s, border-color .2s;
-  font-family: 'IBM Plex Mono', monospace;
-}
-nav.stepnav .pad:hover { color: var(--text); }
-nav.stepnav .pad.active { color: var(--gold); border-bottom-color: var(--gold); }
-nav.stepnav .pad.locked { color: #445265; cursor: not-allowed; }
-nav.stepnav .pad.locked:hover { color: #445265; }
-
-main { max-width: 920px; margin: 0 auto; padding: 8px 24px 90px; }
-section { padding-top: 46px; }
-.step-heading {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-.step-num {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--gold);
-  font-size: 13px;
-  border: 1px solid var(--gold-soft);
-  padding: 3px 9px;
-  border-radius: 20px;
-}
-h2.step-title { font-size: 21px; margin: 0; }
-
-.callout {
-  border-left: 3px solid var(--gold);
-  background: var(--card);
-  border-radius: 0 8px 8px 0;
-  padding: 14px 18px;
-  margin: 0 0 20px;
-  font-size: 14.5px;
-}
-.callout.warn { border-left-color: var(--neg); }
-.callout b { color: var(--text); }
-.negv { color: var(--neg); font-weight: 600; }
-strong { color: var(--text); }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 13.5px;
-  margin: 16px 0 20px;
-}
-th, td {
-  padding: 9px 10px;
-  border-bottom: 1px solid var(--border);
-  text-align: right;
-}
-th {
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-td.yr, th.yr { text-align: left; color: var(--text); font-family: 'Noto Sans TC', sans-serif; }
-tr.q-row td { color: var(--muted); font-style: italic; }
-.qtag { font-size: 10.5px; color: var(--gold); border: 1px solid var(--gold-soft); border-radius: 10px; padding: 1px 7px; margin-left: 6px; font-family: 'Noto Sans TC', sans-serif; }
-.pass { color: var(--pos); }
-.fail { color: var(--neg); }
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px 8px;
-  margin-bottom: 22px;
-}
-.barchart { width: 100%; height: auto; }
-.bar-pos { fill: #4a90c2; }
-.bar-neg { fill: var(--neg); opacity: 0.85; }
-.bar-peak { fill: var(--peak); }
-.bar-trough { fill: var(--trough); }
-.bar-series1 { fill: #4a90c2; }
-.bar-series2 { fill: var(--gold); }
-.warn-zone { fill: var(--warn-bg); }
-.axis-zero { stroke: #3a4a5c; stroke-width: 1; }
-.bar-label, .bar-label-sm { fill: var(--text); font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
-.bar-label-sm { font-size: 10.5px; }
-.bar-xlabel { fill: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
-.chart-unit, .legend-text { fill: var(--muted); font-family: 'Noto Sans TC', sans-serif; font-size: 11px; }
-
-.persona-tag {
-  display: inline-block;
-  background: var(--gold-soft);
-  color: var(--gold);
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 13px;
-  margin: 2px 6px 2px 0;
-  font-weight: 500;
-}
-
-.score-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
-  gap: 10px;
-  margin: 18px 0;
-}
-.score-box {
-  background: var(--card-2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  text-align: center;
-}
-.score-box .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-.score-box .val { font-family: 'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; }
-
-.total-banner {
-  background: linear-gradient(135deg, #1c2632, #17202c);
-  border: 1px solid var(--neg);
-  border-radius: 12px;
-  padding: 26px 24px;
-  margin: 20px 0 30px;
-}
-.total-banner .big {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 44px;
-  font-weight: 600;
-  color: var(--neg);
-}
-.total-banner .verdict { font-size: 16px; margin-top: 10px; }
-
-footer {
-  border-top: 1px solid var(--border);
-  padding: 24px 32px 60px;
-  color: var(--muted);
-  font-size: 12.5px;
-  max-width: 920px;
-  margin: 0 auto;
-}
-.src-note { font-size: 12px; color: var(--muted); margin-top: 6px; }
-hr.div { border: none; border-top: 1px solid var(--border); margin: 30px 0; }
+*{box-sizing:border-box;} html{scroll-behavior:smooth;}
+body{margin:0; background:var(--bg-void); color:var(--ink); font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,sans-serif; line-height:1.7; font-size:15.5px;}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace; font-variant-numeric: tabular-nums;}
+h1,h2,h3{font-family:'Noto Serif TC',serif; font-weight:900; letter-spacing:.02em; margin:0;}
+a{color:inherit;}
+.shell{display:flex; min-height:100vh;}
+nav.stepnav{width:220px; flex-shrink:0; position:sticky; top:0; align-self:flex-start; height:100vh; border-right:1px solid var(--rule-line); padding:28px 18px; overflow-y:auto;}
+nav.stepnav .brand{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-faint); letter-spacing:.15em; margin-bottom:26px;}
+nav.stepnav ol{list-style:none; margin:0; padding:0;}
+nav.stepnav li{margin-bottom:4px;}
+nav.stepnav a{display:block; padding:9px 10px; border-radius:4px; font-size:13.5px; color:var(--ink-dim); text-decoration:none; border-left:2px solid transparent; transition:all .15s ease;}
+nav.stepnav a.active{color:var(--ink); background:var(--bg-panel-2); border-left-color:var(--pass);}
+nav.stepnav a.disabled{color:var(--ink-faint); pointer-events:none; cursor:default;}
+nav.stepnav .rule-sub{padding-left:24px; margin-top:2px; margin-bottom:10px;}
+nav.stepnav .rule-sub a{font-size:12px; padding:5px 8px;}
+nav.stepnav .step-num{font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:.7; margin-right:6px;}
+main{flex:1; min-width:0; padding:0 0 100px;}
+.hero{padding:56px 40px 30px; border-bottom:1px solid var(--rule-line); background: radial-gradient(ellipse at top left, rgba(79,169,137,0.07), transparent 60%);}
+.hero .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold); letter-spacing:.18em; margin-bottom:14px;}
+.hero h1{font-size:36px; color:var(--ink);}
+.hero .ticker{color:var(--ink-dim); font-family:'IBM Plex Mono',monospace; font-size:16px; margin-top:6px;}
+.hero .meta{display:flex; gap:28px; margin-top:26px; flex-wrap:wrap;}
+.hero .meta div{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-faint);}
+.hero .meta strong{display:block; color:var(--ink-dim); font-size:11px; font-weight:500; letter-spacing:.08em; margin-bottom:3px;}
+section{padding:44px 40px; border-bottom:1px solid var(--rule-line);}
+section.pending{opacity:.5;}
+.progress-tag{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--bg-void); background:var(--gold); padding:4px 10px; border-radius:3px; margin-bottom:16px; letter-spacing:.03em;}
+section h2{font-size:24px; margin-bottom:6px;}
+section .sub{color:var(--ink-dim); font-size:14px; margin-bottom:26px;}
+.callout{border-left:3px solid var(--gold); background:var(--bg-panel); border-radius:0 6px 6px 0; padding:16px 20px; margin:18px 0 26px;}
+.callout.danger{border-left-color:var(--fail);} .callout.ok{border-left-color:var(--pass);}
+.callout b{color:var(--ink);} .callout .warn-text{color:var(--fail); font-weight:700;}
+table{width:100%; border-collapse:collapse; margin:18px 0 8px; font-size:13px;}
+table.mono-table{font-family:'IBM Plex Mono',monospace;}
+th,td{padding:8px 10px; text-align:right; border-bottom:1px solid var(--rule-line); white-space:nowrap;}
+th{color:var(--ink-dim); font-weight:500; font-size:11.5px; letter-spacing:.03em; text-transform:uppercase; border-bottom:1px solid var(--ink-faint);}
+td:first-child, th:first-child{text-align:left; color:var(--ink-dim);}
+tr:hover td{background:var(--bg-panel-2);}
+td.pos{color:var(--pass);} td.neg{color:var(--fail);}
+.table-scroll{overflow-x:auto; border-radius:6px;}
+.table-note{font-size:12px; color:var(--ink-faint); margin-top:6px;}
+.rule-card{margin:30px 0; padding-top:6px;}
+.rule-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px;}
+.rule-head .rule-no{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:13px;}
+.rule-head h3{font-size:18px;}
+.rule-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; padding:2px 8px; border-radius:10px; margin-left:auto;}
+.rule-tag.pass{background:rgba(79,169,137,.15); color:var(--pass);}
+.rule-tag.fail{background:rgba(198,97,74,.15); color:var(--fail);}
+.rule-tag.mid{background:rgba(201,162,39,.15); color:var(--gold);}
+.rule-score{font-family:'IBM Plex Mono',monospace; font-size:26px; color:var(--ink); margin:8px 0 4px;}
+.rule-score span{font-size:13px; color:var(--ink-faint);}
+.persona{display:inline-block; font-size:12.5px; padding:3px 10px; border-radius:3px; margin:8px 0 14px; background:var(--bg-panel-2); border:1px solid var(--rule-line); color:var(--ink-dim);}
+.persona b{color:var(--gold);}
+.cf-chart{width:100%; height:auto; display:block; margin:14px 0 6px;}
+.cf-val{font-family:'IBM Plex Mono',monospace; font-size:11px; fill:var(--ink-dim);}
+.cf-val-sm{font-size:9.5px;}
+.cf-yr{font-family:'IBM Plex Mono',monospace; font-size:10.5px; fill:var(--ink-faint);}
+.cf-legend{font-family:'IBM Plex Mono',monospace; font-size:11px; fill:var(--ink-dim);}
+.prelim-badge{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--gold); border:1px solid var(--gold); border-radius:3px; padding:1px 6px; margin-left:6px;}
+.score-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0;}
+.score-cell{background:var(--bg-panel); border:1px solid var(--rule-line); border-radius:6px; padding:14px;}
+.score-cell .label{font-size:12px; color:var(--ink-dim); margin-bottom:8px;}
+.score-cell .val{font-family:'IBM Plex Mono',monospace; font-size:24px;}
+.score-cell .val.fail{color:var(--fail);} .score-cell .val.mid{color:var(--gold);} .score-cell .val.pass{color:var(--pass);}
+.bigverdict{margin-top:28px; padding:24px 26px; border-radius:8px; background:var(--bg-panel); border:1px solid var(--gold); position:relative; overflow:hidden;}
+.bigverdict::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold);}
+.bigverdict h3{color:var(--gold); font-size:19px; margin-bottom:10px;}
+.bigverdict .score-big{font-family:'IBM Plex Mono',monospace; font-size:42px; color:var(--gold); line-height:1;}
+.bigverdict .score-big span{font-size:16px; color:var(--ink-faint);}
+footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-faint);}
+@media (max-width: 860px){.shell{flex-direction:column;} nav.stepnav{width:100%; height:auto; position:relative; border-right:none; border-bottom:1px solid var(--rule-line); padding:16px;} .hero, section{padding-left:20px; padding-right:20px;}}
 </style>
 </head>
 <body>
-
-<header class="hero">
-  <div class="hero-eyebrow">台股個股初步分析 · 6202 盛群半導體 (HOLTEK)</div>
-  <h1 class="title">現金流量表六大規則分析</h1>
-  <p class="hero-sub">盲測階段——尚未查詢股價、EPS、產業地位或新聞背景，僅根據現金流量表本身的數字進行客觀解讀。</p>
-  <div class="pulse-wrap">
-    <svg viewBox="0 0 760 60" xmlns="http://www.w3.org/2000/svg">
-      <polyline points="0,40 76,38 152,20 228,32 304,15 380,2 456,30 532,58 608,45 684,42 760,20"
-        fill="none" stroke="#d9ac4f" stroke-width="2" opacity="0.8"/>
-      <circle cx="380" cy="2" r="3.5" fill="#e8c468"/>
-      <circle cx="532" cy="58" r="3.5" fill="#e2708a"/>
-    </svg>
-  </div>
-</header>
-
+<div class="shell">
 <nav class="stepnav" id="stepnav">
-  <div class="pad" data-target="step1">① 現金流六大規則</div>
-  <div class="pad" data-target="step2">② 基本資訊</div>
-  <div class="pad" data-target="step3">③ 法說會深入</div>
-  <div class="pad" data-target="step4">④ 營收趨勢</div>
-  <div class="pad" data-target="step5">⑤ 前瞻本益比</div>
-  <div class="pad active" data-target="step6">⑥ 投資決策</div>
+  <div class="brand">6202 · 現金流鑑識報告</div>
+  <ol>
+    <li><a href="#step1" class="step-link"><span class="step-num">01</span>現金流量表八大規則</a>
+      <div class="rule-sub">
+        <a href="#rule1">規則一・A趨勢</a><a href="#rule2">規則二・B紀律</a><a href="#rule3">規則三・B效益</a><a href="#rule4">規則四・C合理性</a>
+        <a href="#rule5">規則五・A&gt;D品質</a><a href="#rule6">規則六・E穩定性</a><a href="#rule7">規則七・落差拆解</a><a href="#rule8">規則八・股利永續</a>
+      </div>
+    </li>
+    <li><a href="#step2" class="step-link"><span class="step-num">02</span>基本資訊查詢</a></li>
+    <li><a href="#step3" class="step-link disabled"><span class="step-num">03</span>法說會深入討論</a></li>
+    <li><a href="#step4" class="step-link disabled"><span class="step-num">04</span>營收趨勢視覺化</a></li>
+    <li><a href="#step5" class="step-link disabled"><span class="step-num">05</span>前瞻本益比／EPS</a></li>
+    <li><a href="#step6" class="step-link disabled"><span class="step-num">06</span>投資決策推理</a></li>
+  </ol>
 </nav>
-
 <main>
+<div class="hero">
+  <div class="eyebrow">CASH FLOW FORENSICS · 盲測階段 · v2.1</div>
+  <h1>6202　盛群半導體現金流量表分析</h1>
+  <div class="ticker mono">STOCK.TW 6202　｜　資料期間 2016–2025　＋　26Q2單季</div>
+  <div class="meta">
+    <div><strong>分析階段</strong>第 1-2 步／共 6 步</div>
+    <div><strong>盲測狀態</strong>Step1階段未查詢股價／EPS／產業背景</div>
+    <div><strong>資料來源</strong>MoneyDJ／Yahoo股市／鉅亨網 公開資訊</div>
+    <div><strong>報告版本</strong>v2.1</div>
+  </div>
+</div>
+
 <section id="step1">
-  <div class="step-heading">
-    <span class="step-num">STEP 1 / 6</span>
-    <h2 class="step-title">現金流量表六大規則分析（盲測）</h2>
-  </div>
+<div class="progress-tag">【第 1 步／共 6 步：現金流量表八大規則分析】</div>
+<h2>八大規則盲測分析</h2>
+<div class="sub">本階段嚴禁查詢股價、EPS、產業地位、新聞背景，純粹依現金流量數字本身做客觀判斷。26Q2為目前公開可得之最新一季財報（2026Q3尚未公告）。</div>
 
-  <div class="callout">
-    <b>資料來源說明：</b>本節數字全部來自使用者提供的 Goodinfo 現金流量表截圖與季度細項截圖（2016-2025 年度總表 + 2022Q3-2026Q2 季度累計細項），非本次搜尋所得。此步驟嚴禁查詢股價/EPS/產業背景，維持盲測狀態。
-  </div>
+<h3 style="font-size:17px; margin-bottom:10px;">現金流量數據總表（單位：億元）</h3>
+<div class="table-scroll">
+<table class="mono-table">
+<thead><tr><th>年度</th><th>A 營業活動</th><th>B 投資活動</th><th>C 融資活動</th><th>D 稅前淨利</th><th>E 期末餘額</th><th>A／D</th></tr></thead>
+<tbody>
+<tr><td>2016</td><td class="pos">9.33</td><td class="pos">3.60</td><td class="neg">-8.16</td><td>9.18</td><td>11.5</td><td class="pos">✓</td></tr>
+<tr><td>2017</td><td class="pos">6.99</td><td class="pos">3.40</td><td class="neg">-7.96</td><td>10.70</td><td>13.9</td><td class="neg">✗</td></tr>
+<tr><td>2018</td><td class="pos">12.30</td><td class="neg">-1.63</td><td class="neg">-9.39</td><td>12.50</td><td>15.2</td><td class="neg">✗</td></tr>
+<tr><td>2019</td><td class="pos">8.99</td><td class="neg">-3.17</td><td class="neg">-10.90</td><td>10.70</td><td>10.1</td><td class="neg">✗</td></tr>
+<tr><td>2020</td><td class="pos">11.20</td><td class="pos">0.09</td><td class="neg">-9.37</td><td>12.60</td><td>12.0</td><td class="neg">✗</td></tr>
+<tr><td>2021</td><td class="pos">27.10</td><td class="neg">-16.40</td><td class="neg">-10.50</td><td>25.90</td><td>12.0</td><td class="pos">✓</td></tr>
+<tr><td>2022</td><td class="pos">5.30</td><td class="pos">10.80</td><td class="neg">-18.80</td><td>13.90</td><td>9.3</td><td class="neg">✗</td></tr>
+<tr><td>2023</td><td class="pos">0.04</td><td class="neg">-1.90</td><td class="pos">0.93</td><td>0.78</td><td>8.3</td><td class="neg">✗</td></tr>
+<tr><td>2024</td><td class="pos">3.10</td><td class="neg">-0.98</td><td class="neg">-1.55</td><td>-1.91</td><td>9.0</td><td class="pos">✓</td></tr>
+<tr><td>2025</td><td class="pos">3.80</td><td class="pos">4.35</td><td class="neg">-2.20</td><td>1.60</td><td>15.0</td><td class="pos">✓</td></tr>
+<tr><td>26Q2<span class="prelim-badge">單季</span></td><td class="pos">2.19</td><td class="neg">-9.29</td><td class="neg">-2.56</td><td>2.68</td><td>5.49</td><td>–</td></tr>
+</tbody></table></div>
+<div class="table-note">A／D 欄：Ⓐ&gt;Ⓓ 為通過（規則五）。26Q2 為單季數字，僅供參考，不列入計分。</div>
 
-  <h3>現金流量數據總表（單位：億元）</h3>
-  <table>
-    <thead><tr><th class="yr">年度</th><th>A 營業活動</th><th>B 投資活動</th><th>C 融資活動</th><th>D 稅前淨利</th><th>E 期末餘額</th></tr></thead>
-    <tbody>
-    <tr><td class='yr'>2016</td><td><span class="">9.33</span></td><td><span class="">3.6</span></td><td><span class="negv">-8.16</span></td><td><span class="">9.18</span></td><td>11.5</td></tr>
-<tr><td class='yr'>2017</td><td><span class="">6.99</span></td><td><span class="">3.4</span></td><td><span class="negv">-7.96</span></td><td><span class="">10.7</span></td><td>13.9</td></tr>
-<tr><td class='yr'>2018</td><td><span class="">12.3</span></td><td><span class="negv">-1.63</span></td><td><span class="negv">-9.39</span></td><td><span class="">12.5</span></td><td>15.2</td></tr>
-<tr><td class='yr'>2019</td><td><span class="">8.99</span></td><td><span class="negv">-3.17</span></td><td><span class="negv">-10.9</span></td><td><span class="">10.7</span></td><td>10.1</td></tr>
-<tr><td class='yr'>2020</td><td><span class="">11.2</span></td><td><span class="">0.09</span></td><td><span class="negv">-9.37</span></td><td><span class="">12.6</span></td><td>12</td></tr>
-<tr><td class='yr'>2021</td><td><span class="">27.1</span></td><td><span class="negv">-16.4</span></td><td><span class="negv">-10.5</span></td><td><span class="">25.9</span></td><td>12</td></tr>
-<tr><td class='yr'>2022</td><td><span class="">5.3</span></td><td><span class="">10.8</span></td><td><span class="negv">-18.8</span></td><td><span class="">13.9</span></td><td>9.34</td></tr>
-<tr><td class='yr'>2023</td><td><span class="">0.04</span></td><td><span class="negv">-1.9</span></td><td><span class="">0.93</span></td><td><span class="">0.78</span></td><td>8.31</td></tr>
-<tr><td class='yr'>2024</td><td><span class="">3.1</span></td><td><span class="negv">-0.98</span></td><td><span class="negv">-1.55</span></td><td><span class="negv">-1.91</span></td><td>9.03</td></tr>
-<tr><td class='yr'>2025</td><td><span class="">3.8</span></td><td><span class="">4.35</span></td><td><span class="negv">-2.2</span></td><td><span class="">1.6</span></td><td>15</td></tr>
-<tr class='q-row'><td class='yr'>26Q2<span class='qtag'>單季·僅供參考</span></td><td><span class="">2.19</span></td><td><span class="negv">-9.29</span></td><td><span class="negv">-2.56</span></td><td><span class="">2.68</span></td><td>5.49</td></tr>
+<div class="rule-card" id="rule1">
+  <div class="rule-head"><span class="rule-no">規則一</span><h3>A 逐年成長趨勢</h3><span class="rule-tag mid">45 分・先盛後衰緩步回溫</span></div>
+  <div class="rule-score">45<span> / 100</span></div>
+  <div class="persona">擬人化標籤：<b>「先盛後衰・緩步回溫」型</b></div>
+  <p>2021年A衝上27.1億的歷史高峰後，2022-2023連兩年重挫，2023幾乎歸零（0.04億），2024-2025雖回升至3-4億，仍遠低於2016-2020常態的7-12億區間。26Q2單季A=2.19億，若全年線性外推約8-9億，較2025年可能改善，但單季不足以確認趨勢反轉。</p>
+  <svg viewBox="0 0 920 280" xmlns="http://www.w3.org/2000/svg" class="cf-chart" role="img" aria-label="6202-rule1-A趨勢">
+<line x1="40" y1="240.0" x2="900" y2="240.0" stroke="var(--rule-line)" stroke-width="1" stroke-dasharray="2,3"/>
+<rect x="57.2" y="167.6" width="51.6" height="72.4" rx="2" fill="var(--pass)"/>
+<text x="83.0" y="161.6" class="cf-val" text-anchor="middle">9.3</text>
+<text x="83.0" y="266" class="cf-yr" text-anchor="middle">2016</text>
+<rect x="143.2" y="185.8" width="51.6" height="54.2" rx="2" fill="var(--pass)"/>
+<text x="169.0" y="179.8" class="cf-val" text-anchor="middle">7.0</text>
+<text x="169.0" y="266" class="cf-yr" text-anchor="middle">2017</text>
+<rect x="229.2" y="144.5" width="51.6" height="95.5" rx="2" fill="var(--pass)"/>
+<text x="255.0" y="138.5" class="cf-val" text-anchor="middle">12.3</text>
+<text x="255.0" y="266" class="cf-yr" text-anchor="middle">2018</text>
+<rect x="315.2" y="170.2" width="51.6" height="69.8" rx="2" fill="var(--pass)"/>
+<text x="341.0" y="164.2" class="cf-val" text-anchor="middle">9.0</text>
+<text x="341.0" y="266" class="cf-yr" text-anchor="middle">2019</text>
+<rect x="401.2" y="153.1" width="51.6" height="86.9" rx="2" fill="var(--pass)"/>
+<text x="427.0" y="147.1" class="cf-val" text-anchor="middle">11.2</text>
+<text x="427.0" y="266" class="cf-yr" text-anchor="middle">2020</text>
+<rect x="487.2" y="29.7" width="51.6" height="210.3" rx="2" fill="var(--peak)"/>
+<text x="513.0" y="23.7" class="cf-val" text-anchor="middle">27.1</text>
+<text x="513.0" y="266" class="cf-yr" text-anchor="middle">2021</text>
+<rect x="573.2" y="198.9" width="51.6" height="41.1" rx="2" fill="var(--pass)"/>
+<text x="599.0" y="192.9" class="cf-val" text-anchor="middle">5.3</text>
+<text x="599.0" y="266" class="cf-yr" text-anchor="middle">2022</text>
+<rect x="659.2" y="239.7" width="51.6" height="0.3" rx="2" fill="var(--trough)"/>
+<text x="685.0" y="233.7" class="cf-val" text-anchor="middle">0.0</text>
+<text x="685.0" y="266" class="cf-yr" text-anchor="middle">2023</text>
+<rect x="745.2" y="215.9" width="51.6" height="24.1" rx="2" fill="var(--pass)"/>
+<text x="771.0" y="209.9" class="cf-val" text-anchor="middle">3.1</text>
+<text x="771.0" y="266" class="cf-yr" text-anchor="middle">2024</text>
+<rect x="831.2" y="210.5" width="51.6" height="29.5" rx="2" fill="var(--pass)"/>
+<text x="857.0" y="204.5" class="cf-val" text-anchor="middle">3.8</text>
+<text x="857.0" y="266" class="cf-yr" text-anchor="middle">2025</text>
+</svg>
+  <p class="table-note">柱狀圖：米色＝10年最高點（2021，27.1億），粉色＝10年最低點（2023，0.04億）。</p>
+</div>
 
-    </tbody>
-  </table>
+<div class="rule-card" id="rule2">
+  <div class="rule-head"><span class="rule-no">規則二</span><h3>B 投資紀律評估</h3><span class="rule-tag pass">68 分</span></div>
+  <div class="rule-score">68<span> / 100</span></div>
+  <p>B在10年中有6年為負值（持續投資）、4年為正值（2016、2017、2022、2025，屬處分資產或金融資產調度使現金流入）。2021年B=-16.4億是唯一一次大額投資支出，對照2022年A隨即回落（非B投資帶來的正向轉化）。B值整體波動不算劇烈，沒有連續多年單向失控的跡象，屬於中性偏正面的評分，但因未取得投資活動細項（固定資產vs金融資產配置），此分數仍保留一定不確定性。</p>
+</div>
 
-  <hr class="div">
+<div class="rule-card" id="rule3">
+  <div class="rule-head"><span class="rule-no">規則三</span><h3>B 投資效益分析</h3><span class="rule-tag mid">50 分</span></div>
+  <div class="rule-score">50<span> / 100</span></div>
+  <p>對照B(t)與A(t+1)：2021年B=-16.4億大額支出後，2022年A不僅沒成長反而重挫至5.3億，2023更探底至0.04億——這是最明顯的一次「投資後效益未兌現」，時間點與MCU產業2022-2023庫存去化循環重疊，較可能是產業景氣因素而非投資本身失敗，但仍需列入觀察。其餘年度B、A之間相關性不強，難以判定投資效益穩定為正。</p>
+</div>
 
-  <!-- Rule 1 -->
-  <h3>規則一：A 逐年成長趨勢</h3>
-  <div class="callout">
-    <span class="persona-tag">先盛後衰・緩步回溫型</span>
-    <b>2021 年 A 衝上 <span class="mono">27.1</span> 億的歷史高峰後，2022-2023 連兩年重挫，2023 幾乎歸零（<span class="negv">0.04</span> 億），2024-2025 雖回升至 3-4 億，仍遠低於 2016-2020 常態的 7-12 億區間。</b>
-  </div>
-  <div class="card"><svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" class="barchart">
-<line x1="50" y1="220.0" x2="740" y2="220.0" class="axis-zero"/>
-<rect x="63.8" y="151.1" width="41.4" height="68.9" class="bar-pos" rx="2"/>
-<text x="84.5" y="145.1" class="bar-label" text-anchor="middle">9.33</text>
-<text x="84.5" y="236.0" class="bar-xlabel" text-anchor="middle">2016</text>
-<rect x="132.8" y="168.4" width="41.4" height="51.6" class="bar-pos" rx="2"/>
-<text x="153.5" y="162.4" class="bar-label" text-anchor="middle">6.99</text>
-<text x="153.5" y="236.0" class="bar-xlabel" text-anchor="middle">2017</text>
-<rect x="201.8" y="129.2" width="41.4" height="90.8" class="bar-pos" rx="2"/>
-<text x="222.5" y="123.2" class="bar-label" text-anchor="middle">12.3</text>
-<text x="222.5" y="236.0" class="bar-xlabel" text-anchor="middle">2018</text>
-<rect x="270.8" y="153.7" width="41.4" height="66.3" class="bar-pos" rx="2"/>
-<text x="291.5" y="147.7" class="bar-label" text-anchor="middle">8.99</text>
-<text x="291.5" y="236.0" class="bar-xlabel" text-anchor="middle">2019</text>
-<rect x="339.8" y="137.3" width="41.4" height="82.7" class="bar-pos" rx="2"/>
-<text x="360.5" y="131.3" class="bar-label" text-anchor="middle">11.2</text>
-<text x="360.5" y="236.0" class="bar-xlabel" text-anchor="middle">2020</text>
-<rect x="408.8" y="20.0" width="41.4" height="200.0" class="bar-peak" rx="2"/>
-<text x="429.5" y="14.0" class="bar-label" text-anchor="middle">27.1</text>
-<text x="429.5" y="236.0" class="bar-xlabel" text-anchor="middle">2021</text>
-<rect x="477.8" y="180.9" width="41.4" height="39.1" class="bar-pos" rx="2"/>
-<text x="498.5" y="174.9" class="bar-label" text-anchor="middle">5.3</text>
-<text x="498.5" y="236.0" class="bar-xlabel" text-anchor="middle">2022</text>
-<rect x="546.8" y="219.7" width="41.4" height="1.0" class="bar-trough" rx="2"/>
-<text x="567.5" y="213.7" class="bar-label" text-anchor="middle">0.04</text>
-<text x="567.5" y="236.0" class="bar-xlabel" text-anchor="middle">2023</text>
-<rect x="615.8" y="197.1" width="41.4" height="22.9" class="bar-pos" rx="2"/>
-<text x="636.5" y="191.1" class="bar-label" text-anchor="middle">3.1</text>
-<text x="636.5" y="236.0" class="bar-xlabel" text-anchor="middle">2024</text>
-<rect x="684.8" y="192.0" width="41.4" height="28.0" class="bar-pos" rx="2"/>
-<text x="705.5" y="186.0" class="bar-label" text-anchor="middle">3.8</text>
-<text x="705.5" y="236.0" class="bar-xlabel" text-anchor="middle">2025</text>
-<text x="50" y="14" class="chart-unit">億元</text>
-</svg></div>
-  <p>2016-2020 年 A 大致落在 7-12 億的穩定區間，體質正常。2021 年的 27.1 億高峰明顯是單一年度的異常放大（很可能對應當年缺貨潮的產業景氣），不宜當作常態基準線。真正值得留意的是隨後的崩落：2022 年腰斬至 5.3 億，2023 年幾乎歸零，這不是單純的「高基期回落」，而是連續兩年惡化，才在 2024、2025 年緩步回升到 3-4 億左右。目前仍在爬坡階段，還沒有回到 2016-2020 的正常水準，屬於「體質受過傷、正在復原、但還沒復原完全」的狀態，需要繼續觀察下一年是否延續回升。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則一評分</div><div class="val">45</div></div></div>
+<div class="rule-card" id="rule4">
+  <div class="rule-head"><span class="rule-no">規則四</span><h3>C 融資活動合理性</h3><span class="rule-tag mid">58 分</span></div>
+  <div class="rule-score">58<span> / 100</span></div>
+  <p>10年中A從未出現負值（最低點2023年僅0.04億，仍為正），因此「最高警戒」（A為負+C為正）從未觸發。2023年出現A趨近於零（0.04億）+C轉正（0.93億）的組合，嚴重度略低於三重疊加但仍達規則四定義的警戒等級，是本規則扣分的主因。其餘年度C皆為負值（發放股利+償還借款為主的正常現金流出型態），性質單純。</p>
+  <svg viewBox="0 0 920 300" xmlns="http://www.w3.org/2000/svg" class="cf-chart" role="img" aria-label="6202-rule4-BvsC">
+<line x1="40" y1="110.3" x2="900" y2="110.3" stroke="var(--rule-line)" stroke-width="1" stroke-dasharray="2,3"/>
+<rect x="53.5" y="83.5" width="27.5" height="26.8" rx="2" fill="var(--serA)"/>
+<rect x="85.0" y="110.3" width="27.5" height="60.6" rx="2" fill="var(--serB)"/>
+<text x="67.2" y="78.5" class="cf-val cf-val-sm" text-anchor="middle">3.6</text>
+<text x="98.8" y="182.9" class="cf-val cf-val-sm" text-anchor="middle">-8.2</text>
+<text x="83.0" y="272" class="cf-yr" text-anchor="middle">2016</text>
+<rect x="139.5" y="85.0" width="27.5" height="25.3" rx="2" fill="var(--serA)"/>
+<rect x="171.0" y="110.3" width="27.5" height="59.2" rx="2" fill="var(--serB)"/>
+<text x="153.2" y="80.0" class="cf-val cf-val-sm" text-anchor="middle">3.4</text>
+<text x="184.8" y="181.4" class="cf-val cf-val-sm" text-anchor="middle">-8.0</text>
+<text x="169.0" y="272" class="cf-yr" text-anchor="middle">2017</text>
+<rect x="225.5" y="110.3" width="27.5" height="12.1" rx="2" fill="var(--serA)"/>
+<rect x="257.0" y="110.3" width="27.5" height="69.8" rx="2" fill="var(--serB)"/>
+<text x="239.2" y="134.4" class="cf-val cf-val-sm" text-anchor="middle">-1.6</text>
+<text x="270.8" y="192.1" class="cf-val cf-val-sm" text-anchor="middle">-9.4</text>
+<text x="255.0" y="272" class="cf-yr" text-anchor="middle">2018</text>
+<rect x="311.5" y="110.3" width="27.5" height="23.6" rx="2" fill="var(--serA)"/>
+<rect x="343.0" y="110.3" width="27.5" height="81.0" rx="2" fill="var(--serB)"/>
+<text x="325.2" y="145.8" class="cf-val cf-val-sm" text-anchor="middle">-3.2</text>
+<text x="356.8" y="203.3" class="cf-val cf-val-sm" text-anchor="middle">-10.9</text>
+<text x="341.0" y="272" class="cf-yr" text-anchor="middle">2019</text>
+<rect x="397.5" y="109.6" width="27.5" height="0.7" rx="2" fill="var(--serA)"/>
+<rect x="429.0" y="110.3" width="27.5" height="69.6" rx="2" fill="var(--serB)"/>
+<text x="411.2" y="104.6" class="cf-val cf-val-sm" text-anchor="middle">0.1</text>
+<text x="442.8" y="191.9" class="cf-val cf-val-sm" text-anchor="middle">-9.4</text>
+<text x="427.0" y="272" class="cf-yr" text-anchor="middle">2020</text>
+<rect x="483.5" y="110.3" width="27.5" height="121.9" rx="2" fill="var(--serA)"/>
+<rect x="515.0" y="110.3" width="27.5" height="78.0" rx="2" fill="var(--serB)"/>
+<text x="497.2" y="244.2" class="cf-val cf-val-sm" text-anchor="middle">-16.4</text>
+<text x="528.8" y="200.3" class="cf-val cf-val-sm" text-anchor="middle">-10.5</text>
+<text x="513.0" y="272" class="cf-yr" text-anchor="middle">2021</text>
+<rect x="569.5" y="30.0" width="27.5" height="80.3" rx="2" fill="var(--serA)"/>
+<rect x="601.0" y="110.3" width="27.5" height="139.7" rx="2" fill="var(--serB)"/>
+<text x="583.2" y="25.0" class="cf-val cf-val-sm" text-anchor="middle">10.8</text>
+<text x="614.8" y="262.0" class="cf-val cf-val-sm" text-anchor="middle">-18.8</text>
+<text x="599.0" y="272" class="cf-yr" text-anchor="middle">2022</text>
+<rect x="655.5" y="110.3" width="27.5" height="14.1" rx="2" fill="var(--serA)"/>
+<rect x="687.0" y="103.4" width="27.5" height="6.9" rx="2" fill="var(--serB)"/>
+<text x="669.2" y="136.4" class="cf-val cf-val-sm" text-anchor="middle">-1.9</text>
+<text x="700.8" y="98.4" class="cf-val cf-val-sm" text-anchor="middle">0.9</text>
+<text x="685.0" y="272" class="cf-yr" text-anchor="middle">2023</text>
+<rect x="741.5" y="110.3" width="27.5" height="7.3" rx="2" fill="var(--serA)"/>
+<rect x="773.0" y="110.3" width="27.5" height="11.5" rx="2" fill="var(--serB)"/>
+<text x="755.2" y="129.6" class="cf-val cf-val-sm" text-anchor="middle">-1.0</text>
+<text x="786.8" y="133.8" class="cf-val cf-val-sm" text-anchor="middle">-1.6</text>
+<text x="771.0" y="272" class="cf-yr" text-anchor="middle">2024</text>
+<rect x="827.5" y="77.9" width="27.5" height="32.3" rx="2" fill="var(--serA)"/>
+<rect x="859.0" y="110.3" width="27.5" height="16.4" rx="2" fill="var(--serB)"/>
+<text x="841.2" y="72.9" class="cf-val cf-val-sm" text-anchor="middle">4.3</text>
+<text x="872.8" y="138.6" class="cf-val cf-val-sm" text-anchor="middle">-2.2</text>
+<text x="857.0" y="272" class="cf-yr" text-anchor="middle">2025</text>
+<rect x="40" y="284" width="10" height="10" fill="var(--serA)"/><text x="54" y="293" class="cf-legend">B 投資活動</text>
+<rect x="130" y="284" width="10" height="10" fill="var(--serB)"/><text x="144" y="293" class="cf-legend">C 融資活動</text>
+</svg>
+  <p class="table-note">10年中僅2023年C由負轉正，其餘9年C均為負值，整體融資活動型態穩定，2023年是唯一的異常年度。</p>
+</div>
 
-  <hr class="div">
+<div class="rule-card" id="rule5">
+  <div class="rule-head"><span class="rule-no">規則五</span><h3>A &gt; D 現金流品質（嚴格二分法）</h3><span class="rule-tag fail">40 分</span></div>
+  <div class="rule-score">40<span> / 100</span></div>
+  <p>10年中僅2016、2021、2024、2025共4年A&gt;D通過，通過率4／10＝40%。通過的年度分別是2016（A小幅超過D）、2021（產業高峰年，A、D同步大增且A略高）、2024與2025（D轉正/低檔、A相對穩健，屬低基期下的技術性通過）。2017-2020與2022雖帳面淨利亮眼，A都不及D，代表獲利有部分停留在應收帳款、存貨等未轉換為現金的項目；2023年A、D雙雙探底但D仍略高於A，同樣不通過。過半年度出現「帳面淨利大於實際營業現金流」，獲利品質偏弱。</p>
+</div>
 
-  <!-- Rule 2 -->
-  <h3>規則二：B 投資紀律評估</h3>
-  <div class="callout">
-    <span class="persona-tag">資產輕・理財型</span>
-    <b>拆解 2022H2-2026Q2 的投資活動細項後發現：B 的波動主要來自「其他金融資產（增減）」（資金理財調度），真正的固定資產＋無形資產支出每季僅約 <span class="negv">-0.1～-1.5</span> 億，屬於典型 IC 設計公司的資產輕結構，B 本質上比較接近「資金運用」而非「產能擴張」。</b>
-  </div>
-  <div class="card"><svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" class="barchart">
-<line x1="50" y1="99.4" x2="740" y2="99.4" class="axis-zero"/>
-<rect x="63.8" y="72.9" width="41.4" height="26.5" class="bar-pos" rx="2"/>
-<text x="84.5" y="66.9" class="bar-label" text-anchor="middle">3.6</text>
-<text x="84.5" y="236.0" class="bar-xlabel" text-anchor="middle">2016</text>
-<rect x="132.8" y="74.4" width="41.4" height="25.0" class="bar-pos" rx="2"/>
-<text x="153.5" y="68.4" class="bar-label" text-anchor="middle">3.4</text>
-<text x="153.5" y="236.0" class="bar-xlabel" text-anchor="middle">2017</text>
-<rect x="201.8" y="99.4" width="41.4" height="12.0" class="bar-neg" rx="2"/>
-<text x="222.5" y="125.4" class="bar-label" text-anchor="middle">-1.63</text>
-<text x="222.5" y="236.0" class="bar-xlabel" text-anchor="middle">2018</text>
-<rect x="270.8" y="99.4" width="41.4" height="23.3" class="bar-neg" rx="2"/>
-<text x="291.5" y="136.7" class="bar-label" text-anchor="middle">-3.17</text>
-<text x="291.5" y="236.0" class="bar-xlabel" text-anchor="middle">2019</text>
-<rect x="339.8" y="98.8" width="41.4" height="1.0" class="bar-pos" rx="2"/>
-<text x="360.5" y="92.8" class="bar-label" text-anchor="middle">0.09</text>
-<text x="360.5" y="236.0" class="bar-xlabel" text-anchor="middle">2020</text>
-<rect x="408.8" y="99.4" width="41.4" height="120.6" class="bar-trough" rx="2"/>
-<text x="429.5" y="234.0" class="bar-label" text-anchor="middle">-16.4</text>
-<text x="429.5" y="236.0" class="bar-xlabel" text-anchor="middle">2021</text>
-<rect x="477.8" y="20.0" width="41.4" height="79.4" class="bar-peak" rx="2"/>
-<text x="498.5" y="14.0" class="bar-label" text-anchor="middle">10.8</text>
-<text x="498.5" y="236.0" class="bar-xlabel" text-anchor="middle">2022</text>
-<rect x="546.8" y="99.4" width="41.4" height="14.0" class="bar-neg" rx="2"/>
-<text x="567.5" y="127.4" class="bar-label" text-anchor="middle">-1.9</text>
-<text x="567.5" y="236.0" class="bar-xlabel" text-anchor="middle">2023</text>
-<rect x="615.8" y="99.4" width="41.4" height="7.2" class="bar-neg" rx="2"/>
-<text x="636.5" y="120.6" class="bar-label" text-anchor="middle">-0.98</text>
-<text x="636.5" y="236.0" class="bar-xlabel" text-anchor="middle">2024</text>
-<rect x="684.8" y="67.4" width="41.4" height="32.0" class="bar-pos" rx="2"/>
-<text x="705.5" y="61.4" class="bar-label" text-anchor="middle">4.35</text>
-<text x="705.5" y="236.0" class="bar-xlabel" text-anchor="middle">2025</text>
-<text x="50" y="14" class="chart-unit">億元</text>
-</svg></div>
-  <p>B 在十年間正負交替（2016、2017、2020、2022、2025 為淨流入，2018、2019、2021、2023、2024 為淨流出），若照傳統「B 持續大幅負值＝積極擴產」的框架來看會顯得判斷困難。但細項截圖顯示：固定資產與無形資產（真正的資本支出）長期維持在低個位數億元、且相對穩定，B 的大幅波動幾乎都來自「透過損益按公允價值衡量之金融資產」與「其他金融資產」的增減——也就是把營運多出來的現金拿去做短期理財配置、有需要時再解約提領回來，而不是蓋廠買設備。2021 年 B 一次流出 16.4 億是十年最大值，對照當年 A 高達 27.1 億，看起來是把當年爆發性的獲利大量轉入理財部位。這種「資產輕、靠理財調度資金」的風格，投資紀律本身沒有明顯失控（沒有連年重砲擴產壓垮現金流的跡象），但也代表傳統資本支出週期的分析框架在這家公司上參考意義有限。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則二評分</div><div class="val">68</div></div></div>
+<div class="rule-card" id="rule6">
+  <div class="rule-head"><span class="rule-no">規則六</span><h3>E 期末現金餘額穩定性</h3><span class="rule-tag mid">62 分・深蹲後回彈</span></div>
+  <div class="rule-score">62<span> / 100</span></div>
+  <div class="persona">擬人化標籤：<b>「深蹲後回彈」型</b></div>
+  <p>期末餘額從2018高點15.2億，連續五年下滑至2023低點8.31億（跌幅約45%），近兩年強勁回升，2025年已回到15億、追平歷史高點。但26Q2單季E驟降至5.49億，較2025年底的15億大幅下滑63%，需留意是否為股利發放（2026年3月董事會決議每股配息0.68元，配發總額約1.57億）或本業失血所致，需搭配後續季度數據交叉判斷。</p>
+  <svg viewBox="0 0 920 280" xmlns="http://www.w3.org/2000/svg" class="cf-chart" role="img" aria-label="6202-rule6-E趨勢">
+<line x1="40" y1="240.0" x2="900" y2="240.0" stroke="var(--rule-line)" stroke-width="1" stroke-dasharray="2,3"/>
+<rect x="57.2" y="-110.5" width="51.6" height="350.5" rx="2" fill="var(--pass)"/>
+<text x="83.0" y="-116.5" class="cf-val" text-anchor="middle">11.5</text>
+<text x="83.0" y="266" class="cf-yr" text-anchor="middle">2016</text>
+<rect x="143.2" y="-183.7" width="51.6" height="423.7" rx="2" fill="var(--pass)"/>
+<text x="169.0" y="-189.7" class="cf-val" text-anchor="middle">13.9</text>
+<text x="169.0" y="266" class="cf-yr" text-anchor="middle">2017</text>
+<rect x="229.2" y="-223.3" width="51.6" height="463.3" rx="2" fill="var(--peak)"/>
+<text x="255.0" y="-229.3" class="cf-val" text-anchor="middle">15.2</text>
+<text x="255.0" y="266" class="cf-yr" text-anchor="middle">2018</text>
+<rect x="315.2" y="-67.8" width="51.6" height="307.8" rx="2" fill="var(--pass)"/>
+<text x="341.0" y="-73.8" class="cf-val" text-anchor="middle">10.1</text>
+<text x="341.0" y="266" class="cf-yr" text-anchor="middle">2019</text>
+<rect x="401.2" y="-125.7" width="51.6" height="365.7" rx="2" fill="var(--pass)"/>
+<text x="427.0" y="-131.7" class="cf-val" text-anchor="middle">12.0</text>
+<text x="427.0" y="266" class="cf-yr" text-anchor="middle">2020</text>
+<rect x="487.2" y="-125.7" width="51.6" height="365.7" rx="2" fill="var(--pass)"/>
+<text x="513.0" y="-131.7" class="cf-val" text-anchor="middle">12.0</text>
+<text x="513.0" y="266" class="cf-yr" text-anchor="middle">2021</text>
+<rect x="573.2" y="-44.7" width="51.6" height="284.7" rx="2" fill="var(--pass)"/>
+<text x="599.0" y="-50.7" class="cf-val" text-anchor="middle">9.3</text>
+<text x="599.0" y="266" class="cf-yr" text-anchor="middle">2022</text>
+<rect x="659.2" y="-13.3" width="51.6" height="253.3" rx="2" fill="var(--trough)"/>
+<text x="685.0" y="-19.3" class="cf-val" text-anchor="middle">8.3</text>
+<text x="685.0" y="266" class="cf-yr" text-anchor="middle">2023</text>
+<rect x="745.2" y="-35.2" width="51.6" height="275.2" rx="2" fill="var(--pass)"/>
+<text x="771.0" y="-41.2" class="cf-val" text-anchor="middle">9.0</text>
+<text x="771.0" y="266" class="cf-yr" text-anchor="middle">2024</text>
+<rect x="831.2" y="-217.2" width="51.6" height="457.2" rx="2" fill="var(--pass)"/>
+<text x="857.0" y="-223.2" class="cf-val" text-anchor="middle">15.0</text>
+<text x="857.0" y="266" class="cf-yr" text-anchor="middle">2025</text>
+</svg>
+  <p class="table-note">柱狀圖：米色＝10年最高點（2025，15億），粉色＝10年最低點（2023，8.31億）。</p>
+</div>
 
-  <hr class="div">
+<div class="rule-card" id="rule7">
+  <div class="rule-head"><span class="rule-no">規則七</span><h3>淨利與現金流落差拆解</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
+  <p>目前僅有A/B/C/D/E五個加總數字，沒有營業活動細項科目（應收帳款、存貨、應付帳款增減），無法完成本規則的精確拆解。規則五未通過且值得優先拆解的年度為2017-2020、2022（帳面淨利穩定但現金轉換率偏低），若能取得這幾年的營業活動細項，能更精確判斷是應收帳款堆積、存貨去化緩慢，或屬MCU產業正常的營運資本循環。</p>
+</div>
 
-  <!-- Rule 3 -->
-  <h3>規則三：B 投資效益分析（跨年度因果對照）</h3>
-  <div class="callout">
-    <b>由於 B 主要反映理財資金調度而非資本支出，「今年投資、隔年 A 轉強」的傳統因果邏輯在此公司身上較不適用；仍列出對照供參考，但不宜視為強訊號。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">年度對照</th><th>當年 B（投資活動）</th><th>隔年 A（營業現金流）</th><th>當年 A（對照基準）</th></tr></thead>
-    <tbody><tr><td class='yr'>2016 投資（B）</td><td>3.6</td><td class='yr'>2017 營業現金流（A）</td><td>6.99</td></tr>
-<tr><td class='yr'>2017 投資（B）</td><td>3.4</td><td class='yr'>2018 營業現金流（A）</td><td>12.3</td></tr>
-<tr><td class='yr'>2018 投資（B）</td><td>-1.63</td><td class='yr'>2019 營業現金流（A）</td><td>8.99</td></tr>
-<tr><td class='yr'>2019 投資（B）</td><td>-3.17</td><td class='yr'>2020 營業現金流（A）</td><td>11.2</td></tr>
-<tr><td class='yr'>2020 投資（B）</td><td>0.09</td><td class='yr'>2021 營業現金流（A）</td><td>27.1</td></tr>
-<tr><td class='yr'>2021 投資（B）</td><td>-16.4</td><td class='yr'>2022 營業現金流（A）</td><td>5.3</td></tr>
-<tr><td class='yr'>2022 投資（B）</td><td>10.8</td><td class='yr'>2023 營業現金流（A）</td><td>0.04</td></tr>
-<tr><td class='yr'>2023 投資（B）</td><td>-1.9</td><td class='yr'>2024 營業現金流（A）</td><td>3.1</td></tr>
-<tr><td class='yr'>2024 投資（B）</td><td>-0.98</td><td class='yr'>2025 營業現金流（A）</td><td>3.8</td></tr>
-</tbody>
-  </table>
-  <p>最明顯的一組對照是 2021→2022：2021 年 B 大幅流出 16.4 億（理財部位大量增加），但 2022 年 A 不僅沒有轉強，反而從 27.1 億腰斬到 5.3 億。這並不構成「投資無效」的證據，因為 2021 年的資金去向本來就不是產能投資，2022 年 A 的下滑更可能單純反映 2021 年景氣高點過後的正常回落。整體而言，因為這家公司的 B 波動主要是理財性質，很難期待它像重資產公司的資本支出一樣，在 1-2 年後轉化為明確的 A 成長，此規則的判斷力道本來就偏弱，評分不宜過度依賴。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則三評分</div><div class="val">50</div></div></div>
+<div class="rule-card" id="rule8">
+  <div class="rule-head"><span class="rule-no">規則八</span><h3>股利發放現金流可持續性</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
+  <p>已知2025年度（配發於2026年）現金股利0.68元/股，配發總額約1.57億，殖利率僅1.15%，屬於相對保守的配息，且金額不大。但缺少CapEx細項與逐年股利發放總額，無法計算精確的股利保障倍數。以2025年A=3.8億、股利1.57億概估，覆蓋率尚可（未計入CapEx），初步判斷風險不高，但仍待細項資料驗證。</p>
+</div>
 
-  <hr class="div">
+<h3 style="font-size:17px; margin:38px 0 4px;">總評分</h3>
+<div class="score-grid">
+  <div class="score-cell"><div class="label">規則一・A趨勢</div><div class="val mid">45</div></div>
+  <div class="score-cell"><div class="label">規則二・B紀律</div><div class="val pass">68</div></div>
+  <div class="score-cell"><div class="label">規則三・B效益</div><div class="val mid">50</div></div>
+  <div class="score-cell"><div class="label">規則四・C合理性</div><div class="val mid">58</div></div>
+  <div class="score-cell"><div class="label">規則五・A&gt;D品質</div><div class="val fail">40</div></div>
+  <div class="score-cell"><div class="label">規則六・E穩定性</div><div class="val mid">62</div></div>
+  <div class="score-cell"><div class="label">規則七・落差拆解</div><div class="val mid">暫缺</div></div>
+  <div class="score-cell"><div class="label">規則八・股利永續</div><div class="val mid">暫缺</div></div>
+</div>
 
-  <!-- Rule 4 -->
-  <h3>規則四：C 融資活動合理性</h3>
-  <div class="callout warn">
-    <b>⚠ 十年中唯一觸發警訊的年度：2023 年。</b> 該年 A 幾乎歸零（<span class="negv">0.04</span> 億），同一年 C 卻轉為正值（<span class="negv">0.93</span> 億）——拆解融資活動細項確認，這筆正值主要來自 2023 Q3 新增的 <b>10 億元短期借款</b>（非現金增資），屬於「本業已經幾乎不造血、卻同時新增舉債」的最高警戒訊號組合，是十年紀錄中最嚴重的一年。
-  </div>
-  <div class="card"><svg viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg" class="barchart">
-<line x1="50" y1="101.4" x2="760" y2="101.4" class="axis-zero"/>
-<rect x="59.4" y="75.6" width="24.1" height="25.8" class="bar-series1" rx="2"/>
-<rect x="87.5" y="101.4" width="24.1" height="58.4" class="bar-series2" rx="2"/>
-<text x="71.4" y="69.6" class="bar-label-sm" text-anchor="middle">3.6</text>
-<text x="99.6" y="172.8" class="bar-label-sm" text-anchor="middle">-8.16</text>
-<text x="85.5" y="252.0" class="bar-xlabel" text-anchor="middle">2016</text>
-<rect x="130.4" y="77.0" width="24.1" height="24.4" class="bar-series1" rx="2"/>
-<rect x="158.5" y="101.4" width="24.1" height="57.0" class="bar-series2" rx="2"/>
-<text x="142.4" y="71.0" class="bar-label-sm" text-anchor="middle">3.4</text>
-<text x="170.6" y="171.4" class="bar-label-sm" text-anchor="middle">-7.96</text>
-<text x="156.5" y="252.0" class="bar-xlabel" text-anchor="middle">2017</text>
-<rect x="201.4" y="101.4" width="24.1" height="11.7" class="bar-series1" rx="2"/>
-<rect x="229.5" y="101.4" width="24.1" height="67.3" class="bar-series2" rx="2"/>
-<text x="213.4" y="126.0" class="bar-label-sm" text-anchor="middle">-1.63</text>
-<text x="241.6" y="181.6" class="bar-label-sm" text-anchor="middle">-9.39</text>
-<text x="227.5" y="252.0" class="bar-xlabel" text-anchor="middle">2018</text>
-<rect x="272.4" y="101.4" width="24.1" height="22.7" class="bar-series1" rx="2"/>
-<rect x="300.5" y="101.4" width="24.1" height="78.1" class="bar-series2" rx="2"/>
-<text x="284.4" y="137.1" class="bar-label-sm" text-anchor="middle">-3.17</text>
-<text x="312.6" y="192.4" class="bar-label-sm" text-anchor="middle">-10.9</text>
-<text x="298.5" y="252.0" class="bar-xlabel" text-anchor="middle">2019</text>
-<rect x="343.4" y="100.7" width="24.1" height="1.0" class="bar-series1" rx="2"/>
-<rect x="371.5" y="101.4" width="24.1" height="67.1" class="bar-series2" rx="2"/>
-<text x="355.4" y="94.7" class="bar-label-sm" text-anchor="middle">0.09</text>
-<text x="383.6" y="181.5" class="bar-label-sm" text-anchor="middle">-9.37</text>
-<text x="369.5" y="252.0" class="bar-xlabel" text-anchor="middle">2020</text>
-<rect x="414.4" y="101.4" width="24.1" height="117.5" class="bar-series1" rx="2"/>
-<rect x="442.5" y="101.4" width="24.1" height="75.2" class="bar-series2" rx="2"/>
-<text x="426.4" y="231.8" class="bar-label-sm" text-anchor="middle">-16.4</text>
-<text x="454.6" y="189.6" class="bar-label-sm" text-anchor="middle">-10.5</text>
-<text x="440.5" y="252.0" class="bar-xlabel" text-anchor="middle">2021</text>
-<rect x="485.4" y="24.0" width="24.1" height="77.4" class="bar-series1" rx="2"/>
-<rect x="513.5" y="101.4" width="24.1" height="134.6" class="bar-series2" rx="2"/>
-<text x="497.4" y="18.0" class="bar-label-sm" text-anchor="middle">10.8</text>
-<text x="525.6" y="249.0" class="bar-label-sm" text-anchor="middle">-18.8</text>
-<text x="511.5" y="252.0" class="bar-xlabel" text-anchor="middle">2022</text>
-<rect x="547.0" y="20" width="71.0" height="220" class="warn-zone"/>
-<rect x="556.4" y="101.4" width="24.1" height="13.6" class="bar-series1" rx="2"/>
-<rect x="584.5" y="94.7" width="24.1" height="6.7" class="bar-series2" rx="2"/>
-<text x="568.4" y="128.0" class="bar-label-sm" text-anchor="middle">-1.9</text>
-<text x="596.6" y="88.7" class="bar-label-sm" text-anchor="middle">0.93</text>
-<text x="582.5" y="252.0" class="bar-xlabel" text-anchor="middle">2023</text>
-<rect x="627.4" y="101.4" width="24.1" height="7.0" class="bar-series1" rx="2"/>
-<rect x="655.5" y="101.4" width="24.1" height="11.1" class="bar-series2" rx="2"/>
-<text x="639.4" y="121.4" class="bar-label-sm" text-anchor="middle">-0.98</text>
-<text x="667.6" y="125.5" class="bar-label-sm" text-anchor="middle">-1.55</text>
-<text x="653.5" y="252.0" class="bar-xlabel" text-anchor="middle">2024</text>
-<rect x="698.4" y="70.2" width="24.1" height="31.2" class="bar-series1" rx="2"/>
-<rect x="726.5" y="101.4" width="24.1" height="15.8" class="bar-series2" rx="2"/>
-<text x="710.4" y="64.2" class="bar-label-sm" text-anchor="middle">4.35</text>
-<text x="738.6" y="130.1" class="bar-label-sm" text-anchor="middle">-2.2</text>
-<text x="724.5" y="252.0" class="bar-xlabel" text-anchor="middle">2025</text>
-<text x="50" y="14" class="chart-unit">億元</text>
-<rect x="600" y="4" width="12" height="12" class="bar-series1"/><text x="616" y="14" class="legend-text">B 投資活動</text>
-<rect x="690" y="4" width="12" height="12" class="bar-series2"/><text x="706" y="14" class="legend-text">C 融資活動</text>
-</svg></div>
-  <p>圖中淺紅色底標示的 2023 年，是唯一同時符合「A 趨近於零＋C 轉正」組合的年度。其餘年度的 C 雖然幾乎都是負值，但拆解後性質各不相同、多數健康：2022 年 C 為 -18.8 億主要是發放了 18.37 億現金股利（獲利豐厚年度後的正常回饋股東行為，非警訊）；2025 年 C 為 -2.2 億則是「現金增資 +1.5 億（股權募資）」疊加「償還短期借款 -3.5 億（去槓桿）」的組合，屬於資金結構改善的正向訊號，並非借新還舊的疊加風險。唯獨 2023 這一年，是在本業現金流已經枯竭的情況下另外新增借款支應營運，性質與其他年度明顯不同，即使只是單一年度，也建議列為觀察重點，留意是否重演。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則四評分</div><div class="val">58</div></div></div>
-
-  <hr class="div">
-
-  <!-- Rule 5 -->
-  <h3>規則五：A &gt; D 現金流品質（嚴格二分法）</h3>
-  <div class="callout">
-    <b>十年僅 4 年通過（40%），過半年度出現「帳面淨利大於實際營業現金流」的現象，獲利品質偏弱，需留意應收帳款、存貨增減是否墊高帳面數字。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">年度</th><th>A 營業現金流</th><th>D 稅前淨利</th><th>判定</th></tr></thead>
-    <tbody><tr><td class='yr'>2016</td><td>9.33</td><td>9.18</td><td><span class="pass">✓ 通過</span></td></tr>
-<tr><td class='yr'>2017</td><td>6.99</td><td>10.7</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2018</td><td>12.3</td><td>12.5</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2019</td><td>8.99</td><td>10.7</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2020</td><td>11.2</td><td>12.6</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2021</td><td>27.1</td><td>25.9</td><td><span class="pass">✓ 通過</span></td></tr>
-<tr><td class='yr'>2022</td><td>5.3</td><td>13.9</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2023</td><td>0.04</td><td>0.78</td><td><span class="fail">✗ 不通過</span></td></tr>
-<tr><td class='yr'>2024</td><td>3.1</td><td>-1.91</td><td><span class="pass">✓ 通過</span></td></tr>
-<tr><td class='yr'>2025</td><td>3.8</td><td>1.6</td><td><span class="pass">✓ 通過</span></td></tr>
-</tbody>
-  </table>
-  <p>通過的四個年度分別是 2016（A 小幅超過 D）、2021（產業高峰年，A、D 同步大增且 A 略高）、2024 與 2025（D 轉正/低檔、A 相對穩健，屬於低基期下的技術性通過）。2017-2020 與 2022 這五個年度雖然帳面淨利亮眼，但 A 都不及 D，代表獲利有一部分停留在應收帳款、存貨等未轉換為現金的項目上；2023 年則是 A、D 雙雙探底但 D 仍略高於 A，同樣不通過。這類「D 常年壓過 A」的模式雖不必然代表財報造假，但確實提醒需要留意營運資本（應收/存貨）的增減是否持續侵蝕現金轉換效率。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則五評分</div><div class="val">40</div></div></div>
-
-  <hr class="div">
-
-  <!-- Rule 6 -->
-  <h3>規則六：E 期末現金餘額穩定性</h3>
-  <div class="callout">
-    <span class="persona-tag">深蹲後回彈型</span>
-    <b>期末餘額從 2018 高點 15.2 億，連續五年下滑至 2023 低點 8.31 億（跌幅約 45%），近兩年強勁回升，2025 年已回到 15 億、追平歷史高點。</b>
-  </div>
-  <div class="card"><svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" class="barchart">
-<line x1="50" y1="220.0" x2="740" y2="220.0" class="axis-zero"/>
-<rect x="63.8" y="68.7" width="41.4" height="151.3" class="bar-pos" rx="2"/>
-<text x="84.5" y="62.7" class="bar-label" text-anchor="middle">11.5</text>
-<text x="84.5" y="236.0" class="bar-xlabel" text-anchor="middle">2016</text>
-<rect x="132.8" y="37.1" width="41.4" height="182.9" class="bar-pos" rx="2"/>
-<text x="153.5" y="31.1" class="bar-label" text-anchor="middle">13.9</text>
-<text x="153.5" y="236.0" class="bar-xlabel" text-anchor="middle">2017</text>
-<rect x="201.8" y="20.0" width="41.4" height="200.0" class="bar-peak" rx="2"/>
-<text x="222.5" y="14.0" class="bar-label" text-anchor="middle">15.2</text>
-<text x="222.5" y="236.0" class="bar-xlabel" text-anchor="middle">2018</text>
-<rect x="270.8" y="87.1" width="41.4" height="132.9" class="bar-pos" rx="2"/>
-<text x="291.5" y="81.1" class="bar-label" text-anchor="middle">10.1</text>
-<text x="291.5" y="236.0" class="bar-xlabel" text-anchor="middle">2019</text>
-<rect x="339.8" y="62.1" width="41.4" height="157.9" class="bar-pos" rx="2"/>
-<text x="360.5" y="56.1" class="bar-label" text-anchor="middle">12</text>
-<text x="360.5" y="236.0" class="bar-xlabel" text-anchor="middle">2020</text>
-<rect x="408.8" y="62.1" width="41.4" height="157.9" class="bar-pos" rx="2"/>
-<text x="429.5" y="56.1" class="bar-label" text-anchor="middle">12</text>
-<text x="429.5" y="236.0" class="bar-xlabel" text-anchor="middle">2021</text>
-<rect x="477.8" y="97.1" width="41.4" height="122.9" class="bar-pos" rx="2"/>
-<text x="498.5" y="91.1" class="bar-label" text-anchor="middle">9.34</text>
-<text x="498.5" y="236.0" class="bar-xlabel" text-anchor="middle">2022</text>
-<rect x="546.8" y="110.7" width="41.4" height="109.3" class="bar-trough" rx="2"/>
-<text x="567.5" y="104.7" class="bar-label" text-anchor="middle">8.31</text>
-<text x="567.5" y="236.0" class="bar-xlabel" text-anchor="middle">2023</text>
-<rect x="615.8" y="101.2" width="41.4" height="118.8" class="bar-pos" rx="2"/>
-<text x="636.5" y="95.2" class="bar-label" text-anchor="middle">9.03</text>
-<text x="636.5" y="236.0" class="bar-xlabel" text-anchor="middle">2024</text>
-<rect x="684.8" y="22.6" width="41.4" height="197.4" class="bar-pos" rx="2"/>
-<text x="705.5" y="16.6" class="bar-label" text-anchor="middle">15</text>
-<text x="705.5" y="236.0" class="bar-xlabel" text-anchor="middle">2025</text>
-<text x="50" y="14" class="chart-unit">億元</text>
-</svg></div>
-  <p>現金餘額的長期走勢呈現明顯的「深蹲—回彈」形狀：2018 年見頂 15.2 億後，連續五個年度緩步流失，到 2023 年落底 8.31 億，幾乎腰斬；但 2024、2025 兩年迅速回補，2025 年底已經追平 2018 年的歷史高點。這與規則一（A 逐年趨勢）的復甦節奏彼此呼應——現金水位的回升，一定程度反映了本業現金流從 2023 谷底回溫的成果。長期而言現金水位沒有走向結構性枯竭，但中間五年的連續流失期需要留意成因（是否為股利發放、理財调度、抑或本業失血所致，需搭配前面幾項規則交叉判斷）。</p>
-  <div class="score-grid"><div class="score-box"><div class="label">規則六評分</div><div class="val">62</div></div></div>
-
-  <hr class="div">
-
-  <!-- Total & Gate -->
-  <h3>總評分與關卡建議</h3>
-  <div class="score-grid">
-    <div class="score-box"><div class="label">規則一 A趨勢</div><div class="val">45</div></div>
-    <div class="score-box"><div class="label">規則二 B紀律</div><div class="val">68</div></div>
-    <div class="score-box"><div class="label">規則三 B效益</div><div class="val">50</div></div>
-    <div class="score-box"><div class="label">規則四 C合理性</div><div class="val">58</div></div>
-    <div class="score-box"><div class="label">規則五 A&gt;D</div><div class="val">40</div></div>
-    <div class="score-box"><div class="label">規則六 E穩定性</div><div class="val">62</div></div>
-  </div>
-
-  <div class="total-banner">
-    <div style="color:var(--muted); font-size:13px; margin-bottom:4px;">六項平均總分</div>
-    <div class="big">53.8<span style="font-size:20px;">分</span></div>
-    <div class="verdict">總分低於 60%（需觀察區間），且十年中出現過一次「本業近乎零造血＋新增短期借款」的最高警戒訊號年度（2023）。<br><b>建議：這檔現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面。</b></div>
-  </div>
-
-  <p>需特別說明：三重疊加的自動觸發警訊（A為負＋B大幅負值＋C正值或小幅負值）並未在任一年度同時出現，2023 年觸發的是「A趨近於零＋C轉正」的組合，嚴重度略低於三重疊加但仍達到規則四定義的最高警戒等級，加上總分本身落在需觀察區間，兩個獨立條件都指向同一個結論：目前現金流體質評分為「需觀察」，不到「體質良好可放心繼續」的門檻。近兩年（2024、2025）A 與 E 雙雙回升是正面訊號，但時間還不夠長，無法排除只是短期反彈。</p>
-
-  <div class="callout">
-    是否要我在這個基礎上繼續看第二步（股價/EPS/殖利率/營收等基本資訊），還是先在這裡打住？
-  </div>
-
-  <p class="src-note">報告版本：v1.0　產生時間：2026-08-04 08:22<br>資料來源：使用者提供之 Goodinfo 現金流量表截圖（2016-2025年度）與季度現金流細項截圖（2022Q3-2026Q2 累計數），非本次網路搜尋所得。</p>
+<div class="bigverdict">
+  <h3>⚠ 關卡判斷：現金流體質需觀察</h3>
+  <div class="score-big">53.8<span>／100　核心六規則平均（&lt;60% 門檻）</span></div>
+  <p style="margin-top:14px;">總分低於60%門檻（需觀察區間）。三重疊加的自動觸發警訊（A為負＋B大幅負值＋C正值或小幅負值）並未在任一年度同時出現，10年中A從未轉負；2023年觸發的是「A趨近於零＋C轉正」的組合，嚴重度略低於三重疊加但仍達規則四定義的最高警戒等級。加上總分本身落在需觀察區間，兩個獨立條件都指向同一個結論：<b>目前現金流體質評分為「需觀察」，不到「體質良好可放心繼續」的門檻，也還不到「偏弱有風險」的最高警戒等級</b>。近兩年（2024、2025）A與E雙雙回升是正面訊號，但26Q2單季E驟降63%，時間還不夠長，無法排除只是短期反彈。</p>
+</div>
 </section>
 
 <section id="step2">
-  <div class="step-heading">
-    <span class="step-num">STEP 2 / 6</span>
-    <h2 class="step-title">基本資訊查詢</h2>
-  </div>
-
-  <div class="callout">
-    <b>資料來源說明：</b>本節數字均來自 Yahoo股市個股頁面即時查詢結果（查詢時間標註於各段），非使用者提供。股價／報價類數字僅為查詢當下的單一快照，非即時報價，正式交易請以看盤軟體/券商App為準。
-  </div>
-
-  <h3>股價與估值</h3>
-  <table>
-    <thead><tr><th class="yr">項目</th><th>數值</th><th class="yr">備註</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">收盤價</td><td>58.1</td><td class="yr">2026/08/04 14:30，漲跌 +0.60（+1.02%）</td></tr>
-      <tr><td class="yr">52 週高／低</td><td>81.00 / 35.80</td><td class="yr">查詢於 2026/07/31 快照</td></tr>
-      <tr><td class="yr">本益比（近四季EPS）</td><td>48.92</td><td class="yr">同業平均 55.51</td></tr>
-      <tr><td class="yr">近四季 EPS</td><td>0.66</td><td class="yr">2025Q3~2026Q2 加總（0.12+0.15+0.3+0.64）</td></tr>
-    </tbody>
-  </table>
-  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW" target="_blank">Yahoo股市個股頁面</a>（查詢 2026/08/04）</p>
-
-  <hr class="div">
-
-  <h3>EPS 走勢（單季）</h3>
-  <div class="callout">
-    <b>2021 年是獲利高峰（單季 EPS 一度達 3.17 元），隨後連續衰退到 2023-2024 年多次單季轉虧（最低 -0.32 元），2025 下半年起連 4 季轉正回升，2026Q2 單季 EPS <span class="negv" style="color:var(--pos)">0.64 元</span>，季增 113%、年增 540%，是近三年最強的一季。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">季別</th><th>EPS</th><th>季增%</th><th>年增%</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">2026 Q2</td><td>0.64</td><td>113.33%</td><td>540.00%</td></tr>
-      <tr><td class="yr">2026 Q1</td><td>0.3</td><td>100.00%</td><td>-25.00%</td></tr>
-      <tr><td class="yr">2025 Q4</td><td>0.15</td><td>25.00%</td><td>1,400.00%</td></tr>
-      <tr><td class="yr">2025 Q3</td><td>0.12</td><td>20.00%</td><td>137.50%</td></tr>
-      <tr><td class="yr">2025 Q2</td><td>0.1</td><td>-75.00%</td><td>166.67%</td></tr>
-      <tr><td class="yr">2025 Q1</td><td>0.4</td><td>3,900.00%</td><td>300.00%</td></tr>
-      <tr><td class="yr">2024 Q4</td><td>0.01</td><td>103.13%</td><td>112.50%</td></tr>
-      <tr><td class="yr">2024 Q3</td><td class="negv">-0.32</td><td>-113.33%</td><td>-300.00%</td></tr>
-      <tr><td class="yr">2023 Q4</td><td class="negv">-0.08</td><td>-150.00%</td><td>-233.33%</td></tr>
-    </tbody>
-  </table>
-  <p>單季 EPS 走勢與第一步現金流分析（A 逐年趨勢、E 期末餘額）呈現的「2021見頂→2023-2024谷底→近兩年回溫」節奏完全吻合，交叉驗證了獲利面與現金流面同步復甦的判斷。</p>
-  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/eps" target="_blank">Yahoo股市 每股盈餘頁面</a>（查詢 2026/08/04）。經查證近1-2年無股票分割/減資紀錄，各期EPS可直接比較，不需回溯調整。</p>
-
-  <hr class="div">
-
-  <h3>股利與殖利率</h3>
-  <div class="callout">
-    <b>2025 年度配發現金股利僅 0.68 元（依 2026/08/13 除息日昨收 58.1 元計算，殖利率 1.16%），遠低於 2022-2023 年配發的 8.12 元／4.00 元，直接反映 2023-2024 年獲利崩落的後果；已連續 1 年恢復發放（2025年因虧損未配發股利）。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">股利所屬年度</th><th>現金股利</th><th>殖利率</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">2025</td><td>0.68</td><td>1.16%</td></tr>
-      <tr><td class="yr">2024</td><td class="negv">－（未發放）</td><td>－</td></tr>
-      <tr><td class="yr">2023</td><td>0.45</td><td>0.92%</td></tr>
-      <tr><td class="yr">2022</td><td>4.00</td><td>6.04%</td></tr>
-      <tr><td class="yr">2021</td><td>8.1229</td><td>9.91%</td></tr>
-    </tbody>
-  </table>
-  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/dividend" target="_blank">Yahoo股市 股利政策頁面</a>（查詢 2026/08/04）</p>
-
-  <hr class="div">
-
-  <h3>近期營收</h3>
-  <div class="callout">
-    <b>2026 年 6 月合併營收 3.52 億元，月增 12.62%、年增 30.93%；上半年累計 18.09 億元，年增約 11.6%。2025 全年營收 30.58 億元、年增 22.23%，延續了 2024 年谷底後的復甦。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">月份</th><th>單月營收(億)</th><th>月增%</th><th>年增%</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">2026/06</td><td>3.52</td><td>12.62%</td><td>30.93%</td></tr>
-      <tr><td class="yr">2026/05</td><td>2.93</td><td>-1.90%</td><td>6.63%</td></tr>
-      <tr><td class="yr">2026/04</td><td>3.19</td><td>-0.05%</td><td>6.88%</td></tr>
-      <tr><td class="yr">2026/03</td><td>3.19</td><td>55.80%</td><td>19.86%</td></tr>
-      <tr><td class="yr">2026/02</td><td>2.05</td><td>-32.31%</td><td>-21.05%</td></tr>
-      <tr><td class="yr">2026/01</td><td>3.02</td><td>44.53%</td><td>28.15%</td></tr>
-    </tbody>
-  </table>
-  <p>2026年7月營收截至查詢時尚未公告（通常於次月8-10日公告，7月數字預期8月上旬發布）。</p>
-  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202.TW/revenue" target="_blank">Yahoo股市 營收表頁面</a>（查詢 2026/08/04）</p>
-
-  <hr class="div">
-
-  <h3>法人說明會（法說會）</h3>
-  <div class="callout">
-    <b>最近一次法說會為 2026 年第 2 季法說會（約 2026/07/30 前後），會中揭露上半年營收 18.09 億、EPS 0.94 元，並提及下半年將全面調漲產品價格 1-2 成以維持毛利率、積極布局 AI 伺服器與光模塊應用。</b>
-  </div>
-  <p>官方法說會公告與完整簡報請至公開資訊觀測站之法人說明會一覽表查閱；以下摘要來自財經媒體對法說會內容的整理報導，非本次直接讀取官方簡報：</p>
-  <ul>
-    <li>2026 Q1 法說會：2026/04/29（線上法說會）</li>
-    <li>2026 Q2 法說會：約 2026/07/30 前後（依營收/EPS內容比對推斷，非官方公告原文標註之確切日期，建議以公開資訊觀測站公告為準）</li>
-  </ul>
-  <p class="src-note">來源：<a href="https://tw.stock.yahoo.com/quote/6202/announcement" target="_blank">Yahoo股市個股公告頁面</a>（官方法說會日期公告）；法說會內容摘要參考 <a href="https://blog.fugle.tw/post/earnings-call-6202-2026-07-30" target="_blank">富果法說會重點摘要（2026/07/30）</a>——此摘要為第三方依官方影音整理，非本次直接讀取官方簡報，內容僅供參考。</p>
-
-  <hr class="div">
-  <div class="callout">
-    要不要針對法說會內容深入討論？（例如：AI伺服器/光模塊布局的具體進展、MCU漲價的執行狀況、聯電代工成本談判、下半年展望的可信度等）
-  </div>
+<div class="progress-tag">【第 2 步／共 6 步：基本資訊查詢】</div>
+<h2>基本資訊查詢</h2>
+<div class="sub">6202 = 盛群半導體股份有限公司，MCU（微控制器）廠，1998年成立</div>
+<table class="mono-table">
+<thead><tr><th>項目</th><th>數值</th><th>備註</th></tr></thead>
+<tbody>
+<tr><td>股價</td><td>61.00元</td><td>盤中+2.87%，2026/08/07快照</td></tr>
+<tr><td>52週高／低</td><td>81.00 / 35.80元</td><td>振幅約126%</td></tr>
+<tr><td>本益比(近四季)</td><td>50.82倍</td><td>近四季EPS 1.20元</td></tr>
+<tr><td>當季EPS</td><td>0.64元</td><td>2026Q2</td></tr>
+<tr><td>毛利率</td><td>44.71%</td><td>營益率15.10%，淨利率15.56%</td></tr>
+<tr><td>市值</td><td>136.85億元</td><td>發行股數2.30億股</td></tr>
+<tr><td>年股利</td><td>0.68元</td><td>殖利率1.15%（配發於2026年）</td></tr>
+</tbody>
+</table>
+<div class="callout ok">
+  2026年營運明顯復甦：Q1營收8.26億（季增21%、年增8%），Q2營收9.83億（季增19%、年增14%，為2023年以來MCU單季營收首次回到7億以上）。上半年稅後淨利2.16億，年增92%，EPS 0.94元。Q2毛利率44.9%部分受惠聯電一次性採購回饋（貢獻約3.7個百分點），排除後調整毛利率約41%，仍優於前期。
+</div>
+<div class="callout">
+  這與Step1看到的「先盛後衰、緩步回溫」現金流走勢方向一致：2025年營運觸底反彈，2026年上半年獲利加速成長。但本益比50.82倍偏高（近四季EPS基期仍低），且26Q2單季E大幅下滑63%，需持續觀察現金轉換是否能跟上獲利成長的速度。
+</div>
 </section>
 
-
-<section id="step3">
-  <div class="step-heading">
-    <span class="step-num">STEP 3 / 6</span>
-    <h2 class="step-title">法說會資料深入討論</h2>
-  </div>
-
-  <div class="callout">
-    <b>資料來源說明：</b>本節內容整理自富果「法說會重點內容備忘錄」（第三方依台灣證券交易所官方影音檔以AI摘要整理，非本次直接讀取官方簡報/影音）。官方原始簡報 PDF 與影音連結列於段落末，因 MOPS 官網有 robots.txt 限制無法直接讀取，僅供你自行點閱查看；本節摘要僅供參考，正式決策請以官方簡報為準。最近一次法說會確切日期為 <b>2026/07/30</b>（第一季法說會為 2026/04/29）。
-  </div>
-
-  <h3>① MCU 漲價執行狀況</h3>
-  <div class="callout">
-    <b>公司已明確表態要對全系列產品調漲價格（不分 8-bit／32-bit），目標是把毛利率穩定在 40% 左右——這不是單純轉嫁成本的防禦動作，而是因為上半年為了搶市占已經先吸收了一部分成本，現在確定撐不住了才漲。</b>
-  </div>
-  <p>法說會 Q&amp;A 明確說明：晶圓廠與封測廠已陸續發出漲價通知，且此趨勢可能延續到明年，公司「近期將會調整產品售價以反映成本」，且價格調整是全系列、不限特定製程節點。這點值得留意的是 2026Q2 毛利率 44.9% 其實有約 3.7 個百分點來自聯電一次性採購達標回饋，排除後實際毛利率約 41%，仍優於去年同期的 38.7%——也就是說，即使拿掉一次性的回饋，本業毛利率本身已經在改善，漲價則是為了進一步鞏固這個水準、對沖上游成本上漲，而不是靠漲價才勉強打平。</p>
-
-  <hr class="div">
-
-  <h3>② 聯電（UMC）代工成本談判</h3>
-  <div class="callout">
-    <b>與聯電的產能／價格談判是按季度進行，目前只談到 2027 年第一季，聯電已確定該季會漲價；盛群同時採用多晶圓廠 second source 策略分散風險。</b>
-  </div>
-  <p>公司在 Q&amp;A 中坦言市場變數大，看不遠，這代表成本端的能見度其實只有 2-3 季，「維持 40% 毛利率」的目標本質上是一個滾動式的動態調整目標，而非長期鎖定的保證。多晶圓廠策略（A 廠受限可轉導客戶至 B 廠相似規格）是重要的風險分散機制，但也意味著若真的需要轉換代工廠，可能牽涉良率驗證與客戶端認證時間，不是無成本的選項。</p>
-
-  <hr class="div">
-
-  <h3>③ AI 伺服器與光模塊布局進展</h3>
-  <div class="callout">
-    <b>目前仍是「送驗證階段」，還沒有量產或掛保證的營收貢獻，公司自己給的量產時間點是 2027 年——也就是說這是中期故事，短期（2026下半年）的營收動能主要還是來自安防、觸控MCU轉單、健康量測這些既有業務，不是 AI 題材。</b>
-  </div>
-  <ul>
-    <li><b>AI 伺服器散熱風扇 MCU</b>：與國內散熱風扇大廠合作開發 12V 風扇 MCU，目前在終端客戶驗證中，目標取代國外方案，預計 2027 年有機會量產。一台 AI 伺服器可能用到 10-20 顆風扇 MCU（這是潛在單機用量，不是已確認訂單量）。</li>
-    <li><b>光模塊（Optical Module）</b>：開發用於 ELSFP（外置式雷射光模塊）的 32-bit MCU，配合 ODM 廠已完成驗證，現正送終端客戶驗證，公司定調為「搭配 NPO/CPO 的未來趨勢技術」。</li>
-  </ul>
-  <p>這兩項都還在客戶驗證階段，尚未進入量產或明確訂單能見度，2026、可能連 2027 上半年的營收貢獻都相對有限。若把這當作短期催化劑來期待，時間點上會失望；比較合理的定位是「2027年之後的成長選擇權」，現階段更多是題材與長期敘事價值。</p>
-
-  <hr class="div">
-
-  <h3>④ 下半年展望的可信度</h3>
-  <div class="callout warn">
-    <b>公司自己給的訂單能見度只有約六個月，且明確承認「終端市場需求變化超過六個月能見度外仍有不確定性」——下半年優於上半年的展望有具體支撐（安防剛性需求、轉單效應延續至年底、BLDC遞延訂單Q3出貨），但公司自己也沒把話說死到明年。</b>
-  </div>
-  <p>比較關鍵的一段是法說會 Q&amp;A 主動區分了「這次」與「2021 COVID時期」的差異：公司強調這次產能緊張主要是 AI 應用排擠實質需求所致、投機成分較少，不像 2021 年有明顯的炒貨與晶圓廠競標拉抬價格、之後才非理性崩盤。這個說法本身邏輯合理（第一步現金流分析也確實看到 2021 年是異常單一年度高峰、隨後兩年重挫），但這是公司單方面的說法，屬於管理層對本輪景氣性質的自我判斷，還沒有經過時間驗證——比較穩健的做法，是把這段自我區隔的敘事當作「需要後續季度數據驗證的假說」，而不是直接照單全收的結論。觸控MCU轉單效應「預計持續到2026年底」這個時間點，也是公司單方面給的估計，建議後續每季追蹤實際出貨數字是否兌現，而非只看這次法說會的定調。</p>
-
-  <hr class="div">
-
-  <p class="src-note">
-    來源：<a href="https://blog.fugle.tw/post/earnings-call-6202-2026-07-30" target="_blank">富果法說會重點摘要（2026Q2，發布於2026/07/30）</a>、<a href="https://blog.fugle.tw/post/earnings-call-6202-2026-04-29" target="_blank">富果法說會重點摘要（2026Q1，發布於2026/04/29）</a>——兩篇均為第三方AI摘要整理，非本次直接讀取官方簡報。<br>
-    官方原始資料（僅供你自行點閱，本次未直接讀取）：<a href="https://mopsov.twse.com.tw/nas/STR/620220260730M001.pdf" target="_blank">2026Q2法說會官方簡報PDF</a>｜<a href="https://irconference.twse.com.tw/6202_87_20260730_ch.mp4" target="_blank">官方法說會影音</a>
-  </p>
-
-  <hr class="div">
-  <div class="callout">
-    第四步要看營收趨勢視覺化——近8-12期月營收，你想自己截圖 Goodinfo 提供，還是由我來搜尋整理？
-  </div>
-</section>
-
-
-<section id="step4">
-  <div class="step-heading">
-    <span class="step-num">STEP 4 / 6</span>
-    <h2 class="step-title">營收趨勢視覺化</h2>
-  </div>
-
-  <div class="callout">
-    <b>資料來源說明：</b>本節月營收數據由你提供的 Goodinfo 月營收截圖，非本次搜尋所得。
-  </div>
-
-  <div class="callout">
-    <b>近12個月營收呈現「2025下半年緩步走低→2026年轉為震盪走高」的型態：2025/12觸及近期低點2.09億後，2026年連續數月站上3億以上，6月更創近12個月新高3.52億（月增12.6%、年增30.9%）。</b>
-  </div>
-  <div class="card"><svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" class="barchart">
-<line x1="50" y1="220.0" x2="800" y2="220.0" class="axis-zero"/>
-<rect x="61.9" y="72.3" width="38.8" height="147.7" class="bar-pos" rx="2"/>
-<text x="81.2" y="66.3" class="bar-label" text-anchor="middle">2.6</text>
-<text x="81.2" y="236.0" class="bar-xlabel" text-anchor="middle">25/07</text>
-<rect x="124.4" y="76.8" width="38.8" height="143.2" class="bar-pos" rx="2"/>
-<text x="143.8" y="70.8" class="bar-label" text-anchor="middle">2.52</text>
-<text x="143.8" y="236.0" class="bar-xlabel" text-anchor="middle">25/08</text>
-<rect x="186.9" y="81.9" width="38.8" height="138.1" class="bar-pos" rx="2"/>
-<text x="206.2" y="75.9" class="bar-label" text-anchor="middle">2.43</text>
-<text x="206.2" y="236.0" class="bar-xlabel" text-anchor="middle">25/09</text>
-<rect x="249.4" y="85.9" width="38.8" height="134.1" class="bar-pos" rx="2"/>
-<text x="268.8" y="79.9" class="bar-label" text-anchor="middle">2.36</text>
-<text x="268.8" y="236.0" class="bar-xlabel" text-anchor="middle">25/10</text>
-<rect x="311.9" y="84.8" width="38.8" height="135.2" class="bar-pos" rx="2"/>
-<text x="331.2" y="78.8" class="bar-label" text-anchor="middle">2.38</text>
-<text x="331.2" y="236.0" class="bar-xlabel" text-anchor="middle">25/11</text>
-<rect x="374.4" y="101.2" width="38.8" height="118.8" class="bar-pos" rx="2"/>
-<text x="393.8" y="95.2" class="bar-label" text-anchor="middle">2.09</text>
-<text x="393.8" y="236.0" class="bar-xlabel" text-anchor="middle">25/12</text>
-<rect x="436.9" y="48.4" width="38.8" height="171.6" class="bar-pos" rx="2"/>
-<text x="456.2" y="42.4" class="bar-label" text-anchor="middle">3.02</text>
-<text x="456.2" y="236.0" class="bar-xlabel" text-anchor="middle">26/01</text>
-<rect x="499.4" y="103.5" width="38.8" height="116.5" class="bar-trough" rx="2"/>
-<text x="518.8" y="97.5" class="bar-label" text-anchor="middle">2.05</text>
-<text x="518.8" y="236.0" class="bar-xlabel" text-anchor="middle">26/02</text>
-<rect x="561.9" y="38.8" width="38.8" height="181.2" class="bar-pos" rx="2"/>
-<text x="581.2" y="32.8" class="bar-label" text-anchor="middle">3.19</text>
-<text x="581.2" y="236.0" class="bar-xlabel" text-anchor="middle">26/03</text>
-<rect x="624.4" y="38.8" width="38.8" height="181.2" class="bar-pos" rx="2"/>
-<text x="643.8" y="32.8" class="bar-label" text-anchor="middle">3.19</text>
-<text x="643.8" y="236.0" class="bar-xlabel" text-anchor="middle">26/04</text>
-<rect x="686.9" y="42.2" width="38.8" height="177.8" class="bar-pos" rx="2"/>
-<text x="706.2" y="36.2" class="bar-label" text-anchor="middle">3.13</text>
-<text x="706.2" y="236.0" class="bar-xlabel" text-anchor="middle">26/05</text>
-<rect x="749.4" y="20.0" width="38.8" height="200.0" class="bar-peak" rx="2"/>
-<text x="768.8" y="14.0" class="bar-label" text-anchor="middle">3.52</text>
-<text x="768.8" y="236.0" class="bar-xlabel" text-anchor="middle">26/06</text>
-<text x="50" y="14" class="chart-unit">億元</text>
-</svg></div>
-  <p>把月營收攤開來看，2025年下半年（7月2.60億到12月2.09億）是緩步向下探底的過程，年增率也從+13.5%一路收斂到-6.98%，對應第一步現金流分析中2023-2024谷底後的整理階段。進入2026年後，1月率先跳升到3.02億（年增+28.1%），雖然2月因季節性回落到2.05億，但3月起連續四個月穩定站上3.1-3.5億區間，6月的3.52億是這12個月的高點，年增率也重新放大到+30.9%——與第三步法說會揭露的「觸控MCU轉單、安防剛性需求」等成長動能在時間點上互相吻合。2月的單月低點主要是農曆春節工作天數較少的季節性因素，不宜過度解讀為轉弱訊號。</p>
-  <p class="src-note">資料來源：使用者提供之 Goodinfo 月營收走勢截圖（涵蓋2021/09-2026/06）</p>
-
-  <hr class="div">
-  <div class="callout">
-    第五步是前瞻本益比／EPS預估，我會查詢市場法人對未來一兩年EPS的預估區間並換算估值。
-  </div>
-</section>
-
-
-<section id="step5">
-  <div class="step-heading">
-    <span class="step-num">STEP 5 / 6</span>
-    <h2 class="step-title">前瞻本益比／EPS 預估</h2>
-  </div>
-
-  <div class="callout">
-    <b>資料來源說明：</b>券商預估EPS數字來自財經社群平台轉載的券商研究報告摘要，非本次直接讀取券商完整報告原文；目標價與預估EPS僅供參考，非投資建議。
-  </div>
-
-  <h3>法人預估 EPS（2026 全年）</h3>
-  <table>
-    <thead><tr><th class="yr">券商</th><th>發布日</th><th>預估EPS</th><th>目標價</th><th class="yr">評等</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">宏遠證券</td><td>2026/07/31</td><td>1.92</td><td>55.00</td><td class="yr">看多</td></tr>
-      <tr><td class="yr">玉山證券</td><td>2026/07/31</td><td>1.83</td><td>56.00</td><td class="yr">看多</td></tr>
-    </tbody>
-  </table>
-  <div class="callout warn">
-    <b>兩家券商是在 2026/07/31（股價53.4元）發布報告，目標價55-56元隱含當時約3-5%的潛在漲幅；但短短幾個交易日後，股價已於2026/08/04來到58.1元，反而已經超過兩家券商當時設定的目標價。</b>這代表市場實際反應速度快於券商報告更新的速度，目標價本身有時效性，不宜當作靜態天花板看待。
-  </div>
-  <p>目前查無明確的 2027 年（N+2）EPS 預估資料，多數可查到的券商報告聚焦在當年度（2026）展望，較長期的預估資料有限，這裡誠實告知、不硬湊數字。</p>
-
-  <hr class="div">
-
-  <h3>前瞻本益比（現在貴不貴）</h3>
-  <div class="callout">
-    <b>以2026全年預估EPS區間1.83-1.92元計算，目前股價58.1元對應的前瞻本益比約為30.3-31.8倍，落在此區間的中位數約31倍。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">情境</th><th>預估EPS</th><th>前瞻本益比（股價58.1÷EPS）</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">宏遠證券預估</td><td>1.92</td><td>30.3倍</td></tr>
-      <tr><td class="yr">玉山證券預估</td><td>1.83</td><td>31.8倍</td></tr>
-    </tbody>
-  </table>
-  <p>對照近四季（TTM）EPS 0.66元計算的本益比48.92倍（Yahoo股市數據），前瞻本益比明顯低於當前的TTM本益比——這是因為市場已經提前反映獲利將從谷底大幅回升的預期，用尚未完全兌現的2026全年獲利去打折看待現在的股價。這兩者是不同角度的同一件事：TTM本益比反映「過去已實現獲利」相對股價的貴或便宜，前瞻本益比反映「市場對未來獲利預期」相對股價的貴或便宜；本檔股票兩者差距大，正說明目前股價已經高度依賴獲利能否如預期在下半年兌現。</p>
-
-  <hr class="div">
-
-  <h3>目標本益比法（合理價可能落在哪）</h3>
-  <div class="callout">
-    <b>用2026全年預估EPS中位數約1.875元，分別套用20倍／25倍／30倍三種情境的合理本益比，換算出的目標價區間為37.5元至56.25元——即使套用樂觀的30倍情境，也還是低於目前58.1元的股價。</b>
-  </div>
-  <table>
-    <thead><tr><th class="yr">假設本益比倍數</th><th>目標價（預估EPS 1.875 × 倍數）</th></tr></thead>
-    <tbody>
-      <tr><td class="yr">20倍</td><td>37.5</td></tr>
-      <tr><td class="yr">25倍</td><td>46.9</td></tr>
-      <tr><td class="yr">30倍</td><td>56.25</td></tr>
-    </tbody>
-  </table>
-  <p><b>前瞻本益比法與目標本益比法是同一條公式的兩種用法，不是同一件事：</b>前者是已知股價、反推市場隱含用了幾倍本益比在計價；後者是自己假設一個合理倍數、反推出目標價。目標本益比法算出的價格對「倍數怎麼選」高度敏感——同樣的EPS，20倍和30倍換算出的目標價可以差到18.75元，這只是敏感度試算，不是預測。以本檔股票目前的獲利回溫故事來看，市場顯然願意給比20-25倍更高的倍數（現價已隱含約31倍），這通常發生在市場認為獲利谷底已過、未來還有向上空間的階段，但也代表股價對「下半年獲利是否如預期兌現」的容錯空間很小。</p>
-
-  <hr class="div">
-
-  <h3>預估不確定性揭露</h3>
-  <div class="callout warn">
-    <b>找得到的較早期券商評論（約2024年底至2025年初）曾預期公司毛利率短期內難以達到45-50%的目標，且單月營收回升至3億元以上的時間點會落在2025年下半年——實際上單月營收要到2026年1月才首次站上3億（3.02億），比原先預期晚了將近半年到三季，且2026Q2實際毛利率44.9%已相當接近該預估的上緣（惟其中約3.7個百分點來自聯電一次性回饋，屬非常態）。</b>
-  </div>
-  <p>這說明兩件事：第一，法人對這檔股票獲利回升的方向判斷大致正確，但對「時間點」的預估過於樂觀，實際落地時間比預期晚了半年以上；第二，即使是最新（2026/07/31）發布的目標價，也在極短時間內就被市場價格超越，顯示這檔股票近期股價走勢比法人預估反應更快、更強。基於這兩點，對本節列出的2026全年EPS預估與目標價，建議抱持「方向參考、時點與精確數字打折看待」的態度，不宜完全依賴單一券商數字做進出場依據。
-</p>
-
-  <hr class="div">
-  <div class="callout">
-    第六步是投資決策推理（買入/續抱/賣出），如果你想聽我的推理判斷，跟我說一聲就會進行；這步驟不會自動附加。
-  </div>
-</section>
-
-
-<section id="step6">
-  <div class="step-heading">
-    <span class="step-num">STEP 6 / 6</span>
-    <h2 class="step-title">投資決策推理</h2>
-  </div>
-
-  <div class="callout">
-    <b>以下是根據前五步分析的推理與個人觀點，不是專業投資建議，我不是理財顧問。實際進出場決策請自行判斷並考量自身風險承受度。</b>
-  </div>
-
-  <h3>核心切入點：回到第一步的現金流結論</h3>
-  <p>整份分析的起點是現金流體質「需觀察」（53.8分），十年中2023年出現過最嚴重的警訊（本業現金流近乎歸零、同時新增短期借款）。2024-2025的復甦是真實的，但截至目前為止，A（營業現金流）仍停留在3-4億的區間，還沒有回到2016-2020年7-12億的正常水準——換句話說，體質正在變好，但還沒有被證明「已經好了」。這個判斷貫穿整個決策推理。</p>
-
-  <hr class="div">
-
-  <h3>若尚未持有，會不會現在進場？</h3>
-  <div class="callout warn">
-    <b>傾向不追高進場。</b>第五步估值分析顯示，現價58.1元已經超過兩家券商幾天前才發布的目標價（55-56元），目標本益比法即使套用樂觀的30倍情境，換算出的目標價（56.25元）也還是低於現價。市場目前隱含給了約31倍的前瞻本益比，這個倍數已經在為「獲利加速回升」的樂觀情境買單，但現金流面的證據還沒完全跟上——本業造血能力仍處於復甦初期，尚未回到正常區間。在獲利面（EPS、營收）衝得比現金流面快的情況下進場，等於是在為尚未被現金流證實的樂觀情境付錢。</p>
-  </div>
-  <p>比較合理的做法是等回檔靠近目標本益比法20-25倍區間（約37.5-46.9元）再考慮進場，或是等下一份季報（2026Q3）確認第三步提到的漲價策略是否真的在毛利率上兌現（排除聯電一次性回饋後，毛利率能否維持40%左右），以及A是否延續回升趨勢。</p>
-
-  <hr class="div">
-
-  <h3>若已經持有，該續抱還是賣出？</h3>
-  <div class="callout">
-    <b>傾向續抱觀察，但不建議在現價加碼；同時建議設定具體條件，而非模糊地「看情況」。</b>
-  </div>
-  <p>公司基本面確實在改善（營收、EPS、現金流三個面向的復甦節奏一致），這是續抱的理由；但現價已經跑在估值前面，加碼的風險報酬並不吸引人。建議續抱者鎖定以下幾個尚未發生、可驗證的觀察訊號，而不是持續盯著股價本身做決策：</p>
-  <ul>
-    <li><b>2026Q3財報公布時</b>：毛利率排除聯電一次性回饋後是否仍能維持在40%左右（驗證漲價策略是否真的落地，而非只靠一次性回饋撐場面）</li>
-    <li><b>2026年全年報公布時</b>：全年A（營業現金流）是否明顯超越2024、2025年的3-4億區間、向2016-2020年7-12億的正常水準靠攏</li>
-    <li><b>2026Q3、Q4財報公布時</b>：是否重演2023年那種「A趨近於零＋新增短期借款」的警訊組合（機率低，但這是最高警戒訊號，需要每季排查）</li>
-    <li><b>2026年第四季月營收</b>：觸控MCU轉單效應是否真的如公司所說持續到年底，而非提前降溫</li>
-  </ul>
-  <p>如果上述訊號在未來1-2季逐一兌現，代表現金流體質正在真正修復，屆時即使股價續創新高，也有更扎實的基本面支撐；如果2026Q3財報顯示毛利率明顯低於40%（回吐一次性回饋後打回原形）、或A的回升力道明顯放緩，則需要重新檢視持股的理由是否還成立。</p>
-</section>
-
-</main>
+<section id="step3" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 3 步／共 6 步：法說會深入討論】</div><h2>法說會深入討論</h2><div class="sub">尚未執行。</div></section>
+<section id="step4" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 4 步／共 6 步：營收趨勢視覺化】</div><h2>營收趨勢視覺化</h2><div class="sub">尚未執行。</div></section>
+<section id="step5" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 5 步／共 6 步：前瞻本益比／EPS預估】</div><h2>前瞻本益比／EPS預估</h2><div class="sub">尚未執行。</div></section>
+<section id="step6" class="pending"><div class="progress-tag" style="background:var(--ink-faint);">【第 6 步／共 6 步：投資決策推理】</div><h2>投資決策推理</h2><div class="sub">僅在你主動詢問「該不該投資／續抱或賣出」時才會進行。</div></section>
 
 <footer>
-  6202 盛群半導體（HOLTEK）台股個股初步分析 · 第 1 / 6 步 · 由使用者提供資料進行盲測分析，尚未查詢股價／EPS／產業背景
+  <div>6202_holtek_analysis · v2.1（模組化重跑）· 生成時間 2026-08-07</div>
+  <div class="src-note">資料來源：Step1現金流數據沿用已驗證之歷史序列（2016-2025年度＋26Q2單季，經MoneyDJ最新資料交叉核對一致，26Q2為公開可得之最新一季，2026Q3尚未公告）；Step2 web_search取得之cnyes鉅亨網、Yahoo股市等公開資訊。Step1盲測階段未查詢股價、EPS、產業地位或新聞背景。規則七、八因缺少細項數字暫缺。</div>
 </footer>
+</main>
+</div>
 
 <script>
-(function() {
-  var pads = document.querySelectorAll('.stepnav .pad');
-  pads.forEach(function(p) {
-    p.addEventListener('click', function() {
-      if (p.classList.contains('locked')) return;
-      var target = document.getElementById(p.dataset.target);
-      if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+(function(){
+  var links = document.querySelectorAll('.step-link:not(.disabled)');
+  var sections = Array.from(links).map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+  function clearActive(){ document.querySelectorAll('nav.stepnav a.active').forEach(function(a){ a.classList.remove('active'); }); }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.getAttribute('id');
+        clearActive();
+        var link = document.querySelector('.step-link[href="#'+id+'"]');
+        if(link) link.classList.add('active');
+      }
     });
-  });
-  var sections = document.querySelectorAll('main section');
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          pads.forEach(function(p) {
-            p.classList.toggle('active', p.dataset.target === entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    sections.forEach(function(s) { obs.observe(s); });
-  }
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(function(s){ observer.observe(s); });
 })();
 </script>
-
 </body>
 </html>
