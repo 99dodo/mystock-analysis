@@ -304,13 +304,43 @@ footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5p
 </div>
 
 <div class="rule-card" id="rule7">
-  <div class="rule-head"><span class="rule-no">規則七</span><h3>淨利與現金流落差拆解</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
-  <p>目前僅有A/B/C/D/E五個加總數字，沒有營業活動細項科目（應收帳款、存貨、應付帳款增減），無法完成本規則的精確拆解。規則五未通過且值得優先拆解的年度為2017-2020、2022（帳面淨利穩定但現金轉換率偏低），若能取得這幾年的營業活動細項，能更精確判斷是應收帳款堆積、存貨去化緩慢，或屬MCU產業正常的營運資本循環。</p>
+  <div class="rule-head"><span class="rule-no">規則七</span><h3>淨利與現金流落差拆解</h3><span class="rule-tag mid">45 分</span></div>
+  <div class="rule-score">45<span> / 100</span></div>
+  <p>2023年是規則五未通過中缺口最值得拆解的一年（D=0.78，A僅0.04），細項如下：</p>
+  <table class="mono-table">
+    <thead><tr><th>項目</th><th>2023</th></tr></thead>
+    <tbody>
+      <tr><td>本期淨利(D)</td><td>0.78</td></tr>
+      <tr><td>+ 折舊費用</td><td class="pos">0.76</td></tr>
+      <tr><td>+ 攤銷費用</td><td class="pos">0.77</td></tr>
+      <tr><td>應收票據增減</td><td class="pos">+6.44</td></tr>
+      <tr><td>存貨增減</td><td class="pos">+2.15</td></tr>
+      <tr><td>應付票據增減</td><td class="neg">-5.17</td></tr>
+      <tr><td>其他營業負債增減</td><td class="neg">-3.65</td></tr>
+      <tr><td>小計（主要項目）</td><td class="pos">2.08</td></tr>
+      <tr><td>其他調整項（利息/稅金/其他細項）</td><td class="neg">-2.04</td></tr>
+      <tr><td><b>A（實際）</b></td><td class="pos"><b>0.04</b></td></tr>
+    </tbody>
+  </table>
+  <div class="callout ok">
+    與3231「應收+存貨暴增侵蝕現金流」的模式不同：6202在2023年應收票據（+6.44億）與存貨（+2.15億）反而是現金流入的正面貢獻（訂單降溫、庫存去化），真正拖累A的是<b>「其他營業負債」大幅減少3.65億</b>，加上應付票據減少5.17億——比較像是產業景氣下行期清償應計費用與供應商款項，而非營運資本被異常墊高。這是相對健康的收縮訊號，不是收款惡化。
+  </div>
 </div>
 
 <div class="rule-card" id="rule8">
-  <div class="rule-head"><span class="rule-no">規則八</span><h3>股利發放現金流可持續性</h3><span class="rule-tag mid">資料不足・暫缺</span></div>
-  <p>已知2025年度（配發於2026年）現金股利0.68元/股，配發總額約1.57億，殖利率僅1.15%，屬於相對保守的配息，且金額不大。但缺少CapEx細項與逐年股利發放總額，無法計算精確的股利保障倍數。以2025年A=3.8億、股利1.57億概估，覆蓋率尚可（未計入CapEx），初步判斷風險不高，但仍待細項資料驗證。</p>
+  <div class="rule-head"><span class="rule-no">規則八</span><h3>股利發放現金流可持續性</h3><span class="rule-tag fail">⚠ 40 分・2023年掏老本配息</span></div>
+  <div class="rule-score">40<span> / 100</span></div>
+  <table class="mono-table">
+    <thead><tr><th>年度</th><th>A</th><th>CapEx</th><th>FCF</th><th>現金股利</th><th>保障倍數</th><th>個性</th></tr></thead>
+    <tbody>
+      <tr><td>2023</td><td class="pos">0.04</td><td class="neg">-1.52</td><td class="neg">-1.48</td><td>9.05</td><td class="neg">-0.16x</td><td class="neg">掏老本配息</td></tr>
+      <tr><td>2024</td><td class="pos">3.10</td><td class="neg">-0.10</td><td class="pos">3.00</td><td>1.02</td><td class="pos">2.94x</td><td>真金白銀</td></tr>
+      <tr><td>2025</td><td class="pos">3.80</td><td class="neg">-0.33</td><td class="pos">3.47</td><td>0.00</td><td>–</td><td>無配息</td></tr>
+    </tbody>
+  </table>
+  <div class="callout danger">
+    <b>2023年是嚴重的「掏老本配息」案例：</b>當年FCF已經是負值（-1.48億），公司仍發放高達9.05億的現金股利——這筆錢不可能來自當年度營運現金流，只能是動用過去累積的現金部位（Step1看到E在2022年高點12.00億，2023年降到8.31億，降幅3.69億，方向上與大額配息一致）。這與3231「靠新增舉債配息」的性質不同，是「靠吃老本配息」，但同樣是股利可持續性的紅色警訊。2024年配息大幅縮減至1.02億後FCF覆蓋率轉為健康（2.94倍），2025年更直接不配息，顯示管理層在2023年之後轉趨保守，是正面調整訊號，但2023年那次已實際發生的「掏老本」不會因此消失，故本規則分數仍需扣分反映歷史紀錄。
+  </div>
 </div>
 
 <h3 style="font-size:17px; margin:38px 0 4px;">總評分</h3>
@@ -321,14 +351,16 @@ footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5p
   <div class="score-cell"><div class="label">規則四・C合理性</div><div class="val mid">58</div></div>
   <div class="score-cell"><div class="label">規則五・A&gt;D品質</div><div class="val fail">40</div></div>
   <div class="score-cell"><div class="label">規則六・E穩定性</div><div class="val mid">62</div></div>
-  <div class="score-cell"><div class="label">規則七・落差拆解</div><div class="val mid">暫缺</div></div>
-  <div class="score-cell"><div class="label">規則八・股利永續</div><div class="val mid">暫缺</div></div>
+  <div class="score-cell"><div class="label">規則七・落差拆解</div><div class="val mid">45</div></div>
+  <div class="score-cell"><div class="label">規則八・股利永續</div><div class="val fail">40</div></div>
 </div>
 
 <div class="bigverdict">
   <h3>⚠ 關卡判斷：現金流體質需觀察</h3>
   <div class="score-big">53.8<span>／100　核心六規則平均（&lt;60% 門檻）</span></div>
-  <p style="margin-top:14px;">總分低於60%門檻（需觀察區間）。三重疊加的自動觸發警訊（A為負＋B大幅負值＋C正值或小幅負值）並未在任一年度同時出現，10年中A從未轉負；2023年觸發的是「A趨近於零＋C轉正」的組合，嚴重度略低於三重疊加但仍達規則四定義的最高警戒等級。加上總分本身落在需觀察區間，兩個獨立條件都指向同一個結論：<b>目前現金流體質評分為「需觀察」，不到「體質良好可放心繼續」的門檻，也還不到「偏弱有風險」的最高警戒等級</b>。近兩年（2024、2025）A與E雙雙回升是正面訊號，但26Q2單季E驟降63%，時間還不夠長，無法排除只是短期反彈。</p>
+  <p style="margin-top:14px;">總分低於60%門檻（需觀察區間）。三重疊加的自動觸發警訊（A為負＋B大幅負值＋C正值或小幅負值）並未在任一年度同時出現，10年中A從未轉負；2023年觸發的是「A趨近於零＋C轉正」的組合，嚴重度略低於三重疊加但仍達規則四定義的最高警戒等級。加上總分本身落在需觀察區間，兩個獨立條件都指向同一個結論：<b>目前現金流體質評分為「需觀察」，不到「體質良好可放心繼續」的門檻，也還不到「偏弱有風險」的最高警戒等級</b>。近兩年（2024、2025）A與E雙雙回升是正面訊號。</p>
+  <p style="margin-top:10px;"><b class="warn-text">規則八額外加註：</b>2023年確認觸發「掏老本配息」——當年FCF為負(-1.48億)仍發放9.05億現金股利，資金來源只能是動用過去累積現金部位。2024年後配息已轉趨保守（大幅縮減、2025年直接停發），顯示管理層已修正該行為，但這筆歷史紀錄仍是股利可持續性的真實警訊，存股族需留意。</p>
+  <p style="margin-top:10px; color:var(--ink-dim); font-size:13.5px;">Step3法說會補充後，26Q2單季E驟降63%的疑慮已部分緩解——法說會揭露的「現金部位30.47億」遠高於現金流量表狹義E(5.49億)，差異可能源於口徑不同（廣義流動資產vs.狹義現金及約當現金），詳見Step3交叉檢查說明。</p>
 </div>
 </section>
 
@@ -517,8 +549,8 @@ footer{padding:30px 40px; font-family:'IBM Plex Mono',monospace; font-size:11.5p
 </section>
 
 <footer>
-  <div>6202_holtek_analysis · v2.2（六步驟完整版）· 生成時間 2026-08-07</div>
-  <div class="src-note">資料來源：Step1現金流數據沿用已驗證之歷史序列（2016-2025年度＋26Q2單季，經MoneyDJ最新資料交叉核對一致，26Q2為公開可得之最新一季，2026Q3尚未公告）；Step2/4/5 web_search取得之cnyes鉅亨網、Yahoo股市、nStock、Win投資、cmoney券商評等彙整等公開資訊；Step3財經媒體法說會摘要整理（非直接讀取MOPS原始PDF）。Step1盲測階段未查詢股價、EPS、產業地位或新聞背景。規則七、八因缺少細項數字暫缺。Step6為推理與個人觀點，不構成投資建議。</div>
+  <div>6202_holtek_analysis · v2.3（八規則全數完成）· 生成時間 2026-08-07</div>
+  <div class="src-note">資料來源：Step1現金流數據沿用已驗證之歷史序列（1999-2025年度＋26Q2單季，經使用者提供之Goodinfo季度細項截圖與MoneyDJ資料交叉核對一致）；規則七、八已用使用者提供之營業/投資/融資活動細項截圖（2022Q4-2026Q2累計數）完成計算；Step2/4/5 web_search取得之cnyes鉅亨網、Yahoo股市、nStock、Win投資、cmoney券商評等彙整等公開資訊；Step3財經媒體法說會摘要整理（非直接讀取MOPS原始PDF）。Step1盲測階段未查詢股價、EPS、產業地位或新聞背景。Step6為推理與個人觀點，不構成投資建議。</div>
 </footer>
 </main>
 </div>
