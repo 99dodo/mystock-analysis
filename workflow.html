@@ -54,9 +54,22 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0}
 <li>Owner：選 <span class="kbd">99dodo</span>（就是你自己）</li>
 <li>Repository name：打 <span class="kbd">mystock-analysis</span></li>
 <li>Description：可打「我的股票分析報告」，不填也行</li>
-<li>Public / Private：選 <strong>Public</strong> ⚠ 這裡不能選Private，因為後面Phase 1第2步要開GitHub Pages讓網址能公開瀏覽，選Private會導致免費方案的Pages功能無法正常對外顯示</li>
+<li>Public / Private：選 <strong>Public</strong></li>
+</ul>
+<div class="alert alert-warn"><strong>為什麼一定要選 Public？</strong><br>
+GitHub免費帳號的規則是：GitHub Pages（讓網址能公開瀏覽的功能）<strong>只能用在Public repo</strong>上。如果選Private，Settings裡的Pages功能會直接無法啟用，除非你付費升級成GitHub Pro/Team才能讓Private repo也開Pages。<br>
+選Public的意思是：<strong>任何人都能看到你這個repo裡的原始碼跟檔案內容</strong>（包括你的分析報告html原始檔），這對股票分析報告來說通常不是問題，因為內容本來就是要公開瀏覽的。<br><br>
+<strong>什麼情況才該選Private？</strong>如果你以後另外開別的repo，裡面放的是不想被別人看到的東西——例如你的skill寫作邏輯、還沒公開的投資策略草稿、私人筆記——那種用途才選Private，並且要有Pro/Team方案才能同時擁有公開網址。這個mystock-analysis repo因為目的就是要公開分享分析報告，所以固定選Public，不受這個限制影響。</div>
+<ul>
 <li>下面三個勾選：<span class="kbd">Add a README file</span> → 打勾；<span class="kbd">Add .gitignore</span> → 選 <span class="kbd">None</span>；<span class="kbd">Choose a license</span> → 選 <span class="kbd">None</span></li>
 </ul>
+<div class="alert alert-info"><strong>三個勾選各自是什麼、為什麼這樣選：</strong>
+<ul style="margin:8px 0 0; padding-left:20px;">
+<li><strong>Add a README file</strong>（勾）：README.md是repo首頁自動顯示的說明文件，別人（或你自己半年後回來看）點進repo第一眼看到的就是這個。這次要勾，因為我們就是靠這個檔案列所有分析報告的連結，等於是repo的「目錄頁」。如果不勾，repo會是空的，之後還要手動另外建一個。</li>
+<li><strong>Add .gitignore</strong>（選None）：.gitignore是用來告訴Git「這些檔案類型不要上傳」的清單，通常是給寫程式用的（例如Node.js專案會自動排除node_modules資料夾）。我們這裡只放html報告，沒有程式碼專案，用不到這個功能，所以選None就好。<strong>什麼時候該選別的？</strong>如果你以後開一個真的在寫程式（例如Python、Node.js）的repo，那時候選對應語言的.gitignore範本，能自動避免把一堆暫存檔、套件資料夾誤傳上去。</li>
+<li><strong>Choose a license</strong>（選None）：授權條款是用來告訴別人「你可以/不可以怎麼使用我這個repo的內容」，通常是給開源軟體專案用的（例如MIT License允許別人自由取用你的程式碼）。我們這是個人股票分析報告，不是要給別人拿去用的軟體專案，選None就好，不代表沒有著作權，只是沒有額外聲明使用授權條款。<strong>什麼時候該選？</strong>如果你以後想公開一個工具或程式碼，希望明確允許/限制別人怎麼使用，才需要選一個授權條款（例如MIT、Apache 2.0）。</li>
+</ul>
+</div>
 <p>都填完後，按最下面的綠色 <span class="kbd">Create repository</span>。</p>
 <div class="linkbox"><code>https://github.com/99dodo/mystock-analysis</code><span class="badge">你的倉庫</span></div></div></div>
 <div class="step"><div class="step-num">2</div><div><h3>開 GitHub Pages</h3><p>進到 Settings → Pages → Source 選 Deploy from a branch → Branch 選 main / (root) → Save</p><div class="alert alert-ok">等 1-2 分鐘，永久網站生效：<br><a href="https://99dodo.github.io/mystock-analysis/" target="_blank">https://99dodo.github.io/mystock-analysis/</a></div></div></div>
