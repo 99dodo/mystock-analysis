@@ -55,9 +55,9 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
 <body>
 <div class="container">
   <nav class="stepnav">
-    <a href="#step1" class="active">1.現金流盲測</a>
-    <a class="disabled">2.基本資訊</a>
-    <a class="disabled">3.法說會</a>
+    <a href="#step1" class="done">1.現金流盲測</a>
+    <a href="#step2" class="done">2.基本資訊</a>
+    <a href="#step3" class="active">3.法說會</a>
     <a class="disabled">4.營收趨勢</a>
     <a class="disabled">5.前瞻本益比</a>
     <a class="disabled">6.投資決策</a>
@@ -66,11 +66,11 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
   <div class="header">
     <div>
       <h1>2327 國巨 初步分析報告</h1>
-      <div class="sub">第 1 步／共 6 步：現金流量表八大規則分析（盲測階段） · 產生時間 2026/08/09 · 資料來源：使用者提供 Goodinfo 現金流量表截圖（總表 + 投資／融資活動細項）</div>
+      <div class="sub">進度：第 3 步／共 6 步 · 最後更新 2026/08/09</div>
     </div>
     <div class="score">
       <div class="num">77.5</div>
-      <div class="label">核心六規則平均</div>
+      <div class="label">核心六規則平均（Step1）</div>
     </div>
   </div>
 
@@ -190,6 +190,56 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
     <footer class="src">
       資料來源：使用者提供 Goodinfo 現金流量表截圖（總表 1993–2026Q1；投資／融資活動細項 2022Q3–2026Q1，單季揭露已逐季加總還原年度數字並與總表核對）。本步驟為盲測階段，未查詢或引用股價、EPS、產業地位、新聞背景，相關資訊將於第 2 步之後另行查證。
     </footer>
+  </div>
+
+  <div class="card" id="step2">
+    <h2>【第 2 步／共 6 步：基本資訊查詢】</h2>
+    <div class="highlight risk">
+      <b>⚠ 股票分割警示：</b>國巨在2025年4月將股票面額由10元變更為2.5元（一拆四），分割前股本51.82億元、股數約5.18億股，分割後股數約20.73億股。這解釋了為什麼2023-2024年EPS高達38-44元、2025年驟降到11.51元——不是獲利腰斬，是每股代表的權益變成1/4，屬於形式調整。以下所有「每股」數字皆為分割後基礎。
+    </div>
+    <table>
+      <tr><th>項目</th><th>數值</th><th>備註</th></tr>
+      <tr><td>52週高／低</td><td>1220.00 ／ 132.50 元</td><td>波動極大</td></tr>
+      <tr><td>近期收盤價</td><td>約570元</td><td>2026/08/06快照，股價當下波動劇烈，實際價位需查詢即時報價</td></tr>
+      <tr><td>本益比</td><td>約44.9倍</td><td>位於2013年以來自身歷史分佈的第99百分位（偏貴）</td></tr>
+      <tr><td>每股淨值</td><td>321.19元</td><td>股價淨值比約1.7-2倍（隨股價波動）</td></tr>
+      <tr><td>近四季EPS</td><td>12.71元</td><td></td></tr>
+      <tr><td>26Q1 EPS</td><td>3.90元</td><td>季增19%，年減64%（需在Step3查證原因）</td></tr>
+      <tr><td>2025全年EPS</td><td>11.51元</td><td>年增20.8%（分割調整後基礎比較）</td></tr>
+      <tr><td>現金股利</td><td>6.00元</td><td>配息率52%，2026/06/12已除息，對應2025年度盈餘</td></tr>
+    </table>
+    <div class="highlight risk">
+      <b>近期股價劇烈崩跌：</b>股價從7月初的1220元歷史高點一路跌到7月29日最低約456.5元，跌幅一度超過五成，之後反彈回570-581元附近整理。這波重挫發生在7/28-29台股AI概念股全面重挫，疊加國巨法說會前的緊張情緒，是市場面AI股全面性重挫加上法說會前恐慌情緒的組合，不是單一國巨自己的利空，但股價波動度極大。
+    </div>
+    <table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>2025年全年</td><td>營收1,329.30億元，稅後淨利236.34億元(年增22.1%)，EPS 11.51元</td></tr>
+      <tr><td>2026年5月營收</td><td>150.58億元，月增7.26%，年增47.46%；累計1-5月672.63億元，年增27.35%</td></tr>
+    </table>
+    <div class="highlight ok">
+      <b>與Step1呼應：</b>國巨計畫以每股7130日圓公開收購日本芝浦電子(Shibaura Electronics)100%股權，預計2025年10月完成，芝浦電子是全球NTC熱敏電阻的領導者。這正好對應Step1看到的2025Q4「子公司之收購」-168.1億元支出，確認了那筆大額投資活動就是這次跨國收購案，也印證了Step1規則四觀察到的「重複舉債式併購擴張」模式（先前2019年也曾以約500億元現金收購美商KEMET）。
+    </div>
+    <p class="note">資料來源：鉅亨網、Yahoo股市、FinLab 6202.TW快照（多筆不同時間點快照，股價波動劇烈已特別註明）。</p>
+  </div>
+
+  <div class="card" id="step3">
+    <h2>【第 3 步／共 6 步：法說會深入討論】</h2>
+    <div class="note">資料來源：理財周刊、台灣好新聞逐字稿整理文章，以及poorstock.com依官方法說會PDF所做的AI重點整理（非直接讀取官方PDF），涵蓋2026/07/29（最新，Q2財報）場次；MOPS原始PDF/影音因robots.txt無法直接讀取，僅附連結。</div>
+    <div class="highlight">
+      <b>Q2財報大幅優於預期，卻上演「利多出盡」式重挫：</b>2026年第二季合併營收444.56億元，季增16.5%、年增35.7%，創歷史單季新高；毛利率38.5%(年增2.9個百分點)；稅後純益94.18億元，季增17.7%、年增88.5%，EPS 4.59元。累計上半年營收826.22億元，年增29.3%，上半年EPS達8.48元。但法說會前市場賣壓並未減輕：7/28、7/29連兩天跌停，累計下跌近19%，與Step2看到的股價崩跌完全對應——是「基本面亮眼、股價照跌」的去槓桿式重挫，不是公司基本面出問題。
+    </div>
+    <table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>Q2財務指標</td><td>營收444.56億(QoQ+16.5%,YoY+35.7%)，毛利率38.5%，營益率26.4%，EPS 4.59元(排除一次性未分配盈餘稅影響真實EPS應為4.81元)</td></tr>
+      <tr><td>槓桿改善(與Step1呼應)</td><td>淨金融負債/EBITDA比率由2025Q4併購芝浦電子後高點59%，降至本季22%</td></tr>
+      <tr><td>營收結構</td><td>鉭電容23.8%(聚合物鉭電容全球市佔第一)、磁性元件23.5%(網路變壓器全球第一)、MLCC 19.1%(全球第三)、電阻13.5%(全球第一)、傳感器10.9%(多項全球第一)</td></tr>
+      <tr><td>應用別</td><td>工業28.4%最大宗、運算與企業系統(AI相關)27.3%為成長引擎、車用15.9%</td></tr>
+      <tr><td>展望</td><td>Q3營收預估較Q2溫和成長，毛利率可望繼續提升</td></tr>
+    </table>
+    <div class="highlight risk">
+      <b>利空因素：</b>自由現金流連續兩季下滑(2025Q4 85.9億→2026Q1 77.5億→2026Q2 57.8億)，主因營收強勁成長帶動應收帳款與存貨的營運資金投入增加；原物料投入成本持續上升，可能壓抑毛利率進一步擴張空間。
+    </div>
+    <p>原始簡報／影音：<a href="https://mopsov.twse.com.tw/nas/STR/232720260729M001.pdf" target="_blank">Q2法說會簡報PDF</a>（MOPS，需自行點開）｜<a href="http://irconference.twse.com.tw/2327_234_20260729_en.mp3" target="_blank">原始影音</a></p>
   </div>
 </div>
 
