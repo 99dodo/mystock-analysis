@@ -104,8 +104,8 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   <nav class="stepnav">
     <a href="#step1" class="done" id="nav1">1.現金流盲測</a>
     <a href="#step2" class="done" id="nav2">2.基本資訊</a>
-    <a href="#step3" class="active" id="nav3">3.法說會</a>
-    <a href="#" class="disabled" id="nav4">4.營收趨勢</a>
+    <a href="#step3" class="done" id="nav3">3.法說會</a>
+    <a href="#step4" class="active" id="nav4">4.營收趨勢</a>
     <a href="#" class="disabled" id="nav5">5.前瞻本益比</a>
     <a href="#" class="disabled" id="nav6">6.投資決策</a>
   </nav>
@@ -113,7 +113,7 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   <div class="header">
     <div>
       <h1>2327 國巨</h1>
-      <div class="sub">初步分析報告 · 2026/08/09 · 目前完成：第3步／共6步</div>
+      <div class="sub">初步分析報告 · 2026/08/09 · 目前完成：第4步／共6步</div>
     </div>
     <div class="score">
       <div class="num">73</div>
@@ -310,6 +310,70 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     <p class="footer-note">資料來源：<a href="https://www.moneyweekly.com.tw/ArticleData/Info/Article/239326" target="_blank">理財周刊《國巨法說會釋利多 股價卻像法會》</a>（2026/07/29）；<a href="https://www.stockfeel.com.tw/2026q1-%E5%9C%8B%E5%B7%A8-%E6%B3%95%E8%AA%AA%E6%9C%83/" target="_blank">股感 國巨2026Q1法說會重點整理</a>；<a href="https://finance.biggo.com.tw/quote/2327.TW/earnings-call/TW_2327.TW_2026-04-15" target="_blank">BigGo財經 國巨2026/04/15法說會摘要</a>（產能利用率、鉭質電容產能規劃等引用來源）。原始法說會簡報／MOPS公告無法直接讀取全文，如需逐字稿請自行至公司IR網站或MOPS查閱：<a href="https://mops.twse.com.tw" target="_blank">mops.twse.com.tw</a>。報告版本 v1.2，生成時間 2026/08/09。</p>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+    <div class="highlight">
+      <b>重點提示：</b> 近24個月 <b>MA3全程站在MA12之上</b>，屬多頭排列；2026年上半年動能明顯加速，MA3從2025年底119.9億衝到2026年6月148.2億，<span class="red">股價漲幅(分割後低點132.5元衝上1140元，近9倍)遠遠超過營收成長幅度，兩者背離程度值得留意</span>
+    </div>
+
+    <h3>4-1 資料範圍與口徑說明</h3>
+    <p>使用者提供Goodinfo月營收+股價截圖，涵蓋2023/07~2026/06共36個月（最新可得資料至2026/06，2026/07數據尚未公告）。營收採「合併營業收入」單月數字，與第2、3步查到的季度營收（26Q1合併381.66億、26Q2合併444.56億）交叉核對一致（Jan130.3+Feb115.1+Mar136.3=381.7億✓；Apr140.4+May150.6+Jun153.6=444.6億✓），確認口徑正確。圖表Bar僅顯示後24個月(2024/07~2026/06)，MA3/MA12使用前12個月資料墊底計算，確保顯示範圍內MA12從第一個月就有值。</p>
+
+    <div class="highlight risk">
+      ⚠️ <b>股價分割接續處理：</b>國巨2025年8月完成「1拆4」股票分割，原始截圖中2025/08前的收盤價為分割前基礎（面額10元），與之後的分割後基礎（面額2.5元）不可直接比較。本圖表已將2025/08以前的收盤價一律除以4，換算為分割後基礎再繪圖（<b>推算數字</b>，例如2025/07收盤530元換算為132.5元），以確保股價線連續可比。營收本身不受股票分割影響，無需調整。
+    </div>
+
+    <h3>4-2 月營收四季分色 + 3M/12M平均圖（近24個月，收盤價已還原為分割後基礎）</h3>
+    <div class="chart-wrap"><div id="chartRev" style="height:420px"></div></div>
+
+    <h3>4-3 擬人化解讀</h3>
+    <p><b>短強長也強，且差距持續擴大：</b>近24個月MA3幾乎全程站在MA12之上，過去半年這個差距明顯放大——2025年底MA3(119.9億)只比MA12(110.8億)高出約8%，到2026年6月MA3(148.2億)已經比MA12(126.4億)高出約17%，代表最近3個月的接單動能不只是比去年同期好，是持續在加速的。這與第3步法說會看到的「AI應用為主要成長引擎、標準品與特殊品需求同步回溫」的說法互相印證。</p>
+    <p><b>季節性不明顯，成長趨勢蓋過季節效應：</b>從近3年資料看，並沒有出現「每年固定Q3高、Q1低」這種穩定的季節規律（例如2025年Q1營收97.5~111億，2026年Q1營收115~136億，年增幅度比季節波動更顯著），代表國巨目前的營收走勢主要由需求周期(庫存回補+AI拉貨)驅動，季節性只是次要因素，用年增率比較會比用月增率更能反映真實動能。</p>
+    <p><b>股價漲幅遠遠甩開營收成長，是本步驟最大的落差：</b>近24個月合併月營收從103.2億(2024/08)成長到153.6億(2026/06)，成長約49%；但同期股價(還原分割後基礎)從約164元衝到1140元，漲幅超過近6倍(高點時甚至到1220元，漲幅逾6.4倍)。營收成長基本面確實在改善，但股價漲幅明顯遠超過營收成長幅度，代表股價很大一部分是「本益比擴張」帶來的，不是純粹獲利成長推動——這也呼應第3步看到「法說釋利多、股價卻連續跌停」的現象：當漲幅遠超基本面，一旦市場對成長性的信心稍有動搖，籌碼面修正就會很劇烈。</p>
+
+    <h3>4-4 近36個月完整數據表（供驗算）</h3>
+    <table>
+      <tr><th>月份</th><th>合併營收(億)</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>收盤價(還原後,元)</th></tr>
+      <tr><td>2023/07</td><td>88.88</td><td>Q3</td><td>—</td><td>—</td><td>114.9</td></tr>
+      <tr><td>2023/08</td><td>90.10</td><td>Q3</td><td>—</td><td>—</td><td>121.3</td></tr>
+      <tr><td>2023/09</td><td>94.61</td><td>Q3</td><td>91.2</td><td>—</td><td>131.3</td></tr>
+      <tr><td>2023/10</td><td>90.62</td><td>Q4</td><td>91.8</td><td>—</td><td>131.5</td></tr>
+      <tr><td>2023/11</td><td>93.50</td><td>Q4</td><td>92.9</td><td>—</td><td>150.3</td></tr>
+      <tr><td>2023/12</td><td>89.48</td><td>Q4</td><td>91.2</td><td>—</td><td>149.3</td></tr>
+      <tr><td>2024/01</td><td>100.20</td><td>Q1</td><td>94.4</td><td>—</td><td>138.0</td></tr>
+      <tr><td>2024/02</td><td>84.61</td><td>Q1</td><td>91.4</td><td>—</td><td>139.5</td></tr>
+      <tr><td>2024/03</td><td>100.20</td><td>Q1</td><td>95.0</td><td>—</td><td>147.8</td></tr>
+      <tr><td>2024/04</td><td>107.00</td><td>Q2</td><td>97.3</td><td>—</td><td>156.3</td></tr>
+      <tr><td>2024/05</td><td>107.10</td><td>Q2</td><td>104.8</td><td>—</td><td>165.5</td></tr>
+      <tr><td>2024/06</td><td>100.00</td><td>Q2</td><td>104.7</td><td>95.5</td><td>182.5</td></tr>
+      <tr><td>2024/07</td><td class="positive">110.10</td><td>Q3</td><td>105.7</td><td>97.3</td><td>198.0</td></tr>
+      <tr><td>2024/08</td><td>103.20</td><td>Q3</td><td>104.4</td><td>98.4</td><td>164.3</td></tr>
+      <tr><td>2024/09</td><td>104.20</td><td>Q3</td><td>105.8</td><td>99.2</td><td>155.8</td></tr>
+      <tr><td>2024/10</td><td>104.70</td><td>Q4</td><td>104.0</td><td>100.4</td><td>139.5</td></tr>
+      <tr><td>2024/11</td><td>100.20</td><td>Q4</td><td>103.0</td><td>100.9</td><td>128.5</td></tr>
+      <tr><td>2024/12</td><td>95.20</td><td>Q4</td><td>100.0</td><td>101.4</td><td>135.3</td></tr>
+      <tr><td>2025/01</td><td>102.50</td><td>Q1</td><td>99.3</td><td>101.6</td><td>134.3</td></tr>
+      <tr><td>2025/02</td><td>97.53</td><td>Q1</td><td>98.4</td><td>102.7</td><td>141.5</td></tr>
+      <tr><td>2025/03</td><td>111.00</td><td>Q1</td><td>103.7</td><td>103.6</td><td>120.3</td></tr>
+      <tr><td>2025/04</td><td>115.00</td><td>Q2</td><td>107.8</td><td>104.2</td><td>114.8</td></tr>
+      <tr><td>2025/05</td><td>102.10</td><td>Q2</td><td>109.4</td><td>103.8</td><td>122.5</td></tr>
+      <tr><td>2025/06</td><td>110.60</td><td>Q2</td><td>109.2</td><td>104.7</td><td>121.3</td></tr>
+      <tr><td>2025/07</td><td>106.50</td><td>Q3</td><td>106.4</td><td>104.4</td><td>132.5</td></tr>
+      <tr><td>2025/08</td><td>107.60</td><td>Q3</td><td>108.2</td><td>104.8</td><td>139.5</td></tr>
+      <tr><td>2025/09</td><td>116.80</td><td>Q3</td><td>110.3</td><td>105.8</td><td>170.0</td></tr>
+      <tr><td>2025/10</td><td>113.50</td><td>Q4</td><td>112.6</td><td>106.5</td><td>249.0</td></tr>
+      <tr><td>2025/11</td><td>122.60</td><td>Q4</td><td>117.6</td><td>108.4</td><td>235.0</td></tr>
+      <tr><td>2025/12</td><td>123.50</td><td>Q4</td><td>119.9</td><td>110.8</td><td>231.0</td></tr>
+      <tr><td>2026/01</td><td>130.30</td><td>Q1</td><td>125.5</td><td>113.1</td><td>277.5</td></tr>
+      <tr><td>2026/02</td><td>115.10</td><td>Q1</td><td>123.0</td><td>114.6</td><td>298.0</td></tr>
+      <tr><td>2026/03</td><td>136.30</td><td>Q1</td><td>127.2</td><td>116.7</td><td>243.5</td></tr>
+      <tr><td>2026/04</td><td class="positive">140.40</td><td>Q2</td><td>130.6</td><td>118.8</td><td>317.0</td></tr>
+      <tr><td>2026/05</td><td class="positive">150.60</td><td>Q2</td><td>142.4</td><td>122.8</td><td>738.0</td></tr>
+      <tr><td>2026/06</td><td class="positive">153.60</td><td>Q2</td><td>148.2</td><td>126.4</td><td>1140.0</td></tr>
+    </table>
+    <p class="footer-note">資料來源：使用者提供 Goodinfo 月營收暨股價截圖（ShowSaleMonChart.asp?STOCK_ID=2327），涵蓋2023/07~2026/06。收盤價欄位已將2025/08前數字除以4還原為分割後基礎（推算數字），營收數字未經任何調整。報告版本 v1.3，生成時間 2026/08/09。</p>
+  </div>
+
 </div>
 
 <script>
@@ -375,6 +439,35 @@ Plotly.newPlot('chartDiv', [
   yaxis:{title:'億元', gridcolor:'#F1F2F3'},
   legend:{orientation:'h', y:-0.2}
 }, {displayModeBar:false, responsive:true});
+
+// Chart Rev: 月營收四季分色 + MA3/MA12 + 股價雙軸
+(function(){
+var months = ["2024/07","2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06"];
+var rev = [110.1,103.2,104.2,104.7,100.2,95.2,102.5,97.53,111.0,115.0,102.1,110.6,106.5,107.6,116.8,113.5,122.6,123.5,130.3,115.1,136.3,140.4,150.6,153.6];
+var ma3 = [105.7,104.4,105.8,104.0,103.0,100.0,99.3,98.4,103.7,107.8,109.4,109.2,106.4,108.2,110.3,112.6,117.6,119.9,125.5,123.0,127.2,130.6,142.4,148.2];
+var ma12 = [97.3,98.4,99.2,100.4,100.9,101.4,101.6,102.7,103.6,104.2,103.8,104.7,104.4,104.8,105.8,106.5,108.4,110.8,113.1,114.6,116.7,118.8,122.8,126.4];
+var close = [198.0,164.25,155.75,139.5,128.5,135.25,134.25,141.5,120.25,114.75,122.5,121.25,132.5,139.5,170.0,249.0,235.0,231.0,277.5,298.0,243.5,317.0,738.0,1140.0];
+var colors = ["#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0"];
+var traceBar = {x:months, y:rev, type:'bar', name:'月營收(億)', marker:{color:colors}, yaxis:'y1',
+  hovertemplate:'%{x}<br>營收：%{y}億<extra></extra>'};
+var traceMA3 = {x:months, y:ma3, type:'scatter', mode:'lines', name:'MA3(紅實線)', line:{color:'#E74C3C', width:2.5, dash:'solid'}, yaxis:'y1',
+  hovertemplate:'%{x}<br>MA3：%{y}億<extra></extra>'};
+var traceMA12 = {x:months, y:ma12, type:'scatter', mode:'lines', name:'MA12(深藍實線)', line:{color:'#1B3A8C', width:2.5, dash:'solid'}, yaxis:'y1',
+  hovertemplate:'%{x}<br>MA12：%{y}億<extra></extra>'};
+var traceClose = {x:months, y:close, type:'scatter', mode:'lines', name:'收盤價(右軸,還原分割後)', line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2',
+  hovertemplate:'%{x}<br>收盤價：%{y}元<extra></extra>'};
+Plotly.newPlot('chartRev', [traceBar, traceMA3, traceMA12, traceClose], {
+  title:{text:'2327 國巨：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14}},
+  margin:{t:50,l:55,r:55,b:60},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{family:'Noto Sans TC', color:'#2C3E50', size:11},
+  bargap:0.15,
+  yaxis:{title:'月營收(億元)', gridcolor:'#F1F2F3'},
+  yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+  legend:{orientation:'h', y:-0.25},
+  hovermode:'x unified'
+}, {displayModeBar:false, responsive:true});
+})();
 </script>
 </body>
 </html>
