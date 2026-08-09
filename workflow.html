@@ -56,8 +56,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0}
 <div class="card">
 <h2><span class="badge warn">Phase 2</span> 第二階段：Token 金鑰 ⚠️ 最重要</h2>
 <div class="alert alert-warn"><strong>Token = 你家鑰匙</strong>，拿到可改你所有檔案。設定錯會被駭。</div>
-<div class="step"><div class="step-num">3</div><div><h3>建 Token</h3><p>網址：https://github.com/settings/tokens?type=beta → Generate new token</p><ul><li>名稱：<span class="kbd">claude-temp-7days</span></li><li>Expiration：<strong>7 days</strong> ⚠ 不要選 No expiration</li><li>Repository access：Only select repositories → 只勾 99dodo/mystock-analysis ⚠ 不要選 All</li></ul></div></div>
-<div class="step"><div class="step-num">4</div><div><h3>設權限（地雷區）</h3><p>Permissions → Repository permissions → Contents → 選 Read and write ⚠ 不要選 Admin</p><p>其他全部 No access → Generate token → 複製 <span class="kbd">github_pat_...</span></p><div class="alert alert-warn">注意：這頁關掉就看不到 Token，要馬上複製貼給 Claude 用。</div></div></div>
+<div class="step"><div class="step-num">3</div><div><h3>建 Token</h3><p>網址：https://github.com/settings/tokens?type=beta → 點綠色的 <span class="kbd">Generate new token</span></p><ul><li>Token name：<span class="kbd">99dodo-mystock-push</span>（讓你以後知道這是幹嘛的）</li><li>Expiration：選 <strong>90 days</strong> 就好，到期再重產生，比較安全</li><li>Description：可不填</li></ul></div></div>
+<div class="step"><div class="step-num">4</div><div><h3>選倉庫（最重要，不要選全部）</h3><ul><li>Resource owner：選 <span class="kbd">99dodo</span></li><li>Repository access：選 <span class="kbd">Only select repositories</span></li><li>下面下拉，只勾 <span class="kbd">mystock-analysis</span>，其他都不要勾</li></ul><div class="alert alert-info">這樣就算 Token 外洩，別人也只能動這一個倉庫，不能動你別的倉庫。</div></div></div>
+<div class="step"><div class="step-num">5</div><div><h3>選權限（最小權限）</h3><p>往下滑到 <span class="kbd">Permissions</span> → <span class="kbd">Repository permissions</span>，只開這兩個就好，其他都保持 <span class="kbd">No access</span>：</p><ul><li>Contents：選 <span class="kbd">Read and write</span>（才能 push html 上去）</li><li>Metadata：它會自動變 <span class="kbd">Read-only</span>，不用理它</li></ul></div></div>
+<div class="step"><div class="step-num">6</div><div><h3>產生並複製 Token</h3><p>按最下面的 <span class="kbd">Generate token</span>，產生後會給你一串 <span class="kbd">github_pat_xxxxxx</span>，按旁邊的複製圖示複製起來。</p><div class="alert alert-warn">注意：這頁關掉就看不到 Token，要馬上複製貼給 Claude 用。</div></div></div>
 </div>
 
 <div class="card">
@@ -72,21 +74,21 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:30px 0}
 
 <div class="card">
 <h2><span class="badge info">Phase 4</span> 第四階段：去 Claude 執行</h2>
-<div class="step"><div class="step-num">5</div><div><h3>開新對話</h3><p>Claude 點 + New chat → 迴紋針 📎 上傳改好的 SKILL.md</p></div></div>
-<div class="step"><div class="step-num">6</div><div><h3>貼開場白</h3><div class="code">請讀取 SKILL.md，執行 tw-stock-initial-analysis。
+<div class="step"><div class="step-num">7</div><div><h3>開新對話</h3><p>Claude 點 + New chat → 迴紋針 📎 上傳改好的 SKILL.md</p></div></div>
+<div class="step"><div class="step-num">8</div><div><h3>貼開場白</h3><div class="code">請讀取 SKILL.md，執行 tw-stock-initial-analysis。
 
 我要分析 6202
 Repo: https://github.com/99dodo/mystock-analysis
 Token: github_pat_... (貼上你的)
 
 請從第一步現金流六大規則開始</div></div></div>
-<div class="step"><div class="step-num">7</div><div><h3>給現金流截圖</h3><p>它會給你 Goodinfo 連結，你點開截 總表 + 往下捲的投資/融資細項 一起給它</p><div class="alert alert-info">⚠️ 只給總表，規則二三四會不準，因為 B 可能是理財調度，C 可能是增資不是借錢。</div></div></div>
-<div class="step"><div class="step-num">8</div><div><h3>確認永久網址</h3><div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html</code><span class="badge ok">永久版</span></div><p>點得開就是成功，關電腦也在。</p><p><span class="kbd">github.com/.../blob/main/...</span> 是看程式碼，<span class="kbd">99dodo.github.io</span> 才是漂亮網頁。</p></div></div>
+<div class="step"><div class="step-num">9</div><div><h3>給現金流截圖</h3><p>它會給你 Goodinfo 連結，你點開截 總表 + 往下捲的投資/融資細項 一起給它</p><div class="alert alert-info">⚠️ 只給總表，規則二三四會不準，因為 B 可能是理財調度，C 可能是增資不是借錢。</div></div></div>
+<div class="step"><div class="step-num">10</div><div><h3>確認永久網址</h3><div class="linkbox"><code>https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html</code><span class="badge ok">永久版</span></div><p>點得開就是成功，關電腦也在。</p><p><span class="kbd">github.com/.../blob/main/...</span> 是看程式碼，<span class="kbd">99dodo.github.io</span> 才是漂亮網頁。</p></div></div>
 </div>
 
 <div class="card">
 <h2><span class="badge ok">Phase 5</span> 第五階段：收尾</h2>
-<div class="step"><div class="step-num">9</div><div><h3>Token 怎麼處理</h3><div class="alert alert-ok"><strong>方案 A（最安全）：用完即丟</strong> - 做完馬上回 Token 設定頁按 Delete，下次再建</div><div class="alert alert-info"><strong>方案 B（你現在用的）：留 7 天</strong> - 7 天內跑別檔共用，8/11 自動過期</div></div></div>
+<div class="step"><div class="step-num">11</div><div><h3>Token 怎麼處理</h3><div class="alert alert-ok"><strong>方案 A（最安全）：用完即丟</strong> - 做完馬上回 Token 設定頁按 Delete，下次再建</div><div class="alert alert-info"><strong>方案 B（你現在用的）：留 90 天</strong> - 90 天內跑別檔共用，到期自動失效，之後照 Phase 2 步驟重新產生一組即可</div></div></div>
 <h3>🔴 絕對不能做的事</h3>
 <div class="alert alert-warn">
 ❌ 把 github_pat_... 貼到 Facebook、Line、公開社團<br>
