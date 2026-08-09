@@ -14,444 +14,234 @@
   --shadow:0 2px 12px rgba(44,62,80,0.06); --shadow-hover:0 8px 24px rgba(44,62,80,0.10); --radius:12px;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
 .container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
-nav.stepnav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;margin:-24px -20px 32px;display:flex;gap:8px;overflow-x:auto;}
-nav.stepnav a{white-space:nowrap;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s;}
-nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+nav.stepnav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;margin:-24px -20px 32px;display:flex;gap:8px;overflow-x:auto}
+nav.stepnav a{white-space:nowrap;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
-nav.stepnav a.disabled{opacity:.45;pointer-events:none;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-bottom:24px;transition:box-shadow .2s;}
+nav.stepnav a.disabled{color:#B7C0CC;pointer-events:none;background:#F3F4F5}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-bottom:24px;transition:box-shadow .2s}
 .card:hover{box-shadow:var(--shadow-hover)}
-.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px;}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px}
 .card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
-.card h4{margin:18px 0 8px;font-size:14.5px;color:var(--accent)}
-.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;}
-.highlight.warn{background:#FFF8E6;border-left-color:#E8A020;}
-.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C;}
-.highlight.ok{background:#F0F9F4;border-left-color:#2E7D6F;}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0}
+.highlight.warn{background:#FFF8E6;border-left-color:#E8A020}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C}
 .highlight b{color:var(--text)}
 .highlight .red{color:#C0392B;font-weight:600}
-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:13.5px;}
-th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);font-size:11.5px;letter-spacing:0.4px;text-transform:uppercase;}
-td{padding:10px 12px;border-bottom:1px solid #F1F2F3;color:var(--text);}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:13.5px}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);font-size:11.5px;letter-spacing:0.4px;text-transform:uppercase}
+td{padding:10px 12px;border-bottom:1px solid #F1F2F3;color:var(--text)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#FAFBFC}
 .positive{color:#2E7D6F;font-weight:600}
 .negative{color:#C0392B;font-weight:600}
-.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:20px 0;}
-.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:20px 0}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .header h1{margin:0;font-size:26px;font-weight:700}
 .header .sub{color:var(--muted);font-size:14px;margin-top:6px}
-.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px;}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px}
 .score .num{font-size:32px;font-weight:700;color:var(--accent)}
 .score .label{font-size:12px;color:var(--muted);margin-top:4px}
-.rulecard{border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin:14px 0;background:#FCFCFB;}
-.rulecard .rscore{float:right;font-weight:700;color:var(--accent)}
-.note{font-size:12.5px;color:var(--muted);margin-top:6px}
-footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;border-top:1px solid var(--border);}
+.rulegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+.rulecard{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--bg)}
+.rulecard .rn{font-size:12px;color:var(--muted)}
+.rulecard .rs{font-size:26px;font-weight:700;color:var(--accent);margin:4px 0}
+.rulecard.warn .rs{color:#C0392B}
+.rulecard .rt{font-size:13px;color:var(--text)}
+.footer-note{color:var(--muted);font-size:12.5px;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="container">
   <nav class="stepnav">
-    <a href="#step1" class="done">1.現金流盲測</a>
-    <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="done">3.法說會</a>
-    <a href="#step4" class="done">4.營收趨勢</a>
-    <a href="#step5" class="done">5.前瞻本益比</a>
-    <a href="#step6" class="active">6.投資決策</a>
+    <a href="#step1" class="active" id="nav1">1.現金流盲測</a>
+    <a href="#" class="disabled" id="nav2">2.基本資訊</a>
+    <a href="#" class="disabled" id="nav3">3.法說會</a>
+    <a href="#" class="disabled" id="nav4">4.營收趨勢</a>
+    <a href="#" class="disabled" id="nav5">5.前瞻本益比</a>
+    <a href="#" class="disabled" id="nav6">6.投資決策</a>
   </nav>
 
   <div class="header">
     <div>
-      <h1>3231 緯創 初步分析報告</h1>
-      <div class="sub">進度：第 6 步／共 6 步（完成） · 最後更新 2026/08/09</div>
+      <h1>3231 緯創</h1>
+      <div class="sub">初步分析報告 · 2026/08/09 · 目前完成：第1步／共6步</div>
     </div>
     <div class="score">
-      <div class="num">48.3</div>
-      <div class="label">核心六規則平均（Step1）</div>
+      <div class="num">55</div>
+      <div class="label">核心六規則平均</div>
     </div>
   </div>
 
   <div class="card" id="step1">
-    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析（盲測）】</h2>
+    <div class="highlight risk">
+      <b>⚠️ 核心警訊：</b> 2025年與2026上半年連續出現「<b>A營業現金流為負 + C融資活動大幅為正</b>」的最嚴重疊加訊號（2025年A=-1,058億/C=+2,172億；26H1 A=-2,514億/C=+2,623億），且核心六規則平均僅 <b>55%（&lt;60%門檻）</b>。這代表本業近兩年沒有淨收到現金，擴張幾乎全靠舉債支撐。同時稅前獲利(D)持續強勁成長(243→400→763億)，屬於「帳上賺很多、但現金被龐大營運資金卡住+靠借錢周轉」的高成長型態，需要進一步釐清這是健康的規模擴張，還是體質風險。
+    </div>
+
+    <h3>1-0 資料來源與盲測聲明</h3>
+    <p>本步驟為盲測階段，僅根據使用者提供的現金流量表數字進行客觀判斷，未查詢或引用股價、EPS背景意義、產業地位、新聞。資料來源：使用者提供 Goodinfo 截圖，共3張（年度總表回溯至2001年、2024Q3~2026Q2營業/投資/融資細項、2022Q4~2024Q3營業/投資/融資細項）。特別注意：年度總表最新一列標示「26Q2」，經與季度細項比對後確認實際為<b>2026上半年(H1)累計數字</b>，而非單一季度，本報告已按此口徑呈現，避免誤讀。</p>
+
+    <h3>1-1 現金流量總表（單位：億元）</h3>
+    <table>
+      <tr><th>年度</th><th>A營業</th><th>B投資</th><th>C融資</th><th>D稅前淨利</th><th>期末E</th><th>A&gt;D</th></tr>
+      <tr><td>26H1(累計,非單季)</td><td class="negative">-2,514</td><td class="negative">-323</td><td class="positive">2,623</td><td>546</td><td>1,232</td><td>—(半年度不計分)</td></tr>
+      <tr><td>2025</td><td class="negative">-1,058</td><td class="negative">-435</td><td class="positive">2,172</td><td>763</td><td>1,445</td><td class="negative">✗</td></tr>
+      <tr><td>2024</td><td class="positive">57.5</td><td class="negative">-201</td><td class="positive">129</td><td>400</td><td>799</td><td class="negative">✗</td></tr>
+      <tr><td>2023</td><td class="positive">482</td><td class="negative">-147</td><td class="negative">-232</td><td>243</td><td>760</td><td class="positive">✓</td></tr>
+      <tr><td>2022</td><td class="positive">534</td><td class="negative">-167</td><td class="negative">-484</td><td>247</td><td>663</td><td class="positive">✓</td></tr>
+      <tr><td>2021</td><td class="negative">-215</td><td class="negative">-166</td><td class="positive">446</td><td>192</td><td>702</td><td class="negative">✗</td></tr>
+      <tr><td>2020</td><td class="negative">-107</td><td class="negative">-163</td><td class="positive">510</td><td>168</td><td>695</td><td class="negative">✗</td></tr>
+      <tr><td>2019</td><td class="positive">186</td><td class="negative">-87.8</td><td class="negative">-50.5</td><td>128</td><td>474</td><td class="positive">✓</td></tr>
+      <tr><td>2018</td><td class="positive">41.6</td><td class="negative">-142</td><td class="negative">-136</td><td>96.6</td><td>435</td><td class="negative">✗</td></tr>
+      <tr><td>2017</td><td class="negative">-131</td><td class="negative">-102</td><td class="positive">334</td><td>61.6</td><td>660</td><td class="negative">✗</td></tr>
+      <tr><td>2016</td><td class="positive">454</td><td class="negative">-108</td><td class="negative">-349</td><td>47.6</td><td>576</td><td class="positive">✓</td></tr>
+    </table>
+    <p class="footer-note">資料來源：使用者提供 Goodinfo 現金流量表截圖（年度總表）。D 採稅前淨利優先。</p>
+
+    <h3>1-2 A 營業現金流趨勢圖（近10年+26H1）</h3>
+    <div class="chart-wrap"><div id="chartA" style="height:340px"></div></div>
+
+    <h3>規則一：A 逐季與逐年成長趨勢</h3>
+    <div class="rulegrid"><div class="rulecard warn"><div class="rn">規則一</div><div class="rs">55</div><div class="rt">A逐季與逐年成長趨勢</div></div></div>
+    <p>緯創的A數字近10年呈現「暴衝暴跌」型態，沒有穩定趨勢可言：2016年454億、2017年翻負-131億、2018-2021年在正負間反覆震盪，2022-2023連兩年轉強(534億、482億)，但2024年驟降到僅57.5億，2025年更翻成-1058億的深度負值，2026上半年單就H1就已經-2514億，比2025全年還深。這不是穩定的本業收錢節奏，而是被巨大的營運資金(存貨、應收帳款)波動主導，通常見於業務規模快速擴張、承接大型訂單的合約製造/組裝型公司。同時要注意的是，稅前獲利(D)這幾年反而是穩定往上的（243→400→763億），代表「生意本身在賺錢」和「現金什麼時候真的進來」是兩件被明顯拉開的事，這正是後面規則五、規則七要深入拆解的重點。</p>
+
+    <h3>規則二：B 投資紀律評估</h3>
+    <div class="rulegrid"><div class="rulecard"><div class="rn">規則二</div><div class="rs">75</div><div class="rt">B投資紀律評估</div></div></div>
+    <p>把B拆開來看，真實資本支出(固定資產增減)是穩定往上成長的：2023年約118億、2024年約151億、2025年約389億，逐年增加但幅度合理，看得出是為了支應業務成長在蓋產能、添設備，不是暴衝式的投機擴產。B總額中還包含不少「其他非流動資產」「其他金融資產」這類調度性質的項目，但主軸還是資本支出的穩定成長，屬於「花錢有紀律」的類型，評為中等偏上。</p>
+
+    <h3>規則三：B 投資效益分析（投資後1-2年A是否轉為成長）</h3>
+    <div class="rulegrid"><div class="rulecard"><div class="rn">規則三</div><div class="rs">60</div><div class="rt">B投資效益分析</div></div></div>
+    <p>由於A被龐大的營運資金波動主導，很難單純用A的變化來判斷資本支出有沒有轉化成本業現金流成長。但如果換個角度看D(稅前獲利)：2023年資本支出加碼(118億)後，2024年D從243億跳升到400億，2025年資本支出再加碼到389億，同期D也從400億跳升到763億——獲利面確實跟著資本支出擴大同步成長，投資有轉化成帳面獲利成長的跡象；只是這個成長目前還沒有反映在現金流量上，這也是規則四、規則五要重點檢查的地方。</p>
+
+    <h3>規則四：C 融資活動合理性（核心警訊）</h3>
+    <div class="rulegrid"><div class="rulecard warn"><div class="rn">規則四</div><div class="rs">35</div><div class="rt">C融資活動合理性</div></div></div>
+    <div class="highlight risk">
+      <b>最高警戒觸發：</b> 2025年與26上半年皆符合「A為負，且C為正數」的最嚴重警訊組合，且細項顯示<b>幾乎全數來自短期借款、公司債、長期借款等舉債工具</b>
+    </div>
+    <table>
+      <tr><th>期間</th><th>A</th><th>C</th><th>C組成（細項加總）</th><th>是否有現金增資</th></tr>
+      <tr><td>2025</td><td class="negative">-1,058億</td><td class="positive">+2,172億</td><td>短期借款+1553／公司債+318／長期借款+247／現金增資+271／股利-110</td><td class="positive">有(僅2025Q2一次271億)</td></tr>
+      <tr><td>26H1</td><td class="negative">-2,514億</td><td class="positive">+2,623億</td><td>短期借款+1864／公司債+637／長期借款+138／現金增資0</td><td class="negative">未見</td></tr>
+    </table>
+    <p>2025年C的+2172億裡，短期借款增加就貢獻了約1553億，是最大來源，同時公司債、長期借款也都在增加，唯一的亮點是2025年Q2曾一次性辦理271億現金增資，代表公司並非完全依賴借款，仍有透過股權募資分攤一部分資金需求。但進入2026上半年後，融資結構變得<b>100%依賴舉債</b>（短期借款+1864億、公司債+637億、長期借款+138億），完全沒有再看到現金增資，且規模比2025全年還大——半年內舉債超過2600億元，這是相當積極的槓桿擴張速度，需要密切留意後續償債壓力與利息費用負擔（從季度細項可看到利息費用支出已從2024Q3的18-20億/季，攀升到2026Q1/Q2的約60-84億/季，成長非常快）。</p>
+
+    <h3>規則五：A &gt; D 現金流品質（嚴格二分法）</h3>
+    <div class="rulegrid"><div class="rulecard warn"><div class="rn">規則五</div><div class="rs">40</div><div class="rt">A&gt;D現金流品質</div></div></div>
+    <p>近10年（2016-2025）A&gt;D僅通過4年（2016、2019、2022、2023），通過率<b>40%</b>，且近兩年(2024、2025)皆未通過，2025年的落差更是懸殊（D=763億 vs A=-1058億，差距達1821億），是明顯的「帳面有賺，現金沒進來」型，且情況在惡化中而非改善。這是本次盲測最主要的體質疑慮，詳細成因見規則七拆解。</p>
+
+    <h3>規則六：E 期末現金餘額穩定性</h3>
+    <div class="rulegrid"><div class="rulecard"><div class="rn">規則六</div><div class="rs">65</div><div class="rt">E期末現金餘額穩定性</div></div></div>
+    <div class="chart-wrap"><div id="chartE" style="height:340px"></div></div>
+    <p>期末現金餘額從2022年663億持續成長到2025年1445億，看似穩健向上，但這個成長主要是靠融資活動撐起來的，不是本業現金流貢獻。進入2026上半年，E從1445億降到1232億（減少約213億），代表即使半年內多借了2623億，仍不足以完全覆蓋-2514億的營業現金流出加上-323億的投資支出，現金水位出現近幾年首次的季度性下滑，值得後續追蹤是否為短期現象。</p>
+
+    <h3>規則七：淨利與現金流落差拆解（本步驟必做重點）</h3>
+    <div class="rulegrid"><div class="rulecard"><div class="rn">規則七</div><div class="rs">70</div><div class="rt">淨利現金流落差拆解</div></div></div>
+    <table>
+      <tr><th>期間</th><th>D稅前淨利</th><th>A營業現金流</th><th>落差</th><th>主要原因（細項）</th></tr>
+      <tr><td>2025全年</td><td>763億</td><td>-1,058億</td><td>1,821億</td><td>應收帳款全年增加約1,690億、存貨增加約2,432億，是最大兩個消耗現金的項目；應付帳款增加約2,131億部分抵銷，但仍不足以打平巨大的應收+存貨增幅</td></tr>
+      <tr><td>26H1</td><td>546億</td><td>-2,514億</td><td>3,060億</td><td>Q1單季存貨暴增-2,513億(單季)是最大單一因素，加上Q1應收帳款增加-1,422億；Q2存貨轉為+776.6億(釋放現金)但被「其他流動資產」-1,158億與應付帳款減少-1,404億抵銷</td></tr>
+    </table>
+    <p>2025全年與26上半年的D與A落差，主要原因都指向同一件事：<b>存貨與應收帳款在快速膨脹</b>，這是典型的「訂單能見度很好、但要先墊錢買料生產，客戶還沒付款」的成長型公司現金流模式。如果這是因為承接了大型客戶的長期訂單、產能利用率提升帶動的正常備貨與出貨在途，那麼隨著這批訂單陸續出貨收現，A有機會在未來幾季回升；但如果存貨堆積是因為賣不掉、庫存去化出問題，那就是真正的警訊。這一點光靠現金流量表無法判斷客戶結構與訂單品質，需要在第2、3步查詢基本面與法說會內容才能進一步驗證。</p>
+
+    <h3>規則八：股利發放現金流可持續性</h3>
+    <div class="rulegrid"><div class="rulecard warn"><div class="rn">規則八</div><div class="rs">30</div><div class="rt">股利發放可持續性</div></div></div>
+    <div class="chart-wrap"><div id="chartDiv" style="height:340px"></div></div>
+    <table>
+      <tr><th>年度</th><th>A</th><th>CapEx(固定資產)</th><th>FCF=A-CapEx</th><th>現金股利</th><th>保障倍數</th><th>標籤</th></tr>
+      <tr><td>2023</td><td>482億</td><td>118億</td><td>364億</td><td>74億</td><td class="positive">4.92</td><td>真金白銀</td></tr>
+      <tr><td>2024</td><td>57.5億</td><td>151億</td><td>-93.6億</td><td>74.6億</td><td class="negative">-1.25</td><td>借錢配息</td></tr>
+      <tr><td>2025</td><td>-1,058億</td><td>389億</td><td>-1,447億</td><td>110億</td><td class="negative">-13.15</td><td>借錢配息</td></tr>
+    </table>
+    <p>股利可持續性呈現明顯惡化趨勢：2023年還是保障倍數4.92倍的真金白銀型，2024年就轉為FCF覆蓋不了股利(-1.25倍)，2025年更惡化到-13.15倍——換算下來，公司近兩年發放的股利，本質上都是靠借來的錢或帳上現金餘額在支應，不是本業真正賺到的閒錢。若這個模式持續下去，存股族需要特別留意股利的可持續性。</p>
+
+    <h3>1-10 評分總表</h3>
+    <table>
+      <tr><th>規則</th><th>分數</th><th>屬性</th></tr>
+      <tr><td>規則一：A逐季逐年成長趨勢</td><td>55</td><td>核心</td></tr>
+      <tr><td>規則二：B投資紀律評估</td><td>75</td><td>核心</td></tr>
+      <tr><td>規則三：B投資效益分析</td><td>60</td><td>核心</td></tr>
+      <tr><td>規則四：C融資活動合理性</td><td class="negative">35</td><td>核心</td></tr>
+      <tr><td>規則五：A&gt;D現金流品質</td><td class="negative">40</td><td>核心</td></tr>
+      <tr><td>規則六：E期末現金餘額穩定性</td><td>65</td><td>核心</td></tr>
+      <tr><td><b>核心六規則平均</b></td><td class="negative"><b>55.0</b></td><td>—</td></tr>
+      <tr><td>規則七：淨利現金流落差拆解（進階）</td><td>70</td><td>進階</td></tr>
+      <tr><td>規則八：股利發放可持續性（進階）</td><td class="negative">30</td><td>進階</td></tr>
+      <tr><td><b>八規則完整總分</b></td><td><b>53.75</b></td><td>—</td></tr>
+    </table>
 
     <div class="highlight risk">
-      <b>關卡判斷：</b> 核心六規則平均 <b>48.3%</b>，低於 60% 門檻，屬「需觀察」。更重要的是，本次盲測<span class="red">重複出現「A為負＋C為正」的最高警戒訊號</span>（2020、2021、2025、2026H1共四次），且2025年落差規模遠大於過往。本框架建議：現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面。
+      <b>1-11 關卡判斷：</b> 核心六規則平均為 <b>55.0%（&lt;60%門檻）</b>，且2025年與26上半年皆出現「A為負＋C為正」的最嚴重疊加訊號。依照本框架的關卡規則，<b>這檔現金流體質偏弱／有風險訊號，建議先不繼續深入，除非你仍想往下看基本面</b>。<br><br>
+      需要說明的是：這個結果不必然代表公司出問題，比較可能的解讀是「業務規模正在快速擴張(可能是承接大型客戶訂單)，需要大量墊付營運資金，暫時靠舉債周轉」——這種模式常見於快速成長的大型組裝/製造業，重點在於：①這些存貨與應收帳款最終能不能順利變現、②舉債速度是否可控、③獲利成長能否持續支撐。這些問題現金流量表本身回答不了，需要第2步查基本面、第3步聽法說會公司自己怎麼解釋，才能判斷這是「健康的規模化」還是「體質風險」。是否要繼續看下去，由你決定。
     </div>
 
-    <h3>1-0 五個核心代號 與 資料來源</h3>
-    <table>
-      <tr><th>代號</th><th>意義</th><th>本次資料來源</th></tr>
-      <tr><td>A</td><td>營業活動現金流量</td><td>Goodinfo 現金流量表總表（年度）</td></tr>
-      <tr><td>B</td><td>投資活動現金流量</td><td>總表 + 投資活動細項（2022Q4–2026Q2，單季揭露，逐季加總還原年度）</td></tr>
-      <tr><td>C</td><td>融資活動現金流量</td><td>總表 + 融資活動細項（2022Q4–2026Q2，單季揭露，逐季加總還原年度）</td></tr>
-      <tr><td>D</td><td>稅前淨利（優先採用）</td><td>總表</td></tr>
-      <tr><td>E</td><td>期末現金餘額</td><td>總表</td></tr>
-    </table>
-    <div class="note">重要說明：緯創揭露的季度現金流量表為「單季」數字，已用「Q1+Q2+Q3+Q4加總」方式還原年度數字，並與總表年度數字比對驗證(誤差在1%以內)。2023、2024、2025三年細項齊全；2022年僅Q4細項；2026僅H1(Q1+Q2)累計，屬快照，不列入年度評分。此步驟嚴格遵守盲測原則，未查詢或引用股價、EPS、產業地位、新聞背景。</div>
-
-    <h3>1-1 年度現金流量核心數據（單位：億元）</h3>
-    <table>
-      <tr><th>年度</th><th>A 營業</th><th>B 投資</th><th>C 融資</th><th>D 稅前淨利</th><th>E 期末餘額</th><th>A vs D</th></tr>
-      <tr><td>2016</td><td class="positive">454</td><td class="negative">-108</td><td class="negative">-349</td><td>47.6</td><td>576</td><td class="positive">通過</td></tr>
-      <tr><td>2017</td><td class="negative">-131</td><td class="negative">-102</td><td class="positive">334</td><td>61.6</td><td>660</td><td class="negative">不通過</td></tr>
-      <tr><td>2018</td><td class="positive">41.6</td><td class="negative">-142</td><td class="negative">-136</td><td>96.6</td><td>435</td><td class="negative">不通過</td></tr>
-      <tr><td>2019</td><td class="positive">186</td><td class="negative">-87.8</td><td class="negative">-50.5</td><td>128</td><td>474</td><td class="positive">通過</td></tr>
-      <tr><td>2020</td><td class="negative">-107</td><td class="negative">-163</td><td class="positive">510</td><td>168</td><td>695</td><td class="negative">不通過</td></tr>
-      <tr><td>2021</td><td class="negative">-215</td><td class="negative">-166</td><td class="positive">446</td><td>192</td><td>702</td><td class="negative">不通過</td></tr>
-      <tr><td>2022</td><td class="positive">534</td><td class="negative">-167</td><td class="negative">-484</td><td>247</td><td>663</td><td class="positive">通過</td></tr>
-      <tr><td>2023</td><td class="positive">482</td><td class="negative">-147</td><td class="negative">-232</td><td>243</td><td>760</td><td class="positive">通過</td></tr>
-      <tr><td>2024</td><td class="positive">57.5</td><td class="negative">-201</td><td class="positive">129</td><td>400</td><td>799</td><td class="negative">不通過</td></tr>
-      <tr><td>2025</td><td class="negative">-1,058</td><td class="negative">-435</td><td class="positive">2,172</td><td>763</td><td>1,445</td><td class="negative">不通過(嚴重)</td></tr>
-      <tr><td>2026 H1<br><span class="note" style="margin:0">(累計快照)</span></td><td class="negative">-2,514</td><td class="negative">-323</td><td class="positive">2,623</td><td>546</td><td>1,232</td><td>—</td></tr>
-    </table>
-
-    <div class="chart-wrap"><div id="chartA" style="height:300px"></div></div>
-    <div class="chart-wrap"><div id="chartB" style="height:300px"></div></div>
-    <div class="chart-wrap"><div id="chartE" style="height:280px"></div></div>
-
-    <h3>1-2 擬人化解讀</h3>
-    <p>緯創的現金流個性可以概括為 <b>「訂單一來就先掏空口袋」型</b>：A 在十年間反覆劇烈翻轉正負（2016年+454億 → 2017年-131億 → 2022年+534億 → 2025年-1,058億），完全看不出穩定方向。這種劇烈震盪與被動元件、IC設計等公司的體質完全不同——緯創是電子代工(ODM/EMS)廠，A的正負很大程度取決於「這一季有沒有大單要出貨」：接到大單時要先墊付原料、堆存貨、給客戶帳期(應收帳款)，現金流反而是負的；等到出貨收款後現金流才會反轉為正。2025年到2026上半年的深度負值（-1,058億、-2,514億），規模遠超過去任何一年，符合「正在承接一筆規模空前的大單，正處於墊款高峰期」的特徵，但也代表帳上現金消耗速度與規模都創下歷史新高，需要密切關注這筆墊款能否如期在後續季度轉換回收現金。</p>
-
-    <h3>1-3 八大規則詳細分析</h3>
-
-    <div class="rulecard">
-      <span class="rscore">40 分</span>
-      <h4>規則一：A 逐季與逐年成長趨勢</h4>
-      <p>十年間A在正負間反覆劇烈翻轉，2016年+454億、2022年+534億是高峰，2025年-1,058億、2026H1-2,514億是史上最深負值，波動幅度大且無法預測方向。作為代工廠，這種波動部分反映客戶訂單週期，但波動的絕對規模持續放大（尤其近兩年），趨勢本身難以判斷是否收斂，給偏低分數。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">65 分</span>
-      <h4>規則二：B 投資紀律評估</h4>
-      <p>細項顯示B主要由固定資產(CapEx)構成，且逐年放大：2023年118億、2024年151億、2025年389億，佔B總額比重高（2025年389億佔總B 435億的89%），投資標的集中且逐年擴大，符合為承接大型AI伺服器組裝訂單擴充產能的敘事，不是分散的財務性投資。紀律本身尚可，但擴產速度快(2025年CapEx較2024年成長逾150%)，需留意是否過度超前投資，給中等偏上分數。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">50 分</span>
-      <h4>規則三：B 投資效益分析</h4>
-      <p>2025年CapEx暴增至389億，理應在後續1-2年內帶動A轉強驗證投資效益，但目前僅有2026H1數據，且H1的A本身處於深度負值（受營運資金消耗主導，非投資效益問題），尚無法判斷這波大規模資本支出是否成功轉化為穩定現金流貢獻，效益驗證期尚短，給中性分數保留判斷。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">25 分</span>
-      <h4>規則四：C 融資活動合理性（核心警訊・本次盲測最大扣分項）</h4>
-      <p><b>本次盲測共發現四次「A為負＋C為正」的最高警戒組合：2020年(A=-107,C=+510)、2021年(A=-215,C=+446)、2025年(A=-1,058,C=+2,172)、2026H1(A=-2,514,C=+2,623)。</b>這不是單一年度特例，而是重複出現且規模持續放大的模式，2025年與2026H1的規模更是歷史前所未見。細項顯示2025年C的組成主要是短期借款增加約1,553億、公司債發行淨額約318億、長期借款增加約247億，另外Q2單季出現一筆271.3億的現金增資（真實股權募資，非全數舉債）。整體而言絕大部分是靠短期借款與發債支應營運資金缺口，只有一小部分是股權募資，屬於典型「大單來了先借錢墊款」的代工廠融資模式，規模與頻率都達到需要高度關注的程度。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">40 分</span>
-      <h4>規則五：A &gt; D 現金流品質（嚴格二分法）</h4>
-      <p>2016–2025 共 10 年，僅 2016、2019、2022、2023 共 4 年通過，通過率 <b>40%</b>。且未通過年度中，2020、2021、2024、2025 的落差比例都超過50%（詳見規則七），顯示帳面獲利與實際現金入帳之間長期存在巨大落差，是代工業常見的「訂單接了、錢卻還沒收到」現象，但落差幅度與頻率都偏高。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">70 分</span>
-      <h4>規則六：E 期末現金餘額穩定性</h4>
-      <p>E 在 2016–2024 間於 435–799 億區間波動，沒有崩塌趨勢；2025年更跳升至1,445億新高（可能反映大量舉債墊款尚未轉出），2026H1回落至1,232億但仍遠高於歷史常態。長期沒有惡化跡象，但2025-2026的異常高水位本身是舉債堆出來的，並非單純獲利累積，穩定性給中上分數但需註記成因特殊。</p>
-    </div>
-
-    <div class="rulecard">
-      <h4>規則七：淨利與現金流落差拆解（規則五不通過且落差&gt;50%之年度必做：2020、2021、2024、2025，本次以落差最大的2025年詳細拆解，2020/2021/2024列為歷史型態確認）</h4>
-      <table>
-        <tr><th>年度</th><th>應收帳款變動</th><th>存貨變動</th><th>應付帳款變動</th><th>模式</th></tr>
-        <tr><td>2025</td><td class="negative">-2,336億(暴增)</td><td class="negative">-1,690億(暴增)</td><td class="positive">+1,822億(部分抵銷)</td><td>典型大單墊款：收不到錢+堆存貨</td></tr>
-      </table>
-      <p><b>2025年落差主因：</b>應收帳款暴增2,336億、存貨暴增1,690億，即使應付帳款也同步增加1,822億部分抵銷供應商端的資金壓力，淨營運資金消耗仍高達約2,200億以上，這正是A從稅前淨利763億轉為-1,058億的主因。這個型態高度符合「接到巨型訂單，出貨給客戶但錢還沒收到、同時要囤更多原料存貨因應」的代工業特徵，比較像是business正在快速擴張的正常現象，而非獲利造假或收入認列異常；但風險在於：一旦客戶延遲付款或訂單有變，這筆巨額應收帳款與存貨的收現風險會直接衝擊公司現金部位。2020、2021、2024年的落差型態方向類似(應收/存貨增加為主)，只是規模遠小於2025年，顯示這種「先墊款後回收」的模式是緯創長期以來的常態，只是2025年的規模達到歷史新高，值得高度關注。</p>
-    </div>
-
-    <div class="rulecard">
-      <span class="rscore">15 分（進階規則・獨立呈現・本次盲測次要扣分重點）</span>
-      <h4>規則八：股利發放現金流可持續性</h4>
-      <table>
-        <tr><th>年度</th><th>A</th><th>CapEx</th><th>FCF=A-CapEx</th><th>現金股利</th><th>保障倍數</th><th>個性</th></tr>
-        <tr><td>2023</td><td>482</td><td>118</td><td class="positive">364</td><td>74.0</td><td class="positive">4.92</td><td>真金白銀</td></tr>
-        <tr><td>2024</td><td>57.5</td><td>151</td><td class="negative">-93.6</td><td>74.6</td><td class="negative">-1.25</td><td class="red">借錢配息</td></tr>
-        <tr><td>2025</td><td>-1,058</td><td>389</td><td class="negative">-1,447</td><td>110</td><td class="negative">-13.15</td><td class="red">嚴重借錢配息</td></tr>
-      </table>
-      <div class="chart-wrap"><div id="chartFCF" style="height:280px"></div></div>
-      <p><b>個性標籤：</b>2023年FCF健康覆蓋股利近5倍，屬真金白銀型；但2024、2025連續兩年FCF轉為深度負值，仍照常配發74.6億、110億現金股利，形成規則8定義的<span class="red">「借錢配息」型</span>，2025年保障倍數-13.15更是嚴重負值，代表當年配息完全靠舉債或既有現金部位支應，不是本業現金流賺來的錢，是本次盲測第二大警訊，存股族需高度留意。</p>
-    </div>
-
-    <h3>1-4 總評分與關卡建議</h3>
-    <table>
-      <tr><th>規則</th><th>分數</th></tr>
-      <tr><td>一、A 趨勢</td><td>40</td></tr>
-      <tr><td>二、B 投資紀律</td><td>65</td></tr>
-      <tr><td>三、B 投資效益</td><td>50</td></tr>
-      <tr><td>四、C 融資合理性</td><td>25</td></tr>
-      <tr><td>五、A&gt;D 品質</td><td>40</td></tr>
-      <tr><td>六、E 穩定性</td><td>70</td></tr>
-      <tr><td><b>核心六規則平均</b></td><td><b>48.3</b></td></tr>
-      <tr><td>八、股利可持續性（進階，不納入核心平均）</td><td>15</td></tr>
-    </table>
-    <div class="highlight risk">
-      <b>關卡建議：</b> 核心六規則平均 <b>48.3%</b>，低於60%門檻，且重複觸發「A為負＋C為正」最高警戒組合達四次(2020、2021、2025、2026H1)，2025年規模更創歷史新高，同時觸發規則八「借錢配息」警訊(2024-2025連續兩年)。本框架建議<span class="red">先不繼續深入基本面分析，除非你仍想往下看</span>。若要續看，強烈建議在Step2查證：①2025-2026這筆巨額應收帳款背後的客戶是誰、付款條件與信用風險；②公司負債比與利息覆蓋倍數是否仍在安全水位；③管理層對這波營運資金消耗的官方說法與預期收現時間。
-    </div>
-
-    <footer class="src">
-      資料來源：使用者提供 Goodinfo 現金流量表截圖（總表 2006–2026Q2；投資／融資活動細項 2022Q4–2026Q2，單季揭露已逐季加總還原年度數字並與總表核對）。本步驟為盲測階段，未查詢或引用股價、EPS、產業地位、新聞背景，相關資訊將於第 2 步之後另行查證。本版為完全獨立重新分析，未參考repo中先前v1.3版本之結論或分數。
-    </footer>
+    <p class="footer-note">資料來源：使用者提供 Goodinfo 截圖（現金流量表總表、2024Q3~2026Q2營業/投資/融資細項、2022Q4~2024Q3營業/投資/融資細項）。本步驟為盲測，未查詢股價、EPS意義、產業地位、新聞背景。報告版本 v1.0，生成時間 2026/08/09。</p>
   </div>
 
-  <div class="card" id="step2">
-    <h2>【第 2 步／共 6 步：基本資訊查詢】</h2>
-    <table>
-      <tr><th>項目</th><th>數值</th><th>備註</th></tr>
-      <tr><td>收盤價</td><td>183.5 元</td><td>2026/08/07，+3.17%，近三日下跌合計5.9%</td></tr>
-      <tr><td>本益比</td><td>約18.5-19倍</td><td>同業平均約31.7倍，明顯偏低</td></tr>
-      <tr><td>52週高／低</td><td>202.50 ／ 109.00 元</td><td></td></tr>
-      <tr><td>近四季EPS</td><td>10.22元</td><td></td></tr>
-      <tr><td>26Q2 EPS</td><td>4.72元</td><td>季增53.95%，年增1.28倍</td></tr>
-      <tr><td>26H1 EPS</td><td>7.78元</td><td>與Step1現金流表D=546億(稅前)吻合</td></tr>
-      <tr><td>毛利率</td><td>5.56%(26Q2)</td><td>ODM代工業典型薄利特徵</td></tr>
-      <tr><td>每股淨值</td><td>36.36元</td><td>股價淨值比約5倍</td></tr>
-      <tr><td>年股利</td><td>5.50元</td><td>殖利率約2.85%，已連續21年配息</td></tr>
-    </table>
-    <div class="highlight risk">
-      <b>⚠ 重大現增/GDR募資，直接對應Step1的財務槓桿疑慮：</b>緯創8月5日公告將投資175億元同步布局台灣、越南與美國，並發行約2.5億股GDR募資（規模約450億元），用於美國德州D2廠兩倍產能擴建及新竹/高雄/台南AI算力中心建設。這直接印證Step1看到的疑慮：2025年C(融資活動)高達+2,172億、2026H1再+2,623億，主要靠短期借款與發債支應營運資金缺口。這次選擇股權募資（而非全押舉債）是相對正面的訊號，但也代表資金需求規模仍在持續墊高，還沒能靠本業現金流自行消化。
-    </div>
-    <div class="highlight warn">
-      <b>股利延遲發放：</b>現金股利原訂較早發放，但因股務系統問題延遲，最終於2026年8月6日入帳。金管會已表態這是股務作業問題非財務危機，但仍與Step1規則八「借錢配息」疑慮放在一起看，值得留意公司整體營運節奏。
-    </div>
-    <p class="note">資料來源：鉅亨網、Yahoo股市 3231.TW 快照（2026/08/07）。</p>
-  </div>
-
-  <div class="card" id="step3">
-    <h2>【第 3 步／共 6 步：法說會深入討論】</h2>
-    <div class="note">資料來源：鉅亨網「法說會AI摘要」（根據台灣證交所法說會錄音檔AI整理），涵蓋2026/08/04（最新，Q2財報）場次；MOPS原始PDF因robots.txt無法直接讀取，僅附連結。</div>
-    <table>
-      <tr><th>項目</th><th>內容</th></tr>
-      <tr><td>26Q2</td><td>營收8,954.43億(季增5.81%,年增62.43%)，毛利率5.56%，稅後純益148.27億(季增53.95%,年增1.28倍)，EPS 4.72元</td></tr>
-      <tr><td>AI伺服器展望</td><td>「剛性需求」，下半年出貨量/營收優於上半年，客戶滾動預測至2027上半年狀況良好</td></tr>
-      <tr><td>網通交換器</td><td>今年確定超過10倍成長，毛利率與營益率優異</td></tr>
-      <tr><td>PC業務</td><td>因H1提前拉貨，H2預計雙位數衰退(約15%)，但單價提高可能收窄營收跌幅</td></tr>
-      <tr><td>德州新廠</td><td>D1廠已投產GB300，規劃擴充D2廠兩倍產能</td></tr>
-    </table>
-    <div class="highlight risk">
-      <b>⚠ 與Step1直接對話，公司親口承認「高槓桿是產業常態」：</b>法說會Q&amp;A被問到營運資金與高槓桿狀況時，公司回答：因AI產品材料成本高昂且記憶體漲價，高槓桿(high leverage)為目前產業常態，已透過發行GDR(約450億)等多元籌資管道優化資產負債表。這正面回應了Step1看到的「A為負＋C為正」重複警訊——公司自己承認這是整個AI伺服器代工產業的普遍現象，不是緯創獨有異常，但也等於間接證實這確實是需要主動管理的真實風險。
-    </div>
-    <div class="highlight warn">
-      <b>股利延遲發放事件：</b>緯創現金股利原訂7月31日發放，卻二度延後(先延至8/3，再延至8/6)。緯創稱是股務代辦廠商三商電系統疏失，三商電隨即發重訊反駁稱是緯創內部人員資料處理疏失，雙方各執一詞。金管會證期局明確表示：屬資料核對與系統釐清問題，非財務危機，5.5元股利已於8/6全數撥付完畢；但若集保調查認定緯創股務作業有嚴重疏失，最重可能收回自辦股務資格(近例為2020年大同)。<b>我的判讀：</b>金管會官方澄清非財務危機，這點照實傳達；但事件本身仍是治理面警訊，跟Step1看到的現金流體質(核心六規則48.3分、重複觸發最高警戒)放在一起看，公司整體「營運節奏偏緊繃」的印象一致，值得在Step6納入考量。
-    </div>
-    <p>原始簡報：<a href="https://mopsov.twse.com.tw/nas/STR/" target="_blank">MOPS法說會簡報</a>（需自行至公開資訊觀測站查詢，robots.txt無法直接抓取）</p>
-  </div>
-
-  <div class="card" id="step4">
-    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
-    <div class="note">資料來源：使用者提供 Goodinfo 月營收＋股價截圖（2026/08/09上傳）。取得36個月原始資料(2023/08–2026/07)以確保MA12從顯示區間第一個月就完整，圖表顯示近24個月（2024/08–2026/07），單位：億元</div>
-    <div class="chart-wrap"><div id="chartRev" style="height:400px"></div></div>
-    <table>
-      <tr><th>月份</th><th>收盤價</th><th>營收</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>YoY</th></tr>
-      <tr><td>2024/08</td><td>101.5</td><td>898</td><td><span class="badge tag3">Q3</span></td><td>883</td><td>802</td><td class="positive">+23.2%</td></tr>
-      <tr><td>2024/09</td><td>101.0</td><td>969</td><td><span class="badge tag3">Q3</span></td><td>910</td><td>818</td><td class="positive">+24.4%</td></tr>
-      <tr><td>2024/10</td><td>111.0</td><td>963</td><td><span class="badge tag4">Q4</span></td><td>943</td><td>833</td><td class="positive">+22.8%</td></tr>
-      <tr><td>2024/11</td><td>113.5</td><td>952</td><td><span class="badge tag4">Q4</span></td><td>961</td><td>849</td><td class="positive">+24.6%</td></tr>
-      <tr><td>2024/12</td><td>104.0</td><td>1,057</td><td><span class="badge tag4">Q4</span></td><td>991</td><td>874</td><td class="positive">+41.4%</td></tr>
-      <tr><td>2025/01</td><td>110.0</td><td>908</td><td><span class="badge tag1">Q1</span></td><td>972</td><td>894</td><td class="positive">+34.9%</td></tr>
-      <tr><td>2025/02</td><td>112.0</td><td>1,027</td><td><span class="badge tag1">Q1</span></td><td>997</td><td>912</td><td class="positive">+26.6%</td></tr>
-      <tr><td>2025/03</td><td>95.3</td><td>1,530</td><td><span class="badge tag1">Q1</span></td><td>1,155</td><td>965</td><td class="positive">+70.3%</td></tr>
-      <tr><td>2025/04</td><td>101.5</td><td>1,337</td><td><span class="badge tag2">Q2</span></td><td>1,298</td><td>1,016</td><td class="positive">+84.0%</td></tr>
-      <tr><td>2025/05</td><td>116.5</td><td>2,084</td><td><span class="badge tag2">Q2</span></td><td>1,650</td><td>1,123</td><td class="positive">+162.1%</td></tr>
-      <tr><td>2025/06</td><td>122.5</td><td>2,092</td><td><span class="badge tag2">Q2</span></td><td>1,838</td><td>1,223</td><td class="positive">+135.6%</td></tr>
-      <tr><td>2025/07</td><td>123.0</td><td>1,917</td><td><span class="badge tag3">Q3</span></td><td>2,031</td><td>1,311</td><td class="positive">+122.4%</td></tr>
-      <tr><td>2025/08</td><td>113.0</td><td>1,726</td><td><span class="badge tag3">Q3</span></td><td>1,912</td><td>1,380</td><td class="positive">+92.2%</td></tr>
-      <tr><td>2025/09</td><td>140.5</td><td>2,034</td><td><span class="badge tag3">Q3</span></td><td>1,892</td><td>1,469</td><td class="positive">+109.9%</td></tr>
-      <tr><td>2025/10</td><td>150.5</td><td>1,851</td><td><span class="badge tag4">Q4</span></td><td>1,870</td><td>1,543</td><td class="positive">+92.2%</td></tr>
-      <tr><td>2025/11</td><td>144.5</td><td>2,806</td><td><span class="badge tag4">Q4</span></td><td>2,230</td><td>1,697</td><td class="positive">+194.6%</td></tr>
-      <tr><td>2025/12</td><td>150.5</td><td>2,553</td><td><span class="badge tag4">Q4</span></td><td>2,403</td><td>1,822</td><td class="positive">+141.6%</td></tr>
-      <tr><td>2026/01</td><td>130.5</td><td>2,284</td><td><span class="badge tag1">Q1</span></td><td>2,548</td><td>1,937</td><td class="positive">+151.5%</td></tr>
-      <tr><td>2026/02</td><td>136.0</td><td>2,849</td><td><span class="badge tag1">Q1</span></td><td>2,562</td><td>2,089</td><td class="positive">+177.4%</td></tr>
-      <tr><td>2026/03</td><td>122.5</td><td>3,330</td><td><span class="badge tag1">Q1</span></td><td>2,821</td><td>2,239</td><td class="positive">+117.7%</td></tr>
-      <tr><td>2026/04</td><td>137.0</td><td>2,834</td><td><span class="badge tag2">Q2</span></td><td>3,004</td><td>2,363</td><td class="positive">+112.0%</td></tr>
-      <tr><td>2026/05</td><td>158.5</td><td>2,902</td><td><span class="badge tag2">Q2</span></td><td>3,022</td><td>2,432</td><td class="positive">+39.2%</td></tr>
-      <tr><td>2026/06</td><td>158.5</td><td>3,218</td><td><span class="badge tag2">Q2</span></td><td>2,985</td><td>2,525</td><td class="positive">+53.8%</td></tr>
-      <tr><td>2026/07</td><td>176.0</td><td>3,082</td><td><span class="badge tag3">Q3</span></td><td>3,067</td><td>2,622</td><td class="positive">+60.8%</td></tr>
-    </table>
-    <div class="highlight">
-      <b>MA3 vs MA12：</b>MA3從2024/08的883億一路墊高到2026/07的3,067億，MA12也同步從802億爬升到2,622億，24個月間營收基期成長超過3倍，且MA3持續大幅超前MA12——這是「短期動能與長期基期同步墊高」的健康擴張型態，與Step3法說會「AI伺服器剛性需求、下半年優於上半年」的說法高度吻合，也直接對應Step1看到的巨額應收帳款/存貨堆積（訂單真實存在、正在出貨，只是收款與備料的現金時間差還沒完全轉正）。<b>YoY持續三位數：</b>2025/05-2026/03連續11個月YoY超過90%，其中2025/11更高達194.6%，反映AI伺服器代工業務進入爆發性成長階段。<b>季節性：</b>樣本中Q4(10-12月)與Q1(1-3月)YoY數字普遍最強，可能與大型客戶年底/年初拉貨週期有關，但仍需更長期數列驗證。
-    </div>
-  </div>
-
-  <div class="card" id="step5">
-    <h2>【第 5 步／共 6 步：前瞻本益比／EPS預估】</h2>
-    <div class="note">資料來源：使用者提供三份正式投顧報告 — 兆豐投顧(2026/08/05)、統一投顧(2026/08/05)、凱基投顧(2026/08/03)</div>
-    <table>
-      <tr><th>券商</th><th>日期</th><th>收盤價</th><th>評等</th><th>目標價</th><th>2026F EPS</th><th>2027F EPS</th><th>目標價方法</th></tr>
-      <tr><td>兆豐投顧</td><td>08/05</td><td>195元</td><td>買進</td><td>288元</td><td>17.00元</td><td>28.83元</td><td>10×2027F PER</td></tr>
-      <tr><td>統一投顧</td><td>08/05</td><td>195元</td><td>買進(240→253上修)</td><td>253元</td><td>15.39元</td><td>25.31元</td><td>10×2027F PER</td></tr>
-      <tr><td>凱基投顧</td><td>08/03</td><td>186元</td><td>增加持股(225→300上修)</td><td>300元</td><td>17.65元</td><td>26.40元</td><td>15×2026-27完稀釋後平均EPS</td></tr>
-    </table>
-    <div class="highlight">
-      <b>三個重要發現：</b>①三家2026F EPS相對收斂(15.39-17.65元)，2027F也相對集中(25.31-28.83元)；②三家都用相對保守的10-15倍本益比，遠低於Step5之前分析6202、2327看到的20-40倍，反映市場把緯創定位成傳統ODM/EMS代工股(毛利率僅5-6%的薄利業務)；③統一與凱基的目標價都是財報公布後「上修」而非首次覆蓋，反映Q2財報優於預期後市場信心明顯提升。
-    </div>
-    <table>
-      <tr><th>年度</th><th>平均EPS</th><th>前瞻本益比(現價183.5元)</th></tr>
-      <tr><td>2026F</td><td>16.68元</td><td>11.0倍</td></tr>
-      <tr><td>2027F</td><td>26.85元</td><td>6.8倍</td></tr>
-    </table>
-    <div class="highlight risk">
-      <b>⚠ 用GDR募資與AI伺服器需求對話：</b>三家報告都提到緯創規劃發行2.0-2.5億股GDR募資，相當於發行前股本6.3-7.8%，稀釋EPS約5.9-7.2%，都定性為「因應AI伺服器營運資金需求」的正常籌資，且都在稀釋後仍調升目標價與EPS預估。這跟Step1、Step3看到的高槓桿疑慮形成一定程度的正面佐證，但法人的樂觀本身也建立在「訂單能如期兌現」的前提上。
-    </div>
-
-    <h3>1-5 若以2026年預估EPS推算股價（而非2027F）</h3>
-    <p>用2026F EPS算出來的目標價，會比用2027F EPS算的保守很多——不是公司變差，是2026是「現在」、2027是「明年」，用更遠一年更高的EPS乘倍數，本來就會算出更高的股價。</p>
-    <table>
-      <tr><th>假設倍數</th><th>用2026F EPS(16.68元)算出的目標價</th></tr>
-      <tr><td>10倍(兆豐/統一實際用的倍數)</td><td>167元</td></tr>
-      <tr><td>15倍(凱基用的倍數)</td><td>250元</td></tr>
-      <tr><td>20倍</td><td>334元</td></tr>
-    </table>
-    <table>
-      <tr><th>券商</th><th>實際目標價(2027F基礎)</th><th>若改用2026F EPS×同倍數</th><th>差距</th></tr>
-      <tr><td>兆豐</td><td>288元(10×2027F)</td><td>170元(10×2026F)</td><td>少118元</td></tr>
-      <tr><td>統一</td><td>253元(10×2027F)</td><td>154元(10×2026F)</td><td>少99元</td></tr>
-      <tr><td>凱基</td><td>300元(15×26-27均值)</td><td>265元(15×2026F)</td><td>少35元</td></tr>
-    </table>
-    <div class="highlight">
-      <b>反過來算，三家實際目標價換算成「2026F EPS的隱含本益比」是多少倍？</b>
-    </div>
-    <table>
-      <tr><th>券商</th><th>目標價÷2026F EPS</th><th>隱含2026倍數</th></tr>
-      <tr><td>兆豐</td><td>288÷17.00</td><td>16.9倍</td></tr>
-      <tr><td>統一</td><td>253÷15.39</td><td>16.4倍</td></tr>
-      <tr><td>凱基</td><td>300÷17.65</td><td>17.0倍</td></tr>
-    </table>
-    <div class="highlight risk">
-      <b>關鍵洞察：</b>三家用2027F算出來的目標價，換算回2026年獲利水準，隱含本益比其實落在16.4-17.0倍，比他們口頭上說的「10-15倍」更高——這是成長股估值的常見手法，用未來一年更高的EPS配上表面較低的倍數，讓數字看起來保守，但實際隱含估值倍數並沒有那麼低。用現價183.5元回推，目前市場給的2026年本益比僅11倍，比三家報告隱含的16-17倍還低一截，意味著如果Q3、Q4財報照著這三份報告的預估兌現，股價理論上有機會往16-17倍區間靠攏(約230-280元一帶)，但前提是獲利真的按預期出來，不是單純估值擴張。
-    </div>
-  </div>
-
-  <div class="card" id="step6">
-    <h2>【第 6 步／共 6 步：投資決策推理】</h2>
-    <div class="note">以下為根據前五步分析的推理與個人觀點，不是專業投資建議，不構成買賣建議</div>
-    <div class="highlight ok">
-      <b>整體立場：</b>認同AI伺服器代工的成長故事，但現金流體質是最大的隱憂，需要比一般成長股更謹慎地拿捏進場時機。Step4看到的營收成長是紮實的——24個月間營收基期成長超過3倍，MA3、MA12同步墊高，跟Step3法說會「AI伺服器剛性需求」的說法完全吻合。Step5的三份投顧報告在Q2財報公布後不約而同上修目標價，且隱含本益比其實只有11倍(若用當前本益比)，比法人目標隱含的16-17倍便宜不少，理論上有修正空間。但這一切成長，都是建立在Step1看到的「用巨額舉債墊款」的基礎上——這不是能忽略的地基問題。
-    </div>
-    <div class="highlight risk">
-      <b>三件事讓我沒辦法無條件樂觀：</b>
-      <ol style="margin:8px 0 0; padding-left:20px;">
-        <li><b>核心問題是現金流品質，不是獲利能力。</b>緯創不缺訂單、不缺獲利成長，Step1核心六規則48.3分主要扣分在規則四(重複觸發「A為負+C為正」最高警戒達四次)與規則八(連續兩年借錢配息)，這跟「公司賺不賺錢」是兩件事——緯創賺錢，但賺的錢還沒真的變成現金，帳上一大筆應收帳款跟存貨還沒收回來，同時又要靠舉債和發GDR撐住營運資金。這種體質在訂單持續擴張時看起來沒事，一旦客戶付款延遲、或訂單成長放緩，資金鏈的壓力會比獲利表現亮眼的公司更快浮現。</li>
-        <li><b>股務延遲發放事件，雖非財務危機，但反映公司內部節奏偏緊繃。</b>金管會已明確澄清這不是財務問題；但一家公司同時在處理巨額GDR募資、應收帳款暴增、又在股務作業上出現罕見的二度延遲，這些事件放在一起看，還是透露出公司整體營運節奏正處於相當緊繃的擴張期，執行上出錯的容忍空間變小了。</li>
-        <li><b>法人樂觀高度依賴訂單如期兌現。</b>Step5看到的目標價都是「假設2026、2027獲利照預估數字實現」推算出來的，但這些數字本身仰賴客戶(尤其美系企業級大客戶與CSP)的拉貨節奏不變。Step1看到的巨額應收帳款收現風險、Step3法說會提到的業外收益(匯兌利益、投資評價利益)占EPS貢獻不小，這些都是需要持續驗證、而非一次性確認就能放心的變數。</li>
-      </ol>
-    </div>
-    <p><b>若已持有：</b>現金流體質偏弱不代表公司要出事，緯創是大型上市公司、法說會態度透明、槓桿改善的說法(GDR募資分散風險而非全押短債)也算合理；但既然Step1、Step5都指出風險與機會並存，趁現在法人上修評等、股價尚未完全反映目標區間時，分批減碼鎖住部分獲利，是合理的風險管理做法，不需要因為看好成長故事就完全不設防。</p>
-    <p><b>若尚未持有：</b>不會在現在的資訊基礎上直接進場，會先等Q3財報出來，確認兩件事：①Step1那筆巨額應收帳款是否真的按時收現，現金流量表的A是否從深度負值回正；②股務延遲事件的後續調查結果，確認不是更嚴重問題的前兆。這兩點確認之前，即使法人目標價空間看起來誘人，也會把它當作「故事成立」的必要條件，而非可以忽略的雜訊。</p>
-    <p><b>具體可驗證的觀察訊號(尚未發生，任何一項轉壞需重新評估)：</b></p>
-    <ol>
-      <li>Q3、Q4現金流量表公布後，A(營業活動現金流)是否從2025-2026H1的深度負值明顯收斂或轉正，驗證應收帳款/存貨是否真的轉換為現金</li>
-      <li>GDR募資是否順利完成，實際稀釋幅度是否落在5.9-7.2%預估區間內，還是有超乎預期的變動</li>
-      <li>集保調查股務延遲事件的最終結論，是否只是單純系統疏失，還是牽涉更深層的內控問題</li>
-      <li>Q3、Q4財報EPS是否延續Q2的優於預期表現，特別留意業外收益(匯兌、投資評價)占比是否持續偏高</li>
-      <li>三家法人下一輪報告是否維持或進一步上修目標價與2026-27年EPS預估，這會是市場對成長故事信心的直接指標</li>
-    </ol>
-    <footer class="src">3231_wistron_analysis · 六步驟完整版v2.0(獨立重新分析) · 最後更新 2026-08-09 · 資料來源：Step1使用者提供Goodinfo現金流量表截圖；Step2鉅亨網/Yahoo股市；Step3鉅亨網法說會AI摘要；Step4使用者提供Goodinfo月營收+股價截圖；Step5使用者提供三份投顧報告(兆豐/統一/凱基)；Step6為推理與個人觀點，不構成投資建議。</footer>
-  </div>
 </div>
 
 <script>
-const years = ["2016","2017","2018","2019","2020","2021","2022","2023","2024","2025","2026H1"];
-const A = [454,-131,41.6,186,-107,-215,534,482,57.5,-1058,-2514];
-const B = [-108,-102,-142,-87.8,-163,-166,-167,-147,-201,-435,-323];
-const E = [576,660,435,474,695,702,663,760,799,1445,1232];
-
-function barColors(vals){
-  const maxV = Math.max(...vals), minV = Math.min(...vals);
-  return vals.map(v => v===maxV ? '#F5C07A' : (v===minV ? '#E8A0A0' : '#5B8FB9'));
-}
+document.querySelectorAll('nav.stepnav a:not(.disabled)').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
 
 Plotly.newPlot('chartA', [{
-  x: years, y: A, type:'bar',
-  marker:{color: barColors(A)},
-  text: A.map(v=>v.toFixed(0)), textposition:'outside',
-  hovertemplate:'%{x}<br>A 營業現金流：%{y} 億<extra></extra>'
+  x:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','26H1(累計)'],
+  y:[454,-131,41.6,186,-107,-215,534,482,57.5,-1058,-2514],
+  type:'bar',
+  marker:{color:['#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#7BA7D9','#F5C07A']},
+  hovertemplate:'%{x}<br>A營業現金流：%{y}億<extra></extra>'
 }], {
-  title:{text:'規則一：A 營業活動現金流量（億元）— 高峰米色／低谷粉色', font:{size:14,color:'#2C3E50'}},
-  margin:{t:40,l:40,r:20,b:36}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
-  yaxis:{zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
-  font:{family:'Noto Sans TC', color:'#2C3E50'}
-}, {displayModeBar:false, responsive:true});
-
-Plotly.newPlot('chartB', [{
-  x: years, y: B, type:'bar',
-  marker:{color: barColors(B)},
-  text: B.map(v=>v.toFixed(0)), textposition:'outside',
-  hovertemplate:'%{x}<br>B 投資現金流：%{y} 億<extra></extra>'
-}], {
-  title:{text:'規則二/三：B 投資活動現金流量（億元）— 2025起CapEx明顯放大', font:{size:14,color:'#2C3E50'}},
-  margin:{t:40,l:40,r:20,b:36}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
-  yaxis:{zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
-  font:{family:'Noto Sans TC', color:'#2C3E50'}
+  margin:{t:10,l:60,r:20,b:40},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{family:'Noto Sans TC', color:'#2C3E50'},
+  yaxis:{title:'億元', gridcolor:'#F1F2F3', zeroline:true, zerolinecolor:'#999'},
+  xaxis:{title:''}
 }, {displayModeBar:false, responsive:true});
 
 Plotly.newPlot('chartE', [{
-  x: years, y: E, type:'bar',
-  marker:{color: barColors(E)},
-  text: E.map(v=>v.toFixed(0)), textposition:'outside',
-  hovertemplate:'%{x}<br>E 期末現金餘額：%{y} 億<extra></extra>'
+  x:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','26H1'],
+  y:[576,660,435,474,695,702,663,760,799,1445,1232],
+  type:'bar',
+  marker:{color:'#7AC1A0'},
+  hovertemplate:'%{x}<br>期末現金餘額：%{y}億<extra></extra>'
 }], {
-  title:{text:'規則六：E 期末現金餘額（億元）— 2025大幅墊高，2026H1略回落', font:{size:14,color:'#2C3E50'}},
-  margin:{t:40,l:40,r:20,b:36}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
-  yaxis:{zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
-  font:{family:'Noto Sans TC', color:'#2C3E50'}
-}, {displayModeBar:false, responsive:true});
-
-const dyears = ["2023","2024","2025"];
-const fcf = [364,-93.6,-1447];
-const div = [74.0,74.6,110];
-
-Plotly.newPlot('chartFCF', [
-  {x:dyears, y:fcf, name:'FCF (A-CapEx)', type:'bar', marker:{color:'#7AC1A0'}},
-  {x:dyears, y:div, name:'現金股利發放', type:'bar', marker:{color:'#E8A0A0'}}
-], {
-  title:{text:'規則八：FCF vs 現金股利發放（億元）— 並排比較', font:{size:14,color:'#2C3E50'}},
-  barmode:'group', margin:{t:40,l:40,r:20,b:36}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
-  yaxis:{zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
-  legend:{orientation:'h', y:-0.2},
-  font:{family:'Noto Sans TC', color:'#2C3E50'}
-}, {displayModeBar:false, responsive:true});
-
-const revMonths3231 = ["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
-const revClose3231 = [101.5,101.0,111.0,113.5,104.0,110.0,112.0,95.3,101.5,116.5,122.5,123.0,113.0,140.5,150.5,144.5,150.5,130.5,136.0,122.5,137.0,158.5,158.5,176.0];
-const revVal3231 = [898.2,969,962.8,952.4,1057,907.9,1027,1530,1337,2084,2092,1917,1726,2034,1851,2806,2553,2284,2849,3330,2834,2902,3218,3082];
-const revMA3_3231 = [882.67,909.7,943.33,961.4,990.73,972.43,997.3,1154.97,1298,1650.33,1837.67,2031,1911.67,1892.33,1870.33,2230.33,2403.33,2547.67,2562,2821,3004.33,3022,2984.67,3067.33];
-const revMA12_3231 = [802.16,818.01,832.91,848.575,874.4,893.98,912.0,964.625,1015.51,1122.93,1223.27,1311.19,1380.18,1468.9,1542.94,1697.41,1822.08,1936.75,2088.58,2238.58,2363.33,2431.5,2525.33,2622.42];
-const revQuarter3231 = ["Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3"];
-const qColor3231 = {"Q1":"#7BA7D9","Q2":"#7AC1A0","Q3":"#F5C07A","Q4":"#E8A0A0"};
-const revBarColors3231 = revQuarter3231.map(q => qColor3231[q]);
-
-Plotly.newPlot('chartRev', [
-  {
-    x: revMonths3231, y: revVal3231, type:'bar', name:'月營收(億)',
-    marker:{color: revBarColors3231},
-    customdata: revQuarter3231.map((q,i)=>[q, revMA3_3231[i], revMA12_3231[i], revClose3231[i]]),
-    hovertemplate:'%{x}<br>營收：%{y} 億<br>季度：%{customdata[0]}<br>MA3：%{customdata[1]} 億<br>MA12：%{customdata[2]} 億<br>收盤價：%{customdata[3]} 元<extra></extra>'
-  },
-  {
-    x: revMonths3231, y: revMA3_3231, type:'scatter', mode:'lines', name:'MA3',
-    line:{color:'#E74C3C', width:2.5, dash:'solid'}
-  },
-  {
-    x: revMonths3231, y: revMA12_3231, type:'scatter', mode:'lines', name:'MA12',
-    line:{color:'#1B3A8C', width:2.5, dash:'solid'}
-  },
-  {
-    x: revMonths3231, y: revClose3231, type:'scatter', mode:'lines', name:'收盤價（右軸）',
-    line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2'
-  }
-], {
-  title:{text:'3231 緯創：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14,color:'#2C3E50'}},
-  margin:{t:40,l:50,r:60,b:40}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
-  yaxis:{title:'月營收(億)', zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
-  yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
-  legend:{orientation:'h', y:-0.18},
+  margin:{t:10,l:60,r:20,b:40},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
   font:{family:'Noto Sans TC', color:'#2C3E50'},
-  bargap:0.15
+  yaxis:{title:'億元', gridcolor:'#F1F2F3'},
+  xaxis:{title:''}
 }, {displayModeBar:false, responsive:true});
 
+Plotly.newPlot('chartDiv', [
+  {x:['2023','2024','2025'], y:[364,-93.6,-1447], type:'bar', name:'自由現金流 FCF', marker:{color:'#5B8FB9'}},
+  {x:['2023','2024','2025'], y:[74,74.6,110], type:'bar', name:'現金股利發放', marker:{color:'#E8A0A0'}}
+], {
+  barmode:'group',
+  margin:{t:10,l:60,r:20,b:40},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{family:'Noto Sans TC', color:'#2C3E50'},
+  yaxis:{title:'億元', gridcolor:'#F1F2F3', zeroline:true, zerolinecolor:'#999'},
+  legend:{orientation:'h', y:-0.2}
+}, {displayModeBar:false, responsive:true});
 </script>
 </body>
 </html>
