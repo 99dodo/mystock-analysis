@@ -55,10 +55,10 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
 <body>
 <div class="container">
   <nav class="stepnav">
-    <a href="#step1" class="active">1.現金流盲測</a>
-    <a class="disabled">2.基本資訊</a>
-    <a class="disabled">3.法說會</a>
-    <a class="disabled">4.營收趨勢</a>
+    <a href="#step1" class="done">1.現金流盲測</a>
+    <a href="#step2" class="done">2.基本資訊</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a class="disabled">5.前瞻本益比</a>
     <a class="disabled">6.投資決策</a>
   </nav>
@@ -66,11 +66,11 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
   <div class="header">
     <div>
       <h1>3231 緯創 初步分析報告</h1>
-      <div class="sub">第 1 步／共 6 步：現金流量表八大規則分析（盲測階段） · 產生時間 2026/08/09 · 資料來源：使用者提供 Goodinfo 現金流量表截圖（總表 + 投資／融資活動細項） · 本版為獨立重新分析，不參考repo中先前v1.3版本結論</div>
+      <div class="sub">進度：第 4 步／共 6 步 · 最後更新 2026/08/09</div>
     </div>
     <div class="score">
       <div class="num">48.3</div>
-      <div class="label">核心六規則平均</div>
+      <div class="label">核心六規則平均（Step1）</div>
     </div>
   </div>
 
@@ -195,6 +195,85 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
       資料來源：使用者提供 Goodinfo 現金流量表截圖（總表 2006–2026Q2；投資／融資活動細項 2022Q4–2026Q2，單季揭露已逐季加總還原年度數字並與總表核對）。本步驟為盲測階段，未查詢或引用股價、EPS、產業地位、新聞背景，相關資訊將於第 2 步之後另行查證。本版為完全獨立重新分析，未參考repo中先前v1.3版本之結論或分數。
     </footer>
   </div>
+
+  <div class="card" id="step2">
+    <h2>【第 2 步／共 6 步：基本資訊查詢】</h2>
+    <table>
+      <tr><th>項目</th><th>數值</th><th>備註</th></tr>
+      <tr><td>收盤價</td><td>183.5 元</td><td>2026/08/07，+3.17%，近三日下跌合計5.9%</td></tr>
+      <tr><td>本益比</td><td>約18.5-19倍</td><td>同業平均約31.7倍，明顯偏低</td></tr>
+      <tr><td>52週高／低</td><td>202.50 ／ 109.00 元</td><td></td></tr>
+      <tr><td>近四季EPS</td><td>10.22元</td><td></td></tr>
+      <tr><td>26Q2 EPS</td><td>4.72元</td><td>季增53.95%，年增1.28倍</td></tr>
+      <tr><td>26H1 EPS</td><td>7.78元</td><td>與Step1現金流表D=546億(稅前)吻合</td></tr>
+      <tr><td>毛利率</td><td>5.56%(26Q2)</td><td>ODM代工業典型薄利特徵</td></tr>
+      <tr><td>每股淨值</td><td>36.36元</td><td>股價淨值比約5倍</td></tr>
+      <tr><td>年股利</td><td>5.50元</td><td>殖利率約2.85%，已連續21年配息</td></tr>
+    </table>
+    <div class="highlight risk">
+      <b>⚠ 重大現增/GDR募資，直接對應Step1的財務槓桿疑慮：</b>緯創8月5日公告將投資175億元同步布局台灣、越南與美國，並發行約2.5億股GDR募資（規模約450億元），用於美國德州D2廠兩倍產能擴建及新竹/高雄/台南AI算力中心建設。這直接印證Step1看到的疑慮：2025年C(融資活動)高達+2,172億、2026H1再+2,623億，主要靠短期借款與發債支應營運資金缺口。這次選擇股權募資（而非全押舉債）是相對正面的訊號，但也代表資金需求規模仍在持續墊高，還沒能靠本業現金流自行消化。
+    </div>
+    <div class="highlight warn">
+      <b>股利延遲發放：</b>現金股利原訂較早發放，但因股務系統問題延遲，最終於2026年8月6日入帳。金管會已表態這是股務作業問題非財務危機，但仍與Step1規則八「借錢配息」疑慮放在一起看，值得留意公司整體營運節奏。
+    </div>
+    <p class="note">資料來源：鉅亨網、Yahoo股市 3231.TW 快照（2026/08/07）。</p>
+  </div>
+
+  <div class="card" id="step3">
+    <h2>【第 3 步／共 6 步：法說會深入討論】</h2>
+    <div class="note">資料來源：鉅亨網「法說會AI摘要」（根據台灣證交所法說會錄音檔AI整理），涵蓋2026/08/04（最新，Q2財報）場次；MOPS原始PDF因robots.txt無法直接讀取，僅附連結。</div>
+    <table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>26Q2</td><td>營收8,954.43億(季增5.81%,年增62.43%)，毛利率5.56%，稅後純益148.27億(季增53.95%,年增1.28倍)，EPS 4.72元</td></tr>
+      <tr><td>AI伺服器展望</td><td>「剛性需求」，下半年出貨量/營收優於上半年，客戶滾動預測至2027上半年狀況良好</td></tr>
+      <tr><td>網通交換器</td><td>今年確定超過10倍成長，毛利率與營益率優異</td></tr>
+      <tr><td>PC業務</td><td>因H1提前拉貨，H2預計雙位數衰退(約15%)，但單價提高可能收窄營收跌幅</td></tr>
+      <tr><td>德州新廠</td><td>D1廠已投產GB300，規劃擴充D2廠兩倍產能</td></tr>
+    </table>
+    <div class="highlight risk">
+      <b>⚠ 與Step1直接對話，公司親口承認「高槓桿是產業常態」：</b>法說會Q&amp;A被問到營運資金與高槓桿狀況時，公司回答：因AI產品材料成本高昂且記憶體漲價，高槓桿(high leverage)為目前產業常態，已透過發行GDR(約450億)等多元籌資管道優化資產負債表。這正面回應了Step1看到的「A為負＋C為正」重複警訊——公司自己承認這是整個AI伺服器代工產業的普遍現象，不是緯創獨有異常，但也等於間接證實這確實是需要主動管理的真實風險。
+    </div>
+    <div class="highlight warn">
+      <b>股利延遲發放事件：</b>緯創現金股利原訂7月31日發放，卻二度延後(先延至8/3，再延至8/6)。緯創稱是股務代辦廠商三商電系統疏失，三商電隨即發重訊反駁稱是緯創內部人員資料處理疏失，雙方各執一詞。金管會證期局明確表示：屬資料核對與系統釐清問題，非財務危機，5.5元股利已於8/6全數撥付完畢；但若集保調查認定緯創股務作業有嚴重疏失，最重可能收回自辦股務資格(近例為2020年大同)。<b>我的判讀：</b>金管會官方澄清非財務危機，這點照實傳達；但事件本身仍是治理面警訊，跟Step1看到的現金流體質(核心六規則48.3分、重複觸發最高警戒)放在一起看，公司整體「營運節奏偏緊繃」的印象一致，值得在Step6納入考量。
+    </div>
+    <p>原始簡報：<a href="https://mopsov.twse.com.tw/nas/STR/" target="_blank">MOPS法說會簡報</a>（需自行至公開資訊觀測站查詢，robots.txt無法直接抓取）</p>
+  </div>
+
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+    <div class="note">資料來源：使用者提供 Goodinfo 月營收＋股價截圖（2026/08/09上傳）。取得36個月原始資料(2023/08–2026/07)以確保MA12從顯示區間第一個月就完整，圖表顯示近24個月（2024/08–2026/07），單位：億元</div>
+    <div class="chart-wrap"><div id="chartRev" style="height:400px"></div></div>
+    <table>
+      <tr><th>月份</th><th>收盤價</th><th>營收</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>YoY</th></tr>
+      <tr><td>2024/08</td><td>101.5</td><td>898</td><td><span class="badge tag3">Q3</span></td><td>883</td><td>802</td><td class="positive">+23.2%</td></tr>
+      <tr><td>2024/09</td><td>101.0</td><td>969</td><td><span class="badge tag3">Q3</span></td><td>910</td><td>818</td><td class="positive">+24.4%</td></tr>
+      <tr><td>2024/10</td><td>111.0</td><td>963</td><td><span class="badge tag4">Q4</span></td><td>943</td><td>833</td><td class="positive">+22.8%</td></tr>
+      <tr><td>2024/11</td><td>113.5</td><td>952</td><td><span class="badge tag4">Q4</span></td><td>961</td><td>849</td><td class="positive">+24.6%</td></tr>
+      <tr><td>2024/12</td><td>104.0</td><td>1,057</td><td><span class="badge tag4">Q4</span></td><td>991</td><td>874</td><td class="positive">+41.4%</td></tr>
+      <tr><td>2025/01</td><td>110.0</td><td>908</td><td><span class="badge tag1">Q1</span></td><td>972</td><td>894</td><td class="positive">+34.9%</td></tr>
+      <tr><td>2025/02</td><td>112.0</td><td>1,027</td><td><span class="badge tag1">Q1</span></td><td>997</td><td>912</td><td class="positive">+26.6%</td></tr>
+      <tr><td>2025/03</td><td>95.3</td><td>1,530</td><td><span class="badge tag1">Q1</span></td><td>1,155</td><td>965</td><td class="positive">+70.3%</td></tr>
+      <tr><td>2025/04</td><td>101.5</td><td>1,337</td><td><span class="badge tag2">Q2</span></td><td>1,298</td><td>1,016</td><td class="positive">+84.0%</td></tr>
+      <tr><td>2025/05</td><td>116.5</td><td>2,084</td><td><span class="badge tag2">Q2</span></td><td>1,650</td><td>1,123</td><td class="positive">+162.1%</td></tr>
+      <tr><td>2025/06</td><td>122.5</td><td>2,092</td><td><span class="badge tag2">Q2</span></td><td>1,838</td><td>1,223</td><td class="positive">+135.6%</td></tr>
+      <tr><td>2025/07</td><td>123.0</td><td>1,917</td><td><span class="badge tag3">Q3</span></td><td>2,031</td><td>1,311</td><td class="positive">+122.4%</td></tr>
+      <tr><td>2025/08</td><td>113.0</td><td>1,726</td><td><span class="badge tag3">Q3</span></td><td>1,912</td><td>1,380</td><td class="positive">+92.2%</td></tr>
+      <tr><td>2025/09</td><td>140.5</td><td>2,034</td><td><span class="badge tag3">Q3</span></td><td>1,892</td><td>1,469</td><td class="positive">+109.9%</td></tr>
+      <tr><td>2025/10</td><td>150.5</td><td>1,851</td><td><span class="badge tag4">Q4</span></td><td>1,870</td><td>1,543</td><td class="positive">+92.2%</td></tr>
+      <tr><td>2025/11</td><td>144.5</td><td>2,806</td><td><span class="badge tag4">Q4</span></td><td>2,230</td><td>1,697</td><td class="positive">+194.6%</td></tr>
+      <tr><td>2025/12</td><td>150.5</td><td>2,553</td><td><span class="badge tag4">Q4</span></td><td>2,403</td><td>1,822</td><td class="positive">+141.6%</td></tr>
+      <tr><td>2026/01</td><td>130.5</td><td>2,284</td><td><span class="badge tag1">Q1</span></td><td>2,548</td><td>1,937</td><td class="positive">+151.5%</td></tr>
+      <tr><td>2026/02</td><td>136.0</td><td>2,849</td><td><span class="badge tag1">Q1</span></td><td>2,562</td><td>2,089</td><td class="positive">+177.4%</td></tr>
+      <tr><td>2026/03</td><td>122.5</td><td>3,330</td><td><span class="badge tag1">Q1</span></td><td>2,821</td><td>2,239</td><td class="positive">+117.7%</td></tr>
+      <tr><td>2026/04</td><td>137.0</td><td>2,834</td><td><span class="badge tag2">Q2</span></td><td>3,004</td><td>2,363</td><td class="positive">+112.0%</td></tr>
+      <tr><td>2026/05</td><td>158.5</td><td>2,902</td><td><span class="badge tag2">Q2</span></td><td>3,022</td><td>2,432</td><td class="positive">+39.2%</td></tr>
+      <tr><td>2026/06</td><td>158.5</td><td>3,218</td><td><span class="badge tag2">Q2</span></td><td>2,985</td><td>2,525</td><td class="positive">+53.8%</td></tr>
+      <tr><td>2026/07</td><td>176.0</td><td>3,082</td><td><span class="badge tag3">Q3</span></td><td>3,067</td><td>2,622</td><td class="positive">+60.8%</td></tr>
+    </table>
+    <div class="highlight">
+      <b>MA3 vs MA12：</b>MA3從2024/08的883億一路墊高到2026/07的3,067億，MA12也同步從802億爬升到2,622億，24個月間營收基期成長超過3倍，且MA3持續大幅超前MA12——這是「短期動能與長期基期同步墊高」的健康擴張型態，與Step3法說會「AI伺服器剛性需求、下半年優於上半年」的說法高度吻合，也直接對應Step1看到的巨額應收帳款/存貨堆積（訂單真實存在、正在出貨，只是收款與備料的現金時間差還沒完全轉正）。<b>YoY持續三位數：</b>2025/05-2026/03連續11個月YoY超過90%，其中2025/11更高達194.6%，反映AI伺服器代工業務進入爆發性成長階段。<b>季節性：</b>樣本中Q4(10-12月)與Q1(1-3月)YoY數字普遍最強，可能與大型客戶年底/年初拉貨週期有關，但仍需更長期數列驗證。
+    </div>
+  </div>
 </div>
 
 <script>
@@ -258,6 +337,45 @@ Plotly.newPlot('chartFCF', [
   legend:{orientation:'h', y:-0.2},
   font:{family:'Noto Sans TC', color:'#2C3E50'}
 }, {displayModeBar:false, responsive:true});
+
+const revMonths3231 = ["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
+const revClose3231 = [101.5,101.0,111.0,113.5,104.0,110.0,112.0,95.3,101.5,116.5,122.5,123.0,113.0,140.5,150.5,144.5,150.5,130.5,136.0,122.5,137.0,158.5,158.5,176.0];
+const revVal3231 = [898.2,969,962.8,952.4,1057,907.9,1027,1530,1337,2084,2092,1917,1726,2034,1851,2806,2553,2284,2849,3330,2834,2902,3218,3082];
+const revMA3_3231 = [882.67,909.7,943.33,961.4,990.73,972.43,997.3,1154.97,1298,1650.33,1837.67,2031,1911.67,1892.33,1870.33,2230.33,2403.33,2547.67,2562,2821,3004.33,3022,2984.67,3067.33];
+const revMA12_3231 = [802.16,818.01,832.91,848.575,874.4,893.98,912.0,964.625,1015.51,1122.93,1223.27,1311.19,1380.18,1468.9,1542.94,1697.41,1822.08,1936.75,2088.58,2238.58,2363.33,2431.5,2525.33,2622.42];
+const revQuarter3231 = ["Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3"];
+const qColor3231 = {"Q1":"#7BA7D9","Q2":"#7AC1A0","Q3":"#F5C07A","Q4":"#E8A0A0"};
+const revBarColors3231 = revQuarter3231.map(q => qColor3231[q]);
+
+Plotly.newPlot('chartRev', [
+  {
+    x: revMonths3231, y: revVal3231, type:'bar', name:'月營收(億)',
+    marker:{color: revBarColors3231},
+    customdata: revQuarter3231.map((q,i)=>[q, revMA3_3231[i], revMA12_3231[i], revClose3231[i]]),
+    hovertemplate:'%{x}<br>營收：%{y} 億<br>季度：%{customdata[0]}<br>MA3：%{customdata[1]} 億<br>MA12：%{customdata[2]} 億<br>收盤價：%{customdata[3]} 元<extra></extra>'
+  },
+  {
+    x: revMonths3231, y: revMA3_3231, type:'scatter', mode:'lines', name:'MA3',
+    line:{color:'#E74C3C', width:2.5, dash:'solid'}
+  },
+  {
+    x: revMonths3231, y: revMA12_3231, type:'scatter', mode:'lines', name:'MA12',
+    line:{color:'#1B3A8C', width:2.5, dash:'solid'}
+  },
+  {
+    x: revMonths3231, y: revClose3231, type:'scatter', mode:'lines', name:'收盤價（右軸）',
+    line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2'
+  }
+], {
+  title:{text:'3231 緯創：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14,color:'#2C3E50'}},
+  margin:{t:40,l:50,r:60,b:40}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
+  yaxis:{title:'月營收(億)', zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
+  yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+  legend:{orientation:'h', y:-0.18},
+  font:{family:'Noto Sans TC', color:'#2C3E50'},
+  bargap:0.15
+}, {displayModeBar:false, responsive:true});
+
 </script>
 </body>
 </html>
