@@ -57,8 +57,8 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a class="disabled">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a class="disabled">5.前瞻本益比</a>
     <a class="disabled">6.投資決策</a>
   </nav>
@@ -66,7 +66,7 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
   <div class="header">
     <div>
       <h1>2327 國巨 初步分析報告</h1>
-      <div class="sub">進度：第 3 步／共 6 步 · 最後更新 2026/08/09</div>
+      <div class="sub">進度：第 4 步／共 6 步 · 最後更新 2026/08/09</div>
     </div>
     <div class="score">
       <div class="num">77.5</div>
@@ -241,6 +241,45 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
     </div>
     <p>原始簡報／影音：<a href="https://mopsov.twse.com.tw/nas/STR/232720260729M001.pdf" target="_blank">Q2法說會簡報PDF</a>（MOPS，需自行點開）｜<a href="http://irconference.twse.com.tw/2327_234_20260729_en.mp3" target="_blank">原始影音</a></p>
   </div>
+
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+    <div class="highlight warn">
+      <b>⚠ 股價分割調整說明：</b>資料顯示國巨的1股拆4股實際除權基準日落在2025年8月（非董事會決議的2025年4月），2025/08那個月的原始開盤/收盤價出現「開盤523元、收盤139.5元」的斷點。為避免圖表出現假性崩跌，已將2025/08以前（2023/07–2025/07）的收盤價全部除以4，還原成與現在相同的分割後基礎；2025/08以後的價格本身已是分割後基礎，不需調整。營收數字本身不受股票分割影響，未做任何調整。
+    </div>
+    <div class="note">資料來源：使用者提供 Goodinfo 月營收＋股價截圖（2026/08/09上傳）。取得36個月原始資料(2023/07–2026/06)以確保MA12從顯示區間第一個月就完整，圖表顯示近24個月（2024/07–2026/06），單位：億元</div>
+    <div class="chart-wrap"><div id="chartRev" style="height:400px"></div></div>
+    <table>
+      <tr><th>月份</th><th>收盤價(分割還原)</th><th>營收</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>YoY</th></tr>
+      <tr><td>2024/07</td><td>198.00</td><td>110.1</td><td><span class="badge tag3">Q3</span></td><td>105.7</td><td>97.3</td><td class="positive">+23.8%</td></tr>
+      <tr><td>2024/08</td><td>164.25</td><td>103.2</td><td><span class="badge tag3">Q3</span></td><td>104.4</td><td>98.4</td><td class="positive">+14.5%</td></tr>
+      <tr><td>2024/09</td><td>155.75</td><td>104.2</td><td><span class="badge tag3">Q3</span></td><td>105.8</td><td>99.2</td><td class="positive">+10.1%</td></tr>
+      <tr><td>2024/10</td><td>139.50</td><td>104.7</td><td><span class="badge tag4">Q4</span></td><td>104.0</td><td>100.4</td><td class="positive">+15.5%</td></tr>
+      <tr><td>2024/11</td><td>128.50</td><td>100.2</td><td><span class="badge tag4">Q4</span></td><td>103.0</td><td>100.9</td><td class="positive">+7.16%</td></tr>
+      <tr><td>2024/12</td><td>135.25</td><td>95.2</td><td><span class="badge tag4">Q4</span></td><td>100.0</td><td>101.4</td><td class="positive">+6.38%</td></tr>
+      <tr><td>2025/01</td><td>134.25</td><td>102.5</td><td><span class="badge tag1">Q1</span></td><td>99.3</td><td>101.6</td><td class="positive">+2.28%</td></tr>
+      <tr><td>2025/02</td><td>141.50</td><td>97.53</td><td><span class="badge tag1">Q1</span></td><td>98.4</td><td>102.7</td><td class="positive">+15.3%</td></tr>
+      <tr><td>2025/03</td><td>120.25</td><td>111</td><td><span class="badge tag1">Q1</span></td><td>103.7</td><td>103.6</td><td class="positive">+10.8%</td></tr>
+      <tr><td>2025/04</td><td>114.75</td><td>115</td><td><span class="badge tag2">Q2</span></td><td>107.8</td><td>104.2</td><td class="positive">+7.47%</td></tr>
+      <tr><td>2025/05</td><td>122.50</td><td>102.1</td><td><span class="badge tag2">Q2</span></td><td>109.4</td><td>103.8</td><td class="negative">-4.67%</td></tr>
+      <tr><td>2025/06</td><td>121.25</td><td>110.6</td><td><span class="badge tag2">Q2</span></td><td>109.2</td><td>104.7</td><td class="positive">+10.5%</td></tr>
+      <tr><td>2025/07</td><td>132.50</td><td>106.5</td><td><span class="badge tag3">Q3</span></td><td>106.4</td><td>104.4</td><td class="negative">-3.25%</td></tr>
+      <tr><td>2025/08</td><td>139.50</td><td>107.6</td><td><span class="badge tag3">Q3</span></td><td>108.2</td><td>104.8</td><td class="positive">+4.27%</td></tr>
+      <tr><td>2025/09</td><td>170.00</td><td>116.8</td><td><span class="badge tag3">Q3</span></td><td>110.3</td><td>105.8</td><td class="positive">+12.2%</td></tr>
+      <tr><td>2025/10</td><td>249.00</td><td>113.5</td><td><span class="badge tag4">Q4</span></td><td>112.6</td><td>106.5</td><td class="positive">+8.47%</td></tr>
+      <tr><td>2025/11</td><td>235.00</td><td>122.6</td><td><span class="badge tag4">Q4</span></td><td>117.6</td><td>108.4</td><td class="positive">+22.4%</td></tr>
+      <tr><td>2025/12</td><td>231.00</td><td>123.5</td><td><span class="badge tag4">Q4</span></td><td>119.9</td><td>110.8</td><td class="positive">+29.7%</td></tr>
+      <tr><td>2026/01</td><td>277.50</td><td>130.3</td><td><span class="badge tag1">Q1</span></td><td>125.5</td><td>113.1</td><td class="positive">+27.1%</td></tr>
+      <tr><td>2026/02</td><td>298.00</td><td>115.1</td><td><span class="badge tag1">Q1</span></td><td>123.0</td><td>114.6</td><td class="positive">+18.0%</td></tr>
+      <tr><td>2026/03</td><td>243.50</td><td>136.3</td><td><span class="badge tag1">Q1</span></td><td>127.2</td><td>116.7</td><td class="positive">+22.8%</td></tr>
+      <tr><td>2026/04</td><td>317.00</td><td>140.4</td><td><span class="badge tag2">Q2</span></td><td>130.6</td><td>118.8</td><td class="positive">+22.0%</td></tr>
+      <tr><td>2026/05</td><td>738.00</td><td>150.6</td><td><span class="badge tag2">Q2</span></td><td>142.4</td><td>122.8</td><td class="positive">+47.5%</td></tr>
+      <tr><td>2026/06</td><td>1140.00</td><td>153.6</td><td><span class="badge tag2">Q2</span></td><td>148.2</td><td>126.4</td><td class="positive">+38.9%</td></tr>
+    </table>
+    <div class="highlight">
+      <b>MA3 vs MA12：</b>2024下半年到2025上半年，MA3大致貼著MA12波動（103-110區間），是相對平淡的整理期，甚至2025年5、7月出現YoY轉負的月份。真正的轉折點在2025年9月之後：MA3從110.3一路墊高到2026/06的148.2，MA12也同步從105.8爬升到126.4，兩條線同步上揚且MA3持續大幅超前MA12——這是「短期動能與長期基期同步墊高」的健康擴張型態，與Step3法說會看到的「AI伺服器需求全面挹注」時間點高度吻合。<b>股價與營收的背離值得注意：</b>2026年3-6月營收月增溫和（136→140→150→153億），但股價（分割還原後）卻從243元暴衝到1140元，漲幅遠超營收成長幅度，顯示這段期間股價漲勢主要由本益比評價提升（Re-rating）驅動，而非單純營收放量所致——這也解釋了Step2、Step3看到的「基本面亮眼、股價卻劇烈崩跌」現象：漲多了，稍有風吹草動就容易重挫。<b>季節性：</b>24個月樣本中Q4(10-12月)與Q1(1-3月)YoY表現普遍優於Q2、Q3，但样本仍偏短，季節性判斷保留。
+    </div>
+  </div>
 </div>
 
 <script>
@@ -304,6 +343,45 @@ Plotly.newPlot('chartFCF', [
   legend:{orientation:'h', y:-0.2},
   font:{family:'Noto Sans TC', color:'#2C3E50'}
 }, {displayModeBar:false, responsive:true});
+
+const revMonths2327 = ["2024/07","2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06"];
+const revClose2327 = [198,164.25,155.75,139.5,128.5,135.25,134.25,141.5,120.25,114.75,122.5,121.25,132.5,139.5,170,249,235,231,277.5,298,243.5,317,738,1140];
+const revVal2327 = [110.1,103.2,104.2,104.7,100.2,95.2,102.5,97.53,111,115,102.1,110.6,106.5,107.6,116.8,113.5,122.6,123.5,130.3,115.1,136.3,140.4,150.6,153.6];
+const revMA3_2327 = [105.7,104.4,105.8,104.0,103.0,100.0,99.3,98.4,103.7,107.8,109.4,109.2,106.4,108.2,110.3,112.6,117.6,119.9,125.5,123.0,127.2,130.6,142.4,148.2];
+const revMA12_2327 = [97.3,98.4,99.2,100.4,100.9,101.4,101.6,102.7,103.6,104.2,103.8,104.7,104.4,104.8,105.8,106.5,108.4,110.8,113.1,114.6,116.7,118.8,122.8,126.4];
+const revQuarter2327 = ["Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2"];
+const qColor2327 = {"Q1":"#7BA7D9","Q2":"#7AC1A0","Q3":"#F5C07A","Q4":"#E8A0A0"};
+const revBarColors2327 = revQuarter2327.map(q => qColor2327[q]);
+
+Plotly.newPlot('chartRev', [
+  {
+    x: revMonths2327, y: revVal2327, type:'bar', name:'月營收(億)',
+    marker:{color: revBarColors2327},
+    customdata: revQuarter2327.map((q,i)=>[q, revMA3_2327[i], revMA12_2327[i], revClose2327[i]]),
+    hovertemplate:'%{x}<br>營收：%{y} 億<br>季度：%{customdata[0]}<br>MA3：%{customdata[1]} 億<br>MA12：%{customdata[2]} 億<br>收盤價(分割還原)：%{customdata[3]} 元<extra></extra>'
+  },
+  {
+    x: revMonths2327, y: revMA3_2327, type:'scatter', mode:'lines', name:'MA3',
+    line:{color:'#E74C3C', width:2.5, dash:'solid'}
+  },
+  {
+    x: revMonths2327, y: revMA12_2327, type:'scatter', mode:'lines', name:'MA12',
+    line:{color:'#1B3A8C', width:2.5, dash:'solid'}
+  },
+  {
+    x: revMonths2327, y: revClose2327, type:'scatter', mode:'lines', name:'收盤價（右軸，已還原分割）',
+    line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2'
+  }
+], {
+  title:{text:'2327 國巨：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14,color:'#2C3E50'}},
+  margin:{t:40,l:50,r:60,b:40}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
+  yaxis:{title:'月營收(億)', zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
+  yaxis2:{title:'收盤價(元，已還原分割)', overlaying:'y', side:'right', showgrid:false},
+  legend:{orientation:'h', y:-0.18},
+  font:{family:'Noto Sans TC', color:'#2C3E50'},
+  bargap:0.15
+}, {displayModeBar:false, responsive:true});
+
 </script>
 </body>
 </html>
