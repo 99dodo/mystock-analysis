@@ -246,11 +246,23 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
 
   <div class="card" id="step4">
     <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
-    <div class="note">資料來源：使用者提供 Goodinfo 月營收＋股價截圖（2026/08/09上傳）。近12期：2025/07–2026/06，單位：億元</div>
-    <div class="chart-wrap"><div id="chartRev" style="height:380px"></div></div>
+    <div class="note">資料來源：使用者提供 Goodinfo 月營收＋股價截圖（2026/08/09上傳）。取得36個月原始資料(2023/07–2026/06)以確保MA12從顯示區間第一個月就完整，圖表顯示近24個月（2024/07–2026/06），單位：億元</div>
+    <div class="chart-wrap"><div id="chartRev" style="height:400px"></div></div>
     <table>
       <tr><th>月份</th><th>收盤價</th><th>營收</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>YoY</th></tr>
-      <tr><td>2025/07</td><td>39.50</td><td>2.60</td><td><span class="badge tag3">Q3</span></td><td>2.71</td><td>2.52</td><td class="positive">+13.5%</td></tr>
+      <tr><td>2024/07</td><td>53.20</td><td>2.29</td><td><span class="badge tag3">Q3</span></td><td>2.35</td><td>1.88</td><td class="positive">+4.05%</td></tr>
+      <tr><td>2024/08</td><td>49.90</td><td>2.19</td><td><span class="badge tag3">Q3</span></td><td>2.29</td><td>1.89</td><td class="positive">+2.29%</td></tr>
+      <tr><td>2024/09</td><td>53.90</td><td>2.36</td><td><span class="badge tag3">Q3</span></td><td>2.28</td><td>1.92</td><td class="positive">+19.3%</td></tr>
+      <tr><td>2024/10</td><td>55.70</td><td>2.29</td><td><span class="badge tag4">Q4</span></td><td>2.28</td><td>1.96</td><td class="positive">+28.1%</td></tr>
+      <tr><td>2024/11</td><td>50.60</td><td>2.38</td><td><span class="badge tag4">Q4</span></td><td>2.34</td><td>2.03</td><td class="positive">+54.1%</td></tr>
+      <tr><td>2024/12</td><td>46.95</td><td>2.25</td><td><span class="badge tag4">Q4</span></td><td>2.31</td><td>2.09</td><td class="positive">+45.3%</td></tr>
+      <tr><td>2025/01</td><td>48.30</td><td>2.36</td><td><span class="badge tag1">Q1</span></td><td>2.33</td><td>2.15</td><td class="positive">+53.6%</td></tr>
+      <tr><td>2025/02</td><td>51.30</td><td>2.59</td><td><span class="badge tag1">Q1</span></td><td>2.40</td><td>2.28</td><td class="positive">+147.6%</td></tr>
+      <tr><td>2025/03</td><td>44.10</td><td>2.66</td><td><span class="badge tag1">Q1</span></td><td>2.54</td><td>2.35</td><td class="positive">+43.5%</td></tr>
+      <tr><td>2025/04</td><td>40.70</td><td>2.98</td><td><span class="badge tag2">Q2</span></td><td>2.74</td><td>2.43</td><td class="positive">+44.8%</td></tr>
+      <tr><td>2025/05</td><td>46.20</td><td>2.93</td><td><span class="badge tag2">Q2</span></td><td>2.86</td><td>2.47</td><td class="positive">+23.7%</td></tr>
+      <tr><td>2025/06</td><td>42.60</td><td>2.69</td><td><span class="badge tag2">Q2</span></td><td>2.87</td><td>2.50</td><td class="positive">+12.1%</td></tr>
+      <tr><td>2025/07</td><td>39.50</td><td>2.60</td><td><span class="badge tag3">Q3</span></td><td>2.74</td><td>2.52</td><td class="positive">+13.5%</td></tr>
       <tr><td>2025/08</td><td>40.35</td><td>2.52</td><td><span class="badge tag3">Q3</span></td><td>2.60</td><td>2.55</td><td class="positive">+15.1%</td></tr>
       <tr><td>2025/09</td><td>41.85</td><td>2.43</td><td><span class="badge tag3">Q3</span></td><td>2.52</td><td>2.56</td><td class="positive">+2.93%</td></tr>
       <tr><td>2025/10</td><td>40.50</td><td>2.36</td><td><span class="badge tag4">Q4</span></td><td>2.44</td><td>2.56</td><td class="positive">+2.91%</td></tr>
@@ -264,7 +276,7 @@ footer.src{font-size:12px;color:var(--muted);margin-top:30px;padding-top:16px;bo
       <tr><td>2026/06</td><td>65.10</td><td>3.52</td><td><span class="badge tag2">Q2</span></td><td>3.28</td><td>2.71</td><td class="positive">+30.9%</td></tr>
     </table>
     <div class="highlight">
-      <b>MA3 vs MA12：</b>2026年1月起 MA3（短期動能）持續站上 MA12（長期趨勢）之上且向上，短期動能明顯強於長期基期，尤其 2026/04–06 三個月 MA3 從 2.81 加速拉升到 3.28，而 MA12 僅從 2.62 緩步爬升到 2.71 — 代表這波成長是近期加速的，不是長期均值本來就在墊高。轉折點在 2025/12（MA3觸底2.28）到 2026/01（急升至2.50）之間，恰好對應 Step3 法說會提到「2025年11月起訂單因中美關稅緩和回流」的時間點，數字與敘事互相驗證。<b>季節性：</b>觀察到的Q3(7-9月)與Q1(1-3月，扣除農曆年因素)相對強、Q4(10-12月)偏弱的粗略型態，但僅12個月樣本，季節性結論需更長期數列才能確認，先保留判斷。
+      <b>MA3 vs MA12：</b>拉長到24個月看，MA3 從2024下半年起大致貼著 MA12 或略高一點點，波動平緩；真正的分水嶺在 2025年初——2025/02起 MA3 一路墊高到2025年中的2.87(2025/06)，同期 MA12 也緩步從1.9爬升到2.5，兩條線同步上揚，是「基期也在墊高」的健康擴張型態。2025年下半年MA3一度回落到2.28(2025/12觸底)，但 2026/01起再度急拉，且這次 MA12 已經站穩2.5-2.6區間不再明顯上移，代表2026年這波是短期動能明顯超越長期基期的加速期，跟前一波(2025上半年)基期也同步墊高的性質不同。轉折點2025/12→2026/01，恰好對應 Step3 法說會「2025年11月起訂單因中美關稅緩和回流」的時間點，數字與敘事互相驗證。<b>季節性：</b>拉長樣本後看，Q1(1-3月，扣除農曆年因素)與Q3(7-9月)較常出現年增率高點，Q4(10-12月)相對常見轉弱，但24個月仍只涵蓋約2個完整循環，季節性結論需更長期數列才能確認，先保留判斷。
     </div>
   </div>
 
@@ -387,12 +399,12 @@ Plotly.newPlot('chartFCF', [
   font:{family:'Noto Sans TC', color:'#2C3E50'}
 }, {displayModeBar:false, responsive:true});
 
-const revMonths = ["2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06"];
-const revClose = [39.5,40.35,41.85,40.5,37.95,37.15,46.9,62.7,46.75,54.2,58.7,65.1];
-const revVal = [2.60,2.52,2.43,2.36,2.38,2.09,3.02,2.05,3.19,3.19,3.13,3.52];
-const revMA3 = [2.71,2.60,2.52,2.44,2.39,2.28,2.50,2.39,2.75,2.81,3.17,3.28];
-const revMA12 = [2.52,2.55,2.56,2.56,2.56,2.55,2.60,2.56,2.60,2.62,2.64,2.71];
-const revQuarter = ["Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2"];
+const revMonths = ["2024/07","2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06"];
+const revClose = [53.2,49.9,53.9,55.7,50.6,46.95,48.3,51.3,44.1,40.7,46.2,42.6,39.5,40.35,41.85,40.5,37.95,37.15,46.9,62.7,46.75,54.2,58.7,65.1];
+const revVal = [2.29,2.19,2.36,2.29,2.38,2.25,2.36,2.59,2.66,2.98,2.93,2.69,2.60,2.52,2.43,2.36,2.38,2.09,3.02,2.05,3.19,3.19,3.13,3.52];
+const revMA3 = [2.35,2.29,2.28,2.28,2.34,2.31,2.33,2.40,2.54,2.74,2.86,2.87,2.74,2.60,2.52,2.44,2.39,2.28,2.50,2.39,2.75,2.81,3.17,3.28];
+const revMA12 = [1.88,1.89,1.92,1.96,2.03,2.09,2.15,2.28,2.35,2.43,2.47,2.50,2.52,2.55,2.56,2.56,2.56,2.55,2.60,2.56,2.60,2.62,2.64,2.71];
+const revQuarter = ["Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2"];
 const qColor = {"Q1":"#7BA7D9","Q2":"#7AC1A0","Q3":"#F5C07A","Q4":"#E8A0A0"};
 const revBarColors = revQuarter.map(q => qColor[q]);
 
@@ -416,7 +428,7 @@ Plotly.newPlot('chartRev', [
     line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2'
   }
 ], {
-  title:{text:'6202 盛群：月營收四季分色 + 3M/12M 平均圖', font:{size:14,color:'#2C3E50'}},
+  title:{text:'6202 盛群：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14,color:'#2C3E50'}},
   margin:{t:40,l:50,r:50,b:40}, paper_bgcolor:'#fff', plot_bgcolor:'#fff',
   yaxis:{title:'月營收(億)', zeroline:true, zerolinecolor:'#B0B8C0', gridcolor:'#F1F2F3'},
   yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
