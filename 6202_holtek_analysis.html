@@ -58,8 +58,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done" id="nav1">1.現金流盲測</a>
     <a href="#step2" class="done" id="nav2">2.基本資訊</a>
-    <a href="#step3" class="active" id="nav3">3.法說會</a>
-    <a href="#" class="disabled" id="nav4">4.營收趨勢</a>
+    <a href="#step3" class="done" id="nav3">3.法說會</a>
+    <a href="#step4" class="active" id="nav4">4.營收趨勢</a>
     <a href="#" class="disabled" id="nav5">5.前瞻本益比</a>
     <a href="#" class="disabled" id="nav6">6.投資決策</a>
   </nav>
@@ -67,7 +67,7 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>6202 盛群</h1>
-      <div class="sub">初步分析報告 · 2026/08/09 · 目前完成：第3步／共6步</div>
+      <div class="sub">初步分析報告 · 2026/08/09 · 目前完成：第4步／共6步</div>
     </div>
     <div class="score">
       <div class="num">50.8</div>
@@ -250,6 +250,67 @@ tr:hover td{background:#FAFBFC}
     <p class="footer-note">資料來源：<a href="https://blog.fugle.tw/post/earnings-call-6202-2026-07-30" target="_blank">富果直送《盛群法說會重點內容備忘錄》</a>（2026/07/30、2026/04/29場次）；<a href="https://udn.com/news/story/7240/9661484" target="_blank">聯合新聞網《盛群產品將全面漲價》</a>；<a href="https://news.cnyes.com/news/id/6552361" target="_blank">鉅亨網《盛群擬全面漲價10-20%》</a>；<a href="https://www.chinatimes.com/realtimenews/20260730002717-260410" target="_blank">中時《AI搶產能、MCU喊漲！盛群訂單看到半年後》</a>；<a href="https://www.moneyweekly.com.tw/ArticleData/Info/Article/236334" target="_blank">理財周刊《MCU漲價潮外溢、狂啃AI散熱與光通訊大餅》</a>（籌碼面分析，2026/07/09）。原始法說會簡報／MOPS公告無法直接讀取全文，如需逐字稿請自行至公司IR網站或MOPS查閱：<a href="https://mops.twse.com.tw" target="_blank">mops.twse.com.tw</a>。報告版本 v1.2，生成時間 2026/08/09。</p>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+    <div class="highlight">
+      <b>重點提示：</b> 近24個月合併月營收從2.29億(2024/07)成長到3.52億(2026/06)，成長約54%；<b>2025年9月出現MA3跌破MA12的死亡交叉，一路延續到2026年2月，2026年3月出現黃金交叉後強勢站上</b>，技術面走勢與第3步法說會敘述的「2025年築底、2026年初訂單回流復甦」完全吻合，是三檔股票中唯一在觀察期間內出現明確死亡交叉又反轉黃金交叉的案例。
+    </div>
+
+    <h3>4-1 資料範圍與口徑說明</h3>
+    <p>使用者提供Goodinfo月營收+股價截圖，涵蓋2023/06~2026/06共37個月（最新可得資料至2026/06，2026/07數據尚未公告）。營收採「合併營業收入」單月數字，與第2、3步查到的數字交叉核對一致（2026H1累計18.09億，Jan~Jun合計：3.02+2.05+3.19+3.19+3.13+3.52=18.10億✓；2026Q2單季9.83億：Apr3.19+May3.13+Jun3.52=9.84億✓）。圖表Bar僅顯示後24個月(2024/07~2026/06)，MA3/MA12使用前12個月資料墊底計算。盛群未曾進行股票分割，收盤價無需還原調整。</p>
+
+    <h3>4-2 月營收四季分色 + 3M/12M平均圖（近24個月）</h3>
+    <div class="chart-wrap"><div id="chartRev" style="height:420px"></div></div>
+
+    <h3>4-3 擬人化解讀</h3>
+    <p><b>死亡交叉轉黃金交叉，技術面完整驗證了基本面的谷底復甦故事：</b>MA3在2025年9月跌破MA12（死亡交叉），此後連續6個月維持在MA12之下(2025年9月至2026年2月)，代表這段期間短期接單動能持續弱於長期平均，正是公司口中「2025年谷底」的具體數字呈現；2026年3月MA3重新站上MA12（黃金交叉），且缺口迅速擴大——3月MA3(2.75)與MA12(2.60)差距僅6%，到6月MA3(3.28)與MA12(2.71)差距已擴大到21%，短期動能加速回溫的訊號非常清楚，與第3步「訂單自2025年11月起因中美關稅緩和及中國MCU廠轉單而回流」的說法時間點吻合(訂單回流到實際認列營收通常有1-2個月落後，2025年11月訂單回流、2026年1-3月開始在營收數字上顯現)。</p>
+    <p><b>季節性不算特別規律，2026年顯著跳升更多是訂單回流驅動而非季節因素：</b>觀察近3年同期表現，2024年Q1(1-3月)營收約1.05-1.85億，2025年Q1約2.36-2.66億，2026年Q1大幅跳升到2.05-3.19億(其中2月因農曆春節工作天數少而較低，3月則跳升明顯)——年增幅度遠大於季節性波動，確認這波成長主要是訂單回流的結構性因素，不是單純的季節性旺季效應。</p>
+    <p><b>股價與營收方向大致同步，但6-7月出現明顯超前反應後又回落：</b>近24個月收盤價從53.2元(2024/07)漲到65.1元(2026/06)，漲幅約22%，而營收成長約54%，股價漲幅低於營收成長，本身不算超前反應；但單看6月當月股價從46.75元(3月)一路衝到65.1元(6月收盤)，且盤中一度衝上81元的52週高點(7月9日)，短期漲幅遠超過營收成長的速度——這與第3步分析的「AI伺服器/漲價題材被市場搶跑，法說會攤開時間表(2027年才兌現)後又回落修正」完全對應，是基本面剛開始好轉、但股價短線漲幅一度大幅超前的典型案例。</p>
+
+    <h3>4-4 近36個月完整數據表（供驗算）</h3>
+    <table>
+      <tr><th>月份</th><th>合併營收(億)</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>收盤價(元)</th></tr>
+      <tr><td>2023/06</td><td>2.48</td><td>Q2</td><td>—</td><td>—</td><td>68.30</td></tr>
+      <tr><td>2023/07</td><td>2.20</td><td>Q3</td><td>—</td><td>—</td><td>69.30</td></tr>
+      <tr><td>2023/08</td><td>2.14</td><td>Q3</td><td>2.27</td><td>—</td><td>63.00</td></tr>
+      <tr><td>2023/09</td><td>1.98</td><td>Q3</td><td>2.11</td><td>—</td><td>61.90</td></tr>
+      <tr><td>2023/10</td><td>1.79</td><td>Q4</td><td>1.97</td><td>—</td><td>61.60</td></tr>
+      <tr><td>2023/11</td><td>1.55</td><td>Q4</td><td>1.77</td><td>—</td><td>67.10</td></tr>
+      <tr><td>2023/12</td><td>1.55</td><td>Q4</td><td>1.63</td><td>—</td><td>66.70</td></tr>
+      <tr><td>2024/01</td><td>1.54</td><td>Q1</td><td>1.55</td><td>—</td><td>61.80</td></tr>
+      <tr><td>2024/02</td><td>1.05</td><td>Q1</td><td>1.38</td><td>—</td><td>60.00</td></tr>
+      <tr><td>2024/03</td><td>1.85</td><td>Q1</td><td>1.48</td><td>—</td><td>53.90</td></tr>
+      <tr><td>2024/04</td><td>2.06</td><td>Q2</td><td>1.65</td><td>—</td><td>60.00</td></tr>
+      <tr><td>2024/05</td><td>2.37</td><td>Q2</td><td>2.09</td><td>1.88</td><td>60.80</td></tr>
+      <tr><td>2024/06</td><td>2.40</td><td>Q2</td><td>2.28</td><td>1.87</td><td>60.00</td></tr>
+      <tr><td>2024/07</td><td>2.29</td><td>Q3</td><td>2.35</td><td>1.88</td><td>53.20</td></tr>
+      <tr><td>2024/08</td><td>2.19</td><td>Q3</td><td>2.29</td><td>1.88</td><td>49.90</td></tr>
+      <tr><td>2024/09</td><td>2.36</td><td>Q3</td><td>2.28</td><td>1.92</td><td>53.90</td></tr>
+      <tr><td>2024/10</td><td>2.29</td><td>Q4</td><td>2.28</td><td>1.96</td><td>55.70</td></tr>
+      <tr><td>2024/11</td><td>2.38</td><td>Q4</td><td>2.34</td><td>2.03</td><td>50.60</td></tr>
+      <tr><td>2024/12</td><td>2.25</td><td>Q4</td><td>2.31</td><td>2.09</td><td>46.95</td></tr>
+      <tr><td>2025/01</td><td>2.36</td><td>Q1</td><td>2.33</td><td>2.15</td><td>48.30</td></tr>
+      <tr><td>2025/02</td><td>2.59</td><td>Q1</td><td>2.40</td><td>2.28</td><td>51.30</td></tr>
+      <tr><td>2025/03</td><td>2.66</td><td>Q1</td><td>2.54</td><td>2.35</td><td>44.10</td></tr>
+      <tr><td>2025/04</td><td>2.98</td><td>Q2</td><td>2.74</td><td>2.43</td><td>40.70</td></tr>
+      <tr><td>2025/05</td><td>2.93</td><td>Q2</td><td>2.86</td><td>2.47</td><td>46.20</td></tr>
+      <tr><td>2025/06</td><td>2.69</td><td>Q2</td><td>2.87</td><td>2.50</td><td>42.60</td></tr>
+      <tr><td>2025/07</td><td>2.60</td><td>Q3</td><td>2.74</td><td>2.52</td><td>39.50</td></tr>
+      <tr><td>2025/08</td><td>2.52</td><td>Q3</td><td>2.60</td><td>2.55</td><td>40.35</td></tr>
+      <tr><td>2025/09</td><td>2.43</td><td>Q3</td><td>2.52</td><td class="negative">2.56</td><td>41.85</td></tr>
+      <tr><td>2025/10</td><td>2.36</td><td>Q4</td><td>2.44</td><td>2.56</td><td>40.50</td></tr>
+      <tr><td>2025/11</td><td>2.38</td><td>Q4</td><td>2.39</td><td>2.56</td><td>37.95</td></tr>
+      <tr><td>2025/12</td><td>2.09</td><td>Q4</td><td>2.28</td><td>2.55</td><td>37.15</td></tr>
+      <tr><td>2026/01</td><td>3.02</td><td>Q1</td><td>2.50</td><td>2.60</td><td>46.90</td></tr>
+      <tr><td>2026/02</td><td>2.05</td><td>Q1</td><td>2.39</td><td>2.56</td><td>62.70</td></tr>
+      <tr><td>2026/03</td><td class="positive">3.19</td><td>Q1</td><td class="positive">2.75</td><td>2.60</td><td>46.75</td></tr>
+      <tr><td>2026/04</td><td class="positive">3.19</td><td>Q2</td><td>2.81</td><td>2.62</td><td>54.20</td></tr>
+      <tr><td>2026/05</td><td>3.13</td><td>Q2</td><td>3.17</td><td>2.64</td><td>58.70</td></tr>
+      <tr><td>2026/06</td><td class="positive">3.52</td><td>Q2</td><td class="positive">3.28</td><td>2.71</td><td>65.10</td></tr>
+    </table>
+    <p class="footer-note">資料來源：使用者提供 Goodinfo 月營收暨股價截圖（ShowSaleMonChart.asp?STOCK_ID=6202），涵蓋2023/06~2026/06。盛群未曾股票分割，收盤價無需還原調整。報告版本 v1.3，生成時間 2026/08/09。</p>
+  </div>
+
 </div>
 
 <script>
@@ -300,6 +361,35 @@ Plotly.newPlot('chartE', [{
   yaxis:{title:'億元', gridcolor:'#F1F2F3'},
   xaxis:{title:''}
 }, {displayModeBar:false, responsive:true});
+
+// Chart Rev: 月營收四季分色 + MA3/MA12 + 股價雙軸 (6202盛群)
+(function(){
+var months = ["2024/07","2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06"];
+var rev = [2.29,2.19,2.36,2.29,2.38,2.25,2.36,2.59,2.66,2.98,2.93,2.69,2.60,2.52,2.43,2.36,2.38,2.09,3.02,2.05,3.19,3.19,3.13,3.52];
+var ma3 = [2.35,2.29,2.28,2.28,2.34,2.31,2.33,2.40,2.54,2.74,2.86,2.87,2.74,2.60,2.52,2.44,2.39,2.28,2.50,2.39,2.75,2.81,3.17,3.28];
+var ma12 = [1.88,1.88,1.92,1.96,2.03,2.09,2.15,2.28,2.35,2.43,2.47,2.50,2.52,2.55,2.56,2.56,2.56,2.55,2.60,2.56,2.60,2.62,2.64,2.71];
+var close = [53.2,49.9,53.9,55.7,50.6,46.95,48.3,51.3,44.1,40.7,46.2,42.6,39.5,40.35,41.85,40.5,37.95,37.15,46.9,62.7,46.75,54.2,58.7,65.1];
+var colors = ["#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0"];
+var traceBar = {x:months, y:rev, type:'bar', name:'月營收(億)', marker:{color:colors}, yaxis:'y1',
+  hovertemplate:'%{x}<br>營收：%{y}億<extra></extra>'};
+var traceMA3 = {x:months, y:ma3, type:'scatter', mode:'lines', name:'MA3(紅實線)', line:{color:'#E74C3C', width:2.5, dash:'solid'}, yaxis:'y1',
+  hovertemplate:'%{x}<br>MA3：%{y}億<extra></extra>'};
+var traceMA12 = {x:months, y:ma12, type:'scatter', mode:'lines', name:'MA12(深藍實線)', line:{color:'#1B3A8C', width:2.5, dash:'solid'}, yaxis:'y1',
+  hovertemplate:'%{x}<br>MA12：%{y}億<extra></extra>'};
+var traceClose = {x:months, y:close, type:'scatter', mode:'lines', name:'收盤價(右軸)', line:{color:'#8B5FBF', width:2.5, dash:'solid'}, yaxis:'y2',
+  hovertemplate:'%{x}<br>收盤價：%{y}元<extra></extra>'};
+Plotly.newPlot('chartRev', [traceBar, traceMA3, traceMA12, traceClose], {
+  title:{text:'6202 盛群：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:14}},
+  margin:{t:50,l:55,r:55,b:60},
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{family:'Noto Sans TC', color:'#2C3E50', size:11},
+  bargap:0.15,
+  yaxis:{title:'月營收(億元)', gridcolor:'#F1F2F3'},
+  yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+  legend:{orientation:'h', y:-0.25},
+  hovermode:'x unified'
+}, {displayModeBar:false, responsive:true});
+})();
 </script>
 </body>
 </html>
