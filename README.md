@@ -1,7 +1,7 @@
 # 我的股票分析
 
 ## 📊 已發布報告
-- [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（最新，六步驟完整版）
+- [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（最新，六步驟完整版，核心六規則86.7分，規則八扣分後81.7分／優秀）
 - [2327 國巨 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2327_yageo_analysis.html)（六步驟完整版，核心六規則77.5分／體質良好）
 - [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（六步驟完整版，核心六規則58.3分）
 - [2753 八方雲集 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2753_bafang_analysis.html)（99dodo專屬版v2.3，核心六規則81.5分／體質良好）
