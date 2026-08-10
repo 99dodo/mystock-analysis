@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9911 台灣櫻花 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,249,246,0.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+  margin:-24px -20px 32px;
+  display:flex;gap:8px;overflow-x:auto;
+}
+nav.stepnav a{
+  white-space:nowrap;
+  padding:8px 14px;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:13px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:all .2s;
+}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav a.pending{opacity:.4;pointer-events:none}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px 32px;
+  margin-bottom:24px;
+}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text)}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{
+  background:var(--highlight-bg);
+  border-left:4px solid var(--highlight-border);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:16px 20px;
+  margin:20px 0;
+}
+.highlight.warn{background:#FFF8E6;border-left-color:#E8A020}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C}
+.highlight b{color:var(--text)}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  margin:16px 0;
+  font-size:15px;
+  line-height:1.8;
+}
+th{
+  background:#F8F9FA;
+  color:var(--muted);
+  font-weight:600;
+  text-align:left;
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.red{color:#E74C3C;font-weight:800}
+.red-lg{color:#E74C3C;font-weight:800;font-size:1.15em}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.header{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:32px;
+  margin-bottom:28px;
+  box-shadow:var(--shadow);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="active">1.現金流盲測</a>
+    <a href="#step2" class="pending">2.基本資訊</a>
+    <a href="#step3" class="pending">3.法說會</a>
+    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step5" class="pending">5.前瞻本益比</a>
+    <a href="#step6" class="pending">6.投資決策</a>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>9911 台灣櫻花 (SAKURA)</h1>
+      <div class="sub">初步分析報告 · 2026/08/10 · 資料來源：使用者提供114年報(查核)+115年Q2季報(核閱)+Goodinfo截圖</div>
+    </div>
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <div class="highlight">
+      <b>本步驟已取得三表齊全：</b><br>
+      ① 114年度(FY2025)合併財務報告(查核，含113年度/FY2024比較)<br>
+      ② 115年Q2(2026H1)合併財務報告(核閱，含114年Q2/2025H1比較)<br>
+      ③ Goodinfo年度現金流量總覽(1999~2026Q2)+逐季現金流量表(2022Q4~2026Q2)<br><br>
+      <b>規則七(存貨vs合約負債背離)適用：</b>兩份財報資產負債表均揭露「2130 合約負債－流動」科目(114年報附註六.18/六.20)，非缺漏科目，故規則七正常套用，非豁免。
+    </div>
+
+    <h3>欄位定義：現金流代號對照表</h3>
+    <table>
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><b class="term" title="營業活動現金流量">A</b></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>現金流量表「營業活動之淨現金流入」</td></tr>
+      <tr><td><b class="term" title="投資活動現金流量">B</b></td><td>花掉的投資錢</td><td>投資活動現金流量(通常為負)</td><td>現金流量表「投資活動之淨現金流出」</td></tr>
+      <tr><td><b class="term" title="融資活動現金流量">C</b></td><td>跟銀行/股東的錢往來</td><td>融資活動現金流量</td><td>現金流量表「籌資活動之淨現金流出」</td></tr>
+      <tr><td><b class="term" title="稅後淨利">D</b></td><td>帳面賺的錢</td><td>稅後淨利(本表優先對照稅前淨利，並列稅後)</td><td>綜合損益表「本期淨利」</td></tr>
+      <tr><td><b class="term" title="期末現金餘額">E</b></td><td>最後剩下的現金</td><td>期末現金餘額</td><td>資產負債表「現金及約當現金」</td></tr>
+      <tr><td><b class="term" title="自由現金流">FCF</b></td><td>真能拿來發股利的錢</td><td>自由現金流 = A - B(資本支出)</td><td>自算</td></tr>
+    </table>
+
+    <div class="highlight">
+      <b>重點提示：</b> 2025年(114年度) <b>營業現金(A) 13.30億</b> 略低於 <b>稅後淨利(D) 13.74億</b>，口袋收到的錢比帳面賺的錢少一點，但差距不到5%，非暴增缺口。<b>存貨</b>與<b>合約負債</b>同步成長(存貨+7.5%、合約負債+20.2%)，沒有出現背離。<b>真實股利覆蓋率 0.92</b>，<span class="red">略低於1</span>，但融資活動顯示公司是「還債」而非「借新債發股利」，用的是帳上現金存量。
+    </div>
+
+    <h3>八大現金流解讀規則</h3>
+    <table>
+      <tr><th>規則</th><th>專業定義</th><th>實務解讀(強制三段)</th><th>核心公式</th><th>數字</th><th>判斷</th></tr>
+
+      <tr>
+        <td><b>規則一</b><br>A&lt;D 應收暴增</td>
+        <td>營運現金流入小於稅後淨利，需檢查是否為應收帳款堆積所致</td>
+        <td>
+          2025年 <b>營業現金(A) 13.30億</b> 略低於 <b>稅後淨利(D) 13.74億</b>，差距約0.44億(3.2%)，帳面賺的錢大部分都真的收到現金了。<br><br>
+          公式對照：應收/營收比 = 應收帳款 / 近12月營收。2025年底 <b>應收帳款 12.40億</b> / 全年營收 <b>102.75億</b> = <b>12.07%</b>，2024年底為11.56%，僅小幅上升，並非暴增。<br><br>
+          影響：A&lt;D缺口小且非應收帳款驅動，對股利/成長影響有限，屬正常業務波動。
+        </td>
+        <td>應收/營收比 = 應收帳款餘額 / 近12月營收</td>
+        <td>2025: 12.07%<br>2024: 11.56%<br>2026H1(TTM): 11.38%</td>
+        <td>正常，比率穩定未暴增</td>
+      </tr>
+
+      <tr>
+        <td><b>規則二</b><br>A&lt;D 存貨暴增</td>
+        <td>獲利被存貨積壓吃掉，檢查存貨成長是否遠超營收成長</td>
+        <td>
+          2025年 <b>存貨 17.69億</b>，比2024年的 <b>16.46億</b> 增加<b>7.48%</b>，同期<b>營收成長7.02%</b>，兩者幾乎同步，貨沒有明顯堆在倉庫裡。<br><br>
+          公式對照：存貨YoY vs 營收YoY。2026年6月底存貨較去年同期僅增3.47%，而同期營收成長6.44%，存貨成長甚至低於營收成長，屬去化健康。<br><br>
+          影響：A&lt;D的缺口不是存貨造成的，不影響對明年備貨/成長判斷。
+        </td>
+        <td>存貨YoY vs 營收YoY</td>
+        <td>2025: 存貨+7.48% / 營收+7.02%<br>2026H1: 存貨+3.47% / 營收+6.44%</td>
+        <td>正常，未暴增</td>
+      </tr>
+
+      <tr>
+        <td><b>規則三</b><br>B大於A / 資本支出折舊比</td>
+        <td>投資過度或吃老本，比較資本支出與折舊費用</td>
+        <td>
+          2025年 <b>投資活動淨流出(B) 4.16億</b>，遠小於 <b>營業現金(A) 13.30億</b>，公司賺的錢遠多於花掉的投資錢，不是花錢比賺錢快。<br><br>
+          公式對照：資本支出/折舊比 = 取得不動產廠房設備 / 折舊費用。2025年 <b>3.84億 / 2.07億 = 1.86倍</b>，&gt;1.5屬於「擴產」訊號；2024年為1.41倍，屬正常維護規模；2026上半年降回1.02倍。<br><br>
+          影響：2025年擴大資本支出對應營收成長7%，是合理的產能布建，非過度投資的警訊。
+        </td>
+        <td>資本支出/折舊比 = B取得不動產廠房設備 / 折舊費用</td>
+        <td>2025: 1.86倍<br>2024: 1.41倍<br>2026H1: 1.02倍</td>
+        <td>2025年擴產，非吃老本</td>
+      </tr>
+
+      <tr>
+        <td><b>規則四</b><br>C持續正</td>
+        <td>融資活動現金流是否持續為正，檢查股本、商譽變化</td>
+        <td>
+          9911櫻花近10年的 <b>融資活動現金流(C)</b> 幾乎<b>年年為負</b>：2025年<b>-11.60億</b>、2024年-7.27億、2023年-7.48億，代表公司是「還錢+發股利」給股東和銀行，而不是靠借錢或增資撐營運。<br><br>
+          公式對照：C持續負主要由「發放現金股利」構成(2025年支出中現金股利占大宗)，短期/長期借款則呈現淨償還(短期借款淨變動約-0.53億、長期借款淨變動約-0.23億)，非淨舉債。<br><br>
+          影響：這是成熟配息型公司的典型現金流結構，不是財務吃緊的訊號。
+        </td>
+        <td>觀察C正負與股本、商譽變化</td>
+        <td>2025: C -11.60億<br>2024: C -7.27億<br>2023: C -7.48億</td>
+        <td>持續負，屬正常還債配息</td>
+      </tr>
+
+      <tr>
+        <td><b>規則五</b><br>自由現金流FCF</td>
+        <td>真能拿來發股利的錢，扣掉資本支出後的營業現金</td>
+        <td>
+          2025年 <b>FCF = 營業現金(A) 13.30億 - 資本支出 3.84億 = 9.45億</b>，代表公司在花完該花的設備錢後，還有這麼多現金可運用；2024年FCF為9.46億，兩年相近。<br><br>
+          公式對照：FCF = A - 資本支出(取得不動產廠房設備)。三表齊全下可算出真實FCF，非用損益表獲利粗估。<br><br>
+          影響：FCF約9.45~9.46億，將在規則八用來檢驗股利發放的永續性。
+        </td>
+        <td>FCF = A營業現金流 - 資本支出</td>
+        <td>2025: 9.45億<br>2024: 9.46億</td>
+        <td>穩定，兩年相近</td>
+      </tr>
+
+      <tr>
+        <td><b>規則六</b><br>應收/營收比</td>
+        <td>收現能力，貨出去了錢收不回來的風險</td>
+        <td>
+          2025年底 <b>應收帳款 12.40億</b> 占全年營收(<b>102.75億</b>)的 <b>12.07%</b>，2024年底為11.56%，2026年6月底(以近12月營收計)為11.38%，比率在11~12%間微幅波動。<br><br>
+          公式對照：應收/營收比 = 應收帳款 / 近12月營收，遠低於20%警戒線，且未見持續上升趨勢。<br><br>
+          影響：收現能力穩定，不是拖累A&lt;D的主因。
+        </td>
+        <td>應收/營收比 = 應收帳款 / 營收</td>
+        <td>2025: 12.07%<br>2024: 11.56%<br>2026H1(TTM): 11.38%</td>
+        <td>正常(&lt;20%且無上升趨勢)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則七</b><br>存貨 vs 合約負債背離</td>
+        <td>備貨是客戶先付錢，還是自己猜景氣，用存貨YoY對照合約負債YoY</td>
+        <td>
+          2025年 <b>存貨</b> 較2024年增加<b>7.48%</b>，同期 <b>合約負債</b>(客戶預付款/未出貨訂單)從2.64億增至<b>3.17億</b>，成長<b>20.19%</b>，合約負債成長幅度還高於存貨，代表備貨背後有更多客戶訂單/預收款支撐，不是自己猜的。<br><br>
+          公式對照：存貨YoY vs 合約負債YoY。若出現「存貨↑+合約負債↓」才是背離警訊；本案為「存貨↑+合約負債↑，且合約負債漲更快」，屬於正向訊號。2026年6月底同樣呈現存貨+3.47%、合約負債+6.23%，同步上升。<br><br>
+          影響：備貨動作有訂單支撐，對明年營收動能是正面訊號，非景氣誤判。
+        </td>
+        <td>存貨YoY vs 合約負債YoY</td>
+        <td>2025: 存貨+7.48% / 合約負債+20.19%<br>2026H1: 存貨+3.47% / 合約負債+6.23%</td>
+        <td>正常，同步成長無背離</td>
+      </tr>
+
+      <tr>
+        <td><b>規則八</b><br>股利永續/真實股利覆蓋率</td>
+        <td>股利是真賺的還是借來發的，用FCF衡量能否不借錢發幾次</td>
+        <td>
+          2025年公司實際發放的現金股利為 <b>10.28億</b>(2025年內以現金支付，對應2024年獲利)，同年 <b>FCF為9.45億</b>，覆蓋率為 <span class="red">0.92</span>，代表當年帳上現金流入略不足以完全覆蓋當年配發的股利。<br><br>
+          公式對照：真實股利覆蓋率 = FCF / 現金股利。2024年覆蓋率為 <b>9.46億 / 8.49億 = 1.11</b>(健康)；2025年降到0.92，<span class="red">&lt;1，觸發留意</span>，但檢查同期融資活動：短期+長期借款均為「淨償還」而非「淨舉債」，代表缺口是用<b>帳上現金存量</b>補足(期末現金餘額由24.09億降至21.57億)，而非借新債發股利。2026年6月已再支付11.00億股利(對應2025年獲利)，全年FCF覆蓋率需待下半年數據確認。<br><br>
+          影響：目前屬於「動用現金儲備」而非「借錢配息」，程度尚溫和，但若覆蓋率連續多年&lt;1、現金餘額持續下滑，就要重新評估股利政策的永續性。
+        </td>
+        <td>真實股利覆蓋率 = FCF / 現金股利</td>
+        <td>2024: 1.11<br>2025: <span class="red">0.92</span><br>2026(待確認全年)</td>
+        <td><span class="red">2025年&lt;1，需留意，但非借新債發股利</span></td>
+      </tr>
+    </table>
+
+    <p><b>J交叉預告：</b>本步規則一/二顯示A&lt;D缺口小且非應收/存貨異常驅動；規則三顯示2025年資本支出擴產對應營收成長；規則七確認存貨與合約負債同步成長無背離；規則八真實股利覆蓋率2025年降至0.92為本報告目前唯一留意項，將於第2步EPS/殖利率、第5步法人預估EPS品質檢查中交叉比對，詳見後續步驟。</p>
+
+    <p style="color:var(--muted);font-size:13px">資料來源：使用者提供114年度(FY2025)合併財務報告暨會計師查核報告、115年Q2(2026H1)合併財務報告暨會計師核閱報告、Goodinfo年度現金流量總覽與逐季現金流量表截圖。</p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
