@@ -119,8 +119,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -430,7 +430,113 @@ tr:hover td{background:#FAFBFC}
     <p style="color:var(--muted);font-size:13px">資料來源：工商時報2026/07/24報導、poorstock.com法說會AI重點整理(基於2026/05/20 MOPS官方簡報)、台灣櫻花官網新聞稿。原始MOPS PDF因robots.txt無法直接讀取，已附官方連結供自行查核。</p>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 近3個月平均營收(MA3) <b>8.81億</b>，已連續<b>2個月</b>低於12個月平均營收(MA12) <b>8.90億</b>，2026年6月出現<b>死亡交叉</b>後，7月營收止跌回升但MA3仍未重新站上MA12，短期動能是否轉強仍待8月數據確認。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revChart" style="width:100%;height:420px"></div>
+    </div>
+
+    <h3>月營收明細表(近24個月)</h3>
+    <table>
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3(紅實線)</th><th>MA12(深藍實線)</th></tr>
+      <tr><td>2024/08</td><td>90.0</td><td>8.07</td><td><span class="badge q3">Q3</span></td><td>7.91</td><td>7.82</td></tr>
+      <tr><td>2024/09</td><td>87.7</td><td>8.52</td><td><span class="badge q3">Q3</span></td><td>8.21</td><td>7.9</td></tr>
+      <tr><td>2024/10</td><td>82.9</td><td>8.32</td><td><span class="badge q4">Q4</span></td><td>8.3</td><td>8.0</td></tr>
+      <tr><td>2024/11</td><td>84.6</td><td>7.64</td><td><span class="badge q4">Q4</span></td><td>8.16</td><td>8.0</td></tr>
+      <tr><td>2024/12</td><td>83.6</td><td>8.28</td><td><span class="badge q4">Q4</span></td><td>8.08</td><td>8.0</td></tr>
+      <tr><td>2025/01</td><td>83.3</td><td>9.88</td><td><span class="badge q1">Q1</span></td><td>8.6</td><td>8.05</td></tr>
+      <tr><td>2025/02</td><td>88.0</td><td>8.53</td><td><span class="badge q1">Q1</span></td><td>8.9</td><td>8.2</td></tr>
+      <tr><td>2025/03</td><td>90.8</td><td>9.19</td><td><span class="badge q1">Q1</span></td><td>9.2</td><td>8.29</td></tr>
+      <tr><td>2025/04</td><td>88.1</td><td>8.03</td><td><span class="badge q2">Q2</span></td><td>8.58</td><td>8.31</td></tr>
+      <tr><td>2025/05</td><td>85.1</td><td>7.87</td><td><span class="badge q2">Q2</span></td><td>8.36</td><td>8.33</td></tr>
+      <tr><td>2025/06</td><td>85.5</td><td>8.21</td><td><span class="badge q2">Q2</span></td><td>8.04</td><td>8.38</td></tr>
+      <tr><td>2025/07</td><td>86.1</td><td>8.31</td><td><span class="badge q3">Q3</span></td><td>8.13</td><td>8.4</td></tr>
+      <tr><td>2025/08</td><td>86.7</td><td>8.14</td><td><span class="badge q3">Q3</span></td><td>8.22</td><td>8.41</td></tr>
+      <tr><td>2025/09</td><td>85.6</td><td>9.04</td><td><span class="badge q3">Q3</span></td><td>8.5</td><td>8.45</td></tr>
+      <tr><td>2025/10</td><td>85.2</td><td>8.18</td><td><span class="badge q4">Q4</span></td><td>8.45</td><td>8.44</td></tr>
+      <tr><td>2025/11</td><td>84.6</td><td>7.95</td><td><span class="badge q4">Q4</span></td><td>8.39</td><td>8.47</td></tr>
+      <tr><td>2025/12</td><td>83.7</td><td>9.42</td><td><span class="badge q4">Q4</span></td><td>8.52</td><td>8.56</td></tr>
+      <tr><td>2026/01</td><td>83.2</td><td>10.97</td><td><span class="badge q1">Q1</span></td><td>9.45</td><td>8.65</td></tr>
+      <tr><td>2026/02</td><td>86.4</td><td>8.63</td><td><span class="badge q1">Q1</span></td><td>9.67</td><td>8.66</td></tr>
+      <tr><td>2026/03</td><td>88.0</td><td>9.5</td><td><span class="badge q1">Q1</span></td><td>9.7</td><td>8.69</td></tr>
+      <tr><td>2026/04</td><td>83.2</td><td>8.55</td><td><span class="badge q2">Q2</span></td><td>8.89</td><td>8.73</td></tr>
+      <tr><td>2026/05</td><td>82.0</td><td>8.56</td><td><span class="badge q2">Q2</span></td><td>8.87</td><td>8.79</td></tr>
+      <tr><td>2026/06</td><td>82.8</td><td>8.76</td><td><span class="badge q2">Q2</span></td><td>8.62</td><td>8.83</td></tr>
+      <tr><td>2026/07</td><td>81.9</td><td>9.11</td><td><span class="badge q3">Q3</span></td><td>8.81</td><td>8.9</td></tr>
+    </table>
+
+    <div class="highlight">
+      <b>實務解讀：</b><br><br>
+      這兩年<b>櫻花的短期營收動能像坐雲霄飛車</b>：2024年下半年到2025年初一度站上短強長強(MA3>MA12)，2025年6月出現死亡交叉，9月又黃金交叉，11月再死亡交叉，2026年1月因單月營收衝上<b>10.97億</b>(全期最高)再度黃金交叉並維持到5月，6月又轉為死亡交叉，7月營收回升到9.11億但MA3(8.81億)仍略低於MA12(8.90億)，代表短期動能反覆拉鋸，不是穩定的多頭排列。<br><br>
+      公式對照：這種「單月營收大幅跳動、MA3頻繁穿越MA12」的型態，對應第1步<b>A規則二</b>(存貨YoY vs 營收YoY)——存貨與營收成長大致同步(2025年存貨+7.48%、營收+7.02%)，代表備貨沒有脫節；也對應第3步法說會提到的<b>建案交屋節奏</b>——整體廚房8成以上訂單來自建案，單月出貨量本來就容易受個案交屋時點影響而大小月波動，不是接單動能真的忽強忽弱。<br><br>
+      影響：對第5步EPS指引而言，月營收的高波動性代表用單一月份或單季外推全年可能失真，需以近12個月(MA12)8.90億 x 12≈106.8億的年化基礎，搭配建案交屋排程做判斷，而非直接線性外推最新一兩個月的高點或低點。
+    </div>
+
+    <p>近3個月平均營收<b>8.81億</b>，已連續<b>2個月</b>站在12個月平均<b>8.90億</b>之下，2026年6月出現死亡交叉，7月營收回升但短期均線尚未重新站上長期均線，動能是否轉強仍待觀察。</p>
+
+    <p><b>J交叉預告：</b>本步MA3/MA12反覆穿越的波動型態，與A規則二存貨YoY vs 營收YoY(未見脫節)、第3步建案交屋節奏(遞延受惠型成長)互相印證；月營收高波動性提醒第5步估算EPS時應以MA12年化為主要基礎，不宜線性外推單月高低點，詳見後續步驟。</p>
+
+    <p style="color:var(--muted);font-size:13px">資料來源：使用者上傳Goodinfo月營收(含合併營業收入)截圖，2023/08~2026/07共36個月原始資料(前12個月僅用於計算MA12)，圖表與明細表顯示近24個月(2024/08~2026/07)。</p>
+  </div>
+
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<script>
+(function(){{
+  var months = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07"];
+  var close = [90.0, 87.7, 82.9, 84.6, 83.6, 83.3, 88.0, 90.8, 88.1, 85.1, 85.5, 86.1, 86.7, 85.6, 85.2, 84.6, 83.7, 83.2, 86.4, 88.0, 83.2, 82.0, 82.8, 81.9];
+  var rev = [8.07, 8.52, 8.32, 7.64, 8.28, 9.88, 8.53, 9.19, 8.03, 7.87, 8.21, 8.31, 8.14, 9.04, 8.18, 7.95, 9.42, 10.97, 8.63, 9.5, 8.55, 8.56, 8.76, 9.11];
+  var ma3 = [7.91, 8.21, 8.3, 8.16, 8.08, 8.6, 8.9, 9.2, 8.58, 8.36, 8.04, 8.13, 8.22, 8.5, 8.45, 8.39, 8.52, 9.45, 9.67, 9.7, 8.89, 8.87, 8.62, 8.81];
+  var ma12 = [7.82, 7.9, 8.0, 8.0, 8.0, 8.05, 8.2, 8.29, 8.31, 8.33, 8.38, 8.4, 8.41, 8.45, 8.44, 8.47, 8.56, 8.65, 8.66, 8.69, 8.73, 8.79, 8.83, 8.9];
+  var colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A"];
+  var quarters = ["Q3", "Q3", "Q4", "Q4", "Q4", "Q1", "Q1", "Q1", "Q2", "Q2", "Q2", "Q3", "Q3", "Q3", "Q4", "Q4", "Q4", "Q1", "Q1", "Q1", "Q2", "Q2", "Q2", "Q3"];
+
+  var barTrace = {
+    x: months, y: rev, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>',
+    customdata: quarters
+  };
+  var ma3Trace = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  var ma12Trace = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  var closeTrace = {
+    x: months, y: close, type: 'scatter', mode: 'lines', name: '收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'}, yaxis: 'y2'
+  };
+
+  var layout = {
+    title: {text: '9911 台灣櫻花：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:15,color:'#2C3E50'}},
+    paper_bgcolor: '#FFFFFF', plot_bgcolor: '#FFFFFF',
+    font: {color:'#2C3E50', family:'Noto Sans TC, sans-serif'},
+    bargap: 0.15,
+    xaxis: {tickangle: -45, tickfont:{size:11}},
+    yaxis: {title:'月營收(億)', side:'left'},
+    yaxis2: {title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+    legend: {orientation:'h', y:-0.25},
+    margin: {t:50,b:90,l:60,r:60}
+  };
+
+  Plotly.newPlot('revChart', [barTrace, ma3Trace, ma12Trace, closeTrace], layout, {responsive:true, displayModeBar:false});
+})();
+</script>
+
 
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
