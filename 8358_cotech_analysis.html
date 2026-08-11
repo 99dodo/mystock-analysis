@@ -66,8 +66,8 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
     <a href="#step3" class="done">3.法說會</a>
-    <a href="#step4" class="active">4.營收趨勢</a>
-    <span class="future">5.前瞻本益比</span>
+    <a href="#step4" class="done">4.營收趨勢</a>
+    <a href="#step5" class="active">5.前瞻本益比</a>
     <span class="future">6.投資決策</span>
   </nav>
 
@@ -397,6 +397,72 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   Plotly.newPlot('revChart8358', [barTrace, ma3Trace, ma12Trace, priceTrace], layout, {responsive:true, displayModeBar:false});
 })();
 </script>
+
+  <div class="card" id="step5">
+    <h2>【第 5 步／共 6 步：前瞻本益比／EPS預估】</h2>
+    <div class="highlight">
+      <b>重點提示：</b>四份投顧報告皆看多，2026年EPS共識約<b>10.16~12.15元</b>，2027年EPS分歧較大，落在<b>20.25~25.71元</b>；以現價380.5元計算，前瞻本益比2026年約<b>31~38倍</b>、2027年約<b>15~19倍</b>。三家有完整估值模型的券商對2026Q2的EPS預估全數偏高（實際2.16元 vs 預估2.26~2.45元），平均高估約<b>8.6%</b>，加上第1步現金流體質仍待觀察，AI中性情境對法人共識打了折扣。
+    </div>
+
+    <h3>投顧報告比較（依報告日期排序，最新：玉山證券 2026/6/24）</h3>
+    <table>
+      <tr><th>券商</th><th>報告日期</th><th>評等</th><th>2026E EPS</th><th>2027E EPS</th><th>目標價</th><th>倍數依據</th></tr>
+      <tr><td>大和(Daiwa)</td><td>2026/04/01</td><td>n.a.（產業快報）</td><td>~12.15元<br><span style="font-size:12px;color:var(--muted)">(Bloomberg共識反推，20x)</span></td><td>~20.25元<br><span style="font-size:12px;color:var(--muted)">(反推，12x)</span></td><td>未提供</td><td>Bloomberg共識，非自結</td></tr>
+      <tr><td>中國信託(CTBC)</td><td>2026/05/12</td><td>買進（維持）</td><td>10.49元</td><td>21.96元</td><td>600元<br><span style="font-size:12px;color:var(--muted)">(前次300元)</span></td><td>27倍×2027EPS</td></tr>
+      <tr><td>統一證券</td><td>2026/05/20</td><td>買進（維持）</td><td>11.99元</td><td>21.50元</td><td>645元<br><span style="font-size:12px;color:var(--muted)">(前次320元，EPS前次估18.04元)</span></td><td>30倍×2027EPS</td></tr>
+      <tr><td>玉山證券</td><td>2026/06/24<b>（最新）</b></td><td>增加持股（初次）</td><td>10.16元</td><td>25.71元</td><td>770元</td><td>30倍×2027EPS，參考三井金屬(5706.JP)本益比&gt;30倍</td></tr>
+    </table>
+
+    <h3>誠實揭露：法人2026Q2預估準確度回測</h3>
+    <table>
+      <tr><th>券商</th><th>2026Q2 EPS預估</th><th>2026Q2實際值</th><th>誤差</th></tr>
+      <tr><td>中國信託(CTBC，2026/05/12發布)</td><td>2.26元</td><td rowspan="3" style="vertical-align:middle"><b>2.16元</b><br><span style="font-size:12px;color:var(--muted)">(2026/8/7公告Q2財報)</span></td><td style="color:#C0392B">高估 +4.6%</td></tr>
+      <tr><td>統一證券(2026/05/20發布)</td><td>2.45元</td><td style="color:#C0392B">高估 +13.4%</td></tr>
+      <tr><td>玉山證券(2026/06/24發布，季底前6天)</td><td>2.33元</td><td style="color:#C0392B">高估 +7.9%</td></tr>
+    </table>
+    <p style="font-size:14px;color:var(--muted)">三家券商對同一季度的預估，全數高估實際值，平均高估約8.6%，其中統一證券發布時間最早、誤差也最大；玉山證券已經是季底前6天發布仍高估近8%，代表就算貼近季底，市場對出貨認列節奏的掌握仍有落差，這點會直接影響AI情境設定的保守程度。</p>
+
+    <h3>固定計算</h3>
+    <table>
+      <tr><th>年度</th><th>投顧報告EPS</th><th>市場共識EPS</th><th>AI三情境EPS(保守/中性/樂觀)</th><th>前瞻本益比</th><th>目標價20/25/30倍</th></tr>
+      <tr>
+        <td>2026年</td>
+        <td>玉山10.16／CTBC10.49／統一11.99／大和~12.15（反推）</td>
+        <td><b>約10.16~12.15元</b>（均值約11.2元）</td>
+        <td>保守10.2元／中性11.2元／樂觀12.15元</td>
+        <td>31.3~37.5倍<br><span style="font-size:12px;color:var(--muted)">(現價380.5÷EPS區間)</span></td>
+        <td>20倍204元／25倍280元／30倍365元</td>
+      </tr>
+      <tr>
+        <td>2027年</td>
+        <td>玉山25.71／CTBC21.96／統一21.50／大和~20.25（反推）</td>
+        <td><b>約20.25~25.71元</b>（均值約22.4元，分歧達27%）</td>
+        <td>保守20.0元／中性22.4元／樂觀25.71元</td>
+        <td>14.8~18.8倍<br><span style="font-size:12px;color:var(--muted)">(現價380.5÷EPS區間)</span></td>
+        <td>20倍448元／25倍560元／30倍771元</td>
+      </tr>
+    </table>
+    <p style="font-size:14px;color:var(--muted)">目標本益比法採20/25/30倍作為試算級距，同時對照三家完整評等券商實際採用的27~30倍（2027EPS）區間；此為敏感度試算，非預測，對倍數假設高度敏感。EPS基準一致性：第2步已確認金居近年無股票分割/減資，以上所有EPS皆為同一基礎，可直接比較。</p>
+
+    <h3>AI見解（獨立判斷，非投顧數字照抄）</h3>
+    <table>
+      <tr><th>投顧怎麼看</th><th>AI怎麼看</th></tr>
+      <tr>
+        <td>四家投顧一致看多，2026年EPS估10.16~12.15元(年增141~189%)，2027年估20.25~25.71元，目標價區間600~770元(完整評等的三家)，全數遠高於現價380.5元，隱含理論上漲空間近60~100%。核心邏輯是HVLP4供需缺口＋加工費調漲＋第三廠2027年放量。</td>
+        <td>法人怎麼看：四家投顧的2026年EPS估計相對集中(10.16~12.15元)，但2027年EPS分歧明顯拉大到20.25~25.71元(價差27%)，越晚發布的報告(玉山)反而給出最激進的2027年數字，顯示法人對「利多能見度多深」的看法仍在動態上修，不是穩定共識。<br><br>
+        公式對照：用第1步A規則五/八交叉驗證——FY2025真實股利覆蓋率<span style="color:#E74C3C;font-weight:800">-0.35倍</span>，自由現金流轉負，代表帳面獲利與實際收現仍有落差；但用第4步D營收趨勢交叉驗證——MA3持續在MA12之上且缺口擴大到+1.5億、7月營收年增55%，這部分確實支撐法人上修的營收假設。兩者合看：<b>營收動能是真的，但獲利轉換成真金白銀的速度，目前還沒跟上法人模型的樂觀假設</b>。<br><br>
+        AI三情境與貴不貴結論：保守情境（EPS 10.2元×20倍＝204元，反映A規則現金流品質未過關、且三家券商過去一季平均高估8.6%的修正）／中性情境（沿用法人共識均值11.2元×25倍＝280元）／樂觀情境（若2027年EPS真的達到25.71元且維持30倍題材溢價＝771元，等同玉山目標價上緣）。現價380.5元落在中性與樂觀情境之間，代表市場目前定價的邏輯已經是「提前看到2027年」而非「用2026年數字算」，若2026年下半年出貨與毛利率不如預期，向下修正的風險並不小。</td>
+      </tr>
+    </table>
+    <div class="highlight warn">
+      <b>重點提示框：</b><br>
+      法人怎麼看：四家一致看多，目標價600~770元（完整評等三家），核心邏輯是HVLP4供需缺口。<br>
+      AI怎麼看：營收動能佐證(第4步)成立，但現金流品質(第1步規則五/八)與近一季普遍高估(平均+8.6%)代表法人模型偏樂觀，需打折看待。<br>
+      現在貴不貴：以2026年數字算偏貴(31~38倍)，以2027年數字算相對合理(15~19倍)，但2027年獲利能否兌現才是關鍵。<br>
+      不確定性在哪：2027年EPS估計分歧達27%（20.25~25.71元），加上現金流轉換效率(FCF/股利覆蓋率)尚未改善，這兩點是後續每季財報最需要驗證的地方。
+    </div>
+    <p>J交叉預告：本步法人預估與A規則五/八、D營收趨勢、F競爭格局有無衝突，詳見J章節；相關數字已存下，第6步投資決策可直接沿用。</p>
+  </div>
 
 </div>
 
