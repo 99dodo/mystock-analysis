@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8358 金居開發 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --accent-2:#7AC1A0;
+  --accent-3:#F5C07A;
+  --accent-4:#E8A0A0;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;margin:-24px -20px 32px;display:flex;gap:8px;overflow-x:auto;}
+nav.stepnav a, nav.stepnav span{white-space:nowrap;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s;}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav span.future{opacity:.5;cursor:default}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-bottom:24px;transition:box-shadow .2s;}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px;}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;}
+.highlight.warn{background:#FFF8E6;border-left-color:#E8A020;}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C;}
+.highlight b{color:var(--text)}
+.highlight .red{color:#C0392B;font-weight:600}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:15px;line-height:1.8;}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:0.5px;text-transform:uppercase;}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top;}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:500;}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px;}
+.score .num{font-size:32px;font-weight:700;color:var(--accent)}
+.score .label{font-size:12px;color:var(--muted);margin-top:4px}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.score-card{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0;}
+body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="done">1.現金流盲測</a>
+    <a href="#step2" class="active">2.基本資訊</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <span class="future">4.營收趨勢</span>
+    <span class="future">5.前瞻本益比</span>
+    <span class="future">6.投資決策</span>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>8358 金居開發</h1>
+      <div class="sub">初步分析報告（進行中：第1/6步）· 2026/08/11 · 資料來源：使用者提供114年報(FY2025查核)＋115Q2季報(2026H1核閱)＋Goodinfo近5年+逐季現金流量截圖</div>
+    </div>
+    <div class="score">
+      <div class="num">51.7</div>
+      <div class="label">核心六規則(需觀察)</div>
+    </div>
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <h3>欄位定義：現金流代號對照表（白話字典）</h3>
+    <table>
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><span class="term" title="營業活動現金流量"><b>A</b></span></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>現金流量表「營業活動淨現金流」</td></tr>
+      <tr><td><span class="term" title="投資活動現金流量"><b>B</b></span></td><td>花掉的投資錢</td><td>投資活動現金流量（通常為負）</td><td>現金流量表「投資活動」+ 附註不動產廠房</td></tr>
+      <tr><td><span class="term" title="融資活動現金流量"><b>C</b></span></td><td>跟銀行/股東的錢往來</td><td>融資活動現金流量</td><td>現金流量表「融資活動」</td></tr>
+      <tr><td><span class="term" title="稅後淨利"><b>D</b></span></td><td>帳面賺的錢</td><td>稅後淨利（本表以稅前淨利對照A，並同時揭露稅後淨利）</td><td>損益表「本期淨利」</td></tr>
+      <tr><td><span class="term" title="期末現金餘額"><b>E</b></span></td><td>最後剩下的現金</td><td>期末現金餘額</td><td>資產負債表 現金及約當現金</td></tr>
+      <tr><td><span class="term" title="自由現金流"><b>FCF</b></span></td><td>真能拿來發股利的錢</td><td>自由現金流 = A − 資本支出</td><td>自算</td></tr>
+    </table>
+
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9;padding:12px;border-radius:8px;font-size:15px">
+    <b>本步驟已取得三表齊全：</b><br>
+    ① 114年度(FY2025)合併財務報告（查核，含113年度/FY2024比較）<br>
+    ② 115年Q2(2026H1)合併財務報告（核閱，含114年Q2/2025H1比較）<br>
+    ③ Goodinfo年度現金流量總覽(2009~2026Q2) + 逐季現金流量表(2022Q4~2026Q2)<br><br>
+    <b>規則七（存貨vs合約負債背離）不適用：</b>查證115年Q2季報與114年度年報之合併資產負債表，兩份財報均未單獨揭露「合約負債」科目，收入以出貨時點認列為主，客戶無大量預付款，此為電子材料/化學加工業常見模式，非資料缺漏。
+    </div>
+
+    <h3>八大現金流解讀規則</h3>
+    <table>
+      <tr><th>規則</th><th>專業定義</th><th>實務解讀</th><th>核心公式</th><th>數字</th><th>判斷</th></tr>
+      <tr>
+        <td>1. A&lt;D<br>應收暴增</td>
+        <td>營運現金流入小於稅後淨利</td>
+        <td>2025年（FY2025）<b>營業現金(A) 3.62億</b> 明顯低於 <b>稅後淨利(D) 10.63億</b>，帳面賺得多，口袋現金卻沒跟上。<br><br>
+        公式對照：應收/營收比 = 應收帳款餘額 ÷ 近12月營收。2025年底應收帳款 <b>23.88億</b> ÷ FY2025營收 <b>78.80億</b> = <span style="color:#E74C3C;font-weight:800">30.3%</span>，且較FY2024底17.62億大幅成長，與A規則六同步觸發。<br><br>
+        影響：客戶付款週期拉長，代表營收成長的品質有折扣，需留意是不是「衝出貨但收不到錢」，這會直接影響第5步對EPS品質的保守/樂觀情境設定。</td>
+        <td>應收/營收比 = 應收帳款/近12月營收</td>
+        <td>A 3.62億 &lt; D 10.63億</td>
+        <td><span style="color:#E74C3C;font-weight:800">不通過</span></td>
+      </tr>
+      <tr>
+        <td>2. A&lt;D<br>存貨暴增</td>
+        <td>獲利被存貨積壓吃掉</td>
+        <td>2025年（FY2025）<b>存貨(D存貨科目)</b> 從年初7.15億增加到年底9.41億，增加的存貨變成現金流出，同樣拖累了A。<br><br>
+        公式對照：存貨YoY vs 營收YoY，本案 <b>存貨YoY 31.6%</b> 遠高於 <b>營收YoY 15.5%</b>，存貨成長速度是營收的兩倍，對應第4步營收動能需交叉比對是否為健康備貨。<br><br>
+        影響：若是為了因應銅箔/CCL/AI相關題材擴大接單而先備料，屬正常擴產行為；但若之後賣不動，會變成庫存跌價風險，需持續追蹤下一季存貨週轉天數。</td>
+        <td>存貨YoY(比去年同期) vs 營收YoY</td>
+        <td>存貨YoY 31.6% &gt; 營收YoY 15.5%</td>
+        <td>需觀察</td>
+      </tr>
+      <tr>
+        <td>3. B大於A<br>資本支出/折舊比</td>
+        <td>投資過度或吃老本</td>
+        <td>2025年（FY2025）花在買設備的錢（<b>B，購置不動產廠房及設備 4.94億</b>）比當年折舊費用 0.89億 高出許多，代表公司正大舉擴產，不是單純維護舊設備。<br><br>
+        公式對照：資本支出/折舊比 = 4.94 ÷ 0.89 = <b>5.55倍</b>（FY2024為4.02倍），遠超過1.5倍的擴產門檻，對應第3步法說會若有提到產能規劃可交叉驗證。<br><br>
+        影響：擴產代表老闆對未來需求有信心，但也代表短期現金流出會持續加大，若營收成長跟不上，會拖累未來幾年的自由現金流(FCF)。</td>
+        <td>資本支出/折舊比 = 資本支出/折舊費用，&gt;1.5擴產</td>
+        <td>5.55倍(FY2025) / 4.02倍(FY2024)</td>
+        <td>通過（積極擴產，需搭配現金流觀察）</td>
+      </tr>
+      <tr>
+        <td>4. C持續正</td>
+        <td>長期靠借錢或增資</td>
+        <td>近5年（2020~2025）<b>融資活動現金(C)</b>幾乎都是負的，代表公司多在還錢、發股利、買庫藏股，不是靠借錢度日；但2026上半年C首度轉為 <b>正2.86億</b>，主要來自短期借款增加3.31億。<br><br>
+        公式對照：C是否連續3年為正——過去5年C值分別為 2021 -5.74億／2022 -11.9億／2023 -1.21億／2024 -0.73億／2025 -8.16億，0次連續為正，本次轉正屬單一半年度現象。<br><br>
+        影響：短期借款增加若是用來支應應收帳款與存貨墊高的營運資金缺口，屬正常週轉；但若接下來連續好幾季都得靠借錢周轉，就要重新評估體質。</td>
+        <td>C是否連續3年為正</td>
+        <td>近5年皆負，2026H1轉正+2.86億</td>
+        <td>通過（尚未構成持續正）</td>
+      </tr>
+      <tr>
+        <td>5. 自由現金流<br>FCF</td>
+        <td>真能拿來發股利的錢</td>
+        <td>2025年（FY2025）<b>FCF = A 3.62億 − 資本支出 4.94億 = -1.32億</b>，是近5年少見的負值；2026上半年已回升到 <b>+1.86億</b>。<br><br>
+        公式對照：FCF = 營業現金(A) − 資本支出。FY2024的FCF還有 <b>+5.30億</b>，一年之間由正轉負，主因是應收/存貨墊高吃掉了A，同時資本支出又加碼。<br><br>
+        影響：自由現金流轉負代表FY2025公司自己賺的錢不夠支付「買設備＋配股利」，缺口靠動用先前累積的現金支應（期末現金從19.9億掉到7.45億），這是股利永續性的關鍵警訊，直接牽動第5步EPS估算的保守情境。</td>
+        <td>FCF = 營業現金(A) − 資本支出</td>
+        <td>FY2025 -1.32億／FY2024 +5.30億／2026H1 +1.86億</td>
+        <td><span style="color:#E74C3C;font-weight:800">需觀察</span></td>
+      </tr>
+      <tr>
+        <td>6. 應收/營收比</td>
+        <td>收現能力</td>
+        <td>2025年底應收帳款餘額 <b>23.88億</b>，占FY2025全年營收 <b>78.80億</b> 的 <span style="color:#E74C3C;font-weight:800;font-size:1.15em">30.3%</span>，等於全年營收快有三分之一還躺在客戶手上沒收回來，且比FY2024底（17.62億/68.22億=25.8%）還要更高。<br><br>
+        公式對照：應收/營收比 = 應收帳款/營收，&gt;20%且上升即列入紅字警示等級，本案30.3%已明顯超標並持續墊高。<br><br>
+        影響：對照第2步的營收動能，若營收成長主要靠拉長客戶信用期換來，這種成長的含金量偏低，也是造成規則一A&lt;D的主因。</td>
+        <td>應收/營收比 = 應收帳款/營收</td>
+        <td>30.3%(FY2025) vs 25.8%(FY2024)</td>
+        <td><span style="color:#E74C3C;font-weight:800;font-size:1.15em">不通過</span></td>
+      </tr>
+      <tr>
+        <td>7. 存貨vs<br>合約負債背離</td>
+        <td>備貨真假景氣</td>
+        <td>查證115年Q2與114年報之合併資產負債表，兩份財報都沒有單獨揭露「合約負債」科目，代表金居的收入認列以出貨時點為主，客戶不會大量預付款項，這在電子材料/化學加工業是常見模式。<br><br>
+        公式對照：因無合約負債科目可比較，本規則判定為<b>不適用</b>，改以規則二的存貨YoY(31.6%) vs 營收YoY(15.5%)作為備貨健康度的替代判斷依據。<br><br>
+        影響：不觸發資料缺漏警示，但仍建議持續關注存貨週轉天數，確認墊高的存貨是否能順利轉換為未來營收。</td>
+        <td>存貨YoY vs 合約負債YoY（無科目，豁免）</td>
+        <td>不適用（無合約負債科目）</td>
+        <td>不適用</td>
+      </tr>
+      <tr>
+        <td>8. 股利永續<br>真實股利覆蓋率</td>
+        <td>股利是真賺的還是老本發的</td>
+        <td>2025年（FY2025）公司仍配發現金股利 <b>3.79億</b>，但同一年的自由現金流(FCF)是 <b>-1.32億</b>，代表這次配息不是靠今年賺到的閒錢發的，而是動用過去累積的現金；相較之下FY2024的FCF還有5.30億，發3.79億股利游刃有餘。<br><br>
+        公式對照：真實股利覆蓋率 = FCF/現金股利，FY2025 = -1.32 ÷ 3.79 = <span style="color:#E74C3C;font-weight:800">-0.35倍</span>，遠低於1倍的安全線；FY2024則為1.40倍。<br><br>
+        影響：這不是傳統「借錢發股利」型態（因為同期C為淨流出8.16億，公司並未新增借款來發股利），而是「吃老本發股利」，若明年FCF不能回升，現金水位會持續下降，存股族要留意股利可持續性。</td>
+        <td>真實股利覆蓋率 = FCF/現金股利</td>
+        <td>FY2025 -0.35倍／FY2024 1.40倍</td>
+        <td><span style="color:#E74C3C;font-weight:800">不通過</span></td>
+      </tr>
+    </table>
+    <p style="font-size:14px;color:var(--muted)"><cite><a href="https://goodinfo.tw/tw/StockDetail.asp?STOCK_ID=8358" target="_blank">Goodinfo 8358個股資訊 2026/08</a></cite>、使用者提供114年度(FY2025)合併財務報告暨會計師查核報告、115年Q2(2026H1)合併財務報告暨會計師核閱報告、Goodinfo年度現金流量總覽與逐季現金流量表截圖</p>
+    <p>J交叉預告：本條與D(營收趨勢)/E(法人預估)有無衝突，詳見J章節</p>
+
+    <h3>現金流體質總分</h3>
+    <div class="score-card">
+    <b>現金流體質總分：51.7分（需觀察）</b><br>
+    核心六規則平均：56.7分 | 八規則完整平均：55.6分 | 進階二規則扣分：規則八真實股利覆蓋率&lt;1，主要總分再扣5分<br>
+    規則七：不適用（無合約負債科目） | 規則八：真實股利覆蓋率 <span style="color:#E74C3C;font-weight:800">-0.35倍</span> &lt;1（動用現金儲備發股利警示）
+    </div>
+
+    <h3>關卡判斷</h3>
+    <div class="highlight risk">
+    <b>⚠ 現金流體質需觀察：</b>核心六規則平均 <b>56.7分</b>（扣分後主要總分 <b>51.7分</b>）&lt;60分，建議先不繼續深入，除非你仍想往下看基本面。<br><br>
+    補充：本案並<b>未</b>觸發最高警戒的「硬性三重疊加警訊」（A為負+B大幅負+C正），因為2025年營業現金(A)仍為正值3.62億，只是遠低於帳面獲利，屬於「賺得多、收得少」型態，而非「本業完全沒收到錢」型態。
+    </div>
+
+    <div class="highlight warn">
+    <b>⚠ 存股族需留意股利可持續性風險：</b>2025年度自由現金流(FCF) <b>-1.32億</b> &lt; 現金股利 <b>3.79億</b>，真實股利覆蓋率 <b>-0.35倍</b>（&lt;1）。本次配息並非靠新增借款支應（同期融資活動C為淨流出8.16億），而是動用公司帳上先前累積的現金儲備，若FCF無法回升，現金水位可能持續下滑。
+    </div>
+
+    <p>J交叉預告：本步現金流體質（尤其應收/存貨墊高、FCF轉負）與D(第4步營收趨勢)/E(第5步法人預估EPS)有無衝突，詳見後續步驟交叉驗證。</p>
+  </div>
+
+  <div class="card" id="step2">
+    <h2>【第 2 步／共 6 步：基本資訊查詢】</h2>
+    <div class="highlight">
+      <b>重點提示：</b>股價短線波動劇烈（近2週271元~384元），本益比已用近四季獲利(TTM EPS約6.72元)墊高到約<b>57倍</b>，若只用已確定入袋的2025年獲利(EPS 4.21元)則逼近<b>90倍</b>；現金殖利率僅約<b>0.53%</b>，不是存股型標的。月營收已連續7個月維持40%上下年增，且7月創歷史新高，是目前基本面最扎實的一塊。近1年股本25.26億元未曾變動，<b>無股票分割/減資</b>，所有「每股」數字可直接比較。
+    </div>
+
+    <table>
+      <tr><th>項目</th><th>數據</th><th>實務解讀</th><th>對應三表/A公式</th><th>來源</th></tr>
+      <tr>
+        <td>股價與52週位階</td>
+        <td>2026/08/11盤中<b>380.50元</b>（+9.97%，貼近漲停），成交量2.68萬張；前一交易日(8/10)收盤352.00元。近月走勢劇烈：7/30低點約271元 → 8/6衝到384元漲停 → 目前380.5元附近，兩週內振幅逾40%。<br>快照時間：2026/08/11 13:02，僅供參考，非即時報價。</td>
+        <td>股價這幾週像坐雲霄飛車，短短兩週從271元噴到384元又拉回，波動度非常高，這不是穩定成長股的價格行為，比較像市場情緒與籌碼推動的飆股走勢。<br><br>
+        公式對照：對應第1步現金流體質（51.7分，需觀察），股價漲幅遠遠超過目前基本面數字能解釋的範圍，屬於「故事先漲、數字後補」型態。<br><br>
+        影響：若後續Q3/Q4實際出貨與財報數字不如市場預期，股價修正空間可能很大；反之若順利兌現，目前位階也未必是天花板。<br><br>
+        <span style="color:#C0392B">誠實說明：不同資料源對「52週高低」的快照差異極大（同一查詢在不同時間點曾出現54.7~687元等不一致數字），本表不採用單一不可靠數字，建議直接以看盤軟體或券商App核對精確52週高低。</span></td>
+        <td>對應A規則整體現金流體質</td>
+        <td><cite><a href="https://tw.stock.yahoo.com/quote/8358.TWO/technical-analysis" target="_blank">Yahoo股市 技術分析 2026/08/11</a></cite></td>
+      </tr>
+      <tr>
+        <td>EPS／本益比／殖利率</td>
+        <td>FY2025 EPS(基本) <b>4.21元</b>；2026H1累計EPS <b>4.22元</b>（Q1 2.06+Q2 2.16）；近四季(TTM)EPS≈<b>6.72元</b>。以現價380.5元計算：TTM本益比≈<b>56.6倍</b>；FY2025本益比≈<b>90.4倍</b>。每股淨值(2026Q1)32.27元，股價淨值比≈11.8倍。FY2025現金股利2.00元/股(2026/08/20發放，除息日已過)，殖利率約<b>0.53%</b>。</td>
+        <td>現在市場是拿「還沒完全兌現的未來獲利」在計價——用近四季獲利(TTM EPS 6.72元)算，本益比已快60倍；若只看確定入袋的2025年獲利(4.21元)，本益比逼近90倍，代表股價已經把2026、2027年的高成長提前反映了大半。<br><br>
+        公式對照：本益比高低要對照第5步法人預估EPS（市場推估2026年約10~11元），若用這個尚未兌現的樂觀數字回推，本益比會降到約35~38倍，但也要對照第1步A規則八（FY2025真實股利覆蓋率<span style="color:#E74C3C;font-weight:800">-0.35倍</span>），獲利含金量仍在改善中。<br><br>
+        影響：殖利率只有0.53%，這不是拿來領股息的存股標的，投資邏輯必須建立在「賺價差、賭成長兌現」上，一旦成長故事出現裂縫，高本益比會是股價最大的下檔風險來源。</td>
+        <td>對應A規則八、E法人預估EPS</td>
+        <td><cite><a href="https://tw.stock.yahoo.com/quote/8358.TWO/profile" target="_blank">Yahoo股市 基本資料 2026/08/02</a></cite>、使用者提供114年報/115Q2季報</td>
+      </tr>
+      <tr>
+        <td>營收動能</td>
+        <td>2026年月營收連續7個月維持雙位數年增、且逐月加速：1月8.20億、2月8.51億(YoY+51.1%)、3月8.61億(YoY+42.8%)、4月9.01億(YoY+35.8%)、5月9.42億(YoY+41.4%)、6月9.62億(YoY+43.4%)、7月10.09億(YoY<b>+54.9%</b>，創單月歷史新高，MoM+4.8%)。</td>
+        <td>不是曇花一現的單月衝高，是連續7個月都維持40%上下年增，且7月還創了歷史新高，代表出貨動能真的在加速，不只是市場想像。<br><br>
+        公式對照：這組數據直接呼應第1步規則二「存貨YoY 31.6%」——墊高的存貨正在逐月轉換成實際出貨營收，驗證了第1步「先備貨、後出貨」的判斷，也是第4步MA3/MA12營收趨勢圖的核心素材。<br><br>
+        影響：只要月營收動能不中斷，前面看到的應收帳款/存貨墊高疑慮會逐漸自然化解；反過來說，一旦某個月營收年增率明顯滑落，就是需要提高警覺的訊號。</td>
+        <td>對應A規則二、D營收趨勢(第4步)</td>
+        <td><cite><a href="https://cmnews.com.tw/article/cmoneyaicurator-d046265a-923f-11f1-be88-000e4d94a099" target="_blank">CMoney投資網誌 2026/08/11</a></cite>、<cite><a href="https://tw.stock.yahoo.com/quote/8358.TWO/revenue" target="_blank">Yahoo股市 營收表</a></cite></td>
+      </tr>
+      <tr>
+        <td>法說會（串接第3步）</td>
+        <td>詳見第3步。法人推估2026全年EPS約10~11元(第三方推估，非官方財測)；2026年5月董事會追加銅箔三廠資本支出11億元。</td>
+        <td>老闆持續加碼蓋新廠的實際動作，比嘴巴說的展望更有說服力，代表管理層對未來需求有信心。<br><br>
+        公式對照：詳見第3步表格，已對應A規則三、四。<br><br>
+        影響：相關數字已存下，第5步前瞻本益比可直接沿用，不需重問。</td>
+        <td>對應A規則三、四（詳見第3步）</td>
+        <td>見第3步來源</td>
+      </tr>
+      <tr>
+        <td>融資／當沖比（籌碼面）</td>
+        <td>2026年金居多次被列為「注意股」／「處置股」（1月、3月、4月、6月均曾登上處置名單），4月間更爆出單一分點1.11億元違約交割事件（今年上市櫃第四起）。</td>
+        <td>這檔股票短線籌碼非常亂，一下融資大增、一下被打入處置關幾天、還發生過重大違約交割，散戶當沖比重偏高，不是法人穩定持有的籌碼結構。<br><br>
+        公式對照：這屬於短線籌碼面訊號，與基本面（第1~5步）分開判斷，不直接對應A/D/E規則，但會放大股價波動度。<br><br>
+        影響：對想長抱基本面故事的投資人來說，短線籌碼混亂代表隨時可能出現非基本面因素引發的急殺或急拉，操作上需抓好停損／部位控管，不能只看基本面數字做決策。</td>
+        <td>籌碼面，獨立於A/D/E規則</td>
+        <td><cite><a href="https://goodinfo.tw/tw/StockHolderSchedule.asp?STOCK_ID=8358" target="_blank">Goodinfo 8358重大訊息彙整</a></cite></td>
+      </tr>
+    </table>
+    <p>J交叉預告：本步EPS/殖利率與A規則八、E法人預估有無衝突，詳見J章節</p>
+  </div>
+
+  <div class="card" id="step3">
+    <h2>【第 3 步／共 6 步：法說會資料深度討論】</h2>
+    <div class="highlight">
+      <b>重點提示：</b>法人已大幅上修2026年獲利展望（EPS估值區間約10~11元，年增可能逾100%），同時公司在2026年5月正式追加銅箔三廠資本支出<b>11億元</b>因應AI伺服器需求，兩件事互為因果——但財測數字目前以法人推估與第三方彙整為主，尚未取得官方逐字稿驗證，需搭配下一季實際數字持續追蹤。
+    </div>
+
+    <h3>狀態說明（誠實揭露）</h3>
+    <p style="font-size:14px;color:var(--muted)">MOPS法說會簡報PDF受robots.txt限制無法直接讀取。以下內容屬<b>狀態A</b>：使用媒體/第三方彙整摘要（鉅亨網、時報資訊、部落格法人數字整理）+ 一則第三方AI生成的法說會會議記錄（非官方逐字稿，內容標註「請以法說會現場內容為主」）。官方原始資料連結：<cite><a href="https://www.co-tech.com/en/ir/information" target="_blank">Co-tech IR 重大訊息 Material Information</a></cite>、<cite><a href="https://mops.twse.com.tw/mops/web/t05st02" target="_blank">公開資訊觀測站(MOPS) 法說會資訊</a></cite>，建議自行點開驗證，點開後我可協助分析。</p>
+
+    <table>
+      <tr><th>老闆說什麼</th><th>數字驗證</th><th>實務解讀</th><th>對應三表/A規則</th><th>來源</th></tr>
+      <tr>
+        <td>展望上修：<br>2026年獲利展望大幅調升，HVLP4放量、低階產能全面轉高毛利產品</td>
+        <td>法人系統估2026年EPS約<b>10.95元</b>（YoY +160%），2027年估<b>22.30元</b>（YoY +104%）；另一彙整報告估2026年營收年增<b>+30.2%~+35.1%</b>，毛利率估<b>32.9%~34.9%</b>，營業利益年增估逾<b>+140%</b>。實際數字：2026年1-4月累計營收34.33億元(YoY+43.56%)，2026Q1單季EPS 2.06元(YoY+96%、QoQ+37%)。</td>
+        <td>老闆（或法人解讀公司說法）認為2025~2026年是「陣痛期後的放量期」：2024~2025年因為停掉舊規格產線、重心轉向HVLP3/4，短期侵蝕了營收，2026年才是真正收成的一年，EPS可望較2025年（4.21元）翻倍以上。<br><br>
+        公式對照：這對應第1步規則三「資本支出/折舊比5.55倍」的積極擴產，以及規則二「存貨YoY31.6%>營收YoY15.5%」的先備貨現象——如果2026年營收真的加速到位，第1步看到的存貨墊高就會轉換成營收，而非滯銷風險。<br><br>
+        影響：這組數字目前是<b>法人與第三方推估</b>，不是公司官方財測（公司未提供正式財測數字），可信度需要打折扣，尤其2026Q1單季EPS 2.06元只是全年10~11元目標的約20%，後三季能否加速仍待驗證，直接影響第5步的保守情境設定。</td>
+        <td>對應A規則二、三、五</td>
+        <td><cite><a href="https://cmnews.com.tw/article/bubuypope-5174a022-8a4e-11f1-a9d3-9597b252cf1d" target="_blank">CMoney投資網誌 不敗教主陳重銘</a></cite>、<cite><a href="https://readmo.cmoney.tw/article/f35e67ac-daff-4587-852a-6d8e606bcd62" target="_blank">CMoney Readmo 法人財測彙整</a></cite></td>
+      </tr>
+      <tr>
+        <td>資本支出／產能：<br>銅箔第三廠擴產，追加資本支出因應AI伺服器需求</td>
+        <td>2026年5月8日董事會正式決議<b>增加</b>銅箔三廠資本支出預算<b>11億元</b>，資金來源為銀行借款及自有資金，具體目的為「因應AI伺服器市場需求，提升高階銅箔產品產能及製程能力」。第三方法說會摘要（2025/09）另提及第三廠整體擴產資本支出法人推估約<b>38~40億元</b>、新增折舊約3億元/年，規劃新增4條HVLP產線，總月產能約600噸，分季開出，首階段預定2026Q4~2027Q1啟用、2027Q4全部到位。</td>
+        <td>公司持續加碼蓋新廠（第三廠），這次5月董事會的11億元是<b>追加</b>在原有擴產計畫之上的預算，代表管理層對需求的信心不只是維持原計畫，而是覺得原本規模可能不夠，需要再加碼。<br><br>
+        公式對照：對應第1步規則三「資本支出/折舊比」與規則四「C是否連續正」——這波追加資本支出的資金來源明確寫「銀行借款及自有資金」，若未來幾季C持續轉正、短期借款持續增加，就要重新檢視是否觸及規則四「持續正」的警訊門檻。<br><br>
+        影響：新產能要到2026Q4才開始貢獻、2027Q4才全部到位，代表現在的股價（相對FY2025 58.5元起漲到目前350~380元區間）已經在<b>大幅提前反映</b>還沒真正兌現的產能與訂單，一旦AI伺服器平台需求出現任何遞延，股價修正風險不對稱地大於上檔空間。</td>
+        <td>對應A規則三、四</td>
+        <td><cite><a href="https://wantrich.chinatimes.com/news/20260508900474-420101" target="_blank">旺得富理財網／時報資訊 2026/05/08</a></cite>、<cite><a href="https://www.threads.com/@alphamemo.ai/post/DOfany3DEwc" target="_blank">threads@alphamemo.ai 2025/09/12 法說會AI摘要（非官方，僅供參考）</a></cite></td>
+      </tr>
+    </table>
+    <p>J交叉預告：本步法說會指引（2026年EPS 10~11元展望、三廠產能2027Q4全開）與A規則三/四、E法人預估有無衝突，詳見J章節；相關數字已存下，第5步前瞻本益比可直接沿用，不需重問。</p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
