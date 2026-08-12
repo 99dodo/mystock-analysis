@@ -1,7 +1,7 @@
 # 我的股票分析
 
 ## 📊 已發布報告
-- [7769 鴻勁精密 - 分析報告](https://99dodo.github.io/mystock-analysis/7769_hon_analysis.html)（最新，進行中／第1-4步已完成，現金流核心六規則80.3分／優秀(臨界)，MA3已連14個月站上MA12，2026H1出現存貨vs合約負債背離警示，股價6,480元／2026/08/12，2025/11/27剛上市）
+- [7769 鴻勁精密 - 分析報告](https://99dodo.github.io/mystock-analysis/7769_hon_analysis.html)（最新，進行中／第1-5步已完成，現金流核心六規則80.3分／優秀(臨界)，六家投顧2026F EPS共識128.85元/2027F 220.13元，目標價區間6,180~10,000元分歧大，現價6,480元對應2027F前瞻本益比29.4倍，2025/11/27剛上市）
 - [3030 德律科技 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3030_test-research_analysis.html)（六步驟完整版，核心六規則70.8分／良好，結論：觀望，關鍵在H1現金流未跟上獲利成長+評價已不便宜+伺服器終端集中度上升）
 - [8358 金居開發 - 完整分析報告](https://99dodo.github.io/mystock-analysis/8358_cotech_analysis.html)（六步驟完整版，核心六規則平均56.7分，規則八扣分後51.7分／需觀察，結論：觀望）
 - [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（六步驟完整版，核心六規則86.7分，規則八扣分後81.7分／優秀）
