@@ -1,7 +1,8 @@
 # 我的股票分析
 
 ## 📊 已發布報告
-- [8358 金居開發 - 完整分析報告](https://99dodo.github.io/mystock-analysis/8358_cotech_analysis.html)（最新，六步驟完整版，核心六規則平均56.7分，規則八扣分後51.7分／需觀察，結論：觀望）
+- [3030 德律科技 - 分析報告（進行中）](https://99dodo.github.io/mystock-analysis/3030_test-research_analysis.html)（最新，第1步現金流已完成，核心六規則平均75.8分，規則七扣分後70.8分／良好，未觸發三重警訊，2~6步待進行）
+- [8358 金居開發 - 完整分析報告](https://99dodo.github.io/mystock-analysis/8358_cotech_analysis.html)（六步驟完整版，核心六規則平均56.7分，規則八扣分後51.7分／需觀察，結論：觀望）
 - [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（六步驟完整版，核心六規則86.7分，規則八扣分後81.7分／優秀）
 - [2327 國巨 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2327_yageo_analysis.html)（六步驟完整版，核心六規則77.5分／體質良好）
 - [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（六步驟完整版，核心六規則78.3分／良好）
