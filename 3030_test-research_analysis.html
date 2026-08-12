@@ -99,7 +99,7 @@ tr:hover td{background:#FAFBFC}
     <a href="#step1" class="active">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
     <a href="#step3" class="done">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step4" class="done">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -420,7 +420,106 @@ tr:hover td{background:#FAFBFC}
       J交叉預告：本步法說會指引與A規則三/七、E法人預估有無衝突，詳見後續步驟J章節總結。已將下季營收指引方向(伺服器持續強勁)、毛利率實際區間(58%上下)、資本支出趨緩(短期無大擴產)存下，供第5步EPS估算直接使用，不再重問。
     </div>
   </div>
-  <div class="card pending-card" id="step4">【第 4 步／共 6 步：營收趨勢視覺化】— 尚未開始</div>
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 近3個月平均營收<b>9.56億</b>，已連續18個月站在12個月平均<b>8.19億</b>之上(僅2024/11~2025/01、2025/10~2025/12兩段短暫轉弱)，且MA3持續向上，顯示短期接單動能明顯強於長期水準，與第2步觀察到的營收年增26.75%~38.19%趨勢一致。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revChart" style="width:100%;height:420px"></div>
+    </div>
+
+    <h3>月營收明細（近24個月，MA12以36個月資料計算）</h3>
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>實務解讀(強制三段)</th></tr>
+      <tr><td>2024/08</td><td>159.5</td><td>5.3</td><td><span class="badge q3">Q3</span></td><td>5.28</td><td>4.97</td><td style="font-size:14px">最近3個月平均營收5.28億，站在12個月平均4.97億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2024/09</td><td>141.5</td><td>5.58</td><td><span class="badge q3">Q3</span></td><td>5.42</td><td>5.14</td><td style="font-size:14px">最近3個月平均營收5.42億，站在12個月平均5.14億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2024/10</td><td>134</td><td>5.15</td><td><span class="badge q4">Q4</span></td><td>5.34</td><td>5.34</td><td style="font-size:14px">最近3個月平均營收5.34億，掉到12個月平均5.34億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2024/11</td><td>130</td><td>4.46</td><td><span class="badge q4">Q4</span></td><td>5.06</td><td>5.45</td><td style="font-size:14px">最近3個月平均營收5.06億，掉到12個月平均5.45億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2024/12</td><td>122</td><td>5.31</td><td><span class="badge q4">Q4</span></td><td>4.97</td><td>5.3</td><td style="font-size:14px">最近3個月平均營收4.97億，掉到12個月平均5.3億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2025/01</td><td>125.5</td><td>6.45</td><td><span class="badge q1">Q1</span></td><td>5.41</td><td>5.45</td><td style="font-size:14px">最近3個月平均營收5.41億，掉到12個月平均5.45億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2025/02</td><td>130</td><td>6.04</td><td><span class="badge q1">Q1</span></td><td>5.93</td><td>5.61</td><td style="font-size:14px">短期營收從底部爬起來，2025/02月MA3(5.93億)剛超過MA12(5.61億)，是黃金交叉，通常是接單轉強的第一個訊號。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/03</td><td>109.5</td><td>6.91</td><td><span class="badge q1">Q1</span></td><td>6.47</td><td>5.65</td><td style="font-size:14px">最近3個月平均營收6.47億，站在12個月平均5.65億之上，且屬於Q1季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/04</td><td>107</td><td>6.84</td><td><span class="badge q2">Q2</span></td><td>6.6</td><td>5.66</td><td style="font-size:14px">最近3個月平均營收6.6億，站在12個月平均5.66億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/05</td><td>113</td><td>9.33</td><td><span class="badge q2">Q2</span></td><td>7.69</td><td>5.99</td><td style="font-size:14px">最近3個月平均營收7.69億，站在12個月平均5.99億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/06</td><td>146</td><td>7.6</td><td><span class="badge q2">Q2</span></td><td>7.92</td><td>6.2</td><td style="font-size:14px">最近3個月平均營收7.92億，站在12個月平均6.2億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/07</td><td>145.5</td><td>7.48</td><td><span class="badge q3">Q3</span></td><td>8.14</td><td>6.37</td><td style="font-size:14px">最近3個月平均營收8.14億，站在12個月平均6.37億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/08</td><td>215</td><td>7.56</td><td><span class="badge q3">Q3</span></td><td>7.55</td><td>6.56</td><td style="font-size:14px">最近3個月平均營收7.55億，站在12個月平均6.56億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/09</td><td>178.5</td><td>5.64</td><td><span class="badge q3">Q3</span></td><td>6.89</td><td>6.56</td><td style="font-size:14px">最近3個月平均營收6.89億，站在12個月平均6.56億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2025/10</td><td>156.5</td><td>5.39</td><td><span class="badge q4">Q4</span></td><td>6.2</td><td>6.58</td><td style="font-size:14px">短期營收跌破長期平均，2025/10月MA3(6.2億)跌破MA12(6.58億)，是死亡交叉，要留意是不是旺季不旺。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2025/11</td><td>154.5</td><td>8.13</td><td><span class="badge q4">Q4</span></td><td>6.39</td><td>6.89</td><td style="font-size:14px">最近3個月平均營收6.39億，掉到12個月平均6.89億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2025/12</td><td>191.5</td><td>7.3</td><td><span class="badge q4">Q4</span></td><td>6.94</td><td>7.06</td><td style="font-size:14px">最近3個月平均營收6.94億，掉到12個月平均7.06億下面，代表最近接單相對放緩。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能轉弱需留意下季EPS是否不如預期。</td></tr>
+<tr><td>2026/01</td><td>180</td><td>8.94</td><td><span class="badge q1">Q1</span></td><td>8.12</td><td>7.26</td><td style="font-size:14px">短期營收從底部爬起來，2026/01月MA3(8.12億)剛超過MA12(7.26億)，是黃金交叉，通常是接單轉強的第一個訊號。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/02</td><td>223.5</td><td>7.55</td><td><span class="badge q1">Q1</span></td><td>7.93</td><td>7.39</td><td style="font-size:14px">最近3個月平均營收7.93億，站在12個月平均7.39億之上，且屬於Q1季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/03</td><td>255.5</td><td>7.93</td><td><span class="badge q1">Q1</span></td><td>8.14</td><td>7.47</td><td style="font-size:14px">最近3個月平均營收8.14億，站在12個月平均7.47億之上，且屬於Q1季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/04</td><td>342.5</td><td>11.12</td><td><span class="badge q2">Q2</span></td><td>8.87</td><td>7.83</td><td style="font-size:14px">最近3個月平均營收8.87億，站在12個月平均7.83億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/05</td><td>405</td><td>10.71</td><td><span class="badge q2">Q2</span></td><td>9.92</td><td>7.95</td><td style="font-size:14px">最近3個月平均營收9.92億，站在12個月平均7.95億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/06</td><td>327.5</td><td>7.64</td><td><span class="badge q2">Q2</span></td><td>9.82</td><td>7.95</td><td style="font-size:14px">最近3個月平均營收9.82億，站在12個月平均7.95億之上，且屬於Q2季節(正常季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+<tr><td>2026/07</td><td>268.5</td><td>10.33</td><td><span class="badge q3">Q3</span></td><td>9.56</td><td>8.19</td><td style="font-size:14px">最近3個月平均營收9.56億，站在12個月平均8.19億之上，且屬於Q3季節(旺季)，短期接單動能強於長期。<br><br>公式對照：MA3/MA12對應A規則二(存貨YoY vs 營收YoY，第1步已驗證存貨成長略低於營收成長)，非規則七(第1步已依合約負債科目正常適用，非豁免)；對應第2步營收動能與第3步法說會伺服器拉貨指引。<br><br>影響：對第5步EPS估算而言，動能延續有利於下季EPS上修。</td></tr>
+    </table>
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">資料來源：Goodinfo「個股逐月股價與營收」頁面，使用者提供網頁另存檔案（<cite><a href="https://goodinfo.tw/tw/ShowSaleMonChart.asp?STOCK_ID=3030" target="_blank">https://goodinfo.tw/tw/ShowSaleMonChart.asp?STOCK_ID=3030</a></cite>），合併營業收入口徑，收盤價為當月收盤快照。</div>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12趨勢與A規則二(豁免後)/七、E法人預估營收有無衝突，詳見後續步驟J章節總結。
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+  <script>
+  (function(){
+    var months = ["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
+    var closes = [159.5,141.5,134,130,122,125.5,130,109.5,107,113,146,145.5,215,178.5,156.5,154.5,191.5,180,223.5,255.5,342.5,405,327.5,268.5];
+    var revenues = [5.3,5.58,5.15,4.46,5.31,6.45,6.04,6.91,6.84,9.33,7.6,7.48,7.56,5.64,5.39,8.13,7.3,8.94,7.55,7.93,11.12,10.71,7.64,10.33];
+    var ma3 = [5.28,5.42,5.34,5.06,4.97,5.41,5.93,6.47,6.6,7.69,7.92,8.14,7.55,6.89,6.2,6.39,6.94,8.12,7.93,8.14,8.87,9.92,9.82,9.56];
+    var ma12 = [4.97,5.14,5.34,5.45,5.3,5.45,5.61,5.65,5.66,5.99,6.2,6.37,6.56,6.56,6.58,6.89,7.06,7.26,7.39,7.47,7.83,7.95,7.95,8.19];
+    var colors = ["#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A"];
+
+    var barTrace = {
+      x: months, y: revenues, type: 'bar', name: '月營收(億)',
+      marker: {color: colors},
+      hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+    };
+    var ma3Trace = {
+      x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3',
+      line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+      hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
+    };
+    var ma12Trace = {
+      x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12',
+      line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+      hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
+    };
+    var priceTrace = {
+      x: months, y: closes, type: 'scatter', mode: 'lines', name: '收盤價(元)',
+      yaxis: 'y2',
+      line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+      hovertemplate: '%{x}<br>收盤價: %{y}元<extra></extra>'
+    };
+
+    var layout = {
+      title: {text: '3030 德律科技：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 16, family: 'Noto Sans TC'}},
+      barmode: 'overlay',
+      bargap: 0.15,
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      font: {family: 'Noto Sans TC', color: '#2C3E50'},
+      xaxis: {tickangle: -45},
+      yaxis: {title: '月營收(億)'},
+      yaxis2: {title: '收盤價(元)', overlaying: 'y', side: 'right', showgrid: false},
+      legend: {orientation: 'h', y: -0.25},
+      margin: {t: 50, b: 90, l: 60, r: 60},
+      hovermode: 'x unified'
+    };
+
+    Plotly.newPlot('revChart', [barTrace, ma3Trace, ma12Trace, priceTrace], layout, {responsive: true, displayModeBar: false});
+  })();
+  </script>
   <div class="card pending-card" id="step5">【第 5 步／共 6 步：前瞻本益比／EPS預估】— 尚未開始</div>
   <div class="card pending-card" id="step6">【第 6 步／共 6 步：投資決策推理】— 尚未開始(僅在您主動詢問時進行)</div>
 
