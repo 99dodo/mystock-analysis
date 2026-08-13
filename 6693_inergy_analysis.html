@@ -92,6 +92,7 @@ tr:hover td{background:#FAFBFC}
 .score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0}
 .pending-card{background:#FAFBFC;border:1px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
 </head>
 <body>
 
@@ -99,8 +100,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -108,7 +109,7 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>6693 廣閎科技 (inergy Technology Inc.)</h1>
-      <div class="sub">初步分析報告 · 第1~3步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告(含113年度/FY2024比較)、115年第二季(2026H1)合併財務報告暨會計師核閱報告(含114年同期/2025H1比較)、114年度年報全文(含致股東報告書、金融工具信用風險附註)、Goodinfo年度現金流量總覽+逐季現金流量表+個股日成交與融資融券資料(2025/08/14~2026/08/13)，皆使用者提供；鉅亨網股價/法說會新聞、Yahoo股市營收/股利頁面、Goodinfo公告訊息、Yole Group/Mordor Intelligence/Precedence Research等SiC與HVDC市場研究</div>
+      <div class="sub">初步分析報告 · 第1~4步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報全文、Goodinfo年度現金流量總覽+逐季現金流量表+個股日成交融資融券資料+月營收明細(2023/08~2026/07，36個月)，皆使用者提供；鉅亨網股價/法說會新聞、Yahoo股市營收/股利頁面、Goodinfo公告訊息、Yole Group/Mordor Intelligence/Precedence Research等SiC與HVDC市場研究</div>
     </div>
     <div class="score">
       <div class="num">58</div>
@@ -117,7 +118,7 @@ tr:hover td{background:#FAFBFC}
   </div>
 
   <div class="pending-card" style="text-align:left;padding:16px 20px;margin-bottom:24px">
-    📍 目前進度：第1~3步已完成。第1步現金流58分(需觀察，可續看)；第2步顯示股價評價偏高(本益比36.6倍)且籌碼面近兩週外資與融資同步降溫；第3步法說會/年報顯示AI伺服器營收占比暴增，應收帳款集中在3家大客戶身上，SiC/HVDC具備真實市場成長性但貢獻要到2027年，詳見下方。
+    📍 目前進度：第1~4步已完成。第1步現金流58分(需觀察，可續看)；第2步本益比36.6倍、籌碼面近兩週轉弱；第3步顯示AI伺服器占比暴增但應收帳款集中3家大客戶；第4步月營收MA3持續站上MA12呈多頭排列，年增率2026年以來明顯加速，但股價7月已從高點大幅回落，量價出現背離，詳見下方。
   </div>
 
   <div class="card" id="step1">
@@ -484,8 +485,122 @@ tr:hover td{background:#FAFBFC}
 
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b>近3個月(2026/05~07)平均營收<b>2.30億</b>，已連續<b>13個月</b>站在12個月平均<b>1.72億</b>之上，且MA3持續向上，短期接單動能明顯強於長期，屬多頭排列；但要注意<span style="color:#E74C3C">7月股價從月初高點280元大幅拉回至月收盤150元(-36.03%)，同月營收仍創新高(2.42億，年增+108.9%)，量價出現明顯背離</span>。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revenue-chart-6693" style="height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th><th>實務解讀(強制三段)</th></tr>
+
+      <tr>
+        <td>2024/08~2024/09</td><td>83.1→90.0</td><td>0.942→0.946</td><td><span class="badge q3">Q3</span></td><td>0.94→0.94</td><td>0.82→0.83</td>
+        <td>短強長也強：MA3(0.94億)穩定站在MA12(0.82~0.83億)之上，接單動能溫和成長。<br><br>公式對照：對應A規則二(存貨YoY慢於營收YoY，健康去化延續)。<br><br>影響：此階段仍是2023年營運調整後的復甦初期，尚未反映AI伺服器貢獻。</td>
+      </tr>
+      <tr>
+        <td>2024/10~2024/12</td><td>88.1→84.5</td><td>0.926→1.23</td><td><span class="badge q4">Q4</span></td><td>0.94→1.07</td><td>0.85→0.91</td>
+        <td>年底營收明顯加速，12月單月大增至1.23億(月增+18.2%、年增+60.9%)，MA3與MA12差距擴大。<br><br>公式對照：對應第3步年報揭露「114年Q4營收穩定上升到每月1.2億以上」，與AI伺服器散熱產品放量時間點吻合。<br><br>影響：這是本波成長趨勢的起漲點，第5步估算次年度EPS時應以此為成長基期參考。</td>
+      </tr>
+      <tr>
+        <td>2025/01~2025/03</td><td>87.5→69.0</td><td>1.15→0.913</td><td><span class="badge q1">Q1</span></td><td>1.14→1.04</td><td>0.93→0.97</td>
+        <td>農曆年後季節性回落(3月營收0.913億，月增-8.74%後再降)，MA3短暫走弱但仍在MA12之上，屬正常淡季波動非趨勢反轉。<br><br>公式對照：對應第1步規則二存貨管理紀律，淡季未見異常囤貨。<br><br>影響：股價同期同步回落(87.5→69.0元)，顯示當時市場尚未定價AI伺服器題材，與2026年的重估形成對比。</td>
+      </tr>
+      <tr>
+        <td>2025/04~2025/06</td><td>61.5→56.5</td><td>1.10→1.13</td><td><span class="badge q2">Q2</span></td><td>1.03→1.07</td><td>1.00→1.03</td>
+        <td>營收溫和回升但股價續探底(56.5元)，此時期股價與營收明顯脫鉤，處於「有基本面、無評價」的階段。<br><br>公式對照：對應第2步股價脈絡，2025全年一度呈現「持平略跌」格局，與此段營收數據吻合。<br><br>影響：事後看是絕佳的評價低點，第6步若討論進場時機可作為歷史參照，但不代表未來會重演。</td>
+      </tr>
+      <tr>
+        <td>2025/07~2025/09</td><td>57.5→60.6</td><td>1.16→1.22</td><td><span class="badge q3">Q3</span></td><td>1.09→1.18</td><td>1.05→1.09</td>
+        <td>營收年增率穩定在+23~29%區間，MA3與MA12差距溫和擴大，屬穩健爬升期，尚未進入加速階段。<br><br>公式對照：對應第3步法說會揭露「AI伺服器占比2025全年13%」，此階段是題材醞釀期。<br><br>影響：股價開始緩步回升(57.5→60.6元)，市場對成長性的定價才剛起步。</td>
+      </tr>
+      <tr>
+        <td>2025/10~2025/12</td><td>70.6→81.0</td><td>1.28→1.60</td><td><span class="badge q4">Q4</span></td><td>1.22→1.41</td><td>1.12→1.18</td>
+        <td>12月營收單月衝上1.6億(月增+18.2%、年增+30.2%)，MA3(1.41億)與MA12(1.18億)差距明顯擴大，短期動能顯著轉強。<br><br>公式對照：對應第1步規則三，此階段資本支出/折舊比開始從2025年全年1.38倍的基礎上加速墊高，為H1'26的4.22倍鋪路。<br><br>影響：股價同步從70.6元升至81元，市場開始反映Q4營收加速的訊號。</td>
+      </tr>
+      <tr>
+        <td>2026/01~2026/03</td><td>85.3→105.0</td><td>1.68→1.93</td><td><span class="badge q1">Q1</span></td><td>1.54→1.71</td><td>1.22→1.35</td>
+        <td>2026年開局營收年增率跳升至+43~112%區間(3月+111.9%尤其驚人，但需注意3月為2025年低基期0.913億)，MA3持續墊高，多頭排列更加明確。<br><br>公式對照：對應第3步法說會(2026/03/20召開)揭露「伺服器營收占比25%+」的說法，與此階段營收加速時間點完全吻合。<br><br>影響：股價從85.3元噴出至105元，市場開始積極定價AI伺服器題材，本益比評價快速墊高。</td>
+      </tr>
+      <tr>
+        <td>2026/04~2026/06</td><td>139.5→234.5</td><td>2.04→2.34</td><td><span class="badge q2">Q2</span></td><td>1.83→2.17</td><td>1.42→1.62</td>
+        <td>營收持續創高(6月2.34億，年增+107%)，MA3(2.17億)遠高於MA12(1.62億)，短強長也強格局達到本波高峰；股價同步噴出至234.5元(月收盤)，漲勢最為凌厲。<br><br>公式對照：對應第2步籌碼面數據，外資持股與融資餘額同步於此階段(6月中旬起)攀升至年內高點，籌碼與股價同步瘋狂。<br><br>影響：這段是評價與籌碼面最亢奮的階段，也是後續7月回落的起點，第6步討論進場時機需高度留意此區間已計入大量樂觀預期。</td>
+      </tr>
+      <tr>
+        <td>2026/07</td><td>150.0</td><td>2.42</td><td><span class="badge q3">Q3</span></td><td>2.30</td><td>1.72</td>
+        <td>營收續創新高(2.42億，月增+3.5%、年增+108.9%)，MA3(2.30億)與MA12(1.72億)差距擴大到本波最大(+0.58億)，基本面持續強勁；但<span style="color:#E74C3C;font-weight:800">月收盤價從234.5元(6月)重挫至150元(7月)，跌幅達-36.03%</span>，與營收創高方向完全背離。<br><br>公式對照：對應第2步籌碼面(外資持股從7月底19.6%高點回落到8月中的15.8%、融資餘額同步下滑)，量價背離在籌碼面上得到進一步驗證，不是單純的股價雜訊。<br><br>影響：這是本步驟最關鍵的訊號——基本面(營收/MA3/MA12)沒有轉弱，但市場評價與籌碼在7月同步降溫，代表市場開始消化「利多是否已price in」的疑慮，第5步估算前瞻本益比、第6步投資決策都必須把這個背離現象列為核心觀察點。</td>
+      </tr>
+    </table>
+
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">資料來源：Goodinfo月營收明細(使用者提供，2023/08~2026/07共36個月，圖表顯示近24個月)</div>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12多頭排列(規則二健康延續)與2026年7月出現的<b>量價背離</b>(營收創高、股價從280元高點回落逾三成、外資與融資籌碼同步降溫)，需與第5步法人預估(是否已反映這波股價修正)、第6步投資決策交叉驗證，是否代表市場正在重新評估這波成長故事的合理評價區間，詳見J章節。
+    </div>
+
+  </div>
+
 </div>
 
+<script>
+(function(){
+  const months = ['2024/08','2024/09','2024/10','2024/11','2024/12','2025/01','2025/02','2025/03','2025/04','2025/05','2025/06','2025/07','2025/08','2025/09','2025/10','2025/11','2025/12','2026/01','2026/02','2026/03','2026/04','2026/05','2026/06','2026/07'];
+  const revs = [0.942,0.946,0.926,1.04,1.23,1.15,1.07,0.913,1.1,0.994,1.13,1.16,1.17,1.22,1.28,1.35,1.6,1.68,1.53,1.93,2.04,2.14,2.34,2.42];
+  const close = [83.1,90.0,88.1,82.9,84.5,87.5,76.7,69.0,61.5,57.7,56.5,57.5,52.5,60.6,70.6,76.5,81.0,85.3,90.3,105.0,139.5,148.5,234.5,150.0];
+  const ma3 = [0.94,0.94,0.94,0.97,1.07,1.14,1.15,1.04,1.03,1.0,1.07,1.09,1.15,1.18,1.22,1.28,1.41,1.54,1.6,1.71,1.83,2.04,2.17,2.3];
+  const ma12 = [0.82,0.83,0.85,0.87,0.91,0.93,0.96,0.97,1.0,1.02,1.03,1.05,1.07,1.09,1.12,1.15,1.18,1.22,1.26,1.35,1.42,1.52,1.62,1.72];
+  const colors = ['#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A','#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A'];
+
+  const traceBar = {
+    x: months, y: revs, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  const traceMA3 = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3(3個月平均)',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
+  };
+  const traceMA12 = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12(12個月平均)',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
+  };
+  const tracePrice = {
+    x: months, y: close, type: 'scatter', mode: 'lines', name: '月收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+    yaxis: 'y2',
+    hovertemplate: '%{x}<br>收盤: %{y}元<extra></extra>'
+  };
+
+  const layout = {
+    title: {text: '6693 廣閎科技：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 15}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    xaxis: {title: '年月', tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', side: 'right', overlaying: 'y', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, r: 60, l: 60, b: 90},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+  };
+
+  Plotly.newPlot('revenue-chart-6693', [traceBar, traceMA3, traceMA12, tracePrice], layout, {responsive: true, displayModeBar: false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
