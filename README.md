@@ -1,7 +1,7 @@
 # 我的股票分析
 
 ## 📊 已發布報告
-- [2354 鴻準精密工業 - 分析報告(進行中)](https://99dodo.github.io/mystock-analysis/2354_foxconn_analysis.html)（最新，Step1~4完成，現金流核心六規則72分／良好，36個月營收圖顯示2026年7月MA3/MA12出現黃金交叉，7月營收214.2億創次高、年增+37.4%，動能反轉訊號明確）
+- [2354 鴻準精密工業 - 分析報告(進行中)](https://99dodo.github.io/mystock-analysis/2354_foxconn_analysis.html)（最新，Step1~5完成，現金流核心六規則72分／良好，無法人共識可用改採AI三情境估算：FY2026 EPS保守1.98/中性2.23/樂觀2.57元，現價63.7元已貼近樂觀情境25倍評價，安全邊際不大）
 - [7769 鴻勁精密 - 完整分析報告](https://99dodo.github.io/mystock-analysis/7769_hon_analysis.html)（六步驟完整版，現金流核心六規則80.3分／優秀(臨界)，結論：觀望，核心矛盾是2026H1現金流A<<D落差+合約負債背離未解釋，評價已用2027年獲利定價，六家投顧目標價區間6,180~10,000元分歧大）
 - [3030 德律科技 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3030_test-research_analysis.html)（六步驟完整版，核心六規則70.8分／良好，結論：觀望，關鍵在H1現金流未跟上獲利成長+評價已不便宜+伺服器終端集中度上升）
 - [8358 金居開發 - 完整分析報告](https://99dodo.github.io/mystock-analysis/8358_cotech_analysis.html)（六步驟完整版，核心六規則平均56.7分，規則八扣分後51.7分／需觀察，結論：觀望）
