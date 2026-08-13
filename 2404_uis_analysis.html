@@ -103,8 +103,8 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -431,8 +431,118 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     </div>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>資料來源：</b>使用者提供Goodinfo月營收/月股價截圖，涵蓋2006/08~2026/07，本步取最近36個月(2023/08~2026/07)計算MA3/MA12，圖表顯示近24個月(2024/08~2026/07)。
+    </div>
+
+    <div class="chart-wrap">
+      <div id="revChart" style="width:100%;height:460px"></div>
+    </div>
+
+    <table>
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>年增%</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>實務解讀(強制三段)</th></tr>
+      <tr>
+        <td colspan="8" style="color:var(--muted);font-size:13px">近24個月逐月數據已整合於上方互動圖表(滑鼠移到柱狀圖/線圖可查看每月月份、營收、季度、MA3、MA12、收盤價)，下方僅摘要關鍵轉折點與最新月份。</td>
+      </tr>
+      <tr>
+        <td>2024/12</td><td>482.0</td><td>51.51</td><td class="negative">-13.3%</td><td><span class="badge q4">Q4</span></td><td>42.1</td><td>39.5</td>
+        <td>
+          最近3個月平均營收(MA3)首度站上12個月平均(MA12)之上——42.1億 vs 39.5億，是本輪成長週期的<b>第一次黃金交叉</b>，代表短期接單動能開始轉強。<br><br>
+          公式對照：對應第1步規則二(存貨YoY vs 營收YoY)，此時存貨仍維持低檔，非靠囤貨衝出的成長，屬訂單驅動的健康型態。<br><br>
+          影響：這是後續連續15個月多頭排列的起點，也是2025年股價從300多元一路上攻的基本面起漲訊號。
+        </td>
+      </tr>
+      <tr>
+        <td>2025/03</td><td>456.5</td><td>38.35</td><td class="negative">-16.2%</td><td><span class="badge q1">Q1</span></td><td>38.4</td><td>38.9</td>
+        <td>
+          MA3短暫跌破MA12(38.4 vs 38.9)，出現一次小幅<b>死亡交叉</b>，但差距極小(僅0.5億)，屬於農曆年後傳統淡季的正常波動，不是趨勢反轉。<br><br>
+          公式對照：對應第1步規則二，此時合約負債仍持續墊高(見第1步規則七)，訂單能見度未受影響，僅是單月認列節奏偏慢。<br><br>
+          影響：僅1個月即修正，下個月(2025/04)MA3即與MA12打平，隔月起重新站上，未實質干擾多頭格局。
+        </td>
+      </tr>
+      <tr>
+        <td>2026/07</td><td>1100.0</td><td class="positive">99.45</td><td class="positive">+63.8%</td><td><span class="badge q3">Q3</span></td><td class="redflag">93.0</td><td>75.0</td>
+        <td>
+          最新月份：近3個月平均營收(MA3)已達<b>93.0億</b>，是12個月平均(MA12)75.0億的1.24倍，且MA3持續向上、單月營收99.45億逼近百億大關，短期接單動能明顯強於長期平均。<br><br>
+          公式對照：對應第2步近期營收動能(1-7月累計563億，年增73.9%)，也對應第3步法說會「在手訂單1,939億、認列週期2-2.5年」的說法——目前的加速認列與法說會指引方向一致。<br><br>
+          影響：直接構成第5步EPS估算的營收基期，法人上修全年EPS看70元以上，就是建立在這個持續加速的營收曲線之上。
+        </td>
+      </tr>
+    </table>
+
+    <div class="highlight">
+      <b>季節性觀察(白話)：</b>從四季分色來看，這家公司<b>看不出典型的「Q3旺季」季節性</b>——2024年Q3(35-40億)其實是全年低點，2025-2026年Q3才轉為高點，代表營收波動主要是<b>半導體資本支出週期與訂單認列節奏</b>驅動，而非傳統淡旺季，這點與零售、消費電子類股的季節性完全不同，判讀時不應套用「每年Q3必旺」的既定印象。
+    </div>
+
+    <p><b>總結：</b>近3個月平均營收(MA3) <b>93.0億</b>，已連續<b>15個月</b>站在12個月平均(MA12) <b>75.0億</b>之上，且MA3持續向上，短期動能明顯強於長期趨勢，與第1步「合約負債持續墊高」、第3步「在手訂單1,939億將於未來2-2.5年認列」互相印證，訂單溫度計目前處於高溫區間。</p>
+
+    <div class="jcross">J交叉預告：本步MA3/MA12趨勢與A規則二(豁免後)/七、E法人預估營收有無衝突，將於第5步比對法人營收成長假設是否與此加速曲線一致。</div>
+  </div>
+
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+(function(){
+  const months = ['2024/08','2024/09','2024/10','2024/11','2024/12','2025/01','2025/02','2025/03','2025/04','2025/05','2025/06','2025/07','2025/08','2025/09','2025/10','2025/11','2025/12','2026/01','2026/02','2026/03','2026/04','2026/05','2026/06','2026/07'];
+  const close = [344.5,319.0,338.0,428.5,482.0,512.0,434.5,456.5,442.0,559.0,623.0,790.0,1230.0,896.0,862.0,801.0,949.0,908.0,1130.0,821.0,950.0,1155.0,1320.0,1100.0];
+  const rev = [35.73,35.86,40.01,34.9,51.51,37.92,38.9,38.35,40.09,49.82,57.94,60.73,59.05,72.57,62.67,69.94,72.79,60.25,65.71,76.93,81.07,92.18,87.43,99.45];
+  const ma3 = [37.7,37.2,37.2,36.9,42.1,41.4,42.8,38.4,39.1,42.8,49.3,56.2,59.2,64.1,64.8,68.4,68.5,67.7,66.2,67.6,74.6,83.4,86.9,93.0];
+  const ma12 = [49.1,44.1,42.5,40.2,39.5,39.0,39.5,38.9,39.1,40.0,41.7,43.5,45.4,48.5,50.4,53.3,55.1,56.9,59.2,62.4,65.8,69.3,71.8,75.0];
+  const season = ['Q3','Q3','Q4','Q4','Q4','Q1','Q1','Q1','Q2','Q2','Q2','Q3','Q3','Q3','Q4','Q4','Q4','Q1','Q1','Q1','Q2','Q2','Q2','Q3'];
+  const yoy = [-4.62,-62.7,-32.1,-44.7,-13.3,-15.0,21.0,-16.2,7.22,28.0,54.9,52.0,65.3,102.3,56.6,100.4,41.3,58.9,68.9,100.6,102.2,85.0,50.9,63.8];
+  const colorMap = {'Q1':'#7BA7D9','Q2':'#7AC1A0','Q3':'#F5C07A','Q4':'#E8A0A0'};
+  const barColors = season.map(s=>colorMap[s]);
+
+  const customdata = months.map((m,i)=>[season[i], yoy[i], close[i]]);
+
+  const barTrace = {
+    x: months, y: rev, type:'bar', name:'月營收(億)',
+    marker:{color: barColors},
+    customdata: customdata,
+    hovertemplate: '%{x}｜季度:%{customdata[0]}<br>月營收:%{y}億(年增%{customdata[1]}%)<br>收盤價:%{customdata[2]}元<extra></extra>',
+    yaxis:'y'
+  };
+  const ma3Trace = {
+    x: months, y: ma3, type:'scatter', mode:'lines', name:'MA3(3個月平均)',
+    line:{color:'#E74C3C', width:2.5, dash:'solid'},
+    hovertemplate: '%{x}｜MA3:%{y}億<extra></extra>',
+    yaxis:'y'
+  };
+  const ma12Trace = {
+    x: months, y: ma12, type:'scatter', mode:'lines', name:'MA12(12個月平均)',
+    line:{color:'#1B3A8C', width:2.5, dash:'solid'},
+    hovertemplate: '%{x}｜MA12:%{y}億<extra></extra>',
+    yaxis:'y'
+  };
+  const closeTrace = {
+    x: months, y: close, type:'scatter', mode:'lines', name:'月收盤價(元)',
+    line:{color:'#8B5FBF', width:2.5, dash:'solid'},
+    hovertemplate: '%{x}｜收盤:%{y}元<extra></extra>',
+    yaxis:'y2'
+  };
+
+  const layout = {
+    title:{text:'2404 漢唐集成：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:16, color:'#2C3E50', family:'Noto Sans TC'}},
+    barmode:'overlay',
+    bargap:0.15,
+    font:{family:'Noto Sans TC', color:'#2C3E50'},
+    plot_bgcolor:'#FFFFFF',
+    paper_bgcolor:'#FFFFFF',
+    margin:{t:50,l:55,r:55,b:60},
+    xaxis:{tickangle:-45, gridcolor:'#F1F2F3'},
+    yaxis:{title:'月營收(億元)', gridcolor:'#F1F2F3', zeroline:false},
+    yaxis2:{title:'月收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+    legend:{orientation:'h', y:-0.25},
+    hovermode:'x unified'
+  };
+
+  Plotly.newPlot('revChart', [barTrace, ma3Trace, ma12Trace, closeTrace], layout, {responsive:true, displayModeBar:false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a:not(.pending)').forEach(a=>{
   a.addEventListener('click',e=>{
