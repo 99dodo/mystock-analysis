@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6690 安碁資訊 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --accent-2:#7AC1A0;
+  --accent-3:#F5C07A;
+  --accent-4:#E8A0A0;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,249,246,0.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+  margin:-24px -20px 32px;
+  display:flex;gap:8px;overflow-x:auto;
+}
+nav.stepnav a{
+  white-space:nowrap;
+  padding:8px 14px;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:13px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:all .2s;
+}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav a.pending{color:#B8C0C8;background:#FAFBFC}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px 32px;
+  margin-bottom:24px;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;font-size:15px;line-height:1.8}
+.highlight.warn{background:#FFF8E6;border-left-color:#E9C46A}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C}
+.highlight b{color:var(--text)}
+.highlight .red{color:#C0392B;font-weight:600}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:15px;line-height:1.8}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:0.5px;text-transform:uppercase}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.redbig{color:#E74C3C;font-weight:800;font-size:1.15em}
+.redbold{color:#E74C3C;font-weight:800}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px}
+.score .num{font-size:32px;font-weight:700;color:var(--accent)}
+.score .label{font-size:12px;color:var(--muted);margin-top:4px}
+.score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0}
+.pending-card{background:#FAFBFC;border:1px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="active">1.現金流盲測</a>
+    <a href="#step2" class="pending">2.基本資訊</a>
+    <a href="#step3" class="pending">3.法說會</a>
+    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step5" class="pending">5.前瞻本益比</a>
+    <a href="#step6" class="pending">6.投資決策</a>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>6690 安碁資訊 (Acer Cyber Security Incorporated, ACSI)</h1>
+      <div class="sub">初步分析報告 · 第1步／共6步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、Goodinfo年度現金流量總覽(2016~2026Q2)、逐季現金流量表(2022Q4~2026Q2)</div>
+    </div>
+    <div class="score">
+      <div class="num">82.3</div>
+      <div class="label">現金流核心六規則(優秀)<br>步驟1/6完成</div>
+    </div>
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <h3>欄位定義：現金流代號對照表 (白話字典)</h3>
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><b>A</b></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>現金流量表「營業活動之淨現金流入」</td></tr>
+      <tr><td><b>B</b></td><td>花掉的投資錢</td><td>投資活動現金流量(通常為負)</td><td>現金流量表「投資活動之淨現金流出」</td></tr>
+      <tr><td><b>C</b></td><td>跟銀行/股東的錢往來</td><td>融資活動現金流量</td><td>現金流量表「籌資活動之淨現金流(出)入」</td></tr>
+      <tr><td><b>D</b></td><td>帳面賺的錢</td><td>稅後淨利(本期淨利)</td><td>綜合損益表「本期淨利」</td></tr>
+      <tr><td><b>E</b></td><td>最後剩下的現金</td><td>期末現金餘額</td><td>資產負債表「現金及約當現金」</td></tr>
+      <tr><td><b>FCF</b></td><td>真能拿來發股利的錢</td><td>自由現金流 = A − 資本支出</td><td>自算(A − 取得不動產、廠房及設備)</td></tr>
+    </table>
+
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9">
+      <b>本步驟已取得三表齊全：</b><br>
+      ① 114年度(FY2025)合併財務報告暨會計師查核報告(查核，含113年度/FY2024比較)<br>
+      ② 115年第二季(2026H1)合併財務報告暨會計師核閱報告(核閱，含114年同期/2025H1比較)<br>
+      ③ Goodinfo年度現金流量總覽(2016~2026Q2) + 逐季現金流量表(2022Q4~2026Q2)<br><br>
+      <b>規則七(存貨vs合約負債背離)特別註記：</b>安碁資訊為資安委外服務業(MSSP)，財報附註六(十六)確認有揭露「合約負債」科目，<b>不適用合約負債豁免條款</b>；但資產負債表<b>並無傳統「存貨」科目</b>，本業以服務收入認列為主，資產面對應項目為「履行合約成本」(附註六(八)，屬服務尚未攤銷認列的成本，性質上最接近服務業的備貨/在製品)。為維持規則二、規則七的可驗證性，<b>本報告以「履行合約成本」作為存貨的替代指標</b>，並在下表中誠實標示此為指標替代，非標準豁免。
+    </div>
+
+    <h3>八大現金流解讀規則</h3>
+    <table>
+      <tr><th>規則</th><th>專業定義</th><th>實務解讀(白話/公式/影響)</th><th>核心公式</th><th>數字</th><th>判斷</th></tr>
+
+      <tr>
+        <td><b>規則一</b><br>A&lt;D 應收暴增</td>
+        <td>營運現金流入小於稅後淨利</td>
+        <td>
+          2025年(FY2025) 口袋現金(<span class="term" title="營業活動現金流量">A</span>) <b>12.77億</b>，遠大於帳面賺的錢(<span class="term" title="稅後淨利">D</span>) <b>3.07億</b>，2024年(FY2024) 同樣是 A<b>14.87億</b> &gt; D<b>2.26億</b>，兩年皆呈現口袋現金遠優於帳面獲利的型態。<br><br>
+          公式對照：這是因為安碁資訊收入以服務逐步認列為主，攤銷費用(履行合約成本轉列銷貨成本)高達9.29億(2025)、8.03億(2024)這類非現金費用會加回營業現金流，使A長期優於D，對應規則六應收/營收比進一步驗證收現品質。<br><br>
+          影響：2026H1 同樣維持 A<b>5.51億</b> &gt; D<b>1.53億</b>，型態延續，帳上獲利的現金含金量高，第5步用D估算EPS時可信度較高。
+        </td>
+        <td>A vs D</td>
+        <td>2024:A14.87&gt;D2.26／2025:A12.77&gt;D3.07／2026H1:A5.51&gt;D1.53</td>
+        <td>通過(強勁)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則二</b><br>存貨(替代指標)暴增</td>
+        <td>獲利被存貨/在製成本積壓吃掉</td>
+        <td>
+          安碁資訊無傳統存貨科目，改以「履行合約成本」(<span class="term" title="服務尚未攤銷認列的合約履行成本，資產負債表科目">履行合約成本</span>)替代：2025年底較2024年底<b>年減-4.3%</b>(6.21億，上年6.49億)，同期營收(<span class="term" title="營業收入淨額">營收</span>)<b>年增+13.3%</b>(24.32億，上年21.46億)，履行合約成本不增反減，明顯不是靠堆積待攤成本撐營收。<br><br>
+          公式對照：履行合約成本YoY(-4.3%) vs 營收YoY(+13.3%)，差距達17.6個百分點，方向健康，對應第4步月營收MA3/MA12趨勢驗證動能是否延續。<br><br>
+          影響：2026H1(vs 2025H1) 履行合約成本YoY<b>-2.8%</b>(6.16億，上年6.34億)，營收YoY擴大到<b>+15.3%</b>(12.84億，上年11.14億)，差距拉大到18.1個百分點，代表營收成長是靠效率提升/既有專案出貨，而非額外囤積成本，第5步估EPS時屬正向因子。
+        </td>
+        <td>履行合約成本YoY vs 營收YoY(替代存貨YoY)</td>
+        <td>2025:-4.3%vs+13.3%／2026H1:-2.8%vs+15.3%</td>
+        <td>通過(健康)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則三</b><br>B大於A/資本支出折舊比</td>
+        <td>投資過度或吃老本</td>
+        <td>
+          2025年(FY2025) 資本支出(取得不動產廠房設備)僅<b>0.69億</b> ÷ 折舊費用<b>1.28億</b> = <b>0.54倍</b>(&lt;0.8，形式上偏吃老本)，但要對照2024年資本支出高達<b>12.34億</b>(含取得不動產廠房設備9.95億+無形資產2.39億) ÷ 折舊1.14億 = <b>10.83倍</b>的超額擴產年度——2024年公司併購子公司宏碁雲架構(acer eDC)取得100%股權，屬一次性擴產/併購支出，2025年資本支出回落是消化完併購資產後的正常化。<br><br>
+          公式對照：單看2025年比值&lt;0.8可能誤判為「吃老本」，但要合併規則四(C持續正)一起看：2024年C暴增15.64億正是為了支應這次併購與擴產，2025年資本支出正常化是合理的接續現象，非結構性投資不足。<br><br>
+          影響：2026H1資本支出<b>0.60億</b> ÷ 折舊<b>0.68億</b> = <b>0.88倍</b>，已回升接近1倍，尚未連續2年&lt;0.8，不觸發紅字警示，但第3步法說會仍須追問後續資本支出/擴產規劃是否已告一段落。
+        </td>
+        <td>資本支出/折舊比</td>
+        <td>2024:10.83x(併購年)／2025:0.54x／2026H1:0.88x</td>
+        <td>需觀察(併購後正常化)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則四</b><br>C持續正</td>
+        <td>長期靠借錢或增資</td>
+        <td>
+          跟銀行/股東的錢往來(<span class="term" title="籌資活動現金流量">C</span>)在<b>2022~2024連續三年為正</b>(2022:+3.72億、2023:+0.05億、2024:+15.64億)，形式上符合「C持續正」的觀察條件。<br><br>
+          公式對照：細看2024年C暴增15.64億的組成，主因是現金增資<b>15.96億</b>(股權募資)，用於支應同年併購acer eDC，舉借長期借款淨額僅約2.70億(舉借6.87億−償還4.17億)，<b>並非長期依賴舉債</b>，屬於一次性股權募資支應併購，體質正向。<br><br>
+          影響：2025年C轉為<b>-2.22億</b>(僅償還借款、租賃本金與發放股利)，2026H1 C為<b>-0.21億</b>，併購募資後已回歸自我造血、不再依賴外部資金的常態，趨勢正向。
+        </td>
+        <td>C是否連續3年為正</td>
+        <td>2022~2024連續3年正(2024因併購股權募資)，2025轉負</td>
+        <td>需觀察(歷史模式，現已改善)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則五</b><br>自由現金流FCF</td>
+        <td>真能拿來發股利的錢</td>
+        <td>
+          2025年(FY2025) 真能發股利的錢(<span class="term" title="自由現金流">FCF</span>) = A(12.77億) − 資本支出(0.69億) = <b>12.08億</b>，現金創造能力強勁。<br><br>
+          公式對照：對照2024年FCF = A(14.87億) − 資本支出(12.34億，含併購相關資本支出) = <b>2.53億</b>，因當年資本支出金額龐大而明顯壓縮，2025年資本支出回落後FCF大幅回升，年增幅近5倍。<br><br>
+          影響：2026H1 FCF = A(5.51億) − 資本支出(0.60億) = <b>4.91億</b>，優於去年同期2025H1的FCF(A4.94億−資本支出0.28億=4.66億)，現金創造能力持續改善，第5步算股利覆蓋率的分子基礎穩健。
+        </td>
+        <td>FCF = A − 資本支出</td>
+        <td>2024:2.53億／2025:12.08億／2026H1:4.91億</td>
+        <td>通過(強勁)</td>
+      </tr>
+
+      <tr>
+        <td><b>規則六</b><br>應收/營收比</td>
+        <td>收現能力</td>
+        <td>
+          2025年底 應收帳款(含關係人)<b>3.71億</b> ÷ 全年營收<b>24.32億</b> = <b>15.3%</b>，低於20%觀察門檻，且較2024年底的<b>16.5%</b>(應收3.54億÷營收21.46億)略為下降，收現能力穩定偏佳。<br><br>
+          公式對照：&gt;20%且上升才紅字警示，安碁目前遠低於門檻且呈下降趨勢，對應第2步EPS/現金股利可信度偏高。<br><br>
+          影響：2026H1末應收帳款<b>2.61億</b>，以H1營收12.84億年化推算(<span style="color:#6B7C93">推算數字，非精確近12月營收，僅供參考</span>)約為<b>10.2%</b>，較去年同期(2.33億／年化推算約10.5%)持平略降，未見收現能力惡化跡象。
+        </td>
+        <td>應收/營收比</td>
+        <td>2024:16.5%／2025:15.3%／2026H1(推算):約10.2%</td>
+        <td>通過</td>
+      </tr>
+
+      <tr>
+        <td><b>規則七</b><br>存貨(替代)vs合約負債背離</td>
+        <td>備貨真假景氣(服務業替代版：待攤成本 vs 客戶預收款)</td>
+        <td>
+          2025年(FY2025) 履行合約成本(替代存貨)年減<b>-4.3%</b>，同期客戶預收款(<span class="term" title="合約負債">合約負債</span>，流動+非流動合計)<b>3.63億</b>，較2024年底<b>4.69億</b>大減<span class="redbig"><b>-22.6%</b></span>，降幅遠大於履行合約成本的變化，形式上不是規則定義中「存貨↑+合約負債↓」的典型背離(因為履行合約成本並未上升)，但合約負債流失速度明顯快於營收成長速度，值得單獨列為觀察訊號。<br><br>
+          公式對照：典型背離需要「存貨漲、合約負債跌」同時成立；安碁目前是「兩者都跌，合約負債跌更快」，性質不同但同樣指向客戶預收訂金正在減少，需搭配第3步法說會確認是季節性遞延、還是新單簽約放緩。<br><br>
+          影響：2026H1(vs 2025H1) 履行合約成本YoY<b>-2.8%</b>，合約負債YoY<span class="redbig"><b>-24.6%</b></span>(3.03億，上年4.02億)，同一方向且降幅持續放大，同期營收卻仍成長+15.3%，代表目前的營收成長較可能來自既有合約/backlog的出貨認列，而非等量的新單預收補進，是本報告獨立發現、經紀商報告未必會特別提及的訊號，列為第3、5步的重點追問項目。
+        </td>
+        <td>履行合約成本YoY vs 合約負債YoY(替代版)</td>
+        <td>2025:-4.3%vs<span class="redbold">-22.6%</span>／2026H1:-2.8%vs<span class="redbold">-24.6%</span></td>
+        <td><span class="redbold">需觀察(合約負債持續流失)</span></td>
+      </tr>
+
+      <tr>
+        <td><b>規則八</b><br>股利永續/真實股利覆蓋率</td>
+        <td>股利是真賺的還是借來發的</td>
+        <td>
+          2025年度實際發放現金股利<b>1.80億</b>(對應2024年度盈餘)，同期FCF<b>12.08億</b>，真實股利覆蓋率 = 12.08 ÷ 1.80 = <b>6.7倍</b>，非常健康。2024年度發放現金股利<b>1.15億</b>(對應2023年度盈餘)，同期FCF<b>2.53億</b>，覆蓋率 = 2.53 ÷ 1.15 = <b>2.2倍</b>，同樣&gt;1倍。<br><br>
+          公式對照：兩年覆蓋率皆遠大於1倍，且2024年C(規則四)雖為正，主因是股權募資支應併購而非借錢發股利，兩者性質不同，<b>沒有借錢發股利的跡象</b>。<br><br>
+          影響：股利發放金額遠低於FCF，配息政策具有相當緩衝空間，第6步投資決策若涉及股利穩定性評估，此項屬正面因子。
+        </td>
+        <td>真實股利覆蓋率 = FCF/現金股利</td>
+        <td>2024:2.2倍／2025:6.7倍</td>
+        <td>通過(非舉債配息)</td>
+      </tr>
+    </table>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本頁規則七(合約負債持續流失-22.6%~-24.6%)、規則三/四(2024併購後資本支出/融資活動正常化)，與第3步法說會(是否提及新單簽約狀況)、第4步營收趨勢(MA3/MA12是否延續雙位數成長)、第5步法人預估(是否已反映合約負債下滑的訂單能見度風險)有無衝突，詳見後續步驟J章節總結。
+    </div>
+
+    <h3>現金流體質總分</h3>
+    <div class="score-card">
+      <b>現金流體質總分：82.3分 (優秀)</b><br>
+      核心六規則平均(規則一~六)：<b>82.3分</b>，用於關卡判斷，未觸發規則七/八扣分項(規則七未完全符合典型背離定義、規則八覆蓋率皆&gt;1倍)<br>
+      八規則完整平均(規則一~八，報告呈現用)：約 <b>81.4分</b><br>
+      規則三：2025年資本支出/折舊比0.54倍(&lt;0.8)，但屬2024併購年後的正常化，非結構性投資不足 | 規則四：C在2022~2024連續三年為正，主因2024股權募資支應併購acer eDC，非長期依賴舉債 | 規則七：<span class="redbold">合約負債持續加速流失(-22.6%~-24.6%)</span>，需第3步法說會確認原因 | 規則八：真實股利覆蓋率2.2~6.7倍，非舉債配息
+    </div>
+
+    <h3>關卡判斷</h3>
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9">
+      <b>現金流體質優秀(82.3分)，可以繼續看下去，進入第2步基本資訊。</b><br><br>
+      三重警訊檢查：近5年(2021~2025)及最新一期(2026H1) <span class="term" title="營業活動現金流量">A</span>皆為正值，未曾出現「A為負+B大幅負值+C為正」的組合，<b>未觸發硬性三重警訊</b>。<br>
+      規則八加註：2024、2025年度真實股利覆蓋率皆&gt;1倍(2.2倍、6.7倍)，<b>未觸發借錢配息黃卡</b>。
+    </div>
+
+    <div class="highlight warn">
+      <b>需持續留意：</b>82.3分屬優秀等級，現金流品質、資本支出紀律、股利覆蓋率皆穩健，主要待釐清的疑點是規則七揭露的<b>合約負債(客戶預收款)連續加速流失</b>——2025年全年-22.6%，2026H1最新一期擴大到-24.6%，同時營收仍維持雙位數成長(+13.3%~+15.3%)，代表目前成長動能較可能來自既有合約出貨，而非等量新單補進。建議第3步法說會重點追問新簽約狀況與合約負債下滑原因(季節性遞延／客戶付款條件改變／新單放緩)，第4步觀察月營收MA3/MA12是否已提前反映動能轉弱，第5步評估法人預估是否已消化這個訊號。
+    </div>
+
+    <div class="pending-card">
+      第 2～6 步尚未執行，待使用者確認後依序進行：基本資訊查詢 → 法說會深度討論(選擇性) → 月營收趨勢視覺化(需使用者提供月營收檔案) → 前瞻本益比/EPS預估(需詢問投顧報告) → 投資決策推理(僅在使用者主動詢問時進行)。
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
