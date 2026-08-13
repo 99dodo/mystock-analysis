@@ -99,8 +99,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -108,11 +108,11 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>6690 安碁資訊 (Acer Cyber Security Incorporated, ACSI)</h1>
-      <div class="sub">初步分析報告 · 第3步／共6步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報、Goodinfo年度現金流量總覽/逐季現金流量表、Yahoo股市/鉅亨網股價快照(2026/08/13)、2026/03/23法說會媒體整理稿(vocus.cc)</div>
+      <div class="sub">初步分析報告 · 第4步／共6步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報、Goodinfo年度現金流量總覽/逐季現金流量表/月營收明細(2023/08~2026/07)、Yahoo股市/鉅亨網股價快照(2026/08/13)、2026/03/23法說會媒體整理稿(vocus.cc)</div>
     </div>
     <div class="score">
       <div class="num">82.3</div>
-      <div class="label">現金流核心六規則(優秀)<br>步驟3/6完成</div>
+      <div class="label">現金流核心六規則(優秀)<br>步驟4/6完成</div>
     </div>
   </div>
 
@@ -446,13 +446,108 @@ tr:hover td{background:#FAFBFC}
       J交叉預告：本頁「法規驅動剛性需求」敘述與A規則七(合約負債持續流失)的方向衝突，管理層未被直接問到這個落差，是否為政府專案付款結構差異、還是新單放緩，需在第5步法人預估與第6步投資決策中列為明確待驗證訊號，詳見後續步驟J章節總結。
     </div>
 
-    <div class="pending-card">
-      第 4～6 步尚未執行，待使用者確認後依序進行：月營收趨勢視覺化(需使用者提供月營收檔案) → 前瞻本益比/EPS預估(需詢問投顧報告) → 投資決策推理(僅在使用者主動詢問時進行)。
+  </div>
+
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 近3個月平均營收(MA3) <b>2.19億</b>，僅微幅站在12個月平均(MA12) <b>2.18億</b>之上，雖已連續4個月(2026/04起)維持MA3&gt;MA12的多頭排列，但<span class="redbold">差距正快速收斂</span>(從2026年初的0.22億收斂到7月僅剩0.01億，幾乎貼平)。單月YoY成長率同樣呈現降溫軌跡：<b>2026年1~3月YoY還有+23.8%~+24.9%，到6~7月已降到+7.24%~+8.89%</b>。這是第1步「合約負債持續加速流失」與第3步「法規驅動需求 vs 合約負債流失矛盾」在營收面的初步技術驗證——短期動能確實在減弱，不是空穴來風，但累計(1-7月)YoY仍有<b>+14.3%</b>，尚未轉為衰退。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revenue-chart-6690" style="height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th><th>實務解讀(強制三段)</th></tr>
+
+      <tr><td>2026/07</td><td>161</td><td>2.11</td><td><span class="badge q3">Q3</span></td><td>2.19</td><td>2.18</td>
+        <td>7月單月營收月減11.9%(6月為季底認列高峰後的正常回落)，年增+8.89%，是近半年最低的YoY成長率。<br><br>公式對照：MA3(2.19)與MA12(2.18)幾乎貼平，多頭排列名存實亡，對應第1步規則七(合約負債YoY -24.6%)持續惡化，兩個訊號方向一致。<br><br>影響：第5步估算EPS成長性時，不能只看H1累計+15.3%的漂亮數字，要把最新單月動能明顯減弱的事實一併納入保守情境。</td></tr>
+      <tr><td>2026/06</td><td>162</td><td>2.39</td><td><span class="badge q2">Q2</span></td><td>2.20</td><td>2.17</td>
+        <td>6月單月營收月增15%(季底認列高峰，符合3/6/9/12月營收季節性偏高的規律)，但年增+7.24%已是連續第3個月走低。<br><br>公式對照：MA3(2.20)對MA12(2.17)的領先優勢持續收斂，對應第2步「EPS表面成長率失真」警示——股本膨脹的稀釋效果之外，營收本身的邊際成長也在放緩，兩個因素疊加會讓EPS成長更顯保守。<br><br>影響：這是本步驟認為最關鍵的一個月，YoY成長率首次跌破10%，第6步投資決策要重點檢視這是短期波動還是趨勢轉折。</td></tr>
+      <tr><td>2026/05</td><td>170.5</td><td>2.08</td><td><span class="badge q2">Q2</span></td><td>2.26</td><td>2.15</td>
+        <td>5月單月營收月減1.62%，年增+10%，是雙位數成長的最後一個月(6、7月起跌破10%)。<br><br>公式對照：MA3(2.26)仍領先MA12(2.15)，多頭排列表面上維持，但年增率已從年初的20%以上腰斬到10%左右。<br><br>影響：與第3步法說會「維持雙位數成長」的展望對照，5月是最後一個還能勉強支撐這個說法的月份，之後兩個月已跌破雙位數。</td></tr>
+      <tr><td>2026/04</td><td>166.5</td><td>2.12</td><td><span class="badge q2">Q2</span></td><td>2.16</td><td>2.14</td>
+        <td>4月單月營收月減17.8%(3月季底認列高峰後回落)，年增+14.4%，MA3(2.16)重新站上MA12(2.14)，形成本次分析區間內第二次黃金交叉。<br><br>公式對照：對應第1步FY規則四(2024年併購後現金流已正常化)，本月起現金流與營收動能同步回穩。<br><br>影響：這次黃金交叉的力道明顯比年初(2025年5月那次)更弱，領先差距只有0.02億，是後續動能持續收斂的起點。</td></tr>
+      <tr><td>2026/03</td><td>161.5</td><td>2.57</td><td><span class="badge q1">Q1</span></td><td>2.08</td><td>2.11</td>
+        <td>3月單月營收月增42.8%、年增+24.9%，是近24個月單月最高營收，符合資安服務業季底認列的季節性規律。<br><br>公式對照：儘管單月數字亮眼，MA3(2.08)仍低於MA12(2.11)，尚未形成黃金交叉，代表這是單月脈衝而非趨勢轉強的確認訊號。<br><br>影響：這個月的高點容易讓人誤判營收動能強勁，但要等到隔月MA3真正翻揚站上MA12才算數，提醒第5步不要被單一亮眼月份誤導。</td></tr>
+      <tr><td>2026/02</td><td>165</td><td>1.80</td><td><span class="badge q1">Q1</span></td><td>2.11</td><td>2.07</td>
+        <td>2月單月營收月減3.64%(農曆春節工作天數較少的常見季節性因素)，年增仍達+13.3%。<br><br>公式對照：MA3(2.11)持續站在MA12(2.07)之上，2月是死亡交叉後(2026年3月即將發生前)的最後一個多頭月份。<br><br>影響：春節效應為暫時性，不影響對趨勢的判斷。</td></tr>
+      <tr><td>2026/01</td><td>163</td><td>1.87</td><td><span class="badge q1">Q1</span></td><td>2.28</td><td>2.06</td>
+        <td>年初單月營收年增高達+23.8%，是近24個月YoY最高的一個月，累計(1月)年增同樣+23.8%，開局強勁。<br><br>公式對照：MA3(2.28)大幅領先MA12(2.06)，領先差距0.22億為區間內最大值，之後便一路收斂。<br><br>影響：2026年開局的強勢表現與第3步法說會「維持雙位數成長」的展望高度吻合，但也是本波動能的高點，值得記錄作為對照基準。</td></tr>
+      <tr><td>2025/12</td><td>174</td><td>2.65</td><td><span class="badge q4">Q4</span></td><td>2.30</td><td>2.02</td>
+        <td>12月單月營收2.65億為全年單月最高，月增14.2%、年增+14.8%，符合季底認列規律，全年(2025)營收在此正式收官達24.32億。<br><br>公式對照：MA3(2.30)持續領先MA12(2.02)，對應第1步FY2025營收YoY+13.3%的年度總結數字一致。<br><br>影響：全年高點漂亮作收，但也墊高了2026年同期比較的基期，是後續YoY逐月走低的部分原因（基期效應+動能真實減弱兩者疊加）。</td></tr>
+      <tr><td>2025/11</td><td>169</td><td>2.32</td><td><span class="badge q4">Q4</span></td><td>2.18</td><td>2.00</td>
+        <td>11月單月營收月增19.8%、年增+11.8%，延續Q4傳統旺季表現。<br><br>公式對照：MA3(2.18)對MA12(2.00)持續領先，多頭排列穩固。<br><br>影響：此階段(2025Q4)是本次分析涵蓋期間內動能最穩健的時期，可作為後續比較的基準點。</td></tr>
+      <tr><td>2025/10</td><td>176.5</td><td>1.94</td><td><span class="badge q4">Q4</span></td><td>2.09</td><td>1.98</td>
+        <td>10月單月營收月減15.4%(季初正常回落)，年增+17.9%。<br><br>公式對照：MA3(2.09)穩定領先MA12(1.98)。<br><br>影響：無異常，符合當期整體上升軌跡。</td></tr>
+      <tr><td colspan="7" style="text-align:center;color:var(--muted);font-size:13px">2025/09以前月份(共14個月，2024/08~2025/09)因表格篇幅精簡不逐月列出，趨勢已完整反映於上方圖表，原始月營收數字如下：2025/09:2.29億(YoY+14.5%)｜2025/08:2.03億(YoY+11.0%)｜2025/07:1.94億(YoY+8.76%)｜2025/06:2.23億(YoY+9.37%)｜2025/05:1.89億(YoY+10.9%)｜2025/04:1.85億(YoY+19.5%)｜2025/03:2.06億(YoY+10.7%)｜2025/02:1.59億(YoY+21.3%)｜2025/01:1.51億(YoY+12.5%)｜2024/12:2.31億｜2024/11:2.08億｜2024/10:1.64億｜2024/09:2.00億｜2024/08:1.83億。這段期間MA3/MA12曾於2025年2月出現死亡交叉、5月出現黃金交叉，型態上與2026年初至今的死亡交叉(3月)→黃金交叉(4月)→持續收斂如出一轍，屬於安碁資訊常見的週期性波動模式。</td></tr>
+    </table>
+
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">資料來源：Goodinfo月營收明細(使用者提供截圖，含2023/08~2026/07共36個月原始資料，圖表顯示近24個月2024/08~2026/07，前12個月僅用於計算MA12起始值)</div>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12差距快速收斂、單月YoY從+23.8%降到+7.24%的降溫軌跡，與第1步規則七(合約負債流失)、第3步法說會「法規驅動剛性需求持續推升」的敘述方向已出現初步技術面呼應——目前證據指向短期動能確實在減弱，而非法說會敘述的「持續加速」。第5步法人預估若仍沿用高個位數以上的成長假設，需要用這裡的最新降溫數字重新檢視是否過度樂觀，詳見J章節總結。
     </div>
   </div>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+(function(){
+  const months = ["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
+  const closes = [234,236.5,230.5,201.5,206.5,195.5,204.5,180.5,185.5,180,174,172,184.5,173.5,176.5,169,174,163,165,161.5,166.5,170.5,162,161];
+  const revs = [1.83,2.00,1.64,2.08,2.31,1.51,1.59,2.06,1.85,1.89,2.23,1.94,2.03,2.29,1.94,2.32,2.65,1.87,1.80,2.57,2.12,2.08,2.39,2.11];
+  const ma3 = [1.88,1.87,1.82,1.91,2.01,1.97,1.80,1.72,1.83,1.93,1.99,2.02,2.07,2.09,2.09,2.18,2.30,2.28,2.11,2.08,2.16,2.26,2.20,2.19];
+  const ma12 = [1.71,1.72,1.74,1.76,1.79,1.80,1.82,1.84,1.87,1.88,1.90,1.91,1.93,1.95,1.98,2.00,2.02,2.06,2.07,2.11,2.14,2.15,2.17,2.18];
+  const quarters = ["Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3","Q3","Q3","Q4","Q4","Q4","Q1","Q1","Q1","Q2","Q2","Q2","Q3"];
+  const qColor = {Q1:'#7BA7D9', Q2:'#7AC1A0', Q3:'#F5C07A', Q4:'#E8A0A0'};
+  const barColors = quarters.map(q => qColor[q]);
+
+  const traceBar = {
+    x: months, y: revs, type: 'bar', name: '月營收(億)',
+    marker: {color: barColors},
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  const traceMA3 = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+    hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
+  };
+  const traceMA12 = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+    hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
+  };
+  const tracePrice = {
+    x: months, y: closes, type: 'scatter', mode: 'lines', name: '月收盤價(元)',
+    yaxis: 'y2',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+    hovertemplate: '%{x}<br>收盤價: %{y}元<extra></extra>'
+  };
+
+  const layout = {
+    title: {text: '6690 安碁資訊：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 15}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    xaxis: {title: '年月', tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', side: 'right', overlaying: 'y', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, r: 60, l: 60, b: 90},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+  };
+
+  Plotly.newPlot('revenue-chart-6690', [traceBar, traceMA3, traceMA12, tracePrice], layout, {responsive: true, displayModeBar: false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
