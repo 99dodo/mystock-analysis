@@ -64,6 +64,7 @@ tr:hover td{background:#FAFBFC}
 .jcross{font-size:14px;color:var(--muted);border-top:1px dashed var(--border);padding-top:10px;margin-top:14px;}
 body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -71,7 +72,7 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     <a href="#step1" class="active">1.現金流盲測</a>
     <a href="#step2">2.基本資訊</a>
     <a href="#step3">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step4">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -371,7 +372,89 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     <div class="jcross">J交叉預告：第3步解開的存貨背離原因(急單備貨而非滯銷)已回頭更新第1步規則二的解讀(見step1標註)，並直接影響第5步EPS估算——若急單效應延續到Q3，法人預估可能上修；若退潮，Q3營收恐再度轉弱，詳見J章節。</div>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b>近3個月平均營收(MA3) <b>150.8億</b>，已重新站上12個月平均(MA12) <b>122.0億</b>之上，形成<b>黃金交叉</b>，直接驗證第3步「任天堂漲價前急單」的說法——2026年2月曾出現死亡交叉(MA3跌破MA12)，4月觸底後連3個月回升，7月正式黃金交叉。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revChart" style="height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th><th>實務解讀(強制三段)</th></tr>
+      <tr>
+        <td>2026/06~07</td><td>55.3→56.5</td><td>150.5→<b>214.2</b></td><td><span class="badge q3">Q3</span></td><td>101.1→<b>150.8</b></td><td>117.1→122.0</td>
+        <td>
+          最近2個月平均營收比過去一年平均還高，而且還在往上衝，7月營收214.2億是本次36個月資料裡的次高點，年增率+37.4%，代表任天堂漲價前急單效應延續到7月，動能比原本預期更強。<br><br>
+          公式對照：MA3向上穿越MA12(2026/07正式黃金交叉)，對應第1步規則二(存貨備貨的合理性得到營收面驗證)。<br><br>
+          影響：對第5步EPS估算是正面訊號，若8-9月動能不墜，Q3單季獲利有機會優於Q2。
+        </td>
+      </tr>
+      <tr>
+        <td>2026/02~05</td><td>59.5→60.9</td><td>72.02→46.89→65.27→87.58</td><td><span class="badge q1">Q1</span>/<span class="badge q2">Q2</span></td><td>114.8→<b>61.4(谷底)</b>→66.6</td><td>132.4→115.9</td>
+        <td>
+          這4個月是任天堂5月無預警下修財測後的營收谷底期，3月觸及本次36個月最低點46.89億，MA3在4月跌到61.4億的谷底，短期接單動能急速轉弱。<br><br>
+          公式對照：MA3在2026年2月向下穿越MA12(死亡交叉)，對應第3步法說會發現的任天堂砍單事件，時間點完全吻合。<br><br>
+          影響：這段谷底期直接反映在第1步H1現金流與存貨數字上，也是本次分析中風險最集中的區間，已在第3步查證出根本原因。
+        </td>
+      </tr>
+      <tr>
+        <td>2025/07~12</td><td>64.9→61.7</td><td>155.8~138.5區間</td><td><span class="badge q3">Q3</span>/<span class="badge q4">Q4</span></td><td>141~146區間</td><td>110→130區間</td>
+        <td>
+          這半年MA3持續在MA12之上且高檔盤整，是Switch 2上市後的出貨高峰期，單月營收多次突破130-155億，是全年營收基期最高的一段。<br><br>
+          公式對照：MA3>MA12且向上，屬多頭排列的「短強長也強」型態，對應第2步營收動能的高基期。<br><br>
+          影響：這段高基期也是後續2026年前幾個月YoY數字看起來很難看的主因，屬於基期效應而非營運真的衰退。
+        </td>
+      </tr>
+    </table>
+    <div style="font-size:13px;color:var(--muted);margin-top:8px">資料來源：Goodinfo月營收查詢(近36個月，2023/08~2026/07)，使用者提供截圖</div>
+
+    <div class="highlight">
+      <b>完成後總結：</b>近3個月平均營收101.1~150.8億(逐月加速)，已於2026年7月重新站上12個月平均122.0億之上，形成黃金交叉，結束了2026年2~6月連續5個月的死亡交叉走勢，動能反轉訊號明確。
+    </div>
+
+    <div class="jcross">J交叉預告：本步MA3/MA12黃金交叉與第1步規則二(存貨備貨已驗證合理)、第5步法人預估營收成長假設高度相關，7月營收214.2億若能延續，法人预估有上修空間，詳見J章節。</div>
+  </div>
+
 </div>
+
+<script>
+var months=["2024/08","2024/09","2024/10","2024/11","2024/12","2025/01","2025/02","2025/03","2025/04","2025/05","2025/06","2025/07","2025/08","2025/09","2025/10","2025/11","2025/12","2026/01","2026/02","2026/03","2026/04","2026/05","2026/06","2026/07"];
+var rev=[67.84,56.06,65.71,114.5,151.5,85.03,94.19,120.5,128.9,147.5,136,155.8,138,129.6,149.2,138.3,138.5,133.9,72.02,46.89,65.27,87.58,150.5,214.2];
+var ma3=[68.6,67.4,63.2,78.8,110.6,117.0,110.2,99.9,114.5,132.3,137.5,146.4,143.3,141.1,138.9,139.0,142.0,136.9,114.8,84.3,61.4,66.6,101.1,150.8];
+var ma12=[46.6,45.5,46.5,53.1,63.1,67.3,73.3,80.7,88.7,97.5,103.8,110.3,116.1,122.3,129.2,131.2,130.1,134.2,132.4,126.2,120.9,115.9,117.1,122.0];
+var close=[68.4,66.4,80.6,80.4,74.4,78.2,76.3,61.8,59,60.6,63.5,64.9,71.1,70.3,71.5,65.2,61.7,57.4,59.5,50.5,51.8,60.9,55.3,56.5];
+var colors=["#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A","#F5C07A","#F5C07A","#E8A0A0","#E8A0A0","#E8A0A0","#7BA7D9","#7BA7D9","#7BA7D9","#7AC1A0","#7AC1A0","#7AC1A0","#F5C07A"];
+
+var barTrace={x:months,y:rev,type:'bar',name:'月營收(億)',marker:{color:colors},yaxis:'y1',
+  hovertemplate:'%{x}<br>營收: %{y}億<extra></extra>'};
+var ma3Trace={x:months,y:ma3,type:'scatter',mode:'lines',name:'MA3',line:{color:'#E74C3C',width:2.5},yaxis:'y1',
+  hovertemplate:'%{x}<br>MA3: %{y}億<extra></extra>'};
+var ma12Trace={x:months,y:ma12,type:'scatter',mode:'lines',name:'MA12',line:{color:'#1B3A8C',width:2.5},yaxis:'y1',
+  hovertemplate:'%{x}<br>MA12: %{y}億<extra></extra>'};
+var closeTrace={x:months,y:close,type:'scatter',mode:'lines',name:'收盤價(元)',line:{color:'#8B5FBF',width:2.5},yaxis:'y2',
+  hovertemplate:'%{x}<br>收盤價: %{y}元<extra></extra>'};
+
+Plotly.newPlot('revChart',[barTrace,ma3Trace,ma12Trace,closeTrace],{
+  title:'2354 鴻準：月營收四季分色 + 3M/12M 平均圖 (近24個月)',
+  barmode:'overlay',
+  bargap:0.15,
+  xaxis:{title:'年月'},
+  yaxis:{title:'月營收(億)',side:'left'},
+  yaxis2:{title:'月收盤價(元)',overlaying:'y',side:'right',showgrid:false},
+  legend:{orientation:'h',y:-0.2},
+  margin:{t:50,b:80},
+  plot_bgcolor:'#FAFBFC',
+  paper_bgcolor:'#FFFFFF'
+},{responsive:true});
+</script>
 
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
