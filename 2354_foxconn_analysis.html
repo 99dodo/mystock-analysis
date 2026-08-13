@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2354 鴻準 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --accent-2:#7AC1A0;
+  --accent-3:#F5C07A;
+  --accent-4:#E8A0A0;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;margin:-24px -20px 32px;display:flex;gap:8px;overflow-x:auto;}
+nav.stepnav a{white-space:nowrap;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s;}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav a.pending{opacity:.45;pointer-events:none;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-bottom:24px;transition:box-shadow .2s;}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px;}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;font-size:15px;}
+.highlight.warn{background:#FFF8E6;border-left-color:#E9C46A;}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C;}
+.highlight b{color:var(--text)}
+.highlight .red{color:#C0392B;font-weight:600}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:15px;line-height:1.8;}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:0.5px;text-transform:uppercase;}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top;}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0;}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:20px 0;}
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:500;}
+.badge.q1{background:#E8F0F7;color:#5B8FB9}
+.badge.q2{background:#E6F4EE;color:#2E7D6F}
+.badge.q3{background:#FFF4E0;color:#B7791F}
+.badge.q4{background:#FEE8E8;color:#C0392B}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px;}
+.score .num{font-size:32px;font-weight:700;color:var(--accent)}
+.score .label{font-size:12px;color:var(--muted);margin-top:4px}
+.jcross{font-size:14px;color:var(--muted);border-top:1px dashed var(--border);padding-top:10px;margin-top:14px;}
+body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="active">1.現金流盲測</a>
+    <a href="#step2" class="pending">2.基本資訊</a>
+    <a href="#step3" class="pending">3.法說會</a>
+    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step5" class="pending">5.前瞻本益比</a>
+    <a href="#step6" class="pending">6.投資決策</a>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>2354 鴻準精密工業</h1>
+      <div class="sub">初步分析報告 · 2026/08/13 · 資料來源：使用者提供年報/季報PDF + Goodinfo現金流截圖</div>
+    </div>
+    <div class="score">
+      <div class="num">72</div>
+      <div class="label">核心六規則(良好)</div>
+    </div>
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 2025年度(114年度) 營業現金(A) <b>35.13億</b> > 稅後淨利(D) <b>31.19億</b>，收現能力優於帳面獲利；但 <span class="red">2026H1存貨年增+55%、營收卻年減−22%，出現背離警訊</span>，資本支出同步加速轉入擴產期，需第3步法說會確認原因。
+    </div>
+
+    <h3>欄位定義：現金流代號對照表(白話字典)</h3>
+    <table>
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><b><span class="term" title="營業活動現金流量">A</span></b></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>現金流量表「營業活動淨現金流」</td></tr>
+      <tr><td><b><span class="term" title="投資活動現金流量">B</span></b></td><td>花掉的投資錢</td><td>投資活動現金流量(通常為負，本公司因大量理財性金融資產進出，波動大)</td><td>現金流量表「投資活動」</td></tr>
+      <tr><td><b><span class="term" title="融資活動現金流量">C</span></b></td><td>跟銀行/股東的錢往來</td><td>融資活動現金流量</td><td>現金流量表「融資活動」</td></tr>
+      <tr><td><b><span class="term" title="稅後淨利">D</span></b></td><td>帳面賺的錢</td><td>稅後淨利(合併)</td><td>損益表「本期淨利」</td></tr>
+      <tr><td><b>FCF</b></td><td>真能拿來發股利的錢</td><td>自由現金流 = A − 資本支出</td><td>自算</td></tr>
+    </table>
+
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9;">
+      <b>本步驟已取得三表齊全：</b><br>
+      ① 114年度(FY2025)合併財務報告(查核，含113年度/FY2024比較)<br>
+      ② 115年Q2(2026H1)合併財務報告(核閱，含114年Q2/2025H1比較)<br>
+      ③ Goodinfo年度現金流量總覽(1996~2026Q2) + 逐季現金流量表(2022Q4~2026Q2)<br><br>
+      <b>規則七(存貨vs合約負債背離)不適用：</b>查證年報、季報及Goodinfo逐季資料，合約負債僅在現金流量表以極小調整數出現(如2026Q2為−0.035億)，資產負債表未單獨揭露合約負債餘額，非資料缺漏，改以規則二(存貨YoY vs 營收YoY)為主替代判斷。
+    </div>
+
+    <h3>八大現金流解讀規則</h3>
+    <table>
+      <tr><th>規則</th><th>實務解讀(強制三段)</th><th>核心公式/數字</th><th>判斷</th></tr>
+      <tr>
+        <td><b>一、A&lt;D 應收暴增</b></td>
+        <td>
+          <b>FY2025</b> 營業現金(A) <b>35.13億</b> &gt; 稅後淨利(D) <b>31.19億</b>，收現比帳面賺得還多；<b>FY2024</b> 反而 A <b>27.03億</b> &lt; D <b>34.00億</b>。<br><br>
+          公式對照：對應A規則一，<b>2025H1</b>單季A <span class="negative">−19.48億</span>(現金淨流出) &lt; D 14.70億，落差劇烈；<b>2026H1</b>已回升為 A(26.10億)&gt;D(15.32億)。<br><br>
+          影響：年度數據FY2025轉強，但2025H1曾出現罕見的營業現金流出，2026H1已修正，建議持續追蹤下一季是否穩定。
+        </td>
+        <td>A/D比值：FY25 1.13倍／FY24 0.80倍／25H1 −1.33倍／26H1 1.70倍</td>
+        <td><span style="color:#E9C46A;font-weight:700">需觀察 72分</span></td>
+      </tr>
+      <tr>
+        <td><b>二、A&lt;D 存貨暴增</b></td>
+        <td>
+          <b>FY2025</b> 存貨YoY <b>+43.6%</b>(28.3億→40.7億)，同期營收YoY <b>+105.8%</b>，存貨遠低於營收成長，屬健康備貨。<br><br>
+          公式對照：<b>2026H1</b> 存貨YoY反轉為 <b>+55.2%</b>(42.1億→65.3億)，同期營收卻YoY <b>−21.9%</b>(712億→556億)。Goodinfo逐季資料顯示2026Q2單季存貨增加 <b>20.88億</b>，是近12季最大單季增量。<br><br>
+          影響：本分析<b>最主要風險訊號</b>，貨可能開始堆倉庫，將直接影響第4步營收動能與第5步EPS估算。
+        </td>
+        <td>存貨YoY vs 營收YoY：FY25(+44%vs+106%健康)／<span style="color:#E74C3C;font-weight:800">26H1(+55%vs−22%背離)</span>／26Q2單季存貨+20.88億(近3年最大)</td>
+        <td><span style="color:#E74C3C;font-weight:800;font-size:1.15em">紅字放大：不通過 50分</span></td>
+      </tr>
+      <tr>
+        <td><b>三、資本支出/折舊比</b></td>
+        <td>
+          <b>FY2025</b> 0.73倍(6.20億/8.44億)，<b>FY2024</b> 0.25倍(2.65億/10.65億)，連兩年吃老本。<br><br>
+          公式對照：Goodinfo逐季拆解顯示資本支出<b>連續5季加速</b>：25Q1(−0.4)→25Q2(−1)→25Q3(−0.4)→25Q4(−3.79)→26Q1(−4.67)→26Q2(−6.96億)，<b>26H1整體比值衝到2.47倍</b>，是明確的擴產轉折。<br><br>
+          影響：需在第3步法說會確認擴產項目、資金規模與完工時程，直接影響第5步折舊費用估算。
+        </td>
+        <td>資本支出/折舊比：FY25 0.73／FY24 0.25／25H1 0.56／<b>26H1 2.47</b>，且逐季加速中</td>
+        <td><span style="color:#E74C3C;font-weight:800">需觀察轉折點 65分</span></td>
+      </tr>
+      <tr>
+        <td><b>四、C持續正</b></td>
+        <td>
+          <b>FY2025</b> 籌資活動(C)流出 <b>9.27億</b>，<b>FY2024</b> 流出 <b>37.48億</b>，主要是還借款與發股利。<br><br>
+          公式對照：僅<b>2025H1</b>單季C為流入 <b>53.86億</b>(短期借款增加55.29億)，屬短期資金調度，<b>2026H1</b>已轉回流出11.86億。<br><br>
+          影響：不構成長期依賴融資疑慮，對股利可持續性正面。
+        </td>
+        <td>C是否連續3年為正：<b>否</b>，僅25H1單季為正</td>
+        <td><span class="positive">通過 88分</span></td>
+      </tr>
+      <tr>
+        <td><b>五、自由現金流FCF</b></td>
+        <td>
+          <b>FY2025</b> FCF＝A(35.13億)−資本支出(6.20億)＝<b>28.93億</b>；<b>FY2024</b> FCF＝27.03億−2.65億＝<b>24.38億</b>，兩年皆正且成長。<br><br>
+          公式對照：<b>2025H1</b>因A為負，FCF為 <span class="negative">−21.78億</span>；<b>2026H1</b>回升為 <b>14.40億</b>(26.10億−11.70億)，但受資本支出加速侵蝕，成長性趨緩。<br><br>
+          影響：年度FCF體質仍佳，可支撐股利，但資本支出若持續加速，未來FCF成長空間會被壓縮，需留意。
+        </td>
+        <td>FCF：FY25 <b>28.93億</b>／FY24 24.38億／25H1 −21.78億／26H1 14.40億</td>
+        <td><span class="positive">良好 75分</span></td>
+      </tr>
+      <tr>
+        <td><b>六、應收/營收比</b></td>
+        <td>
+          <b>FY2025</b>底應收(含關係人)／全年營收 ≈ <b>15.8%</b>，<b>FY2024</b>底 ≈ <b>34.8%</b>(當年營收基期小、比率失真)，<b>2026年6月底</b> ≈ <b>17.5%</b>(H1營收年化估算)。<br><br>
+          公式對照：對應A規則六，比率在15-18%區間波動，未見持續惡化趨勢。<br><br>
+          影響：收現能力尚屬正常，非立即風險，仍建議搭配下季數字追蹤是否隨營收下滑而走高。
+        </td>
+        <td>應收/營收比：FY25 15.8%／FY24 34.8%(基期失真)／26H1 17.5%</td>
+        <td><span class="positive">良好 82分</span></td>
+      </tr>
+      <tr>
+        <td><b>七、存貨vs合約負債背離</b></td>
+        <td>
+          <b>不適用(無合約負債科目)</b>：三表(年報/季報/Goodinfo逐季)均未單獨揭露合約負債餘額，僅現金流量表有極小調整數，判定不適用。<br><br>
+          公式對照：改以規則二為主替代判斷，已於規則二標註2026H1背離訊號。<br><br>
+          影響：不納入評分，不觸發粉色警示。
+        </td>
+        <td>不適用</td>
+        <td>不適用</td>
+      </tr>
+      <tr>
+        <td><b>八、股利永續/真實股利覆蓋率</b></td>
+        <td>
+          <b>FY2025</b>現金股利發放(2025年Q3支付，分配FY2024盈餘) <b>19.80億</b>，對照FY2025 FCF <b>28.93億</b>，覆蓋率 <b>1.46倍</b>。<br><br>
+          公式對照：<b>FY2024</b>現金股利發放(2024年Q3支付，分配FY2023盈餘) <b>21.22億</b>，對照FY2024 FCF <b>24.38億</b>，覆蓋率 <b>1.15倍</b>。兩年皆&gt;1，且同期C多為淨流出，非借錢發股利。<br><br>
+          影響：股利可持續性目前無虞；下次股利(分配FY2025盈餘)預計21.22億將於2026年Q3實際支付，屆時可用2026全年FCF驗證。
+        </td>
+        <td>真實股利覆蓋率：FY25 1.46倍／FY24 1.15倍</td>
+        <td><span class="positive">通過 85分</span></td>
+      </tr>
+    </table>
+
+    <div class="jcross">J交叉預告：規則二存貨背離與規則三資本支出轉折，需在第3步法說會、第4步營收趨勢、第5步法人預估交叉驗證，詳見J章節。</div>
+
+    <h3>現金流體質總分卡</h3>
+    <div class="score-card">
+      <b>現金流體質總分：72分(良好)</b><br>
+      核心六規則(一~六)平均：<b>72分</b> | 完整版八規則平均(扣除不適用規則七)：<b>74分</b><br>
+      規則七：不適用(無合約負債科目) | 規則八：真實股利覆蓋率 1.15~1.46倍 (&gt;1，非借錢發股利)<br>
+      規則七/規則八皆未觸發-5分扣分條件
+    </div>
+
+    <div class="highlight">
+      <b>關卡判斷：</b> 現金流體質良好(72分)，可以繼續看下去，進入第2步基本資訊。未觸發硬性三重警訊(A負+B大幅負+C正未同時出現)。
+    </div>
+
+    <div class="highlight warn">
+      <b>需觀察訊號(不擋關，後續步驟需驗證)：</b><br>
+      1. 規則二存貨背離：2026H1存貨年增+55%、營收卻年減−22%，2026Q2單季存貨增加20.88億為近3年最大單季增量，需在第3步法說會與第4步月營收確認是短期備貨還是去化出問題。<br>
+      2. 規則三資本支出轉折：資本支出已連5季加速，26H1比值衝到2.47倍，需在第3步法說會確認擴產具體項目與資金規模。
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    if(a.classList.contains('pending')) return;
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
