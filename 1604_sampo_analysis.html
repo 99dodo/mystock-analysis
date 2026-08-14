@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1604 聲寶 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --accent-2:#7AC1A0;
+  --accent-3:#F5C07A;
+  --accent-4:#E8A0A0;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{position:sticky;top:0;z-index:100;background:rgba(250,249,246,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 0;margin:-24px -20px 32px;display:flex;gap:8px;overflow-x:auto}
+nav.stepnav a{white-space:nowrap;padding:8px 14px;border-radius:20px;text-decoration:none;font-size:13px;color:var(--muted);background:var(--card);border:1px solid var(--border);transition:all .2s}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav a.disabled{opacity:.45;pointer-events:none}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 32px;margin-bottom:24px;transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;font-size:15px}
+.highlight.warn{background:#FFF8E6;border-left-color:#E9C46A}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C}
+.highlight b{color:var(--text)}
+.highlight .red{color:#C0392B;font-weight:600}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:15px;line-height:1.8}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;letter-spacing:0.3px}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.redbig{color:#E74C3C;font-weight:800;font-size:1.15em}
+.redbold{color:#E74C3C;font-weight:800}
+.badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:500}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px}
+.score .num{font-size:32px;font-weight:700;color:var(--accent)}
+.score .label{font-size:12px;color:var(--muted);margin-top:4px}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.9;margin:16px 0}
+.jnote{font-size:13.5px;color:var(--muted);margin:10px 0 0;padding-left:2px}
+cite{font-style:normal}
+cite a{color:var(--accent);text-decoration:none}
+cite a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="active">1.現金流盲測</a>
+    <a class="disabled">2.基本資訊</a>
+    <a class="disabled">3.法說會</a>
+    <a class="disabled">4.營收趨勢</a>
+    <a class="disabled">5.前瞻本益比</a>
+    <a class="disabled">6.投資決策</a>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>1604 聲寶 (SAMPO)</h1>
+      <div class="sub">初步分析報告 · 2026/08/14 · 資料來源：114年度(FY2025)合併財務報告(查核) + 115年Q2(2026H1)合併財務報告(核閱) + Goodinfo現金流量截圖</div>
+    </div>
+    <div class="score">
+      <div class="num">57</div>
+      <div class="label">核心六規則(關卡分)</div>
+    </div>
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9;padding:12px 16px;border-radius:8px;font-size:15px">
+      <b>本步驟已取得三表齊全：</b><br>
+      ① 114年度(FY2025)合併財務報告暨會計師查核報告(查核，含113年度/FY2024比較，資產負債表日2025/12/31對照2024/12/31)<br>
+      ② 115年Q2(2026H1)合併財務報告暨會計師核閱報告(核閱，含114年Q2/2025H1比較，並列2025/12/31資產負債對照)<br>
+      ③ Goodinfo年度現金流量總覽(2012~2026Q2) + 逐季現金流量表(2022Q4~2026Q2)<br><br>
+      <b>規則七(存貨vs合約負債背離)適用：</b>兩份財報附註六(二三)均確認聲寶有單獨揭露「合約負債－流動」科目(2025/12/31為2.82億、2024/12/31為2.07億)，非資料缺漏，故本規則直接計算，不觸發豁免。
+    </div>
+
+    <h3>欄位定義：現金流代號對照表(白話字典)</h3>
+    <table>
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><b>A</b></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>合併現金流量表「營業活動之淨現金流入」</td></tr>
+      <tr><td><b>B</b></td><td>花掉的投資錢</td><td>投資活動現金流量(通常為負)</td><td>合併現金流量表「投資活動之淨現金流出」</td></tr>
+      <tr><td><b>C</b></td><td>跟銀行/股東的錢往來</td><td>融資活動現金流量</td><td>合併現金流量表「籌資活動之淨現金流入」</td></tr>
+      <tr><td><b>D</b></td><td>帳面賺的錢</td><td>稅前淨利(優先對照，另附稅後淨利)</td><td>合併綜合損益表「稅前淨利」/「本期淨利」</td></tr>
+      <tr><td><b>E</b></td><td>最後剩下的現金</td><td>期末現金餘額</td><td>合併資產負債表「現金及約當現金」</td></tr>
+      <tr><td><b>FCF</b></td><td>真能拿來發股利的錢</td><td>自由現金流 = A - 資本支出</td><td>自算(A - 購置不動產、廠房及設備)</td></tr>
+    </table>
+
+    <h3>八大規則分析(核心規則一～六 + 進階規則七～八)</h3>
+    <table>
+      <tr><th style="width:11%">規則</th><th style="width:16%">專業定義</th><th style="width:40%">實務解讀(白話/公式/影響)</th><th style="width:12%">核心公式</th><th style="width:12%">數字</th><th style="width:9%">判斷</th></tr>
+
+      <tr>
+        <td><b>規則一</b><br>應收暴增(A&lt;D)</td>
+        <td>營運現金流入是否小於稅前淨利</td>
+        <td>
+          2025年 <span class="term" title="營業活動現金流量">營業現金(A)</span> <b>7.03億</b>，比<span class="term" title="稅前淨利">稅前賺的錢(D)</span> <b>7.50億</b> 略少一點；2024年營業現金(A) <b>5.16億</b>，比稅前賺的錢(D) <b>9.64億</b> 少了將近一半，代表當年賺的錢有一大截還卡在客戶手上沒收回來。<br><br>
+          公式對照：對應規則六應收/營收比，該比率從2024年<b>9.51%</b>降到2025年<b>6.45%</b>，顯示A&lt;D缺口已從<b class="redbold">-46.5%</b>大幅收斂到<b>-6.3%</b>。<br><br>
+          影響：2026H1單季A僅1.29億、遠低於稅前淨利4.35億(缺口再度放大)，需持續觀察下半年是否延續2025全年改善的趨勢，或只是季節性收現節奏落後。
+        </td>
+        <td>A vs 稅前淨利(D)</td>
+        <td>2025: 7.03/7.50億<br>2024: 5.16/9.64億</td>
+        <td>需觀察</td>
+      </tr>
+
+      <tr>
+        <td><b>規則二</b><br>存貨暴增(A&lt;D)</td>
+        <td>獲利是否被存貨積壓吃掉</td>
+        <td>
+          2025年底<span class="term" title="存貨">存貨</span> <b>14.69億</b>，比2024年底 <b>16.60億</b> 減少<b>11.5%</b>，代表公司不是靠囤貨在撐營收，倉庫裡的貨在變少。<br><br>
+          公式對照：存貨YoY(<b class="positive">-11.5%</b>)優於同期營收YoY(<b class="negative">-4.7%</b>，90.50億→94.94億)，存貨去化速度快於營收下滑幅度，不是靠打消庫存衝出獲利假象。<br><br>
+          影響：存貨去化有利於2026年毛利率與資金效率，但也要留意這是「去化」而非「業績成長」帶動，2025年營收本身是衰退的。
+        </td>
+        <td>存貨YoY vs 營收YoY</td>
+        <td>存貨YoY -11.5%<br>營收YoY -4.7%</td>
+        <td>良好</td>
+      </tr>
+
+      <tr>
+        <td><b>規則三</b><br>資本支出強度(B大於A)</td>
+        <td>投資活動現金流出是否遠超營業現金流入(擴產或吃老本)</td>
+        <td>
+          2025年<span class="term" title="投資活動現金流量">投資活動(B)</span>淨流出<b>12.30億</b>，是當年<span class="term" title="營業活動現金流量">營業活動(A)</span>淨流入7.03億的<b>1.75倍</b>；2024年投資流出13.33億更是營業流入5.16億的<b>2.58倍</b>，代表這兩年花在買地買設備的錢，遠比本業賺回來的現金多。<br><br>
+          公式對照：資本支出/折舊比 2025年<b class="redbold">2.80倍</b>、2024年<b class="redbold">3.72倍</b>，皆遠高於1.5倍門檻，屬於「積極擴產」而非「吃老本」，但擴產規模持續超出本業現金承載能力，需靠外部資金補缺口(見規則四)。<br><br>
+          影響：若擴產(不動產廠房及投資性不動產大增)未來能轉化為營收成長屬合理策略投資；但2025年營收已衰退4.7%(規則二)，擴產效益尚待驗證，直接牽動規則五FCF與規則八股利能力。
+        </td>
+        <td>資本支出/折舊比</td>
+        <td>2025: 2.80x<br>2024: 3.72x</td>
+        <td>需觀察</td>
+      </tr>
+
+      <tr>
+        <td><b>規則四</b><br>融資依賴(C持續正)</td>
+        <td>是否連續多年靠借款/增資撐現金流</td>
+        <td>
+          從Goodinfo近5年數據看，<span class="term" title="融資活動現金流量">融資活動(C)</span>在2022、2023、2024、2025<b class="redbold">連續4年都是正值</b>(4.09億→4.56億→6.71億→5.17億)，代表這4年公司每年都在淨舉債，不是靠賺錢的現金在過生活。<br><br>
+          公式對照：C連續正值搭配規則三資本支出/折舊比持續&gt;1.5倍，兩者互相印證——聲寶這幾年的擴產，主要是借錢撐起來的，不是本業現金撐起來的。<br><br>
+          影響：只要擴產有明確回報可接受；但若效益遲遲未反映在營收，持續舉債會推升利息負擔——2025年<span class="term" title="財務成本(利息費用)">財務成本</span>1.07億，較2024年0.63億增加<b class="redbold">71%</b>，正在侵蝕獲利。
+        </td>
+        <td>C是否連續3年為正</td>
+        <td>2022~2025<br>連續4年為正</td>
+        <td>需觀察</td>
+      </tr>
+
+      <tr>
+        <td><b>規則五</b><br>自由現金流(FCF)</td>
+        <td>真正能拿來發股利、還債的閒錢</td>
+        <td>
+          2025年<span class="term" title="自由現金流=A-資本支出">FCF</span> = 營業現金(A)7.03億 - 資本支出12.62億 = <b class="redbig">-5.59億</b>；2024年FCF = 5.16億 - 13.71億 = <b class="redbig">-8.55億</b>，<b class="redbold">連續兩年都是負值</b>，代表本業賺的現金完全不夠支應買地買設備的資本支出，還倒貼。<br><br>
+          公式對照：FCF = A(規則一) - 資本支出(規則三)，2025年缺口比2024年收斂約35%，主要受惠於A成長36%及資本支出略減8%的雙重改善。<br><br>
+          影響：FCF連續兩年為負，直接決定規則八「真實股利覆蓋率」必為負值——近兩年的現金股利並非本業現金賺來發的，這是本次分析最重要、也是一般消息面最容易忽略的一點。
+        </td>
+        <td>FCF = A - 資本支出</td>
+        <td>2025: -5.59億<br>2024: -8.55億</td>
+        <td>不通過</td>
+      </tr>
+
+      <tr>
+        <td><b>規則六</b><br>應收/營收比</td>
+        <td>收現能力：貨出去了錢有沒有真的收回來</td>
+        <td>
+          2025年底<span class="term" title="應收帳款淨額">應收帳款</span>5.84億，占2025年營收90.50億的<b>6.45%</b>；2024年底應收帳款9.03億，占2024年營收94.94億的<b>9.51%</b>，占比明顯下降。<br><br>
+          公式對照：應收/營收比從9.51%降到6.45%，遠低於20%警戒線，且呼應規則一A&lt;D缺口收斂的現象——收現能力2025年確實在改善。<br><br>
+          影響：收現能力轉強對維持營運資金水位有正面幫助，是這次分析中少數的正向訊號，值得在2026年後續季度持續追蹤是否延續。
+        </td>
+        <td>應收帳款/營收</td>
+        <td>2025: 6.45%<br>2024: 9.51%</td>
+        <td>優秀</td>
+      </tr>
+
+      <tr>
+        <td><b>規則七</b><br>存貨vs合約負債背離</td>
+        <td>備貨是真有訂單撐腰，還是自己在賭景氣</td>
+        <td>
+          2025年底存貨年減<b>11.5%</b>(16.60億→14.69億)，同時<span class="term" title="合約負債(客戶預收款)">合約負債</span>(客戶預收款)年增<b>36.1%</b>(2.07億→2.82億)，存貨在減少、客戶預收款卻在增加，是一降一升的健康搭配，不是背離。<br><br>
+          公式對照：本規則公式為存貨YoY vs 合約負債YoY，聲寶兩者方向相反且都朝健康方向走，與規則二存貨去化的結論互相印證。2026H1(2026/6/30對2025/6/30)同樣呈現存貨YoY -12.6%、合約負債YoY +15.2%的一致模式。<br><br>
+          影響：出貨去化的同時還有客戶願意預付訂金，對短期營運動能是正面訊號；但仍須留意這是否集中在少數大客戶（家電代工類常見大單模式），第3步法說會可進一步確認客戶結構。
+        </td>
+        <td>存貨YoY vs 合約負債YoY</td>
+        <td>存貨YoY -11.5%<br>合約負債YoY +36.1%</td>
+        <td>良好</td>
+      </tr>
+
+      <tr>
+        <td><b>規則八</b><br>股利永續(真實覆蓋率)</td>
+        <td>股利是真賺的還是借來發的</td>
+        <td>
+          2025年<span class="term" title="真實股利覆蓋率=FCF/現金股利">真實股利覆蓋率</span> = FCF(-5.59億) / 現金股利(5.45億) = <b class="redbig">-1.03倍</b>；2024年 = -8.55億 / 5.45億 = <b class="redbig">-1.57倍</b>，兩年皆為負值，代表這兩年發的現金股利，帳面上完全不是靠自由現金流發出來的。<br><br>
+          公式對照：規則五FCF連兩年為負，加上規則四C連4年為正(2025年融資活動淨流入5.17億)，三者合起來的完整故事是：聲寶2024、2025年的現金股利，很大程度上是靠當年度新增的借款/票券撐起來的，屬於典型的<b class="redbold">借錢配息</b>。<br><br>
+          影響：只要公司持續借新還舊且營運穩定，短期股東仍可領到股利；但若未來融資環境緊縮或營收持續衰退(規則二)，股利政策的可持續性會直接受到考驗，是存股族最需要留意的風險點。
+        </td>
+        <td>FCF / 現金股利</td>
+        <td>2025: -1.03倍<br>2024: -1.57倍</td>
+        <td><span class="redbig">不通過</span></td>
+      </tr>
+    </table>
+    <p class="jnote">J交叉預告：本條與D(營收趨勢)/E(法人預估)有無衝突，詳見J章節</p>
+
+    <h3>現金流體質評分</h3>
+    <div class="score-card">
+      <b>現金流體質總分：57分 (需觀察，主要總分已扣規則八借錢配息5分)</b><br>
+      核心六規則平均：<b>62.0分</b>(規則一65+規則二85+規則三50+規則四45+規則五35+規則六92，共372分/6) → 扣規則八借錢配息5分 → 主要總分 <b class="redbold">57.0分</b><br>
+      八規則完整平均(報告呈現用)：<b>60.6分</b>(核心六規則372分 + 規則七88分 + 規則八25分 = 485分/8)<br>
+      規則七：適用，存貨YoY -11.5% vs 合約負債YoY +36.1%，方向健康 | 規則八：真實股利覆蓋率 <b class="redbold">-1.03倍 &lt;1</b>(借錢發股利警示，觸發-5分扣分)
+    </div>
+
+    <div class="highlight risk">
+      <b>⚠ 現金流體質需觀察：</b>核心六規則平均62.0分，扣除規則八借錢配息5分後，主要總分 <b class="redbold">57.0分 &lt;60分</b>，建議先不繼續深入，除非你仍想繼續往下看基本面。本次三重疊加警訊(A為負+B大幅負+C正)在年度數據上<b>未觸發</b>(2024、2025全年A皆為正)，但2025H1單季曾出現A為負(-0.35億)的情形，屬於觀察重點而非硬性擋關條件。
+    </div>
+
+    <div class="highlight warn">
+      <b>⚠ 存股族需留意股利可持續性風險：</b>近2年(2024、2025)自由現金流(FCF)分別為 <b>-8.55億</b>、<b>-5.59億</b>，均小於同期現金股利 <b>5.45億</b>，真實股利保障倍數分別為 <b class="redbold">-1.57倍</b>、<b class="redbold">-1.03倍</b>，同期融資活動(C)皆為正(2025年+5.17億)，確認為<b>借錢發股利</b>模式。這一點是六份券商報告與新聞面較少直接點出的訊號——表面上EPS、現金股利數字仍持續配發(1.5元/股)，但拆解現金流結構後，真實的錢並不是本業賺出來的。
+    </div>
+
+    <h3>資料來源</h3>
+    <p style="font-size:14px;color:var(--muted)">
+      使用者提供：聲寶股份有限公司114年度(FY2025)合併財務報告暨會計師查核報告 PDF轉檔、115年Q2(2026H1)合併財務報告暨會計師核閱報告 PDF轉檔、Goodinfo年度現金流量總覽與逐季現金流量表截圖(HTML)。快照時間：2026/08/14，僅供分析參考，非即時報價。
+    </p>
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a[href]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a[href]').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
