@@ -14,7 +14,7 @@
 - [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（六步驟完整版，核心六規則86.7分，規則八扣分後81.7分／優秀）
 - [2327 國巨 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2327_yageo_analysis.html)（六步驟完整版，核心六規則77.5分／體質良好）
 - [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（六步驟完整版，核心六規則78.3分／良好）
-- [2753 八方雲集 - 分析報告(Step1/6)](https://99dodo.github.io/mystock-analysis/2753_bafang_analysis.html)（v4.2.3標準版，取代舊版v2.1/v2.3；核心六規則81分／良好，Step2-6進行中）
+- [2753 八方雲集 - 分析報告(Step2/6)](https://99dodo.github.io/mystock-analysis/2753_bafang_analysis.html)（v4.2.3標準版，取代舊版v2.1/v2.3；核心六規則81分／良好，Step1-2完成，Step3-6進行中）
 - [3231 緯創 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3231_wistron_analysis.html)（v2.0獨立重新分析，六步驟完整版，核心六規則48.3分／需觀察）
 - [作業流程 v2.0](https://99dodo.github.io/mystock-analysis/workflow.html)
 
