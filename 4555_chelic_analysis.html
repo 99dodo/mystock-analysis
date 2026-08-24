@@ -99,16 +99,16 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
-    <a href="#step5" class="pending">5.前瞻本益比</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="done">4.營收趨勢</a>
+    <a href="#step5" class="active">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
 
   <div class="header">
     <div>
       <h1>4555 氣立 (TAIWAN CHELIC CO., LTD.)</h1>
-      <div class="sub">初步分析報告 · 第1~3步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、115年報全文，皆使用者提供；Goodinfo年度現金流量總覽+逐季現金流量表+個股日成交融資融券資料，使用者提供；鉅亨網、時報資訊、MoneyDJ、Vocus法說會整理稿(公開資訊)</div>
+      <div class="sub">初步分析報告 · 第1~5步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、115年報全文，皆使用者提供；Goodinfo年度現金流量總覽+逐季現金流量表+個股日成交融資融券資料+月營收明細(2023/08~2026/07)，使用者提供；鉅亨網、時報資訊、MoneyDJ、Vocus法說會整理稿(公開資訊)；第一金證券投資顧問個股報告(2026/08/14，使用者提供)</div>
     </div>
     <div class="score">
       <div class="num">62.2</div>
@@ -117,7 +117,7 @@ tr:hover td{background:#FAFBFC}
   </div>
 
   <div class="pending-card" style="text-align:left;padding:16px 20px;margin-bottom:24px">
-    📍 目前進度：第1~3步已完成。核心六規則62.2分(良好，貼近臨界值)。第3步發現：泰國廠已投產、精密金屬製造毛利率持續回升(22.68%→30.13%)，但資本支出/折舊比持續偏低與「產能近滿載」的說法有落差；液冷散熱新品Q2起才正式接單，尚未真正貢獻營收，不宜提前計入樂觀情境。
+    📍 目前進度：第1~5步已完成。核心六規則62.2分(良好，貼近臨界值)。第5步結論：第一金證券目標價55元(區間操作，PBR法)，AI中性情境沿用EPS1.46元，前瞻本益比31.4倍不算便宜，但PBR僅1.10倍低於投顧估的1.2~1.3倍區間，兩種評價方式有落差；投顧沒有提到的獨立訊號是FCF/股利覆蓋率下滑(規則五/八)與存貨/合約負債背離(規則七)，是第6步投資決策的核心矛盾點。
   </div>
 
   <div class="card" id="step1">
@@ -446,8 +446,149 @@ tr:hover td{background:#FAFBFC}
 
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      月營收資料收到了，近24個月(2024/08~2026/07)清楚顯示：<b>2026年4月起確立黃金交叉</b>(MA3由下往上穿越MA12)，之後連續4個月維持多頭排列且缺口持續擴大；<b>7月營收1.83億，創近24個月新高</b>(年增<b>+33.8%</b>)。這跟第3步法說會提到的液冷散熱新品Q2起接單、精密金屬毛利率回升的說法方向一致。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1" style="background:#E8F0F7;color:#5B8FB9;padding:4px 10px;border-radius:12px;font-size:12px">Q1 藍</span>
+        <span class="badge q2" style="background:#E6F4EE;color:#2E7D6F;padding:4px 10px;border-radius:12px;font-size:12px">Q2 綠</span>
+        <span class="badge q3" style="background:#FFF4E0;color:#B7791F;padding:4px 10px;border-radius:12px;font-size:12px">Q3 黃</span>
+        <span class="badge q4" style="background:#FEE8E8;color:#C0392B;padding:4px 10px;border-radius:12px;font-size:12px">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revenue-chart-4555" style="height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價</th><th>營收(億)</th><th>季度</th><th>YoY</th><th>MA3</th><th>MA12</th><th>實務解讀</th></tr>
+      <tr>
+        <td colspan="8" style="text-align:center;color:var(--muted)">近24個月數據已於上方圖表呈現，重點月份摘要如下：</td>
+      </tr>
+      <tr>
+        <td>2025/10~12</td><td>42.6/41.45/38.4</td><td>1.25/1.21/1.47</td><td><span class="badge q4">Q4</span></td><td>+11.2/-5.68/+5.22</td><td>1.31/1.27/1.31</td><td>1.33/1.33/1.33</td>
+        <td>
+          MA3持續在MA12之下(死亡交叉延續)，短期動能較弱。<br><br>
+          公式對照：對應A規則二，此期間存貨YoY尚屬健康(FY2025全年+4.4%&lt;營收+7.5%)。<br><br>
+          影響：屬於轉強前的築底期，為後續2026Q1~Q2的黃金交叉鋪墊。
+        </td>
+      </tr>
+      <tr>
+        <td>2026/01~03</td><td>39.35/37.9/34.8</td><td>1.43/1.28/1.34</td><td><span class="badge q1">Q1</span></td><td>+25.1/+5.09/-5.55</td><td>1.37/1.39/1.35</td><td>1.36/1.36/1.35</td>
+        <td>
+          1月一度黃金交叉，2月延續，但3月MA3(1.35)略低於MA12(1.3533)又轉弱，屬於反覆整理期，尚未站穩。<br><br>
+          公式對照：對應第3步法說會，2026Q1財報稅後淨利年增93~159%但季減(vs旺季Q4)，與此處月營收溫和整理互相呼應，非基本面轉差。<br><br>
+          影響：3月股價來到52週低點32.7~34.8元附近，是營收動能與股價同步探底的時間點。
+        </td>
+      </tr>
+      <tr>
+        <td>2026/04~07</td><td>40.35/58.1/47.7/40.45</td><td>1.62/1.6/1.7/1.83</td><td><span class="badge q2">Q2</span>/<span class="badge q3">Q3</span></td><td>+9.68/+17.8/+24.7/<span class="redbold">+33.8</span></td><td>1.41/1.52/1.64/<b>1.71</b></td><td>1.36/1.39/1.41/1.45</td>
+        <td>
+          <b>近3個月平均營收已來到1.71億，連續4個月站在12個月平均1.45億之上，且MA3持續向上</b>，短期接單動能明顯強於長期平均，年增率也從個位數一路加速到+33.8%。<br><br>
+          公式對照：對應A規則二，此段期間26H1存貨YoY(+18.9%)已超過營收YoY(+12.1%)，備貨速度比營收成長還快，需留意是否為超前部署或去化壓力；也對應規則七(存貨↑合約負債↓背離)，訂單熱度是否真的反映在合約負債上仍待驗證。<br><br>
+          影響：這是近24個月最強的一段營收動能，第5步用法人/AI估算下半年EPS時，這段高基期會是判斷全年成長能否延續的關鍵。
+        </td>
+      </tr>
+    </table>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12多頭排列(2026年4月起確立黃金交叉)與A規則二(26H1存貨YoY超過營收YoY)、規則七(存貨↑合約負債↓背離)、第3步「接單>出貨」的說法，三者需在第5步法人預估、第6步投資決策交叉驗證——營收動能雖強，但存貨與合約負債的背離訊號代表這波備貨是否真有訂單支撐仍是未解之謎，詳見J章節。
+    </div>
+
+    <p style="color:var(--muted);font-size:13px">資料來源：Goodinfo月營收明細(使用者提供截圖，2023/08~2026/07，共36個月，用以計算完整MA12基礎；圖表顯示近24個月)</p>
+
+  </div>
+
+  <div class="card" id="step5">
+    <h2>【第 5 步／共 6 步：前瞻本益比／EPS預估】</h2>
+
+    <div class="highlight">
+      第一金證券(羅子評，2026/08/14)<b>目標價55元</b>(潛在報酬7.84%，以08/13股價51元為基準)，投資建議是<b>「區間操作」</b>——不是買進評等，比較接近中性。用現在股價45.9元計算，距目標價55元的空間反而擴大到<b>+19.8%</b>，因為股價比報告當時又跌了一截。第一金估的2026Q2實際數字(營收4.92億、EPS 0.65元)跟財報自行核算的完全對得上，可信度不錯，但0.65元裡有<b>0.21元是業外一次性收益</b>(子公司減資認列利益)，本業只有0.44元，EPS品質需留意。
+    </div>
+
+    <table>
+      <tr><th>年度</th><th>投顧報告EPS</th><th>市場共識EPS</th><th>AI三情境EPS(保守/中性/樂觀)</th><th>前瞻本益比</th><th>目標價(20/25/30倍)</th></tr>
+      <tr>
+        <td><b>2026全年(F)</b></td>
+        <td><b>1.46元</b><br>(第一金證券，2026/08/14；資料來源：使用者提供投顧報告)</td>
+        <td>未搜尋(投顧報告為主，依規則跳過市場共識搜尋)</td>
+        <td>保守<b>1.15元</b>／中性<b>1.46元</b>(沿用投顧)／樂觀<b>1.75元</b></td>
+        <td>保守39.9倍／中性31.4倍／樂觀26.2倍<br>(現價45.9元計)</td>
+        <td>保守23.0/28.7/34.5元<br>中性29.2/36.5/43.8元<br>樂觀35.0/43.8/52.5元</td>
+      </tr>
+    </table>
+
+    <h3>AI怎麼看</h3>
+    <div class="highlight">
+      第一金估2026全年營收<b>18.62億</b>(年增+16.17%，與FY2025的16.03億對得上)、EPS<b>1.46元</b>，評價方法是PBR法：目標價55元 = <b>1.3倍PBR</b> × 每股淨值42.53元(5年區間0.8~1.7倍的中緣偏上)，不是用本益比反推的。<br><br>
+      公式對照：用第1步<span class="term" title="規則五：自由現金流FCF">規則五</span>/<span class="term" title="規則八：股利永續">規則八</span>檢查——FY2025 FCF已從1.44億滑落到0.42億、真實股利覆蓋率從3.57倍降到1.20倍，代表過去獲利品質正在轉弱；但2026H1資本支出僅0.15億(規則三持續偏低)，如果下半年淨利真的衝上第一金估的1.02億，加上資本支出維持低檔，FCF反而有機會明顯轉強——這是「吃老本」的B面，短期現金流可能受益，但長期產能投資不足的疑慮(規則三)並未解決。用第4步MA3/MA12檢查：7月MA3已達1.71億、年增+33.8%，動能強於第一金估的全年平均+16.17%，如果這個動能延續，第一金的預估甚至可能偏保守；但要對照第1步規則七(26H1存貨↑合約負債↓背離)，這波動能是否有真訂單撐著，仍是未解的疑點。用第3步法說會檢查：報告提到「26Q2末起，液冷散熱新品已從樣品測試轉為小量正式出貨」，與第3步查到的說法方向一致，算是外部驗證。<br><br>
+      AI三情境：<b>保守情境</b>假設H2成長動能從7月的+33.8%回落到接近+15%的溫和水準(不假設7月的高基期能持續)，估EPS<b>1.15元</b>，對應20倍本益比目標價23元；<b>中性情境</b>沿用第一金的1.46元；<b>樂觀情境</b>假設7月動能延續、液冷散熱新品放量超預期，估EPS<b>1.75元</b>，對應25倍目標價43.8元。以現價45.9元計，即使是樂觀情境的30倍本益比目標(52.5元)，也還沒有超過第一金PBR法算出的55元——代表第一金的目標價其實隱含了「評價要重新給到近5年PBR中緣偏上」的假設，而不只是獲利成長，這是本益比法跟PBR法的落差，貴不貴要看你相信哪一種評價方式。
+    </div>
+
+    <div class="highlight warn">
+      <b>重點提示框</b>：法人怎麼看——第一金區間操作，目標價55元(PBR法)，潛在報酬+7.84%(以08/13價51元計，現價45.9元則擴大到+19.8%)。AI怎麼看——中性情境沿用1.46元，但獲利品質(FCF/股利覆蓋率下滑)與存貨/合約負債背離兩個獨立訊號，投顧報告完全沒提到。現在貴不貴——前瞻本益比31.4倍(中性)不算便宜，但PBR僅1.10倍，低於第一金估的1.2~1.3倍區間，兩種評價方式有落差。不確定性在哪——EPS品質(業外佔比)、存貨是否有真訂單支撐、資本支出持續偏低是否影響下半年產能。
+    </div>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步投顧EPS 1.46元與A規則五/八(FCF與股利覆蓋率下滑)、規則二/七(存貨YoY超車+背離)有潛在衝突，第6步投資決策需將這個矛盾列為核心觀察點。
+    </div>
+
+  </div>
+
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+(function(){
+  const months = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07"];
+  const rev = [1.28, 1.32, 1.12, 1.28, 1.4, 1.15, 1.22, 1.42, 1.48, 1.36, 1.36, 1.37, 1.33, 1.36, 1.25, 1.21, 1.47, 1.43, 1.28, 1.34, 1.62, 1.6, 1.7, 1.83];
+  const closePrice = [48.05, 42.35, 41.05, 37.1, 44.05, 39.0, 44.8, 39.0, 35.55, 39.9, 35.0, 35.05, 49.2, 43.7, 42.6, 41.45, 38.4, 39.35, 37.9, 34.8, 40.35, 58.1, 47.7, 40.45];
+  const ma3 = [1.27, 1.3, 1.24, 1.24, 1.27, 1.28, 1.26, 1.26, 1.37, 1.42, 1.4, 1.36, 1.35, 1.35, 1.31, 1.27, 1.31, 1.37, 1.39, 1.35, 1.41, 1.52, 1.64, 1.71];
+  const ma12 = [1.18, 1.2, 1.22, 1.23, 1.24, 1.24, 1.25, 1.28, 1.3, 1.3, 1.31, 1.31, 1.32, 1.32, 1.33, 1.33, 1.33, 1.36, 1.36, 1.35, 1.36, 1.39, 1.41, 1.45];
+  const colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A"];
+  const yoy = ["+19.7", "+28.8", "+23", "+8.7", "+11.9", "-2.8", "+16.2", "+39.4", "+14.4", "-4.12", "+11.2", "+5.06", "+4.08", "+2.65", "+11.2", "-5.68", "+5.22", "+25.1", "+5.09", "-5.55", "+9.68", "+17.8", "+24.7", "+33.8"];
+
+  const traceBar = {
+    x: months, y: rev, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y',
+    text: months.map((m,i)=>`營收${rev[i]}億<br>YoY ${yoy[i]}%`),
+    hovertemplate: '%{x}<br>營收 %{y}億<br>YoY '+'%{text}<extra></extra>',
+    customdata: yoy
+  };
+  const traceMA3 = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3(3個月平均)',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  const traceMA12 = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12(12個月平均)',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  const tracePrice = {
+    x: months, y: closePrice, type: 'scatter', mode: 'lines', name: '月收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'}, yaxis: 'y2'
+  };
+
+  const layout = {
+    title: {text: '4555 氣立：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 15}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    xaxis: {title: '年月', tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', side: 'right', overlaying: 'y', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, r: 60, l: 60, b: 90},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+  };
+
+  Plotly.newPlot('revenue-chart-4555', [traceBar, traceMA3, traceMA12, tracePrice], layout, {responsive: true, displayModeBar: false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
