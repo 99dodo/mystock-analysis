@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4555 氣立 初步分析報告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF9F6;
+  --card:#FFFFFF;
+  --text:#2C3E50;
+  --muted:#6B7C93;
+  --border:#E8E9EB;
+  --accent:#5B8FB9;
+  --accent-light:#E8F0F7;
+  --accent-2:#7AC1A0;
+  --accent-3:#F5C07A;
+  --accent-4:#E8A0A0;
+  --highlight-bg:#F0F6FC;
+  --highlight-border:#5B8FB9;
+  --shadow:0 2px 12px rgba(44,62,80,0.06);
+  --shadow-hover:0 8px 24px rgba(44,62,80,0.10);
+  --radius:12px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Sans TC','Inter',-apple-system,sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+nav.stepnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,249,246,0.9);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:14px 0;
+  margin:-24px -20px 32px;
+  display:flex;gap:8px;overflow-x:auto;
+}
+nav.stepnav a{
+  white-space:nowrap;
+  padding:8px 14px;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:13px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px solid var(--border);
+  transition:all .2s;
+}
+nav.stepnav a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+nav.stepnav a.done{color:var(--text);border-color:var(--accent-light);background:var(--accent-light)}
+nav.stepnav a.pending{color:#B8C0C8;background:#FAFBFC}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px 32px;
+  margin-bottom:24px;
+  transition:box-shadow .2s;
+}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{margin:0 0 16px;font-size:20px;font-weight:700;color:var(--text);letter-spacing:0.2px}
+.card h3{margin:24px 0 12px;font-size:16px;color:var(--text)}
+.highlight{background:var(--highlight-bg);border-left:4px solid var(--highlight-border);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:20px 0;font-size:15px;line-height:1.8}
+.highlight.warn{background:#FFF8E6;border-left-color:#E9C46A}
+.highlight.risk{background:#FFF0F0;border-left-color:#E74C3C}
+.highlight b{color:var(--text)}
+.highlight .red{color:#C0392B;font-weight:600}
+table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:16px 0;font-size:15px;line-height:1.8}
+th{background:#F8F9FA;color:var(--muted);font-weight:600;text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:0.5px;text-transform:uppercase}
+td{padding:12px 16px;border-bottom:1px solid #F1F2F3;color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.positive{color:#2E7D6F;font-weight:600}
+.negative{color:#C0392B;font-weight:600}
+.redbig{color:#E74C3C;font-weight:800;font-size:1.15em}
+.redbold{color:#E74C3C;font-weight:800}
+.term{border-bottom:1px dashed #5B8FB9;cursor:help}
+.header{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.header h1{margin:0;font-size:26px;font-weight:700}
+.header .sub{color:var(--muted);font-size:14px;margin-top:6px}
+.score{text-align:center;background:var(--bg);border-radius:12px;padding:16px 24px;min-width:110px}
+.score .num{font-size:32px;font-weight:700;color:var(--accent)}
+.score .label{font-size:12px;color:var(--muted);margin-top:4px}
+.score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0}
+.pending-card{background:#FAFBFC;border:1px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav class="stepnav">
+    <a href="#step1" class="active">1.現金流盲測</a>
+    <a href="#step2" class="pending">2.基本資訊</a>
+    <a href="#step3" class="pending">3.法說會</a>
+    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step5" class="pending">5.前瞻本益比</a>
+    <a href="#step6" class="pending">6.投資決策</a>
+  </nav>
+
+  <div class="header">
+    <div>
+      <h1>4555 氣立 (TAIWAN CHELIC CO., LTD.)</h1>
+      <div class="sub">初步分析報告 · 第1步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告，皆使用者提供；Goodinfo年度現金流量總覽(2012~2026Q2)+逐季現金流量表(2022Q4~2026Q2)，使用者提供</div>
+    </div>
+    <div class="score">
+      <div class="num">62.2</div>
+      <div class="label">現金流核心六規則(良好，臨界)<br>關卡：通過，可續看</div>
+    </div>
+  </div>
+
+  <div class="pending-card" style="text-align:left;padding:16px 20px;margin-bottom:24px">
+    📍 目前進度：第1步已完成。核心六規則平均62.2分(良好，貼近臨界值)，關卡判斷通過可繼續往下看，但資本支出/折舊比連兩年半吃老本、應收/營收比持續墊高、最新一季存貨與合約負債出現背離，三項訊號同時出現，第2步起需持續驗證是否為短期雜訊。
+  </div>
+
+  <div class="card" id="step1">
+    <h2>【第 1 步／共 6 步：現金流量表八大規則分析】</h2>
+
+    <h3>欄位定義：現金流代號對照表 (白話字典)</h3>
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>代號</th><th>白話意義</th><th>專業意義</th><th>對應財報欄位</th></tr>
+      <tr><td><b>A</b></td><td>口袋收到的現金</td><td>營業活動現金流量</td><td>現金流量表「營業活動之淨現金流入」</td></tr>
+      <tr><td><b>B</b></td><td>花掉的投資錢</td><td>投資活動現金流量(通常為負)</td><td>現金流量表「投資活動之淨現金流出」</td></tr>
+      <tr><td><b>C</b></td><td>跟銀行/股東的錢往來</td><td>籌資活動現金流量</td><td>現金流量表「籌資活動之淨現金流出(入)」</td></tr>
+      <tr><td><b>D</b></td><td>帳面賺的錢</td><td>稅後淨利(本年度淨利，合併)</td><td>綜合損益表「本年度淨利(損)」</td></tr>
+      <tr><td><b>E</b></td><td>最後剩下的現金</td><td>期末現金餘額</td><td>資產負債表「現金及約當現金」</td></tr>
+      <tr><td><b>FCF</b></td><td>真能拿來發股利的錢</td><td>自由現金流 = A − 資本支出</td><td>自算(A − 購置不動產、廠房及設備)</td></tr>
+    </table>
+
+    <div class="highlight" style="background:#F0F6FC;border-left:4px solid #5B8FB9">
+      <b>本步驟已取得三表齊全：</b><br>
+      ① 114年度(FY2025)合併財務報告暨會計師查核報告(查核，含113年度/FY2024比較)<br>
+      ② 115年第二季(2026H1)合併財務報告暨會計師核閱報告(核閱，含114年同期/2025H1比較)<br>
+      ③ Goodinfo年度現金流量總覽(2012~2026Q2) + 逐季現金流量表(2022Q4~2026Q2)<br><br>
+      <b>規則七(存貨vs合約負債背離)特別註記：</b>氣立資產負債表確有單獨揭露「合約負債－流動」科目(114.12.31為13,909仟元、115.6.30為14,928仟元)，<b>不適用合約負債豁免條款</b>，規則七正常判定。
+    </div>
+
+    <h3>八大現金流解讀規則</h3>
+    <table>
+      <tr><th>規則</th><th>專業定義</th><th>實務解讀(白話/公式/影響)</th><th>核心公式</th><th>數字</th><th>判斷</th></tr>
+
+      <tr>
+        <td><b>規則一</b><br>A&lt;D 應收暴增</td>
+        <td>營運現金流入小於稅後淨利</td>
+        <td>
+          2025年(FY2025) 口袋現金(<span class="term" title="營業活動現金流量">A</span>) <b>1.47億</b>，遠大於帳面賺的錢(<span class="term" title="稅後淨利">D</span>) <b>0.29億</b>，2024年(FY2024)同樣是A(2.13億)遠大於D(-0.51億，虧損年)，代表獲利品質不是靠應收帳款堆出來的紙上富貴，本業真的有收到現金。<br><br>
+          公式對照：對應本步驟規則六，2026年6月底應收帳款佔近12月營收比重已升到<b>25.6%</b>，且持續墊高，雖然A>D的結構性條件通過，但收現效率正在變慢，需搭配規則六一起看。<br><br>
+          影響：獲利品質尚可，第5步估EPS時可放心用現金流佐證整體獲利品質，但應收帳款趨勢是需要扣分觀察的伏筆。
+        </td>
+        <td>A vs D</td>
+        <td>2024:A2.13億&gt;D-0.51億／2025:A1.47億&gt;D0.29億</td>
+        <td>通過 90分</td>
+      </tr>
+
+      <tr>
+        <td><b>規則二</b><br>A&lt;D 存貨暴增</td>
+        <td>獲利被存貨積壓吃掉</td>
+        <td>
+          2025年(FY2025) 存貨較2024年底成長<b>+4.4%</b>(8.82億，上年8.44億)，慢於同期營收成長<b>+7.5%</b>(16.03億，上年14.91億)，備貨速度沒有超過生意成長，屬健康去化。<br><br>
+          公式對照：存貨YoY vs 營收YoY，2025年全年差距合理，對應第4步營收動能觀察。<br><br>
+          影響：<b>2026上半年(2026H1) 出現反轉：存貨年增衝到+18.9%(9.40億，上年7.90億)，同期營收年增只有+12.1%</b>，存貨開始跑得比生意快，若下半年營收沒跟上，Q3/Q4恐面臨存貨去化壓力，第5步估毛利率須留意。
+        </td>
+        <td>存貨YoY vs 營收YoY</td>
+        <td>FY25:4.4%&lt;7.5%(健康)／26H1:<span class="redbold">18.9%&gt;12.1%</span>(轉弱)</td>
+        <td>需觀察 70分</td>
+      </tr>
+
+      <tr>
+        <td><b>規則三</b><br>B大於A/資本支出折舊比</td>
+        <td>投資過度或吃老本</td>
+        <td>
+          2025年(FY2025) 資本支出(購置不動產廠房設備)<b>1.05億</b>，只佔折舊費用<b>1.66億</b>的<b>0.63倍</b>；2024年(FY2024)更低，資本支出0.70億僅佔折舊1.68億的<b>0.42倍</b>，代表這兩年公司買新設備的錢，連折舊掉的舊設備價值都補不回來。<br><br>
+          公式對照：資本支出/折舊比，正常水準應&gt;0.8，氣立已連續兩個完整年度低於門檻；<b>2026上半年(2026H1) 資本支出僅0.15億，比去年同期0.68億大減78%</b>，比值降到<span class="redbig"><b>0.18倍</b></span>，是三期以來最低。<br><br>
+          影響：長期若不恢復資本支出，設備老化與產能競爭力可能落後同業，是第3步法說會必須追問「今年資本支出計畫」的重點，也是第6步投資決策的核心觀察項目。
+        </td>
+        <td>資本支出/折舊比</td>
+        <td>FY24:<span class="redbold">0.42倍</span>／FY25:<span class="redbold">0.63倍</span>／26H1:<span class="redbig">0.18倍</span></td>
+        <td><span class="redbold">不通過 35分</span></td>
+      </tr>
+
+      <tr>
+        <td><b>規則四</b><br>C持續正(3年)</td>
+        <td>長期靠借錢或增資</td>
+        <td>
+          跟銀行/股東的錢往來(<span class="term" title="籌資活動現金流量">C</span>)近幾年皆為負值：2023年<b>-1.20億</b>、2024年<b>-1.01億</b>、2025年<b>-0.13億</b>，代表公司是「還錢」而非「一直伸手要錢」，<b>未觸發C持續正3年的條件</b>。<br><br>
+          公式對照：C是否連續3年為正 → 否，本規則通過；2025年雖有發行可轉換公司債5.14億並償還公司債5.62億、舉借長期借款4.90億並償還3.31億，但屬債務結構調整(把短債換長債)，非淨增加借款。<br><br>
+          影響：財務體質獨立性尚可，不用擔心公司整體上是靠外部資金撐營運，但仍要對照規則八細算股利資金來源。
+        </td>
+        <td>C是否連續3年為正</td>
+        <td>2023:-1.20億／2024:-1.01億／2025:-0.13億／26H1:-0.91億</td>
+        <td>通過 88分</td>
+      </tr>
+
+      <tr>
+        <td><b>規則五</b><br>自由現金流FCF</td>
+        <td>真能拿來發股利的錢</td>
+        <td>
+          2025年(FY2025) 真能發股利的錢(<span class="term" title="自由現金流">FCF</span>) = A(1.47億) − 資本支出(1.05億) = <b>0.42億</b>，較2024年FCF <b>1.44億</b>大減約71%，主因是資本支出增加、加上本業獲利本身較薄弱。<br><br>
+          公式對照：FCF = 口袋現金(A) − 資本支出，2025年仍為正值但幅度明顯收窄，直接影響規則八股利覆蓋率。<br><br>
+          影響：2026上半年(2026H1) FCF回升到<b>0.81億</b>，但這是靠資本支出大砍(僅0.15億)換來的，不是靠獲利真正改善，可發放股利的餘裕正在收窄，第5步估EPS/股利時要保守看待。
+        </td>
+        <td>FCF=A−資本支出</td>
+        <td>FY24:1.44億／FY25:<b>0.42億</b>(-71%)／26H1:0.81億</td>
+        <td>需觀察 68分</td>
+      </tr>
+
+      <tr>
+        <td><b>規則六</b><br>應收/營收比</td>
+        <td>收現能力</td>
+        <td>
+          應收帳款佔營收比重從2024年底<b>20.7%</b>(應收3.08億÷營收14.91億)，墊高到2025年底<b>23.7%</b>(應收3.80億÷營收16.03億)，追到2026年6月底(以近12個月營收17.00億計)已達<span class="redbig"><b>25.6%</b></span>(應收4.35億)，<b>已跨過20%警戒線且持續上升</b>。<br><br>
+          公式對照：應收帳款÷近12月營收，此為獨立欄位，呼應規則一的A&gt;D雖通過但收現效率轉弱的現象。<br><br>
+          影響：出貨後收現的速度跟不上帳面成長，若下一季比重續升，須留意是否有大客戶延遲付款，是第3步法說會的重點追問項目，也直接影響第5步EPS品質判斷。
+        </td>
+        <td>應收/近12月營收</td>
+        <td>FY24:20.7%／FY25:<span class="redbold">23.7%</span>／26/6 TTM:<span class="redbig">25.6%</span></td>
+        <td><span class="redbold">需觀察 52分</span></td>
+      </tr>
+
+      <tr>
+        <td><b>規則七</b><br>存貨 vs 合約負債背離</td>
+        <td>備貨真假景氣</td>
+        <td>
+          2025年(FY2025) 存貨年增<b>+4.4%</b>，同期客戶預付訂金(<span class="term" title="合約負債">合約負債</span>)同步年增<b>+14.7%</b>(13,909仟元，上年12,129仟元)，兩者同向成長，<b>不是背離型態</b>——備貨看起來有訂單撐著。<br><br>
+          公式對照：存貨YoY vs 合約負債YoY，FY2025本期為同向增長，非背離。<br><br>
+          影響：<b>但2026上半年(2026H1)出現反轉：存貨年增衝到+18.9%，合約負債卻年減-1.8%(14,928仟元，上年15,206仟元)</b>，變成「存貨↑+合約負債↓」的典型背離訊號，最近這波備貨看起來比較像自己猜市場會好轉，而非客戶先付款訂貨，第6步若展開需回扣此點。
+        </td>
+        <td>存貨YoY vs 合約負債YoY</td>
+        <td>FY25:4.4%vs14.7%(同向)／26H1:<span class="redbold">18.9%vs-1.8%(背離)</span></td>
+        <td>部分觸發 55分</td>
+      </tr>
+
+      <tr>
+        <td><b>規則八</b><br>股利永續/真實股利覆蓋率</td>
+        <td>股利是真賺的還是借來發的</td>
+        <td>
+          2025年度實際發放現金股利<b>0.35億</b>(對應2024年度盈餘，屬母公司股東部分)，同期FCF<b>0.42億</b>，真實股利覆蓋率 = 0.42÷0.35 = <span style="color:#E9C46A;font-weight:800"><b>1.20倍</b></span>，仍大於1未觸發借錢發股利警示，同期融資活動(<span class="term" title="籌資活動現金流量">C</span>)為負(-0.13億)，非舉債發股利型態。<br><br>
+          公式對照：真實股利覆蓋率＝FCF÷現金股利；2024年度發放現金股利0.40億(含非控制權益部分)，同期FCF1.44億，覆蓋率 = 1.44÷0.40 = <b>3.57倍</b>，遠優於2025年度，一年內明顯滑落。<br><br>
+          影響：若FCF繼續因資本支出增加或獲利轉弱而縮水，明年股利覆蓋率有跌破1的風險，安全邊際已明顯變薄，第6步投資決策需列入可驗證觀察訊號。
+        </td>
+        <td>真實股利覆蓋率=FCF/現金股利</td>
+        <td>FY24:3.57倍／FY25:<span style="color:#E9C46A;font-weight:800">1.20倍</span>(未跌破1，但明顯下滑)</td>
+        <td>需觀察 68分</td>
+      </tr>
+    </table>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本頁規則三(資本支出/折舊比連兩年半低於0.8，2026H1僅0.18倍)、規則六(應收/營收比持續墊高，已達25.6%)、規則七(2026H1存貨與合約負債出現背離)，需在第2步基本資訊、第3步法說會驗證老闆對資本支出計畫與客戶收款狀況的說法，第4步觀察月營收MA3/MA12是否支撐存貨增速，第5步法人預估須因應收帳款與資本支出保守化打折，詳見後續步驟J章節總結。
+    </div>
+
+    <h3>現金流體質總分</h3>
+    <div class="score-card">
+      <b>現金流體質總分：62.2分 (良好，貼近臨界值)</b><br>
+      核心六規則(規則一~六)平均：<b>67.2分</b>，因規則七觸發背離的「進階規則扣分」-5分，調整後主要總分 <b>62.2分</b>，用於關卡判斷<br>
+      八規則完整平均(規則一~八，報告呈現用)：約 <b>65.75分</b><br>
+      規則三：<span class="redbold">資本支出/折舊比連兩年半低於0.8(0.42/0.63/0.18)，屬吃老本型態</span> | 規則六：<span class="redbold">應收/營收比持續墊高，已達25.6%(破20%警戒線)</span> | 規則七：2026H1存貨↑合約負債↓出現背離 | 規則八：真實股利覆蓋率1.20倍未跌破1，但較去年3.57倍明顯下滑
+    </div>
+
+    <h3>關卡判斷</h3>
+    <div class="highlight">
+      現金流體質良好(62.2分)，可以繼續看下去，進入第2步基本資訊。<br><br>
+      三重警訊檢查：2025年(FY2025) A(1.47億，正) + B(-2.59億，大幅負) + C(-0.13億，小幅負)，A為正值，未觸發硬性三重警訊「A負+B大幅負+C正或小幅負」的定義；2026上半年(2026H1) A同樣為正值(0.95億)，也未觸發。<br>
+      規則八加註：2025年度真實股利覆蓋率1.20倍(仍&gt;1)，同期C為負值-0.13億，非舉債發股利型態，不強制加註黃卡，但覆蓋率一年內從3.57倍滑落到1.20倍的趨勢已在評分中扣分反映。
+    </div>
+
+    <div class="highlight warn">
+      <b>可以繼續往下看，但要誠實說：</b>62.2分只比及格線(60分)高一點點，不是乾淨漂亮的通過。同一時間點聚在一起的三個訊號——<b>資本支出/折舊比連兩年半吃老本(規則三)、應收/營收比持續墊高(規則六)、最新一季存貨與合約負債出現背離(規則七)</b>——代表公司「賺得比較辛苦、收得也比較慢、備的貨也不一定有訂單撐著」。建議繼續往下看，但第2步基本資訊與第3步法說會要特別驗證這三個觀察點是短期雜訊，還是趨勢轉弱的前兆，這是本報告的獨立發現訊號，經紀商報告未必會特別提及。
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+document.querySelectorAll('nav.stepnav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      document.querySelectorAll('nav.stepnav a').forEach(a=>a.classList.remove('active'));
+      const id = entry.target.id;
+      const link = document.querySelector(`nav.stepnav a[href="#${id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
+console.log('stepnav JS loaded');
+</script>
+</body>
+</html>
