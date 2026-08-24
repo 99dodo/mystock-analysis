@@ -100,8 +100,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -109,7 +109,7 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>2393 億光電子工業 (Everlight Electronics Co., Ltd.)</h1>
-      <div class="sub">初步分析報告 · 第1~3步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報全文(F04)，皆使用者提供；Goodinfo年度現金流量總覽+逐季現金流量表；鉅亨網/Yahoo股市股價與基本面頁面、股東會相關新聞(公開資訊)</div>
+      <div class="sub">初步分析報告 · 第1~4步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報全文(F04)、Goodinfo月營收+股價明細(2006/08~2026/07)，皆使用者提供；Goodinfo年度現金流量總覽+逐季現金流量表；鉅亨網/Yahoo股市股價與基本面頁面、股東會相關新聞(公開資訊)</div>
     </div>
     <div class="score">
       <div class="num">56</div>
@@ -118,7 +118,7 @@ tr:hover td{background:#FAFBFC}
   </div>
 
   <div class="pending-card" style="text-align:left;padding:16px 20px;margin-bottom:24px">
-    📍 目前進度：第1~3步已完成。核心發現：2026上半年營業現金流罕見轉負(-5.67億)，與公司自己在年報揭露的FY2026全年營業現金流目標(33.0億)落差巨大；存貨成長速度長期超車營收；股利內含資本公積配發，實質覆蓋率偏弱；SiC/GaN功率元件瞄準AI伺服器仍屬佈局期，30億泰國新廠為近期(2026Q2起)資本支出跳增的主因。詳見下方各步驟。
+    📍 目前進度：第1~4步已完成。核心發現：2026上半年營業現金流罕見轉負(-5.67億)，與公司自己在年報揭露的FY2026全年營業現金流目標(33.0億)落差巨大；存貨成長速度長期超車營收；股利內含資本公積配發，實質覆蓋率偏弱；SiC/GaN功率元件瞄準AI伺服器仍屬佈局期，30億泰國新廠為近期(2026Q2起)資本支出跳增的主因；<b>第4步月營收出現2026年3月以來確立的黃金交叉，7月營收創近24個月新高，但股價量增價跌</b>，市場尚未完全買單。詳見下方各步驟。
   </div>
 
   <div class="card" id="step1">
@@ -404,8 +404,84 @@ tr:hover td{background:#FAFBFC}
 
   </div>
 
-  <div class="card pending-card" id="step4">
-    第 4 步／共 6 步：營收趨勢視覺化 — 待使用者提供月營收資料(貼數字或Goodinfo截圖)後進行
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 近3個月平均營收<b>18.59億</b>，已連續5個月(2026/03~07)站在12個月平均<b>16.87億</b>之上，且缺口持續擴大，2026年3月確立黃金交叉後多頭排列延續至今；7月營收<b>19.74億</b>創近24個月新高，年增<b>+17.4%</b>。<span style="color:#E74C3C">但股價卻從4月高點71.1元回落到7月62.5元(-12%)，出現量增價跌的背離</span>，市場尚未完全買單這波營收加速。
+    </div>
+
+    <div class="chart-wrap" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:20px 0">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span style="padding:4px 10px;border-radius:12px;font-size:12px;background:#E8F0F7;color:#5B8FB9">Q1 藍</span>
+        <span style="padding:4px 10px;border-radius:12px;font-size:12px;background:#E6F4EE;color:#2E7D6F">Q2 綠</span>
+        <span style="padding:4px 10px;border-radius:12px;font-size:12px;background:#FFF4E0;color:#B7791F">Q3 黃</span>
+        <span style="padding:4px 10px;border-radius:12px;font-size:12px;background:#FEE8E8;color:#C0392B">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revenue-chart-2393" style="width:100%;height:420px"></div>
+    </div>
+
+    <h3>月營收 + 股價 + MA3/MA12 明細表</h3>
+    <table>
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3(實線紅)</th><th>MA12(實線深藍)</th><th>實務解讀(強制三段)</th></tr>
+
+      <tr>
+        <td>2024/08~2024/10</td><td>79.0/76.0/83.8</td><td>19.25/17.54/17.26</td><td>Q3/Q3/Q4</td><td>18.38/18.38/18.02</td><td>16.84/17.04/17.25</td>
+        <td>
+          白話：這3個月股價在76~84元高檔區整理，營收月減但仍維持在17~19億高水位，短期動能(MA3)明顯高於長期平均(MA12)。<br><br>
+          公式對照：對應A規則二存貨YoY vs 營收YoY，此時期營收基期偏高，尚未出現後續的死亡交叉。<br><br>
+          影響：這是本波段的高點區域，為後續MA3走弱埋下比較基期。
+        </td>
+      </tr>
+      <tr>
+        <td>2024/11~2025/02</td><td>77.7/85.0/83.7/82.6</td><td>16.27/15.96/16.13/16.00</td><td>Q4/Q4/Q1/Q1</td><td>17.02/16.50/16.12/16.03</td><td>17.35/17.47/17.45/17.53</td>
+        <td>
+          白話：<b>2024年12月出現死亡交叉</b>(MA3跌破MA12)，短期營收動能開始轉弱，此後連續4個月MA3都在MA12之下。<br><br>
+          公式對照：對應A規則二，此階段營收年增率已轉為個位數甚至轉負，呼應第1步FY2025全年營收衰退6.4%的起點。<br><br>
+          影響：股價在此階段仍維持高檔(82~85元)，股價與營收動能出現落差，為後續股價下跌埋下伏筆。
+        </td>
+      </tr>
+      <tr>
+        <td>2025/03~2025/06</td><td>81.7/76.6/81.3/70.2</td><td>17.95/18.07/16.08/16.56</td><td>Q1/Q2/Q2/Q2</td><td>16.69/17.34/17.37/16.90</td><td>17.54/17.42/17.20/17.12</td>
+        <td>
+          白話：MA3一度逼近甚至短暫超過MA12(4~5月)，但5月營收回落又被壓回死亡交叉狀態；股價在此區間從81.7元一路跌到70.2元，跌幅逾14%。<br><br>
+          公式對照：對應第4-6節豁免連動，此時期存貨YoY對比營收YoY的背離開始浮現(對應第1步FY2025全年+21.9% vs -6.4%)。<br><br>
+          影響：股價提前反映營收動能疑慮，領先基本面走弱。
+        </td>
+      </tr>
+      <tr>
+        <td>2025/07~2025/10</td><td>69.3/68.3/63.9/58.6</td><td>16.81/16.32/16.22/14.58</td><td>Q3/Q3/Q3/Q4</td><td>16.48/16.56/16.45/15.71</td><td>16.99/16.75/16.64/16.41</td>
+        <td>
+          白話：股價與營收同步破底，10月營收降到14.58億(近24個月最低)，年增率-15.5%，MA3持續在MA12之下，短弱長也弱格局明確。<br><br>
+          公式對照：對應A規則六應收/營收比同期攀升(第1步已標紅)，收入放緩疊加應收帳款增加，收現壓力加大。<br><br>
+          影響：這是最新一輪空頭排列的谷底，股價11月見到51.9元的近24個月低點。
+        </td>
+      </tr>
+      <tr>
+        <td>2025/11~2026/02</td><td>51.9/55.2/55.6/58.7</td><td>15.63/16.02/18.04/15.18</td><td>Q4/Q4/Q1/Q1</td><td>15.48/15.41/16.56/16.41</td><td>16.36/16.36/16.52/16.45</td>
+        <td>
+          白話：股價從51.9元的低點反彈，2026年1月營收單月跳升到18.04億(年增+11.9%)，<b>首次出現黃金交叉</b>，但2月營收回落，交叉未能站穩。<br><br>
+          公式對照：對應規則五FCF同期止穩(第1步2026H1 FCF 5.16億)，現金流與營收動能同步出現轉機訊號但尚不穩固。<br><br>
+          影響：屬於「假突破再驗證」的典型過程，需要後續月份確認才能判斷是否為真轉折。
+        </td>
+      </tr>
+      <tr>
+        <td>2026/03~2026/07</td><td>66.8/71.1/62.5/68.0/62.5</td><td>17.17/17.54/17.72/18.31/19.74</td><td>Q1/Q2/Q2/Q2/Q3</td><td>16.80/16.63/17.48/17.86/<b>18.59</b></td><td>16.39/16.35/16.48/16.63/<b>16.87</b></td>
+        <td>
+          白話：<b>2026年3月再度黃金交叉且這次站穩</b>，此後連續5個月MA3都在MA12之上、缺口持續擴大，7月營收19.74億創近24個月新高，年增+17.4%，5~7月YoY連續三個月加速(10.2%→10.6%→17.4%)。<br><br>
+          公式對照：對應A規則二存貨YoY vs 營收YoY——若H1後段(5-7月)加速出貨延續到Q3，第1步用H1平均算出的存貨背離(+36.9% vs +3.0%)可能被高估，需第5、6步用最新數字驗證。<br><br>
+          影響：<b>但股價同期從71.1元(4月高點)回落到62.5元(7月，-12%)，出現量增價跌的背離</b>，市場尚未把這波營收加速完全買單，可能仍在等待現金流疑慮(第1、3步)解答。
+        </td>
+      </tr>
+    </table>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12黃金交叉(2026年3月起確立)與A規則二(存貨背離，可能因H1後段加速出貨而部分緩解)、量價背離(股價未跟上7月營收新高)，以及E步法人預估營收有無衝突，詳見J章節。
+    </div>
+
+    <p style="font-size:15px;line-height:1.8"><b>總結：</b>近3個月平均營收<b>18.59億</b>，已連續<b>5個月</b>站在12個月平均<b>16.87億</b>之上，且缺口持續擴大，是本檔近24個月最明確的一次多頭排列；但同期股價量增價跌，市場態度仍謹慎，是否為真轉折需第5、6步進一步驗證。</p>
+    <p style="font-size:13px;color:var(--muted)">資料來源：使用者提供Goodinfo月營收截圖(2026/08/24)</p>
   </div>
 
   <div class="card pending-card" id="step5">
@@ -418,6 +494,56 @@ tr:hover td{background:#FAFBFC}
 
 </div>
 
+<script>
+(function(){
+  const months = ['2024/08','2024/09','2024/10','2024/11','2024/12','2025/01','2025/02','2025/03','2025/04','2025/05','2025/06','2025/07','2025/08','2025/09','2025/10','2025/11','2025/12','2026/01','2026/02','2026/03','2026/04','2026/05','2026/06','2026/07'];
+  const revs = [19.25,17.54,17.26,16.27,15.96,16.13,16.0,17.95,18.07,16.08,16.56,16.81,16.32,16.22,14.58,15.63,16.02,18.04,15.18,17.17,17.54,17.72,18.31,19.74];
+  const close = [79.0,76.0,83.8,77.7,85.0,83.7,82.6,81.7,76.6,81.3,70.2,69.3,68.3,63.9,58.6,51.9,55.2,55.6,58.7,66.8,71.1,62.5,68.0,62.5];
+  const ma3 = [18.38,18.38,18.02,17.02,16.5,16.12,16.03,16.69,17.34,17.37,16.9,16.48,16.56,16.45,15.71,15.48,15.41,16.56,16.41,16.8,16.63,17.48,17.86,18.59];
+  const ma12 = [16.84,17.04,17.25,17.35,17.47,17.45,17.53,17.54,17.42,17.2,17.12,16.99,16.75,16.64,16.41,16.36,16.36,16.52,16.45,16.39,16.35,16.48,16.63,16.87];
+  const colors = ['#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A','#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A'];
+
+  const traceBar = {
+    x: months, y: revs, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  const traceMA3 = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3(3個月平均)',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
+  };
+  const traceMA12 = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12(12個月平均)',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+    yaxis: 'y',
+    hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
+  };
+  const tracePrice = {
+    x: months, y: close, type: 'scatter', mode: 'lines', name: '月收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+    yaxis: 'y2',
+    hovertemplate: '%{x}<br>收盤: %{y}元<extra></extra>'
+  };
+
+  const layout = {
+    title: {text: '2393 億光電子工業：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 15}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    xaxis: {title: '年月', tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', side: 'right', overlaying: 'y', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, r: 60, l: 60, b: 90},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+  };
+
+  Plotly.newPlot('revenue-chart-2393', [traceBar, traceMA3, traceMA12, tracePrice], layout, {responsive: true, displayModeBar: false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
