@@ -91,6 +91,8 @@ tr:hover td{background:#FAFBFC}
 .score .label{font-size:12px;color:var(--muted);margin-top:4px}
 .score-card{background:#F0F6FC;border-left:4px solid #5B8FB9;padding:14px 16px;border-radius:8px;font-size:15px;line-height:1.8;margin:16px 0}
 .pending-card{background:#FAFBFC;border:1px dashed var(--border);border-radius:12px;padding:24px;text-align:center;color:var(--muted);font-size:14px}
+.chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:20px 0}
+.step4-table td, .step4-table th{padding:8px 8px;word-break:break-word}
 </style>
 </head>
 <body>
@@ -99,8 +101,8 @@ tr:hover td{background:#FAFBFC}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -108,7 +110,7 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>6168 宏齊 (HARVATEK CORPORATION)</h1>
-      <div class="sub">初步分析報告 · 第1~3步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報全文，皆使用者提供；Goodinfo年度現金流量總覽(2002~2026Q2)+逐季現金流量表(2022Q4~2026Q2)+個股日成交融資融券資料(2025/08/26~2026/08/25)，使用者提供；富果法說會備忘錄(2025/08/28、2025/12/18)、BigGo法說會逐字稿摘要(公開資訊)</div>
+      <div class="sub">初步分析報告 · 第1~4步已完成 · 資料來源：114年度(FY2025)合併財務報告暨會計師查核報告、115年第二季(2026H1)合併財務報告暨會計師核閱報告、114年度年報全文，皆使用者提供；Goodinfo年度現金流量總覽(2002~2026Q2)+逐季現金流量表(2022Q4~2026Q2)+個股日成交融資融券資料(2025/08/26~2026/08/25)+月營收明細(2023/08~2026/07)，使用者提供；富果法說會備忘錄(2025/08/28、2025/12/18)、BigGo法說會逐字稿摘要(公開資訊)</div>
     </div>
     <div class="score">
       <div class="num" style="color:#E74C3C">55.2</div>
@@ -117,7 +119,7 @@ tr:hover td{background:#FAFBFC}
   </div>
 
   <div class="pending-card" style="text-align:left;padding:16px 20px;margin-bottom:24px">
-    📍 第1~3步已完成。現金流主要總分55.2分(需觀察)；股價27.75元，本益比約86.7倍(基期過低)、股價淨值比1.59倍；法說會逐字稿證實第1步發現的現金流警訊非誤判——管理層親口承認2025年應收帳款與存貨增加是現金流出主因，同時2026H1資本支出暴增對應廈門新廠與第三代半導體封裝新產線兩個具體專案，但Q4"持平"展望與實際獲利衰退九成有明顯落差。第4~6步尚未開始。
+    📍 第1~4步已完成。現金流主要總分55.2分(需觀察)；股價27.75元，本益比約86.7倍(基期過低)、股價淨值比1.59倍；法說會證實現金流警訊非誤判，資本支出暴增對應廈門新廠與新產線。<b>月營收近3個月(MA3)1.97億已連續3個月站上12個月平均(MA12)1.80億，7月營收2.06億創近24個月新高(年增+12.8%)</b>，但這是期間內第二次黃金交叉(第一次維持7個月後在2025/12被死亡交叉打回)，穩定度待驗證。第5~6步尚未開始。
   </div>
 
   <div class="card" id="step1">
@@ -465,8 +467,119 @@ tr:hover td{background:#FAFBFC}
 
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      月營收資料收到了，近24個月(2024/08~2026/07)顯示：<b>2026年5月起確立第二次黃金交叉</b>(MA3站上MA12)，之後連續3個月維持多頭排列；<b>7月營收2.06億，創近24個月新高</b>(年增<b>+12.8%</b>)。但這是期間內第二次黃金交叉——第一次發生在2025年5月，維持7個月後於2025年12月被死亡交叉打回，這次才3個月，穩定度仍待驗證。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1" style="background:#E8F0F7;color:#5B8FB9;padding:4px 10px;border-radius:12px;font-size:12px">Q1 藍</span>
+        <span class="badge q2" style="background:#E6F4EE;color:#2E7D6F;padding:4px 10px;border-radius:12px;font-size:12px">Q2 綠</span>
+        <span class="badge q3" style="background:#FFF4E0;color:#B7791F;padding:4px 10px;border-radius:12px;font-size:12px">Q3 黃</span>
+        <span class="badge q4" style="background:#FEE8E8;color:#C0392B;padding:4px 10px;border-radius:12px;font-size:12px">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revenue-chart-6168" style="height:420px"></div>
+    </div>
+
+    <table class="step4-table" style="font-size:14px;line-height:1.7;table-layout:fixed;width:100%">
+      <colgroup>
+        <col style="width:9%"><col style="width:8%"><col style="width:8%"><col style="width:6%"><col style="width:8%"><col style="width:7%"><col style="width:7%"><col style="width:47%">
+      </colgroup>
+      <tr><th>月份</th><th>收盤價</th><th>營收(億)</th><th>季度</th><th>YoY</th><th>MA3</th><th>MA12</th><th>實務解讀</th></tr>
+      <tr><td>2024/08</td><td>23.00</td><td><b>1.70</b></td><td><span class="badge q3">Q3</span></td><td>+2.69%</td><td>1.74</td><td>1.68</td><td>MA3持續在MA12之上，多頭排列。</td></tr>
+      <tr><td>2024/09</td><td>22.70</td><td><b>1.70</b></td><td><span class="badge q3">Q3</span></td><td>+4.29%</td><td>1.75</td><td>1.69</td><td>維持多頭排列，動能持穩。</td></tr>
+      <tr><td>2024/10</td><td>22.55</td><td><b>1.66</b></td><td><span class="badge q4">Q4</span></td><td>-13.9%</td><td>1.69</td><td>1.67</td><td>MA3與MA12缺口收斂。</td></tr>
+      <tr><td>2024/11</td><td>21.65</td><td><b>1.62</b></td><td><span class="badge q4">Q4</span></td><td>-8.71%</td><td>1.66</td><td>1.65</td><td>缺口持續縮小，接近交叉臨界點。</td></tr>
+      <tr><td>2024/12</td><td>22.80</td><td><b>1.50</b></td><td><span class="badge q4">Q4</span></td><td>-16.6%</td><td>1.59</td><td>1.63</td><td><b>死亡交叉</b>：MA3(1.59)跌破MA12(1.63)。</td></tr>
+      <tr><td>2025/01</td><td>21.25</td><td><b>1.51</b></td><td><span class="badge q1">Q1</span></td><td>-14.6%</td><td>1.54</td><td>1.61</td><td>維持空頭排列，年減-14.6%。</td></tr>
+      <tr><td>2025/02</td><td>22.25</td><td><b>1.40</b></td><td><span class="badge q1">Q1</span></td><td>+9.2%</td><td>1.47</td><td>1.62</td><td>本波單月營收最低點，缺口擴大。</td></tr>
+      <tr><td>2025/03</td><td>18.40</td><td><b>1.76</b></td><td><span class="badge q1">Q1</span></td><td>+14.1%</td><td>1.56</td><td>1.63</td><td>營收回升，但MA3仍在MA12之下。</td></tr>
+      <tr><td>2025/04</td><td>16.35</td><td><b>1.75</b></td><td><span class="badge q2">Q2</span></td><td>+6.41%</td><td>1.64</td><td>1.64</td><td>MA3追平MA12，接近黃金交叉。</td></tr>
+      <tr><td>2025/05</td><td>16.40</td><td><b>1.76</b></td><td><span class="badge q2">Q2</span></td><td>+10.1%</td><td>1.76</td><td>1.66</td><td><b>黃金交叉(第一次)</b>：MA3(1.76)站上MA12(1.66)。</td></tr>
+      <tr><td>2025/06</td><td>15.70</td><td><b>1.91</b></td><td><span class="badge q2">Q2</span></td><td>+14.8%</td><td>1.81</td><td>1.68</td><td>動能加速，年增+14.8%。</td></tr>
+      <tr><td>2025/07</td><td>17.35</td><td><b>1.82</b></td><td><span class="badge q3">Q3</span></td><td>-1.03%</td><td>1.83</td><td>1.67</td><td>多頭排列延續，缺口擴大。</td></tr>
+      <tr><td>2025/08</td><td>20.90</td><td><b>1.87</b></td><td><span class="badge q3">Q3</span></td><td>+9.82%</td><td>1.87</td><td>1.69</td><td>MA3持續上揚，本波高點之一。</td></tr>
+      <tr><td>2025/09</td><td>20.85</td><td><b>1.84</b></td><td><span class="badge q3">Q3</span></td><td>+8.58%</td><td>1.84</td><td>1.70</td><td>維持多頭排列。</td></tr>
+      <tr><td>2025/10</td><td>20.30</td><td><b>1.71</b></td><td><span class="badge q4">Q4</span></td><td>+3.56%</td><td>1.81</td><td>1.70</td><td>缺口略收斂，動能轉緩。</td></tr>
+      <tr><td>2025/11</td><td>19.50</td><td><b>1.72</b></td><td><span class="badge q4">Q4</span></td><td>+6.62%</td><td>1.76</td><td>1.71</td><td>缺口持續收斂，接近再度交叉。</td></tr>
+      <tr><td>2025/12</td><td>19.35</td><td><b>1.65</b></td><td><span class="badge q4">Q4</span></td><td>+9.64%</td><td>1.69</td><td>1.72</td><td><b>死亡交叉</b>：MA3(1.69)再度跌破MA12(1.72)，第一次黃金交叉維持7個月後結束。</td></tr>
+      <tr><td>2026/01</td><td>20.70</td><td><b>1.64</b></td><td><span class="badge q1">Q1</span></td><td>+8.82%</td><td>1.67</td><td>1.74</td><td>維持空頭排列。</td></tr>
+      <tr><td>2026/02</td><td>20.85</td><td><b>1.62</b></td><td><span class="badge q1">Q1</span></td><td>+16.0%</td><td>1.64</td><td>1.75</td><td>本波缺口最大的月份，但單月YoY創本期新高+16%。</td></tr>
+      <tr><td>2026/03</td><td>22.85</td><td><b>1.75</b></td><td><span class="badge q1">Q1</span></td><td>-0.93%</td><td>1.67</td><td>1.75</td><td>營收回升但仍空頭排列，股價同步落於52週低點附近(17.85元，3/9)。</td></tr>
+      <tr><td>2026/04</td><td>25.10</td><td><b>1.93</b></td><td><span class="badge q2">Q2</span></td><td>+10.1%</td><td>1.77</td><td>1.77</td><td>MA3追平MA12，接近再度黃金交叉。</td></tr>
+      <tr><td>2026/05</td><td>27.90</td><td><b>1.82</b></td><td><span class="badge q2">Q2</span></td><td>+3.27%</td><td>1.83</td><td>1.77</td><td><b>黃金交叉(第二次確立)</b>：MA3(1.83)站上MA12(1.77)。</td></tr>
+      <tr><td>2026/06</td><td>31.05</td><td><b>2.04</b></td><td><span class="badge q2">Q2</span></td><td>+6.72%</td><td>1.93</td><td>1.78</td><td>近24個月次高，動能加速。</td></tr>
+      <tr><td>2026/07</td><td>21.40</td><td><b>2.06</b></td><td><span class="badge q3">Q3</span></td><td>+12.8%</td><td>1.97</td><td>1.80</td><td><b>近24個月新高</b>：單月營收2.06億，MA3(1.97)與MA12(1.80)缺口擴大到0.17億。</td></tr>
+    </table>
+
+    <div class="highlight">
+      <b>近3個月平均營收(MA3)已來到1.97億，連續3個月站在12個月平均(MA12)1.80億之上，且MA3持續向上</b>，短期接單動能強於長期平均。但這是近24個月觀察期間內<b>第二次</b>黃金交叉——第一次發生在2025年5月，維持7個月後在2025年12月被死亡交叉打回；這次自2026年5月確立以來僅維持3個月，能否比上一次撐得更久，還需要接下來1~2季驗證。<br><br>
+      公式對照：對應A規則二，2025年度存貨YoY(+8.8%)已超過營收YoY(+5.6%)，2026上半年存貨YoY(+11.3%)同樣超過營收YoY(+7.4%)，備貨速度持續快於營收成長；也對應規則七，2025年度存貨↑合約負債↓出現背離，26H1兩者轉為同向增長，訂單熱度是否真的有合約負債佐證，需持續追蹤下一季數字。<br><br>
+      影響：這波7月創新高的動能，時間點與第3步法說會提到的「廈門新廠2026下半年開始貢獻營收」、「第三代半導體封裝新產線客戶驗證中」大致吻合，有可能是新產能開始顯現在數字上的早期訊號，但也可能只是Q2/Q3傳統旺季效應疊加。第5步用法人/AI估算下半年EPS時，這段動能能否延續到Q4與2026全年報，是判斷全年成長是否兌現的關鍵。
+    </div>
+
+    <div class="highlight" style="font-size:14px;color:var(--muted);border-left-color:var(--border);background:#FAFBFC">
+      J交叉預告：本步MA3/MA12第二次黃金交叉(2026年5月起，僅3個月)與A規則二(26H1存貨YoY超過營收YoY)、規則七(25年度背離，26H1轉同向)、第3步廈門新廠與第三代半導體封裝新產線的時間點，三者需在第5步法人預估、第6步投資決策交叉驗證——營收動能雖已連續3個月轉強，但這是否只是重演2025年5月那次「維持7個月又被打回」的劇本，仍是未解之謎，詳見J章節。
+    </div>
+
+    <p style="color:var(--muted);font-size:13px">資料來源：Goodinfo月營收明細 (使用者提供截圖，2023/08~2026/07，共36個月，用以計算完整MA12基礎；圖表顯示近24個月)</p>
+
+  </div>
+
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+(function(){
+  const months = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07"];
+  const rev = [1.70, 1.70, 1.66, 1.62, 1.50, 1.51, 1.40, 1.76, 1.75, 1.76, 1.91, 1.82, 1.87, 1.84, 1.71, 1.72, 1.65, 1.64, 1.62, 1.75, 1.93, 1.82, 2.04, 2.06];
+  const closePrice = [23.00, 22.70, 22.55, 21.65, 22.80, 21.25, 22.25, 18.40, 16.35, 16.40, 15.70, 17.35, 20.90, 20.85, 20.30, 19.50, 19.35, 20.70, 20.85, 22.85, 25.10, 27.90, 31.05, 21.40];
+  const ma3 = [1.74, 1.75, 1.69, 1.66, 1.59, 1.54, 1.47, 1.56, 1.64, 1.76, 1.81, 1.83, 1.87, 1.84, 1.81, 1.76, 1.69, 1.67, 1.64, 1.67, 1.77, 1.83, 1.93, 1.97];
+  const ma12 = [1.68, 1.69, 1.67, 1.65, 1.63, 1.61, 1.62, 1.63, 1.64, 1.66, 1.68, 1.67, 1.69, 1.70, 1.70, 1.71, 1.72, 1.74, 1.75, 1.75, 1.77, 1.77, 1.78, 1.80];
+  const colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A"];
+  const yoy = ["+2.69", "+4.29", "-13.9", "-8.71", "-16.6", "-14.6", "+9.2", "+14.1", "+6.41", "+10.1", "+14.8", "-1.03", "+9.82", "+8.58", "+3.56", "+6.62", "+9.64", "+8.82", "+16", "-0.93", "+10.1", "+3.27", "+6.72", "+12.8"];
+
+  const traceBar = {
+    x: months, y: rev, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y',
+    text: months.map((m,i)=>`營收${rev[i]}億<br>YoY ${yoy[i]}%`),
+    hovertemplate: '%{x}<br>營收 %{y}億<br>YoY '+'%{text}<extra></extra>',
+    customdata: yoy
+  };
+  const traceMA3 = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3(3個月平均)',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  const traceMA12 = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12(12個月平均)',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'}, yaxis: 'y'
+  };
+  const tracePrice = {
+    x: months, y: closePrice, type: 'scatter', mode: 'lines', name: '月收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'}, yaxis: 'y2'
+  };
+
+  const layout = {
+    title: {text: '6168 宏齊：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 15}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    xaxis: {title: '年月', tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', side: 'right', overlaying: 'y', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, r: 60, l: 60, b: 90},
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)'
+  };
+
+  Plotly.newPlot('revenue-chart-6168', [traceBar, traceMA3, traceMA12, tracePrice], layout, {responsive: true, displayModeBar: false});
+})();
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
