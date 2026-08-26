@@ -19,7 +19,7 @@
 - [6202 盛群 - 完整分析報告](https://99dodo.github.io/mystock-analysis/6202_holtek_analysis.html)（六步驟完整版，核心六規則78.3分／良好）
 - [2753 八方雲集 - 完整分析報告(6/6)](https://99dodo.github.io/mystock-analysis/2753_bafang_analysis.html)（v4.2.3標準版，取代舊版v2.1/v2.3；核心六規則81分／良好，六步驟全部完成）
 - [3231 緯創 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3231_wistron_analysis.html)（v2.0獨立重新分析，六步驟完整版，核心六規則48.3分／需觀察）
-- [2455 全新光電 - 分析報告（進行中）](https://99dodo.github.io/mystock-analysis/2455_vpec_analysis.html)（第1-3步完成，現金流核心六規則69分／良好；現價本益比約104倍、本淨比約45倍，2026H1營收年增27.6%，可轉債(轉換價162.9/153.5元)在現價下幾乎必然稀釋約3.4%股本；法說會簡報揭示公司從微電子轉向光電子/AI資料中心800G光通訊，惟未提供具體財測數字）
+- [2455 全新光電 - 分析報告（進行中）](https://99dodo.github.io/mystock-analysis/2455_vpec_analysis.html)（第1-4步完成，現金流核心六規則69分／良好；現價本益比約104倍、本淨比約45倍，可轉債(轉換價162.9/153.5元)在現價下幾乎必然稀釋約3.4%股本；法說會揭示公司從微電子轉向光電子/AI資料中心800G光通訊；月營收2025年7月黃金交叉後動能未回頭，2026年營收年增率從+30%加速至7月的+45.1%）
 - [作業流程 v2.0](https://99dodo.github.io/mystock-analysis/workflow.html)
 
 ## 🔗 快速連結

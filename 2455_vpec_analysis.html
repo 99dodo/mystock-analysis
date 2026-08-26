@@ -137,9 +137,8 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
-    <a href="#step3" class="active">3.法說會</a>
-    <a href="#step3" class="pending">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -431,7 +430,164 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
     <p><b>一句話總結（第3步）：</b> 公司自己講的成長故事是從傳統微電子(手機/WiFi)轉向光電子/AI資料中心800G光通訊，這個方向性說法與第1步財報觀察到的合約負債暴增、資本支出加速完全吻合，但簡報沒有給出具體財測數字，第5步EPS預估將更依賴財報歷史趨勢與法人預估，而非公司官方指引。</p>
   </div>
 
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      <b>重點提示：</b> 最近3個月平均營收 <b>3.56億</b>，已連續<b>12個月</b>站在12個月平均 <b>3.27億</b> 之上，且MA3持續向上，短期接單動能明顯強於長期趨勢。2025年7月出現黃金交叉後動能未曾回頭，2026年營收年增率從1月的+30.2%一路加速到7月的<span style="color:#E74C3C;font-weight:800">+45.1%</span>。
+    </div>
+
+    <div class="chart-wrap">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+        <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫實線(右軸)</span>
+      </div>
+      <div id="revChart2455" style="width:100%;height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th><th>實務解讀(強制三段)</th></tr>
+      <tr>
+        <td>2026/07</td><td>292</td><td><b>4.22</b></td><td><span class="badge q3">Q3</span></td><td><b>3.56</b></td><td>3.27</td>
+        <td>趨勢定位：單月營收4.22億創近3年新高，月增+29.5%、年增<span style="color:#E74C3C;font-weight:800">+45.1%</span>，短強長也強格局持續擴大。<br><br>
+        公式對照：對應A規則二(存貨YoY vs 營收YoY)——存貨2025年+14.1%遠低於這波營收動能，代表備貨還跟不上出貨速度，不是靠存貨堆營收。<br><br>
+        影響：第5步EPS法人預估的成長假設，應以這個加速趨勢為基礎重新檢視是否過於保守。</td>
+      </tr>
+      <tr>
+        <td>2026/06</td><td>347</td><td>3.26</td><td><span class="badge q2">Q2</span></td><td>3.22</td><td>3.16</td>
+        <td>趨勢定位：MA3(3.22)持續站上MA12(3.16)，短強長也強型態穩定，但月增幅收斂到+1.62%，是7月加速前的過渡月。<br><br>
+        公式對照：對應A規則二，存貨與營收同步溫和成長，備貨節奏正常。<br><br>
+        影響：單月波動屬正常區間，未改變整體上升軌道。</td>
+      </tr>
+      <tr>
+        <td>2026/05</td><td>422</td><td>3.21</td><td><span class="badge q2">Q2</span></td><td>3.17</td><td>3.11</td>
+        <td>趨勢定位：股價同月觸及52週高點460元附近，營收年增+46.5%為本波段最強單月年增率之一。<br><br>
+        公式對照：對應第3步法說會提到的AI資料中心/光電子轉型敘事，時間點吻合股價與營收同步走強。<br><br>
+        影響：市場提前反映此段營收噴發，是目前高本益比的主要支撐點之一。</td>
+      </tr>
+      <tr>
+        <td>2026/04</td><td>347.5</td><td>3.19</td><td><span class="badge q2">Q2</span></td><td>3.13</td><td>3.03</td>
+        <td>趨勢定位：年增+37.7%，MA3/MA12差距持續擴大。<br><br>
+        公式對照：對應第1步規則三，同期資本支出開始明顯加速(2026Q1資本支出0.76億)，產能與訂單同步擴張。<br><br>
+        影響：驗證擴產與營收成長是同一個故事的兩面。</td>
+      </tr>
+      <tr>
+        <td>2026/03</td><td>246.5</td><td>3.11</td><td><span class="badge q1">Q1</span></td><td>3.20</td><td>2.95</td>
+        <td>趨勢定位：MA3略高於前月，動能維持穩定加速階段初期。<br><br>
+        公式對照：對應A規則七，合約負債同期同步走高，訂單支撐持續。<br><br>
+        影響：Q1營收季增動能奠定後續Q2/Q3加速的基礎。</td>
+      </tr>
+      <tr>
+        <td>2026/02</td><td>217.5</td><td>3.08</td><td><span class="badge q1">Q1</span></td><td>3.22</td><td>2.92</td>
+        <td>趨勢定位：股價開始脫離百元區間快速上攻，營收年增+15.9%相對溫和，屬於股價先行反映階段。<br><br>
+        公式對照：與規則四對照——同期(1月)兩檔可轉債剛發行，市場資金行為與基本面數字尚未完全同步。<br><br>
+        影響：此階段股價漲幅領先營收成長，評價已開始偏樂觀。</td>
+      </tr>
+      <tr>
+        <td>2026/01</td><td>168</td><td>3.4</td><td><span class="badge q1">Q1</span></td><td>3.15</td><td>2.88</td>
+        <td>趨勢定位：年增+30.2%，延續2025年底的加速格局，MA3持續穩定站上MA12。<br><br>
+        公式對照：同月為可轉債發行月份(第2步)，募資與營收加速時間點重疊，資金可能用於對應這波成長的產能布局。<br><br>
+        影響：全年動能自此正式展開加速軌道。</td>
+      </tr>
+      <tr>
+        <td>2025/12</td><td>151.5</td><td>3.19</td><td><span class="badge q4">Q4</span></td><td>3.20</td><td>2.82</td>
+        <td>趨勢定位：年增+28.3%，MA3/MA12差距(3.20 vs 2.82)明顯擴大，是波段轉強確立的月份。<br><br>
+        公式對照：對應A規則七，2025全年合約負債年增400%的主要貢獻期即落在Q4。<br><br>
+        影響：此月股價仍在52週低點附近(129.5元於12/16)，基本面已轉強但股價尚未反應，形成之後補漲的起點。</td>
+      </tr>
+      <tr>
+        <td>2025/11</td><td>142.5</td><td>2.85</td><td><span class="badge q4">Q4</span></td><td>3.29</td><td>2.76</td>
+        <td>趨勢定位：單月月減-19.7%為波段中少見的回檔，但年增仍有+20.2%，MA3仍遠高於MA12。<br><br>
+        公式對照：屬單月出貨排程波動，未改變A規則二存貨與營收同步成長的整體判斷。<br><br>
+        影響：短期雜訊不影響中期上升趨勢判斷。</td>
+      </tr>
+      <tr>
+        <td>2025/10</td><td>138.5</td><td>3.55</td><td><span class="badge q4">Q4</span></td><td>3.26</td><td>2.72</td>
+        <td>趨勢定位：年增+50.3%，是波段啟動以來最強單月年增率之一，MA3(3.26)大幅超前MA12(2.72)。<br><br>
+        公式對照：對應A規則七合約負債Q4暴增的高峰期。<br><br>
+        影響：確認第3步法說會提到的AI資料中心轉型敘事在此月已於財報端顯現。</td>
+      </tr>
+      <tr>
+        <td>2025/09</td><td>161</td><td>3.47</td><td><span class="badge q3">Q3</span></td><td>3.04</td><td>2.62</td>
+        <td>趨勢定位：黃金交叉後第3個月，MA3/MA12差距持續擴大，年增+28.8%。<br><br>
+        公式對照：對應規則二存貨YoY+14.1%(2025全年)，此階段存貨與營收同步走升。<br><br>
+        影響：確立中期上升趨勢，非單月雜訊。</td>
+      </tr>
+      <tr>
+        <td>2025/08</td><td>156.5</td><td>2.75</td><td><span class="badge q3">Q3</span></td><td>2.77</td><td>2.55</td>
+        <td>趨勢定位：MA3(2.77)剛超過MA12(2.55)，<b style="color:#E74C3C">黃金交叉確立</b>，短期營收從底部爬起。<br><br>
+        公式對照：對應第1步規則三——這正是資本支出/折舊比開始從低檔0.14倍起漲的同期，產能與訂單轉強同步發生。<br><br>
+        影響：這是整波上升趨勢的起漲點，後續11個月MA3持續站在MA12之上未曾跌破。</td>
+      </tr>
+      <tr>
+        <td>2025/07</td><td>145</td><td>2.91</td><td><span class="badge q3">Q3</span></td><td>2.58</td><td>2.55</td>
+        <td>趨勢定位：MA3(2.58)首度貼近並略高於MA12(2.55)，是黃金交叉前的醞釀月份，年增轉正+10.8%。<br><br>
+        公式對照：對應A規則七，此時合約負債剛開始出現增溫跡象。<br><br>
+        影響：波段轉折的第一個訊號，但需再觀察1-2個月確認。</td>
+      </tr>
+      <tr>
+        <td colspan="7" style="text-align:center;color:var(--muted);font-size:13px">2024/08 ~ 2025/06 期間(13個月)：MA3多在MA12下方或貼近整理，營收在2.2~3.0億區間震盪，屬築底階段，明細從略</td>
+      </tr>
+    </table>
+
+    <p style="font-size:14px;color:var(--muted)">資料來源：Goodinfo月營收查詢 (STOCK_ID=2455)，2026/08/26截圖，含2023/08~2026/07共36個月原始資料(前12個月僅用於MA12計算)</p>
+
+    <p><b>近3個月平均營收3.56億，已連續12個月站在12個月平均3.27億之上，且黃金交叉自2025年7月確立以來動能持續加速，2026年營收年增率從年初+30%一路擴大到7月的+45.1%，是目前支撐第2步高本益比評價的核心基本面證據。</b></p>
+
+    <p style="font-size:14px;color:var(--muted)">J交叉預告：本步MA3/MA12趨勢與A規則二(存貨YoY追不上營收YoY)、E法人預估營收成長假設有無衝突，詳見J章節。</p>
+
+    <p><b>一句話總結（第4步）：</b> 月營收自2025年7月黃金交叉後動能未曾回頭，且在2026年明顯加速(年增率從+30%衝到+45%)，與第3步法說會提到的光電子/AI資料中心轉型敘事、第1步合約負債暴增互相驗證；但也代表股價與本益比評價可能已經提前反映了這波成長，第5步要嚴格檢視法人預估是否合理。</p>
+  </div>
+
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+(function(){
+  var labels = ['2024/08','2024/09','2024/10','2024/11','2024/12','2025/01','2025/02','2025/03','2025/04','2025/05','2025/06','2025/07','2025/08','2025/09','2025/10','2025/11','2025/12','2026/01','2026/02','2026/03','2026/04','2026/05','2026/06','2026/07'];
+  var revenue = [2.74,2.69,2.36,2.37,2.49,2.61,2.66,2.67,2.31,2.19,2.64,2.91,2.75,3.47,3.55,2.85,3.19,3.4,3.08,3.11,3.19,3.21,3.26,4.22];
+  var closeP = [142,166,141,170,166.5,164,144,113.5,99.5,103.5,125,145,156.5,161,138.5,142.5,151.5,168,217.5,246.5,347.5,422,347,292];
+  var ma3 = [2.78,2.68,2.6,2.47,2.41,2.49,2.59,2.65,2.55,2.39,2.38,2.58,2.77,3.04,3.26,3.29,3.2,3.15,3.22,3.2,3.13,3.17,3.22,3.56];
+  var ma12 = [2.9,2.88,2.81,2.74,2.7,2.69,2.69,2.66,2.62,2.56,2.53,2.55,2.55,2.62,2.72,2.76,2.82,2.88,2.92,2.95,3.03,3.11,3.16,3.27];
+  var colors = ['#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A','#F5C07A','#F5C07A','#E8A0A0','#E8A0A0','#E8A0A0','#7BA7D9','#7BA7D9','#7BA7D9','#7AC1A0','#7AC1A0','#7AC1A0','#F5C07A'];
+
+  var barTrace = {
+    x: labels, y: revenue, type:'bar', name:'月營收(億)',
+    marker:{color: colors},
+    hovertemplate:'%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  var ma3Trace = {
+    x: labels, y: ma3, type:'scatter', mode:'lines', name:'MA3',
+    line:{color:'#E74C3C', width:2.5, dash:'solid'},
+    hovertemplate:'%{x}<br>MA3: %{y}億<extra></extra>'
+  };
+  var ma12Trace = {
+    x: labels, y: ma12, type:'scatter', mode:'lines', name:'MA12',
+    line:{color:'#1B3A8C', width:2.5, dash:'solid'},
+    hovertemplate:'%{x}<br>MA12: %{y}億<extra></extra>'
+  };
+  var closeTrace = {
+    x: labels, y: closeP, type:'scatter', mode:'lines', name:'收盤價(元)',
+    yaxis:'y2',
+    line:{color:'#8B5FBF', width:2.5, dash:'solid'},
+    hovertemplate:'%{x}<br>收盤: %{y}元<extra></extra>'
+  };
+
+  var layout = {
+    title:{text:'2455 全新光電：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font:{size:15}},
+    paper_bgcolor:'#FFFFFF', plot_bgcolor:'#FFFFFF',
+    font:{family:"'Noto Sans TC',sans-serif", color:'#2C3E50', size:12},
+    bargap:0.15,
+    xaxis:{tickangle:-45},
+    yaxis:{title:'月營收(億)', side:'left'},
+    yaxis2:{title:'收盤價(元)', overlaying:'y', side:'right', showgrid:false},
+    legend:{orientation:'h', y:-0.25},
+    margin:{t:50,b:90,l:50,r:50}
+  };
+
+  Plotly.newPlot('revChart2455', [barTrace, ma3Trace, ma12Trace, closeTrace], layout, {responsive:true, displayModeBar:false});
+})();
+</script>
 
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
