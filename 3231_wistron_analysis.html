@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3231 緯創 初步分析報告（第2步）</title>
+<title>3231 緯創 初步分析報告（第1-4步）</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
 <style>
 :root{
   --bg:#FAF9F6;
@@ -150,9 +151,9 @@ tr:hover td{background:#FAFBFC}
 <div class="container">
   <nav class="stepnav">
     <a href="#step1" class="done">1.現金流盲測</a>
-    <a href="#step2" class="active">2.基本資訊</a>
-    <a href="#step3" class="pending">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step2" class="done">2.基本資訊</a>
+    <a href="#step3" class="done">3.法說會</a>
+    <a href="#step4" class="active">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -160,7 +161,7 @@ tr:hover td{background:#FAFBFC}
   <div class="header">
     <div>
       <h1>3231 緯創資通</h1>
-      <div class="sub">初步分析報告 · 2026/08/28 · 資料來源：114年度年報 + 115年Q2季報 + Goodinfo近5年/逐季現金流量表 + 114年度F04股東會年報 + Goodinfo逐日股價表</div>
+      <div class="sub">初步分析報告 · 2026/08/28 · 資料來源：114年度年報 + 115年Q2季報 + Goodinfo資料 + 114年度F04股東會年報 + 官方法說會簡報2026Q2 + Goodinfo月營收/股價對照表</div>
     </div>
     <div class="score">
       <div class="num">47</div>
@@ -324,6 +325,90 @@ tr:hover td{background:#FAFBFC}
     <p style="color:var(--muted);font-size:14px">J交叉預告：本步EPS與殖利率跟A規則八（借錢配息）直接衝突——帳面殖利率3%看似合理，但錢的來源要打折看；GDR稀釋風險也將在第5步前瞻本益比與第6步投資決策中重新納入計算，詳見後續步驟。</p>
   </div>
 
+  <div class="card" id="step3">
+    <h2>【第 3 步／共 6 步：法說會深度解讀】</h2>
+
+    <div class="highlight">
+      資料來源：緯創官方法說會簡報《2026Q2 Roadshow》（狀態A：完整簡報等級，非媒體摘要）。
+    </div>
+
+    <table>
+      <tr><th>老闆說什麼</th><th>數字驗證</th><th>實務解讀</th><th>對應三表/A規則</th><th>來源</th></tr>
+      <tr>
+        <td><b>毛利率正在回升，不是繼續探底</b></td>
+        <td>已實現營業毛利率：2025全年6.1%（前期8.0%），但2026Q1回升到5.21%，2026Q2進一步回升到5.66%，QoQ+14.9%（毛利金額）；1H26毛利率5.44% vs 1H25的5.74%</td>
+        <td>白話：雖然2025年毛利率從過去的8%掉到6.1%，看起來像在惡化，但拆開最近兩季看，其實已經從Q1的5.21%回升到Q2的5.66%，季季在回血，不是一路探底。<br><br>公式對照：這點呼應第1步規則五（FCF深度負）——如果毛利率持續回升，代表營運本質是健康的，現金吃緊比較像是「規模擴張的時間差」而非「賺不到錢」。<br><br>影響：對第5步EPS估算是正面訊號，若毛利率能維持季增，下半年EPS成長動能會比單純看營收成長更扎實。</td>
+        <td>對應A規則五</td>
+        <td><cite>緯創官方法說會簡報 2026Q2 Roadshow, p.15</cite></td>
+      </tr>
+      <tr>
+        <td><b>公司自己揭露資產負債表在惡化，不是我們過度解讀</b></td>
+        <td>負債合計占資產總計比重：2025/6/30為77%→2026/3/31為81%→2026/6/30為 <span style="color:#E74C3C;font-weight:800">82%</span>；流動比從2022年137.3%降到2026Q2約118%；速動比從2022年83.2%降到2026Q2的 <b>64.1%</b></td>
+        <td>白話：緯創自己的法說簡報裡就有一頁專門叫「資產負債表管理」，公司自己把負債比、流動比、速動比抓出來給法人看，等於是主動承認槓桿在墊高、速動能力在下降。<br><br>公式對照：這正是第1步規則四(C持續正且加速)與規則五(FCF深度負)的官方版佐證——連公司自己都用一整頁在跟法人解釋這件事，代表管理層知道這是市場會問的問題。<br><br>影響：速動比從83.2%掉到64.1%，代表公司短期最流動的資產（現金+應收，扣存貨）相對短期負債的覆蓋能力明顯轉弱，這跟第2步查到CFO公開說「負債比確實偏高」是同一件事的兩種呈現方式。</td>
+        <td>對應A規則四/五</td>
+        <td><cite>緯創官方法說會簡報 2026Q2 Roadshow, p.11</cite></td>
+      </tr>
+      <tr>
+        <td><b>股利配發率維持穩定61%，不是刻意撐股利</b></td>
+        <td>現金股利：2021年2.2元→2022年2.6元→2023年2.6元→2024年3.8元→2025年5.5元；配發率：59%→65%→64%→62%→61%</td>
+        <td>白話：股利配發率過去5年一直穩定在59-65%之間，2025年配發率61%其實是近5年最低點之一，公司並沒有為了撐股利硬拉高配發比例。<br><br>公式對照：這跟第1步規則八（真實股利覆蓋率-13.2倍）不衝突——配發率是「賺多少發多少比例」的政策穩定度，跟「這筆現金從哪裡來」是兩件事，緯創是政策穩定但現金來源已轉為外部資金。<br><br>影響：如果之後配發率突然被大幅拉高（例如衝到70%以上）才要真正擔心是硬撐股利；目前維持在合理區間，比較像是機械化執行既定政策，不是管理層在動用股利去護盤股價。</td>
+        <td>對應A規則八</td>
+        <td><cite>緯創官方法說會簡報 2026Q2 Roadshow, p.17</cite></td>
+      </tr>
+    </table>
+
+    <p style="color:var(--muted);font-size:14px">J交叉預告：本步法說會指引與A規則四/五/八高度吻合，法人簡報等於官方確認第1步現金流三重警訊不是誤判，但毛利率回升趨勢是第1步沒看到的正面訊號，將帶入第5步EPS三情境估算。</p>
+  </div>
+
+  <div class="card" id="step4">
+    <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
+
+    <div class="highlight">
+      資料來源：Goodinfo月營收/股價對照表（2006/08~2026/07），取近36個月計算MA12，圖表顯示近24個月（2024/08~2026/07）。
+    </div>
+
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <span class="badge q1">Q1 藍</span><span class="badge q2">Q2 綠</span><span class="badge q3">Q3 黃</span><span class="badge q4">Q4 紅</span>
+      <span style="margin-left:16px;font-size:13px;color:var(--muted)">MA3 紅實線 / MA12 深藍實線 / 收盤價 紫色實線(右軸)</span>
+    </div>
+
+    <div class="chart-wrap" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin:20px 0">
+      <div id="revenueChart" style="width:100%;height:420px"></div>
+    </div>
+
+    <table style="font-size:15px;line-height:1.8">
+      <tr><th>月份</th><th>收盤價(元)</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th><th>實務解讀</th></tr>
+      <tr>
+        <td colspan="6"><b>近3個月（2026/05~07）</b></td>
+        <td>
+          白話：近3個月平均營收(MA3) <b>3,067.3億</b>，已連續24個月站在12個月平均營收(MA12) <b>2,622.4億</b>之上，且MA3持續向上，短期接單動能強於長期基期，屬多頭排列。<br><br>
+          公式對照：對應A規則二，存貨YoY(86.4%)低於營收YoY(108.4%)，MA3/MA12的持續多頭排列印證營收確實在放量，不是虛胖存貨堆出來的假象。<br><br>
+          影響：對第5步EPS估算是正面依據，但要留意MA3/MA12比值已從2025年中的1.55倍收斂到現在的1.17倍，代表短期超額成長動能正在隨長期基期墊高而自然收斂，這是正常的規模化現象，不是動能轉弱的警訊。
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6"><b>2026/04單月回檔</b></td>
+        <td>
+          白話：2026年4月營收2,834億，月減14.9%，是近24個月唯一單月明顯回檔的月份，隨後5、6月又重新走高到2,902億、3,218億。<br><br>
+          公式對照：對應第3步法說會與外部新聞，這正好對上「GB200轉GB300技術交替期」造成的短期出貨微幅下滑，屬產品換代空窗期現象，非需求轉弱。<br><br>
+          影響：7月營收3,082億月減4.2%，需持續觀察是否為換代尾聲的正常波動，或動能真正開始放緩，第5步可用此作為法人預估的合理性檢查點。
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6"><b>黃金/死亡交叉</b></td>
+        <td>
+          白話：近36個月數據中，MA3自2024年7月數據可計算起，即持續站在MA12之上，全程<b>無死亡交叉</b>出現。<br><br>
+          公式對照：對應A規則七背離——雖然存貨與合約負債成長不同步，但MA3/MA12的持續多頭排列顯示，這批存貨目前為止都有被營收消化掉，尚未出現滯銷堆積的跡象。<br><br>
+          影響：這是需要持續追蹤的訊號，一旦MA3向下跌破MA12（死亡交叉），會是第1步規則七疑慮真正發酵的早期警訊，屆時需重新檢視存貨去化速度。
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin-top:16px">近3個月平均營收3,067.3億，已連續24個月站在12個月平均營收2,622.4億之上，MA3/MA12呈現持續多頭排列但差距倍數逐步收斂（由1.55倍降至1.17倍），屬正常規模化現象；4月出現的單月回檔已在5-7月回復成長軌道。</p>
+
+    <p style="color:var(--muted);font-size:14px">J交叉預告：本步MA3/MA12趨勢與A規則二(存貨低於營收成長)相符、與規則七(存貨vs合約負債背離)尚未惡化互相印證，將帶入第5步法人預估營收成長率的合理性檢查，詳見後續步驟。</p>
+  </div>
+
 </div>
 
 <script>
@@ -346,6 +431,63 @@ const observer = new IntersectionObserver((entries)=>{
 },{rootMargin:'-40% 0px -55% 0px'});
 document.querySelectorAll('section, .card[id]').forEach(s=>observer.observe(s));
 console.log('stepnav JS loaded');
+
+// Step4 營收趨勢圖 (Plotly)
+(function(){
+  var months = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07"];
+  var revs = [898.2, 969.0, 962.8, 952.4, 1057.0, 907.9, 1027.0, 1530.0, 1337.0, 2084.0, 2092.0, 1917.0, 1726.0, 2034.0, 1851.0, 2806.0, 2553.0, 2284.0, 2849.0, 3330.0, 2834.0, 2902.0, 3218.0, 3082.0];
+  var ma3 = [882.7, 909.7, 943.3, 961.4, 990.7, 972.4, 997.3, 1155.0, 1298.0, 1650.3, 1837.7, 2031.0, 1911.7, 1892.3, 1870.3, 2230.3, 2403.3, 2547.7, 2562.0, 2821.0, 3004.3, 3022.0, 2984.7, 3067.3];
+  var ma12 = [802.2, 818.0, 832.9, 848.6, 874.4, 894.0, 912.0, 964.6, 1015.5, 1122.9, 1223.3, 1311.2, 1380.2, 1468.9, 1542.9, 1697.4, 1822.1, 1936.8, 2088.6, 2238.6, 2363.3, 2431.5, 2525.3, 2622.4];
+  var close = [101.5, 101.0, 111.0, 113.5, 104.0, 110.0, 112.0, 95.3, 101.5, 116.5, 122.5, 123.0, 113.0, 140.5, 150.5, 144.5, 150.5, 130.5, 136.0, 122.5, 137.0, 158.5, 158.5, 176.0];
+  var colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A"];
+
+  var barTrace = {
+    x: months, y: revs, type: 'bar', name: '月營收(億)',
+    marker: {color: colors},
+    yaxis: 'y1',
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  var ma3Trace = {
+    x: months, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+    yaxis: 'y1',
+    hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
+  };
+  var ma12Trace = {
+    x: months, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+    yaxis: 'y1',
+    hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
+  };
+  var closeTrace = {
+    x: months, y: close, type: 'scatter', mode: 'lines', name: '收盤價(元)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+    yaxis: 'y2',
+    hovertemplate: '%{x}<br>收盤價: %{y}元<extra></extra>'
+  };
+
+  var layout = {
+    title: {text: '3231 緯創資通：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: {size: 14, family: 'Noto Sans TC'}},
+    barmode: 'overlay',
+    bargap: 0.15,
+    font: {family: 'Noto Sans TC', color: '#2C3E50'},
+    plot_bgcolor: '#FFFFFF',
+    paper_bgcolor: '#FFFFFF',
+    margin: {t: 50, b: 60, l: 60, r: 60},
+    xaxis: {tickangle: -45, tickfont: {size: 10}},
+    yaxis: {title: '月營收(億)', side: 'left'},
+    yaxis2: {title: '收盤價(元)', overlaying: 'y', side: 'right', showgrid: false},
+    legend: {orientation: 'h', y: -0.25},
+    hovermode: 'x unified'
+  };
+
+  var config = {responsive: true, displayModeBar: false};
+
+  var el = document.getElementById('revenueChart');
+  if (el) {
+    Plotly.newPlot('revenueChart', [barTrace, ma3Trace, ma12Trace, closeTrace], layout, config);
+  }
+})();
 </script>
 </body>
 </html>
