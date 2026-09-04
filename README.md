@@ -12,7 +12,7 @@
 - [2404 漢唐集成 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2404_uis_analysis.html)（六步驟完整版，現金流核心六規則83.3分／優秀，關卡通過；本益比21.0倍、殖利率3.5%；四家投顧目標價平均1,591元；結論：觀望，H1實際EPS已達36.23元、全年EPS地板約73元；重大發現：有效稅率從21%跳升到30%以上(2Q26達33.08%)，比毛利率回落更關鍵，已列入觀察訊號待2026年11月Q3財報驗證）
 - [2354 鴻準精密工業 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2354_foxconn_analysis.html)（六步驟完整版，現金流核心六規則72分／良好，結論：觀望，關鍵矛盾是7月營收黃金交叉源於任天堂漲價前一次性急單、現價已貼近樂觀情境25倍評價(64.2元)，安全邊際不足，5個可驗證訊號待8-11月陸續驗證）
 - [7769 鴻勁精密 - 完整分析報告](https://99dodo.github.io/mystock-analysis/7769_hon_analysis.html)（六步驟完整版，現金流核心六規則80.3分／優秀(臨界)，結論：觀望，核心矛盾是2026H1現金流A<<D落差+合約負債背離未解釋，評價已用2027年獲利定價，六家投顧目標價區間6,180~10,000元分歧大）
-- [3030 德律科技 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3030_test-research_analysis.html)（六步驟完整版，核心六規則70.8分／良好，結論：觀望，關鍵在H1現金流未跟上獲利成長+評價已不便宜+伺服器終端集中度上升）
+- [3030 德律科技 - 完整分析報告](https://99dodo.github.io/mystock-analysis/3030_test-research_analysis.html)（最新，六步驟完整版，核心六規則70.8分／良好，結論：觀望但風險報酬比改善，已用法說會完整逐字稿雙重驗證毛利率修正並補強規則七解讀，股價更新至2026/09/04的284元、本益比降至約21.5倍）
 - [8358 金居開發 - 完整分析報告](https://99dodo.github.io/mystock-analysis/8358_cotech_analysis.html)（六步驟完整版，核心六規則平均56.7分，規則八扣分後51.7分／需觀察，結論：觀望）
 - [9911 台灣櫻花 - 完整分析報告](https://99dodo.github.io/mystock-analysis/9911_sakura_analysis.html)（六步驟完整版，核心六規則86.7分，規則八扣分後81.7分／優秀）
 - [2327 國巨 - 完整分析報告](https://99dodo.github.io/mystock-analysis/2327_yageo_analysis.html)（六步驟完整版，核心六規則77.5分／體質良好）
