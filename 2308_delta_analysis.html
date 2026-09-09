@@ -477,6 +477,14 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
 
     <table>
       <tr><th>月份</th><th>收盤價(元)</th><th>合併營收(億)</th><th>季度</th><th>MA3(億)</th><th>MA12(億)</th><th>實務解讀(強制三段)</th></tr>
+      <tr style="background:#FFF0F3">
+        <td><b>2026/08</b><br><span style="font-size:11px;color:var(--muted)">(母公司口徑)</span></td><td>1,840</td><td><b>645.86</b>(YoY<span style="color:#E74C3C;font-weight:800">+34.95%</span>)</td><td><span class="badge q3">Q3</span></td><td>—</td><td>—</td>
+        <td>
+          這是MOPS官方公告的母公司口徑營收，與本表其餘各月使用的Goodinfo合併口徑基礎不同，所以MA3/MA12暫不計算，避免兩種基礎混算失真；等Goodinfo合併口徑8月數據公布後會補上正確計算。<br><br>
+          公式對照：即使口徑不同，YoY方向仍具參考性——8月YoY(+34.95%)比7月(合併口徑+47.7%)又低了將近13個百分點，是連續第三個月放緩，且降幅比6→7月的放緩幅度還大。<br><br>
+          影響：這是第6步觀察訊號②「月營收YoY是否重新加速」的首次負向觸發，股價同期也從1,885元拉回到1,840元(月底)、9/9更來到1,795元，動能降溫與股價走弱同步發生，需要9月數據確認是否為趨勢。
+        </td>
+      </tr>
       <tr>
         <td><b>2026/07</b></td><td>1,640</td><td><b>670.7</b>(YoY+47.7%)</td><td><span class="badge q3">Q3</span></td><td><b>638.8</b></td><td><b>563.5</b></td>
         <td>
@@ -576,6 +584,10 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
       <tr><td>2026/05</td><td>589.6</td><td>+0.46%</td><td>+43.6%</td><td>591.4</td><td>526.0</td></tr>
       <tr><td>2026/06</td><td>656.0</td><td>+11.3%</td><td>+55.4%</td><td>610.8</td><td>545.4</td></tr>
       <tr><td>2026/07</td><td><b>670.7</b></td><td>+2.24%</td><td><b>+47.7%</b></td><td><b>638.8</b></td><td><b>563.5</b></td></tr>
+      <tr style="background:#F4F5F6">
+        <td>2026/08<span style="font-size:11px;color:var(--muted)">(母公司口徑)</span></td>
+        <td>645.86</td><td>—</td><td><span style="color:#E74C3C;font-weight:800">+34.95%</span></td><td>—</td><td>—</td>
+      </tr>
     </table>
     <p style="font-size:13px;color:var(--muted)">資料來源：使用者提供Goodinfo月營收截圖(2308台達電個股每月營收，涵蓋2023/08~2026/07共36個月原始資料，前12個月僅用於計算MA12)</p>
 
@@ -771,26 +783,34 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
 
 <script>
 (function(){
-  var labels = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07"];
-  var rev = [377.7, 370.9, 388.2, 366.5, 387.4, 373.9, 380.9, 434.4, 407.8, 410.4, 422.1, 454.0, 478.6, 570.6, 573.8, 505.4, 536.9, 496.8, 499.0, 597.8, 586.9, 589.6, 656.0, 670.7];
-  var ma3 = [366.5, 374.0, 378.9, 375.2, 380.7, 375.9, 380.7, 396.4, 407.7, 417.5, 413.4, 428.8, 451.6, 501.1, 541.0, 549.9, 538.7, 513.0, 510.9, 531.2, 561.2, 591.4, 610.8, 638.8];
-  var ma12 = [337.7, 339.2, 342.6, 345.1, 351.0, 355.0, 364.1, 374.0, 380.0, 385.0, 391.1, 397.8, 406.3, 422.9, 438.4, 449.9, 462.4, 472.6, 482.5, 496.1, 511.0, 526.0, 545.4, 563.5];
-  var close = [399.5, 380.5, 404.0, 381.0, 430.5, 437.5, 402.0, 360.0, 333.5, 374.0, 413.0, 567.0, 711.0, 854.0, 995.0, 932.0, 963.0, 1220.0, 1430.0, 1380.0, 2165.0, 2445.0, 1950.0, 1640.0];
-  var colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A"];
+  var labels = ["2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07", "2026/08*"];
+  var rev = [377.7, 370.9, 388.2, 366.5, 387.4, 373.9, 380.9, 434.4, 407.8, 410.4, 422.1, 454.0, 478.6, 570.6, 573.8, 505.4, 536.9, 496.8, 499.0, 597.8, 586.9, 589.6, 656.0, 670.7, null];
+  var revAug = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null, 645.86];
+  var ma3 = [366.5, 374.0, 378.9, 375.2, 380.7, 375.9, 380.7, 396.4, 407.7, 417.5, 413.4, 428.8, 451.6, 501.1, 541.0, 549.9, 538.7, 513.0, 510.9, 531.2, 561.2, 591.4, 610.8, 638.8, null];
+  var ma12 = [337.7, 339.2, 342.6, 345.1, 351.0, 355.0, 364.1, 374.0, 380.0, 385.0, 391.1, 397.8, 406.3, 422.9, 438.4, 449.9, 462.4, 472.6, 482.5, 496.1, 511.0, 526.0, 545.4, 563.5, null];
+  var close = [399.5, 380.5, 404.0, 381.0, 430.5, 437.5, 402.0, 360.0, 333.5, 374.0, 413.0, 567.0, 711.0, 854.0, 995.0, 932.0, 963.0, 1220.0, 1430.0, 1380.0, 2165.0, 2445.0, 1950.0, 1640.0, 1840.0];
+  var colors = ["#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A"];
 
   var barTrace = {
-    x: labels, y: rev, type: 'bar', name: '月營收(億)',
+    x: labels, y: rev, type: 'bar', name: '月營收(億，合併口徑)',
     marker: { color: colors },
-    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+    hovertemplate: '%{x}<br>營收: %{y}億(合併)<extra></extra>'
+  };
+  var augTrace = {
+    x: labels, y: revAug, type: 'bar', name: '8月營收(億，母公司口徑，暫缺)',
+    marker: { color: '#B7C0CB', pattern: { shape: '/' } },
+    hovertemplate: '%{x}<br>營收: %{y}億(母公司，YoY+34.95%)<extra></extra>'
   };
   var ma3Trace = {
     x: labels, y: ma3, type: 'scatter', mode: 'lines', name: 'MA3',
     line: { color: '#E74C3C', width: 2.5, dash: 'solid' },
+    connectgaps: false,
     hovertemplate: '%{x}<br>MA3: %{y}億<extra></extra>'
   };
   var ma12Trace = {
     x: labels, y: ma12, type: 'scatter', mode: 'lines', name: 'MA12',
     line: { color: '#1B3A8C', width: 2.5, dash: 'solid' },
+    connectgaps: false,
     hovertemplate: '%{x}<br>MA12: %{y}億<extra></extra>'
   };
   var closeTrace = {
@@ -801,18 +821,23 @@ body.dark, .dark *{background:var(--bg)!important;color:var(--text)!important}
   };
 
   var layout = {
-    title: { text: '2308 台達電子：月營收四季分色 + 3M/12M 平均圖 (近24個月)', font: { size: 15, color: '#2C3E50' } },
+    title: { text: '2308 台達電子：月營收四季分色 + 3M/12M 平均圖 (近24個月+8月母公司口徑)', font: { size: 15, color: '#2C3E50' } },
     barmode: 'overlay',
     xaxis: { tickangle: -45, tickfont: { size: 11 } },
     yaxis: { title: '月營收(億)', side: 'left' },
     yaxis2: { title: '月收盤價(元)', overlaying: 'y', side: 'right', showgrid: false },
-    legend: { orientation: 'h', y: -0.25 },
-    margin: { t: 50, b: 90, l: 60, r: 60 },
+    legend: { orientation: 'h', y: -0.3 },
+    margin: { t: 50, b: 110, l: 60, r: 60 },
     plot_bgcolor: '#FAFBFC',
-    paper_bgcolor: '#FFFFFF'
+    paper_bgcolor: '#FFFFFF',
+    annotations: [{
+      x: '2026/08*', y: 645.86, xref: 'x', yref: 'y',
+      text: '母公司口徑<br>MA3/MA12暫缺', showarrow: true, arrowhead: 2,
+      ax: 0, ay: -40, font: { size: 10, color: '#6B7C93' }
+    }]
   };
 
-  Plotly.newPlot('revChart2308', [barTrace, ma3Trace, ma12Trace, closeTrace], layout, { responsive: true, displayModeBar: false });
+  Plotly.newPlot('revChart2308', [barTrace, augTrace, ma3Trace, ma12Trace, closeTrace], layout, { responsive: true, displayModeBar: false });
 })();
 </script>
 
