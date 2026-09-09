@@ -71,7 +71,7 @@ body.dark, .dark *{background:var(--bg-main)!important;color:var(--text-main)!im
     <a href="#step1" class="active">1.現金流盲測</a>
     <a href="#step2" class="done">2.基本資訊</a>
     <a href="#step3" class="done">3.法說會</a>
-    <a href="#step4" class="pending">4.營收趨勢</a>
+    <a href="#step4" class="done">4.營收趨勢</a>
     <a href="#step5" class="pending">5.前瞻本益比</a>
     <a href="#step6" class="pending">6.投資決策</a>
   </nav>
@@ -414,7 +414,68 @@ body.dark, .dark *{background:var(--bg-main)!important;color:var(--text-main)!im
 
   <div class="card" id="step4">
     <h2>【第 4 步／共 6 步：營收趨勢視覺化】</h2>
-    <p class="pending-note">尚未執行，待確認後進行。</p>
+    <p>使用者提供Goodinfo月營收+月股價截圖，資料涵蓋2007/01～2026/08，內部取最近36個月(2023/09～2026/08)計算MA3/MA12，預設顯示最近24個月(2024/09～2026/08)，可切換36個月。<b>股價已將114年7月「1股拆4股」之前的月份(2025/07以前)除以4還原為分割後基礎，確保與2025/08後股價連續可比。</b></p>
+
+    <style>
+    .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:12px;font-weight:500}
+    .badge.q1{background:#E8F0F7;color:#5B8FB9}
+    .badge.q2{background:#E6F4EE;color:#2E7D6F}
+    .badge.q3{background:#FFF4E0;color:#B7791F}
+    .badge.q4{background:#FEE8E8;color:#C0392B}
+    .chart-btn{padding:6px 14px;border-radius:16px;border:1px solid #E8E9EB;background:#fff;cursor:pointer;font-size:13px;margin-right:8px;color:#2C3E50}
+    .chart-btn:hover{background:#F0F6FC}
+    </style>
+
+    <div class="chart-wrap" style="background:var(--bg-white);border:1px solid var(--border-light);border-radius:var(--radius);padding:16px;margin:16px 0;">
+      <div style="margin-bottom:10px">
+        <button id="btn24" class="chart-btn">近24月</button>
+        <button id="btn36" class="chart-btn">近36月</button>
+        <span style="font-size:13px;color:#6B7C93;margin-left:8px">Q1藍/Q2綠/Q3黃/Q4紅，MA3紅實線／MA12深藍實線／收盤價紫實線(右軸，已還原分割)</span>
+      </div>
+      <div id="revenueChart" style="width:100%;height:460px;"></div>
+    </div>
+
+    <table class="rule-table dict-table">
+    <tr><th>月份</th><th>收盤價(元，已還原)</th><th>營收(億)</th><th>季度</th><th>MA3</th><th>MA12</th></tr>
+    <tr><td>2024/09</td><td>155.8</td><td>104.2</td><td><span class='badge q3'>Q3</span></td><td>105.8</td><td>99.2</td></tr>
+    <tr><td>2024/10</td><td>139.5</td><td>104.7</td><td><span class='badge q4'>Q4</span></td><td>104.0</td><td>100.4</td></tr>
+    <tr><td>2024/11</td><td>128.5</td><td>100.2</td><td><span class='badge q4'>Q4</span></td><td>103.0</td><td>100.9</td></tr>
+    <tr><td>2024/12</td><td>135.2</td><td>95.2</td><td><span class='badge q4'>Q4</span></td><td>100.0</td><td>101.4</td></tr>
+    <tr><td>2025/01</td><td>134.2</td><td>102.5</td><td><span class='badge q1'>Q1</span></td><td>99.3</td><td>101.6</td></tr>
+    <tr><td>2025/02</td><td>141.5</td><td>97.5</td><td><span class='badge q1'>Q1</span></td><td>98.4</td><td>102.7</td></tr>
+    <tr><td>2025/03</td><td>120.2</td><td>111.0</td><td><span class='badge q1'>Q1</span></td><td>103.7</td><td>103.6</td></tr>
+    <tr><td>2025/04</td><td>114.8</td><td>115.0</td><td><span class='badge q2'>Q2</span></td><td>107.8</td><td>104.2</td></tr>
+    <tr><td>2025/05</td><td>122.5</td><td>102.1</td><td><span class='badge q2'>Q2</span></td><td>109.4</td><td>103.8</td></tr>
+    <tr><td>2025/06</td><td>121.2</td><td>110.6</td><td><span class='badge q2'>Q2</span></td><td>109.2</td><td>104.7</td></tr>
+    <tr><td>2025/07</td><td>132.5</td><td>106.5</td><td><span class='badge q3'>Q3</span></td><td>106.4</td><td>104.4</td></tr>
+    <tr><td>2025/08</td><td>139.5</td><td>107.6</td><td><span class='badge q3'>Q3</span></td><td>108.2</td><td>104.8</td></tr>
+    <tr><td>2025/09</td><td>170.0</td><td>116.8</td><td><span class='badge q3'>Q3</span></td><td>110.3</td><td>105.8</td></tr>
+    <tr><td>2025/10</td><td>249.0</td><td>113.5</td><td><span class='badge q4'>Q4</span></td><td>112.6</td><td>106.5</td></tr>
+    <tr><td>2025/11</td><td>235.0</td><td>122.6</td><td><span class='badge q4'>Q4</span></td><td>117.6</td><td>108.4</td></tr>
+    <tr><td>2025/12</td><td>231.0</td><td>123.5</td><td><span class='badge q4'>Q4</span></td><td>119.9</td><td>110.8</td></tr>
+    <tr><td>2026/01</td><td>277.5</td><td>130.3</td><td><span class='badge q1'>Q1</span></td><td>125.5</td><td>113.1</td></tr>
+    <tr><td>2026/02</td><td>298.0</td><td>115.1</td><td><span class='badge q1'>Q1</span></td><td>123.0</td><td>114.5</td></tr>
+    <tr><td>2026/03</td><td>243.5</td><td>136.3</td><td><span class='badge q1'>Q1</span></td><td>127.2</td><td>116.7</td></tr>
+    <tr><td>2026/04</td><td>317.0</td><td>140.4</td><td><span class='badge q2'>Q2</span></td><td>130.6</td><td>118.8</td></tr>
+    <tr><td>2026/05</td><td>738.0</td><td>150.6</td><td><span class='badge q2'>Q2</span></td><td>142.4</td><td>122.8</td></tr>
+    <tr><td>2026/06</td><td>1140.0</td><td>153.6</td><td><span class='badge q2'>Q2</span></td><td>148.2</td><td>126.4</td></tr>
+    <tr><td>2026/07</td><td>502.0</td><td>161.3</td><td><span class='badge q3'>Q3</span></td><td>155.2</td><td>131.0</td></tr>
+    <tr><td>2026/08</td><td>545.0</td><td>163.3</td><td><span class='badge q3'>Q3</span></td><td>159.4</td><td>135.6</td></tr>
+    </table>
+
+    <div class="card-blue">
+    近3個月(2026年6～8月)平均營收約<b>159.4億</b>，已連續<b>18個月</b>站在12個月平均(目前<b>135.6億</b>)之上，且兩條線都持續向上，屬於<span class="text-success">「短強長也強」多頭排列</span>型：這代表國巨最近的接單動能，比過去一整年的平均水準還要強，而且還在加速中，不是曇花一現。<br><br>
+    對應公式：MA3與MA12自2025年3月出現<span class="text-success">黃金交叉</span>(MA3由98.4億→103.68億超過MA12的103.56億)後，17個月來未再跌破，缺口從當時的0.1億持續擴大到2026年8月的23.8億(MA3/MA12比值1.17倍)；對應第1步規則二(存貨YoY13.71%<需觀察)與第3步「主動囤鉭金屬原料」的說法，此持續加速的營收趨勢正是需要囤料因應的需求來源，兩者互相印證，而非矛盾。<br><br>
+    對第5步EPS指引的影響：這種加速中的營收動能，是法說會「Q3溫和成長」保守指引之外的正面佐證——月營收MA3已經連續上行，若這個斜率延續，第5步的AI三情境樂觀假設有較強的事後驗證基礎；但仍需留意2026年5～7月收盤價從738飆到1220又回落到502～567的巨幅波動，顯示市場對這段營收加速的評價本身也在劇烈修正，營收基本面強勁不等於股價不會再修正。
+    </div>
+
+    <div class="card-yellow">
+    ⚠ 季節性判斷(資料僅36個月，不足完整3個曆年，參考性較低)：2024年Q3(317.5億)為當年最高、Q1(285.0億)最低，符合傳統「Q3旺季」印象；但2025年最高季別轉為Q4(359.6億)而非Q3(330.9億)，僅Q1(311.0億)持續維持全年最低。近2年僅「Q1為谷底」的規律穩定，「Q3必為峰頂」的規律並不穩定，較可能是2025下半年AI需求加速的結構性成長蓋過了傳統淡旺季效應，不宜簡單套用「旺季不旺」或「Q3必旺」的說法。
+    </div>
+
+    <p>資料來源：使用者提供Goodinfo月營收與月股價截圖，2007/01～2026/08。</p>
+
+    <p>J交叉預告：本步MA3/MA12自2025年3月起持續多頭排列，與第1步規則二(存貨主動囤料)、第3步法說會(訂單出貨比2.2、產能利用率90%以上)高度一致，無衝突；與第5步法人前瞻EPS預估是否支撐得住目前的高本益比(38.2～49.3倍，第2步)，將是後續驗證重點；季節性規律不穩定一項，列入E步預估時的不確定性揭露。</p>
   </div>
 
   <div class="card" id="step5">
@@ -429,6 +490,74 @@ body.dark, .dark *{background:var(--bg-main)!important;color:var(--text-main)!im
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<script>
+
+const revData24 = {
+  dates: ["2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07", "2026/08"],
+  revs: [104.2, 104.7, 100.2, 95.2, 102.5, 97.53, 111.0, 115.0, 102.1, 110.6, 106.5, 107.6, 116.8, 113.5, 122.6, 123.5, 130.3, 115.1, 136.3, 140.4, 150.6, 153.6, 161.3, 163.3],
+  ma3: [105.83, 104.03, 103.03, 100.03, 99.3, 98.41, 103.68, 107.84, 109.37, 109.23, 106.4, 108.23, 110.3, 112.63, 117.63, 119.87, 125.47, 122.97, 127.23, 130.6, 142.43, 148.2, 155.17, 159.4],
+  ma12: [99.18, 100.36, 100.92, 101.39, 101.58, 102.66, 103.56, 104.23, 103.81, 104.69, 104.39, 104.76, 105.81, 106.54, 108.41, 110.77, 113.09, 114.55, 116.66, 118.77, 122.82, 126.4, 130.97, 135.61],
+  price: [155.75, 139.5, 128.5, 135.25, 134.25, 141.5, 120.25, 114.75, 122.5, 121.25, 132.5, 139.5, 170.0, 249.0, 235.0, 231.0, 277.5, 298.0, 243.5, 317.0, 738.0, 1140.0, 502.0, 545.0],
+  colors: ["#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A"]
+};
+const revData36 = {
+  dates: ["2023/09", "2023/10", "2023/11", "2023/12", "2024/01", "2024/02", "2024/03", "2024/04", "2024/05", "2024/06", "2024/07", "2024/08", "2024/09", "2024/10", "2024/11", "2024/12", "2025/01", "2025/02", "2025/03", "2025/04", "2025/05", "2025/06", "2025/07", "2025/08", "2025/09", "2025/10", "2025/11", "2025/12", "2026/01", "2026/02", "2026/03", "2026/04", "2026/05", "2026/06", "2026/07", "2026/08"],
+  revs: [94.61, 90.62, 93.5, 89.48, 100.2, 84.61, 100.2, 107.0, 107.1, 100.0, 110.1, 103.2, 104.2, 104.7, 100.2, 95.2, 102.5, 97.53, 111.0, 115.0, 102.1, 110.6, 106.5, 107.6, 116.8, 113.5, 122.6, 123.5, 130.3, 115.1, 136.3, 140.4, 150.6, 153.6, 161.3, 163.3],
+  ma3: [null, null, 92.91, 91.2, 94.39, 91.43, 95.0, 97.27, 104.77, 104.7, 105.73, 104.43, 105.83, 104.03, 103.03, 100.03, 99.3, 98.41, 103.68, 107.84, 109.37, 109.23, 106.4, 108.23, 110.3, 112.63, 117.63, 119.87, 125.47, 122.97, 127.23, 130.6, 142.43, 148.2, 155.17, 159.4],
+  ma12: [null, null, null, null, null, null, null, null, null, null, null, 98.38, 99.18, 100.36, 100.92, 101.39, 101.58, 102.66, 103.56, 104.23, 103.81, 104.69, 104.39, 104.76, 105.81, 106.54, 108.41, 110.77, 113.09, 114.55, 116.66, 118.77, 122.82, 126.4, 130.97, 135.61],
+  price: [131.25, 131.5, 150.25, 149.25, 138.0, 139.5, 147.75, 156.25, 165.5, 182.5, 198.0, 164.25, 155.75, 139.5, 128.5, 135.25, 134.25, 141.5, 120.25, 114.75, 122.5, 121.25, 132.5, 139.5, 170.0, 249.0, 235.0, 231.0, 277.5, 298.0, 243.5, 317.0, 738.0, 1140.0, 502.0, 545.0],
+  colors: ["#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A", "#F5C07A", "#E8A0A0", "#E8A0A0", "#E8A0A0", "#7BA7D9", "#7BA7D9", "#7BA7D9", "#7AC1A0", "#7AC1A0", "#7AC1A0", "#F5C07A", "#F5C07A"]
+};
+
+function renderRevChart(ds, label) {
+  const bar = {
+    x: ds.dates, y: ds.revs, type: 'bar', name: '月營收(億)',
+    marker: {color: ds.colors},
+    hovertemplate: '%{x}<br>營收: %{y}億<extra></extra>'
+  };
+  const ma3 = {
+    x: ds.dates, y: ds.ma3, type: 'scatter', mode: 'lines', name: 'MA3(3個月平均)',
+    line: {color: '#E74C3C', width: 2.5, dash: 'solid'},
+    hovertemplate: 'MA3: %{y}億<extra></extra>'
+  };
+  const ma12 = {
+    x: ds.dates, y: ds.ma12, type: 'scatter', mode: 'lines', name: 'MA12(12個月平均)',
+    line: {color: '#1B3A8C', width: 2.5, dash: 'solid'},
+    hovertemplate: 'MA12: %{y}億<extra></extra>'
+  };
+  const price = {
+    x: ds.dates, y: ds.price, type: 'scatter', mode: 'lines', name: '月收盤價(元，已還原1拆4)',
+    line: {color: '#8B5FBF', width: 2.5, dash: 'solid'},
+    yaxis: 'y2',
+    hovertemplate: '收盤價: %{y}元<extra></extra>'
+  };
+  const layout = {
+    title: '2327 國巨：月營收四季分色 + 3M/12M平均圖 (' + label + ')',
+    barmode: 'overlay',
+    bargap: ds.dates.length > 30 ? 0.25 : 0.15,
+    hovermode: 'x unified',
+    plot_bgcolor: '#FAF9F6', paper_bgcolor: '#FFFFFF',
+    font: {family: 'Noto Sans TC, sans-serif', color: '#2C3E50'},
+    xaxis: {tickangle: -45},
+    yaxis: {title: '月營收(億)'},
+    yaxis2: {title: '月收盤價(元)', overlaying: 'y', side: 'right', showgrid: false},
+    legend: {orientation: 'h', y: -0.3},
+    margin: {t: 50, b: 100}
+  };
+  Plotly.newPlot('revenueChart', [bar, ma3, ma12, price], layout, {responsive: true});
+}
+
+renderRevChart(revData24, '近24個月');
+
+document.getElementById('btn24').addEventListener('click', function() {
+  renderRevChart(revData24, '近24個月');
+});
+document.getElementById('btn36').addEventListener('click', function() {
+  renderRevChart(revData36, '近36個月');
+});
+
+</script>
 <script>
 document.querySelectorAll('nav.stepnav a').forEach(a=>{
   a.addEventListener('click',e=>{
